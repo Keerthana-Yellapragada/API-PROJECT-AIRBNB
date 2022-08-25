@@ -1,10 +1,11 @@
 # API-project
 
-# `<name of application here>`
+# `AIRBNB'
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+![image (2)](https://user-images.githubusercontent.com/85444662/186531432-9ec6e95d-2e5f-49f1-a9ec-0a53f628bedf.png)
+
 
 ## API Documentation
 
