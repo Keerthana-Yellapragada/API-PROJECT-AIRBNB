@@ -30,4 +30,3 @@ router.post(
 );
 
 module.exports = router;
-ç
