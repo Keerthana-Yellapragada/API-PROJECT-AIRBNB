@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
 
-// login function
+    // login function
     static async login({
       credential,
       password
@@ -87,6 +87,15 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       }
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,

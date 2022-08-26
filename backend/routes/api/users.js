@@ -1,13 +1,22 @@
 // backend/routes/api/users.js
 const express = require('express');
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const {
+    setTokenCookie,
+    requireAuth
+} = require('../../utils/auth');
+const {
+    User
+} = require('../../db/models');
 
 
 
-const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const {
+    check
+} = require('express-validator');
+const {
+    handleValidationErrors
+} = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -27,6 +36,22 @@ const validateSignup = [
         min: 4
     })
     .withMessage('Please provide a username with at least 4 characters.'),
+    check('firstName')
+    .exists({
+        checkFalsy: true
+    })
+    .isLength({
+        min: 1
+    })
+    .withMessage('Please provide a first name with at least 1 character.'),
+    check('lastName')
+    .exists({
+        checkFalsy: true
+    })
+    .isLength({
+        min: 1
+    })
+    .withMessage('Please provide a last name with at least 1 character.'),
     check('username')
     .not()
     .isEmail()
@@ -49,11 +74,15 @@ router.post(
     async (req, res) => {
         const {
             email,
+            firstName,
+            lastName,
             password,
             username
         } = req.body;
         const user = await User.signup({
             email,
+            firstName,
+            lastName,
             username,
             password
         });
