@@ -5,16 +5,22 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Users', [{
         email: 'demo@user.io',
+        firstName: 'Adam',
+        lastName: 'Sanders',
         username: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
         email: 'user1@user.io',
+        firstName: 'Bill',
+        lastName: 'Nye',
         username: 'FakeUser1',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
         email: 'user2@user.io',
+        firstName: 'Gary',
+        lastName: 'Waters',
         username: 'FakeUser2',
         hashedPassword: bcrypt.hashSync('password3')
       }
