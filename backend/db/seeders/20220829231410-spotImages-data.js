@@ -11,8 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    return queryInterface.bulkInsert('SpotImages', [{},
-      {
+    return queryInterface.bulkInsert('SpotImages', [{
         spotId: 1,
         url: "image url",
         preview: true
@@ -28,13 +27,11 @@ module.exports = {
         url: "image url",
         preview: true
       },
-        {
-          spotId: 1,
-          url: "image url",
-          preview: true
-        },
-
-    ])
+      {
+        spotId: 1,
+        url: "image url",
+        preview: true
+      }])
   },
 
   async down(queryInterface, Sequelize) {
