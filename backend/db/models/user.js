@@ -13,16 +13,16 @@ module.exports = (sequelize, DataTypes) => {
     toSafeObject() {
       const {
         id,
+        username,
         firstName,
         lastName,
-        username,
         email
       } = this; // context will be the User instance
       return {
         id,
+        username,
         firstName,
         lastName,
-        username,
         email
       };
     }
