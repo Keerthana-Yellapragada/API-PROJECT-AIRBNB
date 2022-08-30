@@ -1,11 +1,7 @@
 {
   "dependencies": {
-    "-": "^0.0.1",
     "bcryptjs": "^2.4.3",
-    "g": "^2.0.1",
-    "pg": "^8.8.0",
-    "sequelize": "^6.21.4",
-    "sequelize-cli": "^6.4.1"
+    "pg": "^8.8.0"
   },
   "scripts": {
     "install": "npm --prefix backend install backend",
@@ -13,5 +9,21 @@
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
-  }
+  },
+  "name": "authenticate-me",
+  "description": "## Database Schema Design",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thenunachi/API-Project-AirBnb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thenunachi/API-Project-AirBnb/issues"
+  },
+  "homepage": "https://github.com/thenunachi/API-Project-AirBnb#readme"
 }
