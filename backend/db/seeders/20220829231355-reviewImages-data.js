@@ -11,6 +11,9 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+  //  return queryInterface.bulkInsert('ReviewImages', [
+  //   {}
+  //  ])
   },
 
   async down (queryInterface, Sequelize) {
