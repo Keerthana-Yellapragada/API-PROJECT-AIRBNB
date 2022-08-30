@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
     toSafeObject() {
       const {
         id,
+        firstName,
+        lastName,
         username,
         email
       } = this; // context will be the User instance
       return {
         id,
+        firstName,
+        lastName,
         username,
         email
       };
@@ -58,11 +62,15 @@ module.exports = (sequelize, DataTypes) => {
     static async signup({
       username,
       email,
+      firstName,
+      lastName,
       password
     }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
+        firstName,
+        lastName,
         email,
         hashedPassword
       });
@@ -71,6 +79,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
+      User.hasMany(models.Spot, {foreignKey: "ownerId"})
+      User.hasMany(models.Review, {foreignKey: "userId"})
     }
   };
 
