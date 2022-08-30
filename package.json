@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "pg": "^8.8.0"
   },
   "scripts": {
@@ -14,7 +13,6 @@
   "description": "## Database Schema Design",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thenunachi/API-Project-AirBnb.git"
