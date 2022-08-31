@@ -11,13 +11,11 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    return queryInterface.bulkInsert('SpotImages', [{},
+    return queryInterface.bulkInsert('SpotImages', [
       {
-
         spotId: 1,
-        url: "image url 1 ",
+        url: "image url",
         preview: true
-
       },
       {
         spotId: 2,
@@ -29,7 +27,11 @@ module.exports = {
         url: "image url",
         preview: true
       },
-
+      {
+        spotId: 3,
+        url: "image url",
+        preview: true
+      }
     ])
   },
 
