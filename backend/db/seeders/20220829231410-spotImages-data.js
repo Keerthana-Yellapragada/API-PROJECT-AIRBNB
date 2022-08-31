@@ -11,14 +11,11 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-
-
-
-    return queryInterface.bulkInsert('SpotImages', [
+    return queryInterface.bulkInsert('SpotImages', [{},
       {
 
         spotId: 1,
-        url: "image url",
+        url: "image url 1 ",
         preview: true
 
       },
@@ -32,11 +29,8 @@ module.exports = {
         url: "image url",
         preview: true
       },
-      {
-        spotId: 3,
-        url: "image url",
-        preview: true
-      }])
+
+    ])
   },
 
   async down(queryInterface, Sequelize) {
