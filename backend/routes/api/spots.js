@@ -127,7 +127,7 @@ return res.json({
 })
 //*********************************************************************** */
 // 4. Create a Spot
-router.post('/', requireAuth, restoreUser, setTokenCookie, async (req, res, next) => {
+router.post('/', requireAuth, async (req, res, next) => {
 const {
     address,
     city,
