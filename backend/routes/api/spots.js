@@ -1,5 +1,10 @@
+// import express
 const express = require('express');
+
+// immport express router
 const router = express.Router();
+
+// import models
 const {
     Spot,
     sequelize,
@@ -9,41 +14,120 @@ const {
     Booking,
     ReviewImage
 } = require('../../db/models');
+
+// import authentication functions
 const {
     setTokenCookie,
     restoreUser,
     requireAuth
 } = require('../../utils/auth')
+
+
+//*************************************************************************/
+//----------------------- ****  SPOTS ROUTER **** -------------------------
+//*************************************************************************/
+
 //*********************************************************************** */
-// GET REVIEW BY SPOT ID --- WORKS!
-// INCLUDE REVIEW IMAGES AND USER INFO
+//--------------------- GET ALL SPOTS FOR A USER/OWNER ----------------------------------
+
+router.get("/current", requireAuth, async (req, res, next) => {
+
+    // get the user Id that we generated from the requireAuth func
+    const userId = req.user.id
+
+    // get all the spots that match this userId to the ownerId
+    const allSpots = await Spot.findAll({
+
+        where: {
+            ownerId: userId
+        },
+
+        include: {
+            model: Review,
+            attributes: []
+        },
+
+        attributes: { // to get AVGRATING
+            include: [
+                [
+                    sequelize.fn("AVG", sequelize.col("stars")), "avgRating"
+                ]
+            ]
+        },
+
+        group: ['Spot.id'], // returns ALL spots
+        raw: true // Sequelize says set this is false if you dont have a model definition in your query?
+
+    })
+
+
+    // iterate through each Spot and see if it has an assoc image
+    for (let spot of allSpots) {
+
+        const spotImage = await SpotImage.findOne({ // TO GET PREVIEW IMAGE
+            attributes: ['url'],
+
+            where: {
+                preview: true,
+                spotId: spot.id
+            },
+
+            raw: true
+
+        })
+
+
+        // if true, then set the property in that object.
+        if (spotImage) {
+            spot.previewImage = spotImage.url
+        } else {
+            spot.previewImage = null
+        }
+    }
+
+
+    return res.json({
+        Spots: allSpots
+    });
+
+})
+//*********************************************************************** */
+
+
+//*************************************************************************/
+//------------------------ GET REVIEW BY SPOT ID -------------------------
+// -- !!!!!!!!!!!!!!! NEED TO FIX !!! reviewimages is empty!!?!? -------------------!!!!!!!!!!!!!!!!!!!!
+
 
 router.get("/:spotId/reviews", async (req, res) => {
 
     const {
         spotId
-    } = req.params;
+    } = req.params
 
     const spot = await Spot.findByPk(spotId)
 
-    console.log(spot)
+    // console.log(spot)
 
     // ERROR HANDLING
 
     if (!spot) {
+
         res.statusCode = 404;
         return res.json({
             "message": "Spot couldn't be found",
             "statusCode": 404
         })
+
     }
 
+    // find all reviews ass to this spot
     const spotReviews = await Review.findAll({
         where: {
-            spotId: spot.id // WHY IS THIS NOT WORKING?
+            spotId: spot.id
         },
         include: [{
-                model: ReviewImage,
+                model: ReviewImage, // WHY IS THIS NOT WORKING?-- NEED TO FIX - its an empty array! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 attributes: ['id', 'url', ]
             },
             {
@@ -54,16 +138,17 @@ router.get("/:spotId/reviews", async (req, res) => {
 
     })
 
-    console.log(spotReviews)
+    //console.log(spotReviews)
 
-    return res.status(200).json({
+    res.status(200)
+    return res.json({
         Reviews: spotReviews
     })
 
 })
-//*************************** ******************************************** */
-// Create a Review for a Spot based on the Spot's id --- WORKS!!!
-// /:spotId/reviews
+//******************************************************************************* */
+
+//-------------------------- CREATE REVIEW FOR SPOT by id -------------------------
 
 router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     let {
@@ -81,7 +166,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     // find the spot by pk so we can get its id
     let spot = await Spot.findByPk(spotId)
 
-    //error handling: if we can't find spot
+    //ERROR HANDLING: if we can't find spot by id
     if (!spot) {
         res.status(404)
         res.json({
@@ -94,11 +179,12 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
 
     let existingReview = await Review.findOne({
         where: {
-            userId: user.id
+            userId: user.id,
+            spotId: spot.id // *******!!!!!!!! ********** SHOULD I INCLUDE THIS OR NOT ?! ********** !!!!!!!!!!!!!!!!!!!!!!!!!!
         }
     })
 
-    // if we have an existing review....
+    // ERROR HANDLING: if we have an existing review by this user already at this spot
     if (existingReview) {
         res.status(403)
         res.json({
@@ -119,27 +205,39 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     return res.json(newReview)
 
 })
-//*********************************************************************** */
-// 3. Get details of a Spot from an id -- WORKS
+//****************************************************************************** */
+//-------------------------- GET DETAILS OF A SPOT by id -------------------------
+
+
 
 router.get("/:spotId", async (req, res, next) => {
-    //const spotId = req.params.spotId
 
     const {
         spotId
     } = req.params
+
+    // find spot based on id
     const spotInfo = await Spot.findByPk(spotId)
+
+
+    // ERROR HANDLING: if we don't find the spot based on given id....
     if (!spotInfo) {
+
         res.json({
             message: 'Spot couldn’t be found',
             statusCode: 404
         })
+
     }
 
-    // lazy load info
+
+    // find the owner
     const owner = await User.findByPk(spotInfo.ownerId, {
         attributes: ["id", "firstName", "lastName"]
     })
+
+
+    // find the # num of reviews
     const numReviews = await Review.count({
         where: {
             spotId: spotId
@@ -147,7 +245,7 @@ router.get("/:spotId", async (req, res, next) => {
         raw: true
     })
 
-
+    // find related spot images
     const SpotImages = await SpotImage.findAll({
         attributes: ["id", "url", "preview"],
         where: {
@@ -166,25 +264,32 @@ router.get("/:spotId", async (req, res, next) => {
         raw: true
     })
 
-    // add as properties
-    const details = spotInfo.toJSON()
-    details.numReviews = numReviews,
-        details.avgStarRating = averageRating.avgStarRating, // RETURNS NULL!?!??!?!
-        details.SpotImages = SpotImages,
-        details.owner = owner
-    return res.json(details)
+    // Add info we lazy loaded as properties to the obj
+    const infoObj = spotInfo.toJSON() // need to do this first
+
+
+    infoObj.avgStarRating = averageRating.avgStarRating, // RETURNS NULL!?!??!?!
+        infoObj.SpotImages = SpotImages,
+        infoObj.numReviews = numReviews,
+        infoObj.Owner = owner
+
+
+
+    return res.json(infoObj)
 })
 
-//***************************************************** */
-
-// 1. Get All Spots including previewImage and avgRating ***** DONE
+//********************************************************************************/
+//-------------------------- GET ALL SPOTS ---------------------------------------
 
 router.get('/', async (req, res, next) => {
 
     const allSpots = await Spot.findAll({
+
         include: {
+
             model: Review,
             attributes: []
+
         },
         attributes: {
             include: [
@@ -193,78 +298,28 @@ router.get('/', async (req, res, next) => {
                 ]
             ]
         },
-        group: ['Spot.id'], // THIS IS TO RETURN ALL THE SPOTS, and not just One
-        raw: true // sequelize says set this tot true if you dont have a model definition in your query
+        group: ['Spot.id'], // need this to return ALL spots
+
+        raw: true
     })
-    // go through each Spot and see if they have an associated image
+
+    // go through spots array and see if each obj has an assoc image
     for (let spot of allSpots) {
+
         const spotImage = await SpotImage.findOne({
+
             attributes: ['url'],
+
             where: {
                 preview: true,
                 spotId: spot.id
             },
+
             raw: true
-        })
-        // if true, then set the new keyvaluepair in that object.
-        if (spotImage) {
-            spot.previewImage = spotImage.url
-        } else {
-            spot.previewImage = null
-        }
-    }
-    return res.json({
-        Spots: allSpots
-    })
-})
 
-//*********************************************************************** */
-
-// 2. Get all spots owned by a specified owner **** DONE
-
-router.get('/current', requireAuth, async (req, res, next) => {
-
-
-    // get the user Id that we generated from the requireAuth func
-    const userId = req.user.id
-
-
-    // get all the spots that match this userId to the ownerId
-    const allSpots = await Spot.findAll({
-        where: {
-            ownerId: userId
-        },
-
-        //INCLUDE PREVIEW IMG & AVG RATING ALSO IN THE RESULTS
-        include: {
-            model: Review,
-            attributes: []
-        },
-        attributes: {
-            include: [
-                [
-                    sequelize.fn("AVG", sequelize.col("stars")), "avgRating"
-                ]
-            ]
-        },
-        group: ['Spot.id'], // THIS IS TO RETURN ALL THE SPOTS, and not just One
-        raw: true // sequelize says set this not true if you dont have a model definition in your query
-    })
-
-
-    // iterate through each Spot and see if they have an associated image
-    for (let spot of allSpots) {
-        const spotImage = await SpotImage.findOne({
-            attributes: ['url'],
-            where: {
-                preview: true,
-                spotId: spot.id
-            },
-            raw: true
         })
 
-
-        // if true, then set the new kvp in that object.
+        // if image exists, then set spotImage property in obj accordingly
         if (spotImage) {
             spot.previewImage = spotImage.url
         } else {
@@ -273,20 +328,25 @@ router.get('/current', requireAuth, async (req, res, next) => {
     }
 
 
-    // SEND RESPONSE OBJECT
     return res.json({
         Spots: allSpots
-    });
+    })
+
 })
-//*********************************************************************** */
-//*********************************************************************** */
-// 5. Add an Image to a Spot based on the Spot’s id -- WORKS
+
+
+
+//--------------------- ADD IMAGE TO A SPOT ----------------------------------
+
+
 
 router.post("/:spotId/images", requireAuth, async (req, res) => {
+
     const {
         url,
         preview
     } = req.body
+
     const {
         spotId
     } = req.params;
@@ -294,27 +354,35 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     // get spot obj by pk
     const spot = await Spot.findByPk(spotId)
 
-    console.log(spot)
-    const newImage = await SpotImage.create({ // is this valid?
-        url,
-        preview,
-        spotId: spot.id // add from the obj we got by pk
-    })
-    console.log(newImage)
-    if (!newImage) {
-        res.statusCode = 404;
+
+    // ERROR HANDLING:  if we can't find a spot from given id
+    if (!spot) {
+
+        res.status(404)
+
         return res.json({
             "message": "Spot couldn't be found",
             "statusCode": 404
         })
-    }
-    // add values to the new image obj
 
+    }
+
+    //create a new image
+    const newImage = await SpotImage.create({
+        url,
+        preview,
+        spotId: spot.id
+    })
+
+
+
+    // add values to the new image obj
     newImage.url = req.body.url
     newImage.preview = req.body.preview
 
-    // add image to spot obj
+    // add new image to spot obj
     spot.previewImage = newImage
+
 
     res.status = 200
     return res.json({
@@ -324,45 +392,11 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     })
 })
 
-//*********************************************************************** */
-// 3. Get details of a Spot from an id --- RETURNS NULL ?!?!?
 
-router.get('/:spotId', async (req, res, next) => {
-    let spotId = req.params.id
-    let spotInfo = await Spot.findByPk(spotId, {
-        //have to add numReviews by getting length of associatred reviews
-        //have to add avgStarRating(same as above)
-        // haave to add SpotImages(id,url,preview) in array
-        // have to add Owner: id, firstName, lastName from Users table
-        include: {
-            model: SpotImage,
-            where: {
-                preview: true
-            }
-        }
-
-        // include: [{
-        //         model: SpotImage
-        //     },
-        //     {
-        //         model: User,
-        //         attributes: ["id", "firstName", "lastName"]
-        //     }
-        // ]
-    })
-
-    console.log(spotInfo)
-
-    // NEED TO ADD ERROR HANDLING FOR 404 RESPONSE IF WE CANT FIND SPOT BASED ON ID
-
-
-    return res.json({ // WHY IS THIS RETURNING NULL
-        spotInfo: spotInfo
-    })
-})
 //*********************************************************************** */
 
-// 6. Edit a Spot
+//-------------------- EDIT A SPOT by id ----------------------------------
+
 router.put('/:spotId', requireAuth, async (req, res) => {
 
     //get info sent by user
@@ -421,8 +455,7 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
 
 //*********************************************************************** */
-
-// 4. Create a Spot ******   WORKS!!!!
+//-------------------- CREATE A SPOT ----------------------------------
 
 router.post('/', requireAuth, async (req, res, next) => {
     const {
@@ -436,10 +469,10 @@ router.post('/', requireAuth, async (req, res, next) => {
         description,
         price,
         user
-    } = req.body; // get variable info from form created by user from the req body
-    // const{user} = req.body
-    //get userId to set as ownerId
+    } = req.body;
+
     const userId = req.user.id
+
     const newSpot = await Spot.create({
         ownerId: userId,
         address: address,
@@ -452,25 +485,29 @@ router.post('/', requireAuth, async (req, res, next) => {
         description: description,
         price: price
     })
-    // CREATE ERROR HANDLING FOR THIS
+    // CREATE VALIDATION ERROR HANDLING FOR THIS ?
     return res.json(newSpot)
 
 })
 
 
 //*********************************************************************** */
+//--------------------DELETE A SPOT -------------------------------------
+// *************** !!! NEED TO FIX THIS-- WAS WORKING BUT DOESNT ANYMORE - FOREIGN KEY CONSTRAINT FAILED!?! !!! *********
 
-//7. DELETE A SPOT-- WORKS!
+
 router.delete('/:spotId', async (req, res) => {
 
     // get the spotId from params
     let {
         spotId
     } = req.params
+
+
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
 
-    // have error handling for if we can’t find spot by id
+    // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
 
         res.status(404)
@@ -478,11 +515,14 @@ router.delete('/:spotId', async (req, res) => {
             message: "Spot couldn't be found",
             statusCode: 404
         })
+
     }
 
-    //call destroy() method
+    // DESTROY the object
     await spot.destroy()
 
+
+    // send response body
     res.status(200)
     return res.json({
         "message": "Successfully deleted",
@@ -491,6 +531,167 @@ router.delete('/:spotId', async (req, res) => {
 
 })
 
-//******************************************************** */
+
+// *****************************************************************************
+//--------------------- GET ALL BOOKING FOR A SPOT -----------------------------
+// ******************** !!! NEED TO FIX !!! ***********************************
+
+
+router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
+
+    // get the spotId from params
+    let {
+        spotId
+    } = req.params
+
+    // get the current logged-in user obj to get id
+    let userId = req.user.id
+
+    console.log(userId)
+
+    // find spot by pk
+    let spot = await Spot.findByPk(req.params.spotId)
+
+    // ERROR HANDLING: if we can’t find spot by id
+    if (!spot) {
+
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+
+    }
+
+
+    // CASE 1: if you AREN'T the owner -- you are the LOGGED-IN CURRENT USER
+
+    if (spot.userId === userId) {
+
+        // get all bookings that match this spot.id
+        const bookings = await Booking.findAll({
+            where: {
+                spotId: spot.id,
+            },
+            attributes: ['startDate', 'endDate', 'spotId']
+        })
+
+        res.status(200)
+        res.json({
+            Booking: bookings
+        })
+
+    }
+
+    //-----------------------------------------------------------------------
+    // CASE 2: if you ARE the OWNER:
+    if (spot.userId !== userId) {
+
+        // get all bookings that match this spot.id
+        const bookings = await Booking.findAll({
+            where: {
+                spotId: spot.id,
+            },
+            include: {
+                model: User
+            }
+        })
+
+        res.status(200)
+        res.json({
+            Booking: bookings
+        })
+
+    }
+
+
+
+});
+
+//************************************************************************* */
+//--------------------CREATE A BOOKING FOR A SPOT by id -------------------------------------
+//-------------------!!!!!!!!!!!! ERROR HANDLING : NEED TO ADD CUSTOM VALIDATION ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
+
+    // get the spotId from params
+    let {
+        spotId
+    } = req.params
+
+    // get the current logged-in user obj to get id
+    let userId = req.user.id
+
+
+    // get info from req body to create form
+
+    const {
+        startDate,
+        endDate
+    } = req.body // need to get userId, spotId from req params
+
+    console.log(userId)
+
+    // find spot by pk
+    let spot = await Spot.findByPk(req.params.spotId)
+
+
+    // ERROR HANDLING: if we can’t find spot by id
+    if (!spot) {
+
+        res.status(404)
+        return res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+
+    }
+
+
+    // ERROR HANDLING: for a booking conflict
+
+    // find any existing bookings and see if dates conflict
+    const existingBooking = await Booking.findOne({
+        where: {
+            spotId: spot.id
+        }
+    })
+
+    if (existingBooking) { // If there IS AN EXISTING BOOKING
+
+        if (existingBooking.endDate >= req.body.startDate) { // if the end date of one booking overlaps with the start of another one:
+
+            // !!!!!!!!!!!!!! NEED TO REVISIT THIS CONDITIONAL LOGIC !!!!!!!!!!!!!!!!!!!!!!
+
+            res.status(403)
+            return res.json({
+                "message": "Sorry, this spot is already booked for the specified dates",
+                "statusCode": 403,
+                "errors": {
+                    "startDate": "Start date conflicts with an existing booking",
+                    "endDate": "End date conflicts with an existing booking"
+                }
+            })
+        }
+    }
+
+
+    // CREATE a new booking (if no conflicts exist)
+
+    const newBooking = await Booking.create({
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        userId: userId,
+        spotId: spotId
+    })
+
+    //success response
+    res.status(200)
+    return res.json(newBooking)
+
+});
+
+
+//************************************************************************* */
 
 module.exports = router;
