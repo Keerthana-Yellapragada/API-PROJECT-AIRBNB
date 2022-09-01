@@ -15,7 +15,7 @@ const {
     requireAuth
 } = require('../../utils/auth')
 //*********************************************************************** */
-// GET REVIEW BY SPOT ID
+// GET REVIEW BY SPOT ID --- WORKS!
 // INCLUDE REVIEW IMAGES AND USER INFO
 
 router.get("/:spotId/reviews", async (req, res) => {
@@ -61,10 +61,66 @@ router.get("/:spotId/reviews", async (req, res) => {
     })
 
 })
+//*************************** ******************************************** */
+// Create a Review for a Spot based on the Spot's id --- WORKS!!!
+// /:spotId/reviews
 
-//**********************************************************/
+router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
+    let {
+        user
+    } = req
+    let {
+        spotId
+    } = req.params
+
+    let {
+        stars,
+        review
+    } = req.body
+
+    // find the spot by pk so we can get its id
+    let spot = await Spot.findByPk(spotId)
+
+    //error handling: if we can't find spot
+    if (!spot) {
+        res.status(404)
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    // check if we already have a review for this spot from this user: ONLY ALLOW ONE:
+
+    let existingReview = await Review.findOne({
+        where: {
+            userId: user.id
+        }
+    })
+
+    // if we have an existing review....
+    if (existingReview) {
+        res.status(403)
+        res.json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+        })
+    }
+
+    //create a new review
+    let newReview = await Review.create({
+        stars,
+        review,
+        spotId: spot.id,
+        userId: user.id
+    })
+
+    res.status(201)
+    return res.json(newReview)
+
+})
 //*********************************************************************** */
-// 3. Get details of a Spot from an id --- RETURNS NULL ?!?!?
+// 3. Get details of a Spot from an id -- WORKS
 
 router.get("/:spotId", async (req, res, next) => {
     //const spotId = req.params.spotId
@@ -167,13 +223,18 @@ router.get('/', async (req, res, next) => {
 // 2. Get all spots owned by a specified owner **** DONE
 
 router.get('/current', requireAuth, async (req, res, next) => {
+
+
     // get the user Id that we generated from the requireAuth func
     const userId = req.user.id
+
+
     // get all the spots that match this userId to the ownerId
     const allSpots = await Spot.findAll({
         where: {
             ownerId: userId
         },
+
         //INCLUDE PREVIEW IMG & AVG RATING ALSO IN THE RESULTS
         include: {
             model: Review,
@@ -189,6 +250,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
         group: ['Spot.id'], // THIS IS TO RETURN ALL THE SPOTS, and not just One
         raw: true // sequelize says set this not true if you dont have a model definition in your query
     })
+
+
     // iterate through each Spot and see if they have an associated image
     for (let spot of allSpots) {
         const spotImage = await SpotImage.findOne({
@@ -199,6 +262,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
             },
             raw: true
         })
+
+
         // if true, then set the new kvp in that object.
         if (spotImage) {
             spot.previewImage = spotImage.url
@@ -206,6 +271,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
             spot.previewImage = null
         }
     }
+
+
     // SEND RESPONSE OBJECT
     return res.json({
         Spots: allSpots
@@ -213,7 +280,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
 })
 //*********************************************************************** */
 //*********************************************************************** */
-// 5. Add an Image to a Spot based on the Spot’s id
+// 5. Add an Image to a Spot based on the Spot’s id -- WORKS
 
 router.post("/:spotId/images", requireAuth, async (req, res) => {
     const {
@@ -312,7 +379,9 @@ router.put('/:spotId', requireAuth, async (req, res) => {
     } = req.body
 
     // find the spot based on Id with await findbyPk
-    let {spotId }= req.params
+    let {
+        spotId
+    } = req.params
 
     let spot = await Spot.findByPk(spotId)
 
@@ -395,7 +464,9 @@ router.post('/', requireAuth, async (req, res, next) => {
 router.delete('/:spotId', async (req, res) => {
 
     // get the spotId from params
-    let {spotId} = req.params
+    let {
+        spotId
+    } = req.params
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
 
