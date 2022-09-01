@@ -32,100 +32,72 @@ const {
 
 //*********************************************************************** */
 //---------------- GET ALL REVIEWS FOR THE CURRENT USER/OWNER --------------
+router.get("/current", requireAuth, async (req, res) => {
 
-router.get("/current", requireAuth, async (req, res, next) => {
+    // get user id from auth
+    const userId = req.user.id
 
-    // get the user Id that we generated from the requireAuth func
-    const currUserId = req.user.id
 
-    // get all reviews created by this user
-
+// get all reviews
     const allReviews = await Review.findAll({
         where: {
-            userId: currUserId
-        }
+            userId: userId
+        },
+        include: [{
+                model: Spot,
+                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            }
+        ],
+        group: ['Spot.id', 'Review.id'],
+        raw: true
     })
 
-
-    // LAZY LOAD associated info and add to final obj -- !!!!!!!!! NEED TO FIX THIS !!!!!!!!!!!!!!!
-
-    console.log(allReviews)
-    // iterate through allReviews
-    for (let review in allReviews) {
-
-        // console.log(review)
-        // console.log(review.dataValues.id) // why is id undefined?
-
-        // get assoc user info
-        let userInfo = await User.findOne({
+    // iterate through and add to each review obj in array
+    for (let review of allReviews) {
+        const spotImage = await SpotImage.findOne({
+            attributes: ['url'],
             where: {
-                id: currUserId
+                preview: true,
+                spotId: review.id
             },
-            attributes: {
-                include: ['id', 'firstName', 'lastName']
-            }
+            raw: true
         })
 
-        // find associated Spot info with spotImg URL as previewIamge
-        let spotInfo = await Spot.findOne({
-            where: {
-                id: review.spotId //??????????????????????????
-            },
-            attributes: {
-                exclude: ['createdAt', 'updatedAt']
-            },
-            include: {
-                model: SpotImage,
-                attributes: {
-                    exclude: ['id', 'spotId', 'preview', 'createdAt', 'updatedAt'] // include only URL with Spot info!!!!!
-                }
-            }
-        })
-
-        // find associated images
-        let imageInfo = await ReviewImage.findOne({
-            where: {
-                reviewId: review.dataValues.id
-            },
-            attributes: {
-                exclude: ['reviewId', 'createdAt', 'updatedAt']
-            }
-        })
-        // add to each review obj
-        review.Spot = spotInfo
-        review.ReviewImages = imageInfo
-        review.User = userInfo
-    };
+        // if we have an image set it to property
+        if (spotImage) {
+            review.previewImage = spotImage.url
+        } else { // if we don't have an image set it to null
+            review.previewImage = null
+        }
+    }
 
 
-
-
-    // send response
+    // send response obj
     res.status(200)
-    res.json({
+    return res.json({
         Reviews: allReviews
     })
-
 })
-
 
 //*********************************************************************** */
 //------------------------ ADD AN IMAGE TO REVIEW by review id ------------------------
 
 router.post("/:reviewId/images", async (req, res, next) => {
 
-    const {
-        reviewId
-    } = req.params
+    const currReviewId = req.params.id
 
-    const userId = req.user.id
+    const currUserId = req.user.id
 
     const {
         url
     } = req.body // get user input to insert changes
 
     // get the review by pk
-    let review = await Review.findByPk(reviewId)
+    let review = await Review.findByPk(currReviewId)
 
     //Error response: Couldn't find a Review with the specified id
     if (!review) {
@@ -142,7 +114,7 @@ router.post("/:reviewId/images", async (req, res, next) => {
     // find the associated ReviewImages
     const reviewImages = await ReviewImage.findAll({
         where: {
-            reviewId: review.id
+            reviewId: currReviewId
         }
     })
 
