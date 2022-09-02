@@ -146,11 +146,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
 
 router.delete("/:bookingId", requireAuth, requireAuth, async (req, res, next) => {
 
-    const {
-        bookingId
-    } = req.params
 
-    const userId = req.user.id
 
     const {
         bookingId
@@ -171,7 +167,6 @@ router.delete("/:bookingId", requireAuth, requireAuth, async (req, res, next) =>
         })
     }
 
-    const booking = await Booking.findByPk(bookingId)
     // Error response: Bookings that have been started can't be deleted
     if (booking.startDate <= Date.now() || booking.endDate <= Date.now()) {
         res.status(403)
@@ -181,14 +176,7 @@ router.delete("/:bookingId", requireAuth, requireAuth, async (req, res, next) =>
         })
     }
 
-    // Error response: Couldn't find a Booking with the specified id
-    if (!booking) {
-        res.status(404)
-        res.json({
-            "message": "Booking couldn't be found",
-            "statusCode": 404
-        })
-    }
+
     await booking.destroy()
 
     res.status(200)

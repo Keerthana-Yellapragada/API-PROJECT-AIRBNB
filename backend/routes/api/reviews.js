@@ -188,11 +188,10 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
     // Error Response: Body validation errors
 
-<<<<<<< HEAD
+
     if (stars < 1 || stars > 5 || typeof stars !== integer || review === '') {
-=======
-    if (stars < 1 || stars > 5 || typeof stars !== integer || review === null) {
->>>>>>> 873da92 (add reviews routes)
+
+
         res.status(404)
         res.json({
             "message": "Validation error",
