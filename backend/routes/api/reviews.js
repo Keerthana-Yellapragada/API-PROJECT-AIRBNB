@@ -186,7 +186,23 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
         })
     }
 
+    // Error Response: Body validation errors
 
+<<<<<<< HEAD
+    if (stars < 1 || stars > 5 || typeof stars !== integer || review === '') {
+=======
+    if (stars < 1 || stars > 5 || typeof stars !== integer || review === null) {
+>>>>>>> 873da92 (add reviews routes)
+        res.status(404)
+        res.json({
+            "message": "Validation error",
+            "statusCode": 400,
+            "errors": {
+                "review": "Review text is required",
+                "stars": "Stars must be an integer from 1 to 5",
+            }
+        })
+    }
 
     //else if all is fine:
 
@@ -198,6 +214,7 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
     // await currReview.save() // do we need this???
 
+    //else if all is fine:
 
     // send response obj
 
