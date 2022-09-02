@@ -290,6 +290,10 @@ router.get("/:spotId", async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 
+    let {page,size} = req.query
+    page = parseInt(page)
+    size = parseInt(size)
+
     const allSpots = await Spot.findAll({
 
         include: {
@@ -334,8 +338,11 @@ router.get('/', async (req, res, next) => {
 
 
     return res.json({
-        Spots: allSpots
+        Spots: allSpots,
+        page,
+        size
     })
+
 
 })
 
