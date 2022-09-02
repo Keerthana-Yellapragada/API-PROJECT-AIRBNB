@@ -98,13 +98,19 @@ router.get("/current", requireAuth, async (req, res, next) => {
 // -- !!!!!!!!!!!!!!! NEED TO FIX !!! reviewimages is empty!!?!? -------------------!!!!!!!!!!!!!!!!!!!!
 
 
-router.get("/:spotId/reviews", async (req, res) => {
+<<<<<<< HEAD
+//---!!!!! RETURNS NULL!!!!!!!//
+
+=======
+>>>>>>> 13a12c4 (added more routes)
+router.get("/current", requireAuth, async (req, res, next) => {
 
     const {
         spotId
     } = req.params
 
-    const spot = await Spot.findByPk(spotId)
+    // get all the spots that match this userId to the ownerId
+    const allSpots = await Spot.findAll({
 
     // ERROR HANDLING
 
