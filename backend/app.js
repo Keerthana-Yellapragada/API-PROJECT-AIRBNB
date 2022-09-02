@@ -15,7 +15,7 @@ const {
 } = require('./config');
 const isProduction = environment === 'production';
 
-// Initialize the Express application:
+// Initialize the Express application:.
 const app = express();
 
 
