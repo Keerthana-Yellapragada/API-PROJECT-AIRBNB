@@ -153,11 +153,63 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     //SEND RESPONSE
     res.status(201)
     return res.json({
-        newReview
+
+        id: newReview.id,
+        userId: newReview.userId,
+        spotId: newReview.spotId,
+        review: newReview.review,
+        stars: newReview.stars,
+        createdAt: newReview.createdAt,
+        updatedAt: newReview.updatedAt
     })
 
 
 });
+//****************************************************************************** */
+//-------------------------- GET ALL REVIEWS BY A SPOT ID -------------------------
+
+router.get("/:spotId/reviews", async (req, res, next) => {
+    const {
+        spotId
+    } = req.params
+
+    // find spot based on id
+    const spotInfo = await Spot.findByPk(spotId)
+
+    // ERROR HANDLING: if we don't find the spot based on given id....
+    if (!spotInfo) {
+        res.json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    // find all associated reviews:
+
+    const allReviews = await Review.findAll({
+        where: {
+            spotId: spotId
+        },
+        include: [{
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
+            },
+            {
+                model: ReviewImage,
+                attributes: ['id', 'url']
+            }
+        ]
+
+    })
+
+
+    res.status(200)
+    return res.json({
+        Reviews: allReviews
+    })
+
+})
+
 
 
 //****************************************************************************** */
@@ -179,7 +231,7 @@ router.get("/:spotId", async (req, res, next) => {
     if (!spotInfo) {
 
         res.json({
-            message: 'Spot couldn’t be found',
+            message: "Spot couldn't be found",
             statusCode: 404
         })
 
@@ -220,17 +272,17 @@ router.get("/:spotId", async (req, res, next) => {
     })
 
     // Add info we lazy loaded as properties to the obj
-    const infoObj = spotInfo.toJSON() // need to do this first
+    const spotObj = spotInfo.toJSON() // need to do this first in order to manipulate object
 
 
-    infoObj.avgStarRating = averageRating.avgStarRating, // RETURNS NULL!?!??!?!
-        infoObj.SpotImages = SpotImages,
-        infoObj.numReviews = numReviews,
-        infoObj.Owner = owner
+    spotObj.avgStarRating = averageRating.avgStarRating, // RETURNS NULL!?!??!?!
+        spotObj.SpotImages = SpotImages,
+        spotObj.numReviews = numReviews,
+        spotObj.Owner = owner
 
 
 
-    return res.json(infoObj)
+    return res.json(spotObj)
 })
 
 //********************************************************************************/
@@ -241,7 +293,6 @@ router.get('/', async (req, res, next) => {
     const allSpots = await Spot.findAll({
 
         include: {
-
             model: Review,
             attributes: []
 
@@ -254,7 +305,6 @@ router.get('/', async (req, res, next) => {
             ]
         },
         group: ['Spot.id'], // need this to return ALL spots
-
         raw: true
     })
 
@@ -291,7 +341,7 @@ router.get('/', async (req, res, next) => {
 
 //************************************************************************** */
 
-//--------------------- ADD IMAGE TO A SPOT ----------------------------------
+//--------------------- CREATE/ ADD IMAGE TO A SPOT ----------------------------------
 
 
 
@@ -341,6 +391,7 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
 
     res.status = 200
     return res.json({
+        id: newImage.id,
         url: newImage.url,
         preview: newImage.preview
 
@@ -526,10 +577,15 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     // get the current logged-in user obj to get id
     let userId = req.user.id
 
-    console.log(userId)
+    // console.log(userId)
+    //console.log(spotId)
 
     // find spot by pk
-    let spot = await Spot.findByPk(req.params.spotId)
+    let spot = await Spot.findByPk(spotId)
+
+    //console.log(spot)
+
+
 
     // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
@@ -542,35 +598,39 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
     }
 
+    // convert spot to json so we can manipulate its info:
 
+    const spotObj = spot.toJSON()
+
+    console.log(spotObj)
     // CASE 1: if you AREN'T the owner -- you are the LOGGED-IN CURRENT USER
 
-    if (spot.userId === userId) {
+    if (spotObj.userId === userId) {
 
         // get all bookings that match this spot.id
         const bookings = await Booking.findAll({
             where: {
-                spotId: spot.id,
-            },
-            attributes: ['startDate', 'endDate', 'spotId']
+                spotId: spotId,
+            }
+            // attributes: ['startDate', 'endDate', 'spotId']
         });
 
 
         res.status(200)
         res.json({
-            Booking: bookings
+            Bookings: bookings
         })
 
     }
 
     //-----------------------------------------------------------------------
     // CASE 2: if you ARE the OWNER: // FIX THIS (USING SCOPES?)
-    if (spot.userId !== userId) {
+    if (spotObj.userId !== userId) {
 
         // get all bookings that match this spot.id
         const bookings = await Booking.findAll({
             where: {
-                spotId: spot.id,
+                spotId: spotId,
             },
             include: {
                 model: User

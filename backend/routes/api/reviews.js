@@ -33,28 +33,88 @@ const {
 //*********************************************************************** */
 //---------------- GET ALL REVIEWS FOR THE CURRENT USER/OWNER --------------
 router.get("/current", requireAuth, async (req, res) => {
-    const {
-        user
-    } = req;
 
-    console.log(req)
 
-    const allReviews = await Review.findAll({
+    let reviewObj = {};
+
+    let finalArray = [];
+
+    // get all reviews
+    let allReviews = await Review.findAll({
+        where: {
+            userId: req.user.id //our current user
+        },
         include: [{
                 model: User,
-                attributes: ["id", "firstName", "lastName"]
+                attributes: ['id', 'firstName', 'lastName']
             },
             {
-                model: Spot,// NEED TO ADD PREVIEW IMAGE TO THIS NEED TO RENAME!!!!!!!
-                attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "price"], // to include preview image
-                include: { model: SpotImage,  attributes: ['url']} // REDO THIS !!!!!!!!!!!!!!!!
+                model: Spot,
+                attributes: {
+                    exclude: ['description', 'createdAt', 'updatedAt']
+                }
             },
             {
-                model: ReviewImage,
-                attributes: ["id", "url"]
+                model:ReviewImage,
+                attributes: ['id', 'url']
             }
         ]
-    });
+    })
+
+    //iterate through allReviews Array
+    for (let review of allReviews){
+        // convert each review object into json format
+        reviewObj = review.toJSON() // ****************** HAVE TO FORMAT IT BEFORE WE CAN ADD MANIPULATE OBJ
+
+        // get the associated images
+        let image = await SpotImage.findByPk(review.id, {
+            where : {
+                preview: true
+            },
+            attributes: ['url'],
+            raw:true
+        });
+
+
+        // add preview image to each review obj's "Spot" property in the Array
+        if (!image){ // if there is no image, set to an empty string
+            reviewObj.Spot.previewImage = ""
+        }
+        else { // if there is an image, add its url as a kvp
+            reviewObj.Spot.previewImage = image.url
+        }
+
+
+        // push this new review obj into our final array
+        finalArray.push(reviewObj)
+
+    }
+
+
+    return res.json({
+        Reviews: finalArray
+    })
+
+
+
+
+
+    // const allReviews = await Review.findAll({
+    //     include: [{
+    //             model: User,
+    //             attributes: ["id", "firstName", "lastName"]
+    //         },
+    //         {
+    //             model: Spot,// NEED TO ADD PREVIEW IMAGE TO THIS NEED TO RENAME!!!!!!!
+    //             attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "price"], // to include preview image
+    //             include: { model: SpotImage,  attributes: ['url']} // REDO THIS !!!!!!!!!!!!!!!!
+    //         },
+    //         {
+    //             model: ReviewImage,
+    //             attributes: ["id", "url"]
+    //         }
+    //     ]
+    // });
 
     // for (let review of allReviews){
     //     // get each review's associated spot's preview Image
@@ -73,16 +133,15 @@ router.get("/current", requireAuth, async (req, res) => {
     //     review.Spot.previewImage = previewImage
     // }
 
-    return res.json(allReviews)
-})
+    })
 
 
 //*********************************************************************** */
-//------------------------ ADD AN IMAGE TO REVIEW by review id ------------------------
+//------------------------ CREATE/ ADD AN IMAGE TO REVIEW by review id ------------------------
 
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
-    const reviewId = req.params.id
+    const {reviewId} = req.params
 
     const currUserId = req.user.id
 
@@ -162,6 +221,9 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     } = req.body
 
     const currReview = await Review.findByPk(reviewId)
+
+console.log(reviewId)
+
 
     //Error response: Couldn't find a Review with the specified id
     if (!currReview) {

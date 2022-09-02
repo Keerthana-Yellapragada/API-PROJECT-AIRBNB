@@ -41,22 +41,50 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
     //  console.log(currUserId)
 
-    const bookings = await Booking.findAll({
+    const allBookings = await Booking.findAll({
         where: {
             userId: currUserId
-        },
+        }
+        ,
         include: {
             model: Spot
         }
     });
 
-    // console.log(bookings)
+    let finalBookingArray = []
 
-    // get associated spot info
+    for (let booking of allBookings){
+
+        // convert each booking Obj to a json format so we can manipulate it
+        let bookingObj = booking.toJSON()
+
+        // find each booking's assoc spot's preview image
+        let previewImage = await SpotImage.findOne({
+            where: {
+                spotId: bookingObj.Spot.id,
+                preview:true
+            }
+        })
+
+        //add preview image to each booking obj
+        if (!previewImage) {
+            bookingObj.Spot.previewImage = "No Preview Image Available."
+        } else {
+            bookingObj.Spot.previewImage = previewImage.url
+        }
+
+        // push this updated booking obj to our final array
+        finalBookingArray.push(bookingObj)
+
+
+    }
+
+
+    // return our final array
     res.status(200)
     res.json({
-        bookings
-    }) // why is it returning am empty object!?! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        Bookings: finalBookingArray
+    })
 
 });
 
@@ -117,6 +145,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
 
     // get any existing booking and check for conflicts
     const existingBooking = await Booking.findByPk(bookingId)
+
     if (existingBooking) {
         res.status(403)
         return res.json({
