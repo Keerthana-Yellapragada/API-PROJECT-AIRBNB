@@ -39,21 +39,26 @@ router.get("/current", requireAuth, async (req, res, next) => {
     // include spot data(exclude created/updated at for spot)
     const currUserId = req.user.id
 
-    const bookings = Booking.findAll({
+    //  console.log(currUserId)
+
+    const bookings = await Booking.findAll({
         where: {
             userId: currUserId
         },
         include: {
-            model: Spot,
-            attributes: []
+            model: Spot
         }
-    })
+    });
+
+    // console.log(bookings)
 
     // get associated spot info
-
     res.status(200)
-    res.json(bookings) // why is it returning am empty object!?! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-})
+    res.json({
+        bookings
+    }) // why is it returning am empty object!?! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+});
 
 
 //*********************************************************************** */
@@ -109,6 +114,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         })
     }
     // Error response: Booking conflict
+
     // get any existing bokoing and check for conflicts
     const existingBooking = await Booking.findByPk(bookingId)
     if (existingBooking) {
@@ -148,7 +154,6 @@ router.delete("/:bookingId", requireAuth, async (req, res, next) => {
 
 
     const booking = await Booking.findByPk(bookingId)
-
 
 
     // Error response: Couldn't find a Booking with the specified id

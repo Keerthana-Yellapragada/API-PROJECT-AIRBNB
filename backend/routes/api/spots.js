@@ -30,6 +30,8 @@ const {
 //*********************************************************************** */
 //--------------------- GET ALL SPOTS FOR A USER/OWNER ----------------------------------
 
+//---!!!!! RETURNS NULL!!!!!!!//
+
 router.get("/current", requireAuth, async (req, res, next) => {
 
     // get the user Id that we generated from the requireAuth func
@@ -41,13 +43,12 @@ router.get("/current", requireAuth, async (req, res, next) => {
         where: {
             ownerId: userId
         },
-
         include: {
+
             model: Review,
             attributes: []
         },
-
-        attributes: { // to get AVGRATING
+        attributes: {
             include: [
                 [
                     sequelize.fn("AVG", sequelize.col("stars")), "avgRating"
@@ -55,8 +56,9 @@ router.get("/current", requireAuth, async (req, res, next) => {
             ]
         },
 
-        group: ['Spot.id'], // returns ALL spots
-        raw: true // Sequelize says set this is false if you dont have a model definition in your query?
+        group: ['Spot.id'], // need this to return ALL spots
+
+        raw: true
 
     })
 
@@ -76,13 +78,13 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
         })
 
-
         // if true, then set the property in that object.
         if (spotImage) {
             spot.previewImage = spotImage.url
         } else {
-            spot.previewImage = null
+            spot.previewImage = " "
         }
+
     }
 
 
@@ -90,10 +92,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         Spots: allSpots
     });
 
-})
-//*********************************************************************** */
-
-
+});
 //*************************************************************************/
 //------------------------ GET REVIEW BY SPOT ID -------------------------
 // -- !!!!!!!!!!!!!!! NEED TO FIX !!! reviewimages is empty!!?!? -------------------!!!!!!!!!!!!!!!!!!!!
@@ -106,8 +105,6 @@ router.get("/:spotId/reviews", async (req, res) => {
     } = req.params
 
     const spot = await Spot.findByPk(spotId)
-
-    // console.log(spot)
 
     // ERROR HANDLING
 
@@ -151,12 +148,12 @@ router.get("/:spotId/reviews", async (req, res) => {
 //-------------------------- CREATE REVIEW FOR SPOT by id -------------------------
 
 router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
-    let {
-        user
-    } = req
+    let userId = req.user.id
     let {
         spotId
     } = req.params
+
+    console.log("SPOT ID FOR THIS SPOT IS :", spotId)
 
     let {
         stars,
@@ -179,30 +176,32 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
 
     let existingReview = await Review.findOne({
         where: {
-            userId: user.id,
-            spotId: spot.id // *******!!!!!!!! ********** SHOULD I INCLUDE THIS OR NOT ?! ********** !!!!!!!!!!!!!!!!!!!!!!!!!!
+            userId: userId,
+            spotId: spotId // *******!!!!!!!! ********** SHOULD I INCLUDE THIS OR NOT ?! ********** !!!!!!!!!!!!!!!!!!!!!!!!!!
         }
     })
 
     // ERROR HANDLING: if we have an existing review by this user already at this spot
     if (existingReview) {
         res.status(403)
-        res.json({
+        return res.json({
             "message": "User already has a review for this spot",
             "statusCode": 403
         })
+    } else {
+        //Else, create a new review
+        let newReview = await Review.create({
+            stars:stars,
+            review:review,
+            spotId: spotId,
+            userId: userId
+        })
+
+        res.status(201)
+        return res.json({
+            newReview
+        })
     }
-
-    //create a new review
-    let newReview = await Review.create({
-        stars,
-        review,
-        spotId: spot.id,
-        userId: user.id
-    })
-
-    res.status(201)
-    return res.json(newReview)
 
 })
 //****************************************************************************** */
@@ -334,7 +333,7 @@ router.get('/', async (req, res, next) => {
 
 })
 
-
+//************************************************************************** */
 
 //--------------------- ADD IMAGE TO A SPOT ----------------------------------
 
@@ -486,6 +485,28 @@ router.post('/', requireAuth, async (req, res, next) => {
         price: price
     })
     // CREATE VALIDATION ERROR HANDLING FOR THIS ?
+
+
+    if (!req.body) {
+        res.status(400)
+        return res.json({
+            "message": "Validation Error",
+            "statusCode": 400,
+            "errors": {
+                "address": "Street address is required",
+                "city": "City is required",
+                "state": "State is required",
+                "country": "Country is required",
+                "lat": "Latitude is not valid",
+                "lng": "Longitude is not valid",
+                "name": "Name must be less than 50 characters",
+                "description": "Description is required",
+                "price": "Price per day is required"
+            }
+        })
+
+    }
+    res.status(201)
     return res.json(newSpot)
 
 })
@@ -574,7 +595,8 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
                 spotId: spot.id,
             },
             attributes: ['startDate', 'endDate', 'spotId']
-        })
+        });
+
 
         res.status(200)
         res.json({
@@ -608,7 +630,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
 });
 
-//************************************************************************* */
+//****************************************************************************************** */
 //--------------------CREATE A BOOKING FOR A SPOT by id -------------------------------------
 //-------------------!!!!!!!!!!!! ERROR HANDLING : NEED TO ADD CUSTOM VALIDATION ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -633,18 +655,16 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     console.log(userId)
 
     // find spot by pk
-    let spot = await Spot.findByPk(req.params.spotId)
+    let spot = await Spot.findByPk(spotId)
 
 
     // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
-
         res.status(404)
         return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
-
     }
 
 
@@ -653,16 +673,18 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     // find any existing bookings and see if dates conflict
     const existingBooking = await Booking.findOne({
         where: {
-            spotId: spot.id
+            spotId: spotId
         }
-    })
+    });
+
+    console.log(existingBooking)
 
     if (existingBooking) { // If there IS AN EXISTING BOOKING
+        let oldBookingDate = Date.parse(existingBooking.endDate)
 
-        if (existingBooking.endDate >= req.body.startDate) { // if the end date of one booking overlaps with the start of another one:
+        if (oldBookingDate >= Date.parse(startDate)) { // if the end date of one booking overlaps with the start of another one:
 
             // !!!!!!!!!!!!!! NEED TO REVISIT THIS CONDITIONAL LOGIC !!!!!!!!!!!!!!!!!!!!!!
-
             res.status(403)
             return res.json({
                 "message": "Sorry, this spot is already booked for the specified dates",
@@ -677,13 +699,12 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
 
     // CREATE a new booking (if no conflicts exist)
-
     const newBooking = await Booking.create({
-        startDate: req.body.startDate,
-        endDate: req.body.endDate,
+        startDate: startDate,
+        endDate: endDate,
         userId: userId,
         spotId: spotId
-    })
+    });
 
     //success response
     res.status(200)

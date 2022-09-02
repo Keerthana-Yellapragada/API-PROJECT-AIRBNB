@@ -33,62 +33,56 @@ const {
 //*********************************************************************** */
 //---------------- GET ALL REVIEWS FOR THE CURRENT USER/OWNER --------------
 router.get("/current", requireAuth, async (req, res) => {
+    const {
+        user
+    } = req;
 
-    // get user id from auth
-    const userId = req.user.id
+    console.log(req)
 
-
-// get all reviews
     const allReviews = await Review.findAll({
-        where: {
-            userId: userId
-        },
         include: [{
-                model: Spot,
-                attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
+                model: User,
+                attributes: ["id", "firstName", "lastName"]
+            },
+            {
+                model: Spot,// NEED TO ADD PREVIEW IMAGE TO THIS NEED TO RENAME!!!!!!!
+                attributes: ["id", "ownerId", "address", "city", "state", "country", "lat", "lng", "name", "price"], // to include preview image
+                include: { model: SpotImage,  attributes: ['url']} // REDO THIS !!!!!!!!!!!!!!!!
             },
             {
                 model: ReviewImage,
-                attributes: ['id', 'url']
+                attributes: ["id", "url"]
             }
-        ],
-        group: ['Spot.id', 'Review.id'],
-        raw: true
-    })
+        ]
+    });
 
-    // iterate through and add to each review obj in array
-    for (let review of allReviews) {
-        const spotImage = await SpotImage.findOne({
-            attributes: ['url'],
-            where: {
-                preview: true,
-                spotId: review.id
-            },
-            raw: true
-        })
+    // for (let review of allReviews){
+    //     // get each review's associated spot's preview Image
 
-        // if we have an image set it to property
-        if (spotImage) {
-            review.previewImage = spotImage.url
-        } else { // if we don't have an image set it to null
-            review.previewImage = null
-        }
-    }
+    //     const previewImage = await SpotImage.findOne({
+    //         where: {
+    //             preview:true,
+    //             spotId: review.Spot.id
+    //         },
+    //         include: {
+    //             attributes: ['url']
+    //         }
+    //     });
 
+    //     // add that preview image property to Spot in each review in Reviews Array:
+    //     review.Spot.previewImage = previewImage
+    // }
 
-    // send response obj
-    res.status(200)
-    return res.json({
-        Reviews: allReviews
-    })
+    return res.json(allReviews)
 })
+
 
 //*********************************************************************** */
 //------------------------ ADD AN IMAGE TO REVIEW by review id ------------------------
 
-router.post("/:reviewId/images", async (req, res, next) => {
+router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
-    const currReviewId = req.params.id
+    const reviewId = req.params.id
 
     const currUserId = req.user.id
 
@@ -97,7 +91,8 @@ router.post("/:reviewId/images", async (req, res, next) => {
     } = req.body // get user input to insert changes
 
     // get the review by pk
-    let review = await Review.findByPk(currReviewId)
+    let review = await Review.findByPk(reviewId)
+
 
     //Error response: Couldn't find a Review with the specified id
     if (!review) {
@@ -114,14 +109,15 @@ router.post("/:reviewId/images", async (req, res, next) => {
     // find the associated ReviewImages
     const reviewImages = await ReviewImage.findAll({
         where: {
-            reviewId: currReviewId
-        }
+            reviewId: reviewId
+        },
+        attributes: ['url']
     })
 
-    // count num of images-- try this with sequelize  aggregate!!!!
-    let numReviews = reviewImages.length
+    // ERROR HANDLING: count num of images-- try this with sequelize  aggregate!!!!
+    let numImages = reviewImages.length
 
-    if (numReviews >= 10) {
+    if (numImages >= 10) {
         res.status(403)
         return res.json({
             "message": "Maximum number of images for this resource was reached",
@@ -130,10 +126,11 @@ router.post("/:reviewId/images", async (req, res, next) => {
     }
 
 
+
     // ELSE IF ALL IS GOOD:
 
     //update url property
-    review.url = url
+    if (url) review.url = url
 
     //send success response obj
     res.status(200)
@@ -145,7 +142,7 @@ router.post("/:reviewId/images", async (req, res, next) => {
     })
 
 
-})
+});
 
 
 
@@ -155,9 +152,7 @@ router.post("/:reviewId/images", async (req, res, next) => {
 
 router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
-    const {
-        reviewId
-    } = req.params
+    const reviewId = req.params.id
 
     const userId = req.user.id
 
@@ -170,7 +165,6 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
     //Error response: Couldn't find a Review with the specified id
     if (!currReview) {
-
         res.status(404)
         res.json({
             "message": "Review couldn't be found",
@@ -193,12 +187,16 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     }
 
 
+
     //else if all is fine:
+
+    console.log(stars)
+    console.log(review)
 
     currReview.review = review
     currReview.stars = stars
 
-    await currReview.save() // do we need this???
+    // await currReview.save() // do we need this???
 
 
     // send response obj
