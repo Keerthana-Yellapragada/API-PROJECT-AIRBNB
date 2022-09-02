@@ -115,7 +115,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     }
     // Error response: Booking conflict
 
-    // get any existing bokoing and check for conflicts
+    // get any existing booking and check for conflicts
     const existingBooking = await Booking.findByPk(bookingId)
     if (existingBooking) {
         res.status(403)

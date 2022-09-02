@@ -93,59 +93,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
     });
 
 });
-//*************************************************************************/
-//------------------------ GET REVIEW BY SPOT ID -------------------------
-// -- !!!!!!!!!!!!!!! NEED TO FIX !!! reviewimages is empty!!?!? -------------------!!!!!!!!!!!!!!!!!!!!
 
-
-//---!!!!! RETURNS NULL!!!!!!!//
-
-router.get("/current", requireAuth, async (req, res, next) => {
-
-    const {
-        spotId
-    } = req.params
-
-    // get all the spots that match this userId to the ownerId
-    const allSpots = await Spot.findAll()
-
-    // ERROR HANDLING
-
-    if (!spot) {
-
-        res.statusCode = 404;
-        return res.json({
-            "message": "Spot couldn't be found",
-            "statusCode": 404
-        })
-
-    }
-
-    // find all reviews ass to this spot
-    const spotReviews = await Review.findAll({
-        where: {
-            spotId: spot.id
-        },
-        include: [{
-                model: ReviewImage, // WHY IS THIS NOT WORKING?-- NEED TO FIX - its an empty array! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                attributes: ['id', 'url', ]
-            },
-            {
-                model: User,
-                attributes: ['id', 'firstName', 'lastName']
-            }
-        ]
-
-    })
-
-    //console.log(spotReviews)
-
-    res.status(200)
-    return res.json({
-        Reviews: spotReviews
-    })
-
-})
 //******************************************************************************* */
 
 //-------------------------- CREATE REVIEW FOR SPOT by id -------------------------
@@ -191,22 +139,27 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
             "message": "User already has a review for this spot",
             "statusCode": 403
         })
-    } else {
-        //Else, create a new review
-        let newReview = await Review.create({
-            stars:stars,
-            review:review,
-            spotId: spotId,
-            userId: userId
-        })
-
-        res.status(201)
-        return res.json({
-            newReview
-        })
     }
 
-})
+    //CREATE A NEW REVIEW
+    let newReview = await Review.create({
+        stars: stars,
+        review: review,
+        spotId: spotId,
+        userId: userId
+    })
+
+
+    //SEND RESPONSE
+    res.status(201)
+    return res.json({
+        newReview
+    })
+
+
+});
+
+
 //****************************************************************************** */
 //-------------------------- GET DETAILS OF A SPOT by id -------------------------
 
@@ -469,28 +422,15 @@ router.post('/', requireAuth, async (req, res, next) => {
         lng,
         name,
         description,
-        price,
-        user
+        price
     } = req.body;
 
+
+    // get user id
     const userId = req.user.id
 
-    const newSpot = await Spot.create({
-        ownerId: userId,
-        address: address,
-        city: city,
-        state: state,
-        country: country,
-        lat: lat,
-        lng: lng,
-        name: name,
-        description: description,
-        price: price
-    })
-    // CREATE VALIDATION ERROR HANDLING FOR THIS ?
-
-
-    if (!req.body) {
+    // CREATE PROPER VALIDATION ERROR HANDLING FOR THIS !!!!!!!!!!!!!!!!!!!
+    if (address === '' || city === '' || state === '' || state === '' || country === '' || lat === '' || lng === '' || name === '' || description === '' || price === '') {
         res.status(400)
         return res.json({
             "message": "Validation Error",
@@ -507,8 +447,23 @@ router.post('/', requireAuth, async (req, res, next) => {
                 "price": "Price per day is required"
             }
         })
-
     }
+
+    // CREATE A NEW SPOT
+    const newSpot = await Spot.create({
+        ownerId: userId,
+        address: address,
+        city: city,
+        state: state,
+        country: country,
+        lat: lat,
+        lng: lng,
+        name: name,
+        description: description,
+        price: price
+    })
+
+    //send response body
     res.status(201)
     return res.json(newSpot)
 
@@ -558,7 +513,7 @@ router.delete('/:spotId', async (req, res) => {
 
 // *****************************************************************************
 //--------------------- GET ALL BOOKING FOR A SPOT -----------------------------
-// ******************** !!! NEED TO FIX !!! ***********************************
+// ******************** !!! NEED TO FIX !!! returning null ***********************************
 
 
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
@@ -609,7 +564,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
     //-----------------------------------------------------------------------
-    // CASE 2: if you ARE the OWNER:
+    // CASE 2: if you ARE the OWNER: // FIX THIS (USING SCOPES?)
     if (spot.userId !== userId) {
 
         // get all bookings that match this spot.id
@@ -671,7 +626,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
 
-    // ERROR HANDLING: for a booking conflict
+    // ERROR HANDLING: for a booking conflict !!!!!!!!!!!!!!!!! REDO THIS PROPERLY!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // find any existing bookings and see if dates conflict
     const existingBooking = await Booking.findOne({

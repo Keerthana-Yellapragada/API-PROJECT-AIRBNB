@@ -9,7 +9,6 @@ const reviewsRouter= require('./reviews.js');
 const bookingsRouter = require('./bookings.js');
 const reviewImagesRouter = require('./review-images.js');
 const spotsRouter = require('./spots.js');
-
 const spotImagesRouter = require("./spot-images.js")
 
 //*********************************************************************** */
