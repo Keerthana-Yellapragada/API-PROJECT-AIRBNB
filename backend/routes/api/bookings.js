@@ -51,6 +51,8 @@ router.get("/current", requireAuth, async (req, res, next) => {
         }
     });
 
+    console.log(allBookings)
+
     let finalBookingArray = []
 
     for (let booking of allBookings){

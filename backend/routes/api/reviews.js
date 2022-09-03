@@ -211,7 +211,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
 router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
-    const reviewId = req.params.id
+    const {reviewId }= req.params
 
     const userId = req.user.id
 
@@ -222,13 +222,14 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
     const currReview = await Review.findByPk(reviewId)
 
-console.log(reviewId)
+    // console.log(reviewId)
+    //console.log(currReview)
 
 
     //Error response: Couldn't find a Review with the specified id
     if (!currReview) {
         res.status(404)
-        res.json({
+        return res.json({
             "message": "Review couldn't be found",
             "statusCode": 404
         })
@@ -236,9 +237,9 @@ console.log(reviewId)
 
     // Error Response: Body validation errors
 
-    if (stars < 1 || stars > 5 || typeof stars !== integer || review === '') {
+    if (stars < 1 || stars > 5 || Number.isNaN(stars) || !review || review === '') {
         res.status(404)
-        res.json({
+        return res.json({
             "message": "Validation error",
             "statusCode": 400,
             "errors": {
@@ -248,39 +249,28 @@ console.log(reviewId)
         })
     }
 
-    // Error Response: Body validation errors
+    // update properties in the obj
+    let reviewObj = currReview.toJSON()
 
-
-    if (stars < 1 || stars > 5 || typeof stars !== integer || review === '') {
-
-
-        res.status(404)
-        res.json({
-            "message": "Validation error",
-            "statusCode": 400,
-            "errors": {
-                "review": "Review text is required",
-                "stars": "Stars must be an integer from 1 to 5",
-            }
-        })
-    }
-
+    console.log(reviewObj)
+     // || !review || review === ''
+     // (typeof stars !== "integer")
     //else if all is fine:
 
-    console.log(stars)
-    console.log(review)
+    //console.log(stars)
+    //console.log(review)
 
-    currReview.review = review
-    currReview.stars = stars
+    reviewObj.review = review
+    reviewObj.stars = stars
 
-    // await currReview.save() // do we need this???
+   // await reviewObj.save() // do we need this???
 
     //else if all is fine:
 
     // send response obj
 
     res.status(200)
-    res.json(review)
+    return res.json(reviewObj)
 
 })
 

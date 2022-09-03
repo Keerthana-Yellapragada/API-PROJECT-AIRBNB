@@ -30,7 +30,7 @@ const {
 //*********************************************************************** */
 //--------------------- GET ALL SPOTS FOR A USER/OWNER ----------------------------------
 
-//---!!!!! RETURNS NULL!!!!!!!//
+
 
 router.get("/current", requireAuth, async (req, res, next) => {
 
@@ -367,6 +367,8 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
     const spot = await Spot.findByPk(spotId)
 
 
+    //NEED T ADD OWNER ONLY ERRORS!!!!
+
     // ERROR HANDLING:  if we can't find a spot from given id
     if (!spot) {
 
@@ -442,6 +444,9 @@ router.put('/:spotId', requireAuth, async (req, res) => {
             statusCode: 404
         })
     }
+
+    // NEED TO ADD BODY VALIDATIONS ERRORS
+    // ERRORS FOR USER AUTH AND ONLY OWNERS ARE ALLOWED TO edit
 
     //update the obj
     spot.address = req.body.address
@@ -555,6 +560,8 @@ router.delete('/:spotId', async (req, res) => {
 
     }
 
+    // check if OWNER:!!!! ERROR - ONLY OWNERS CAN DELETE!
+
     // DESTROY the object
     await spot.destroy()
 
@@ -570,7 +577,7 @@ router.delete('/:spotId', async (req, res) => {
 
 
 // *****************************************************************************
-//--------------------- GET ALL BOOKING FOR A SPOT -----------------------------
+//--------------------- GET ALL BOOKINGS FOR A SPOT -----------------------------
 // ******************** !!! NEED TO FIX !!! returning null ***********************************
 
 
@@ -585,18 +592,15 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     let userId = req.user.id
 
     // console.log(userId)
-    //console.log(spotId)
+    console.log(userId)
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
 
     //console.log(spot)
 
-
-
     // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
-
         res.status(404)
         return res.json({
             message: "Spot couldn't be found",
@@ -609,15 +613,19 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
     const spotObj = spot.toJSON()
 
-    console.log(spotObj)
-    // CASE 1: if you AREN'T the owner -- you are the LOGGED-IN CURRENT USER
+   // console.log(spotObj)
 
-    if (spotObj.userId === userId) {
+    // CASE 1: if you AREN'T the owner -- you are just the LOGGED-IN CURRENT USER
+    if (spotObj.ownerId !== userId) {
 
         // get all bookings that match this spot.id
         const bookings = await Booking.findAll({
             where: {
                 spotId: spotId,
+                userId: userId
+            },
+            include: {
+                attributes: ['startDate', 'endDate', 'spotId']
             }
             // attributes: ['startDate', 'endDate', 'spotId']
         });
@@ -632,12 +640,12 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
     //-----------------------------------------------------------------------
     // CASE 2: if you ARE the OWNER: // FIX THIS (USING SCOPES?)
-    if (spotObj.userId !== userId) {
+    if (spotObj.ownerId === userId) {
 
         // get all bookings that match this spot.id
         const bookings = await Booking.findAll({
             where: {
-                spotId: spotId,
+                spotId: spotId
             },
             include: {
                 model: User
@@ -646,7 +654,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
         res.status(200)
         res.json({
-            Booking: bookings
+            Bookings: bookings
         })
 
     }
