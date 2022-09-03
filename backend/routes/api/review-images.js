@@ -33,13 +33,17 @@ const {
 //---------------- DELETE A REVIEW IMAGE by review id ----------------
 //------------!!!!!!!! CHECK AFTER FINISHING REVIEWS ROUTES !!!!!!!!!!!!!!-------
 
-router.delete("/:imageId", async (req, res, next) => {
+router.delete("/:imageId", async (req, res) => {
 
     // get image id from req params
-    const reviewImageId = req.params.id
+    const {imageId }= req.params
+
+    console.log(imageId)
 
     // get image by pk
-    let image = await ReviewImage.findByPk(reviewImageId)
+    let image = await ReviewImage.findByPk(imageId)
+
+    console.log(image) // why is this returning null?
 
     // ERROR HANDLING: if we can't find review image by id
     if (!image) {

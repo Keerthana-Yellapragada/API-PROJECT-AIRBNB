@@ -282,7 +282,10 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
 
     const userId = req.user.id
 
-    const reviewId = req.params.id
+    const {reviewId} = req.params
+
+    console.log(userId)
+    console.log(reviewId)
 
     const review = await Review.findByPk(reviewId)
 

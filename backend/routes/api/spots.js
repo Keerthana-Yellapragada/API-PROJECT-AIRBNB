@@ -290,7 +290,10 @@ router.get("/:spotId", async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 
-    let {page,size} = req.query
+    let {
+        page,
+        size
+    } = req.query
     page = parseInt(page)
     size = parseInt(size)
 
@@ -592,7 +595,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     let userId = req.user.id
 
     // console.log(userId)
-    console.log(userId)
+    // console.log(userId)
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
@@ -608,14 +611,13 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         })
 
     }
-
     // convert spot to json so we can manipulate its info:
 
     const spotObj = spot.toJSON()
 
-   // console.log(spotObj)
+    //    // console.log(spotObj)
 
-    // CASE 1: if you AREN'T the owner -- you are just the LOGGED-IN CURRENT USER
+    // CASE 1: if you ARE NOT the owner -- you are just the LOGGED-IN CURRENT USER
     if (spotObj.ownerId !== userId) {
 
         // get all bookings that match this spot.id
@@ -624,10 +626,8 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
                 spotId: spotId,
                 userId: userId
             },
-            include: {
-                attributes: ['startDate', 'endDate', 'spotId']
-            }
-            // attributes: ['startDate', 'endDate', 'spotId']
+            attributes: ['startDate', 'endDate', 'spotId']
+
         });
 
 
@@ -639,10 +639,10 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
     //-----------------------------------------------------------------------
-    // CASE 2: if you ARE the OWNER: // FIX THIS (USING SCOPES?)
-    if (spotObj.ownerId === userId) {
+    // CASE 2: if you ARE the OWNER:
+    if (spotObj.ownerId == userId) {
 
-        // get all bookings that match this spot.id
+        // get all bookings that match this spot.id and include the booking user's info as well
         const bookings = await Booking.findAll({
             where: {
                 spotId: spotId
