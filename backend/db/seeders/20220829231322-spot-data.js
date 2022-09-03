@@ -36,7 +36,7 @@ module.exports = {
         price: 300.00
       },
       {
-        ownerId: 1,
+        ownerId: 3,
         address: " 7890 Summer Lane",
         city: "Austin",
         state: "TX",
