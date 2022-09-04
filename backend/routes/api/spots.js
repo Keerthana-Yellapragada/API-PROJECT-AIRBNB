@@ -734,7 +734,8 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
             // LOGIC:
             // if there is an overlap in dates, don't allow booking
             // ERROR HANDLING: BOOKING CONFLICTS
-            if (!(currentEndDate < existingStartDate || currentStartDate > existingEndDate)) {
+            // !(currentEndDate < existingStartDate || currentStartDate > existingEndDate)
+            if (currentEndDate > existingStartDate && currentStartDate < existingEndDate) {
                 res.status(403)
                 return res.json({
                     "message": "Sorry, this spot is already booked for the specified dates",
@@ -752,7 +753,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
         //if (currentEndDate < existingStartDate || currentStartDate > existingEndDate) {
         // CREATE a new booking (if no conflicts exist)
         const newBooking = await Booking.create({
-
             userId: userId,
             spotId: spotId,
             startDate: startDate,
@@ -763,10 +763,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
         res.status(200)
         return res.json(newBooking)
 
-
     }
-
-
 
 });
 

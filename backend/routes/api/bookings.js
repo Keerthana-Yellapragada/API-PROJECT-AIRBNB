@@ -102,7 +102,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         bookingId
     } = req.params
 
-    const {userId} = req.user
+    const userId = req.user.id
 
     const {
         startDate,
@@ -127,11 +127,12 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     let bookingObj = booking.toJSON()
 
     let parsedStartDate = Date.parse(bookingObj.startDate)
+    console.log(parsedStartDate)
     let parsedEndDate = Date.parse(bookingObj.endDate)
 
 
     // Error response: Body validation errors ?~!?!?!
-    if (parsedEndDate > parsedStartDate) {
+    if (parsedEndDate < parsedStartDate) {
         res.status(400)
         return res.json({
             "message": "Validation error",
@@ -167,13 +168,13 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         // console.log(existingBookingObj)
 
         // get the dates of the existing booking and current one and parse them into milliseconds
-        let existingStartDate = Date.parse(existingBooking.startDate)
-        let existingEndDate = Date.parse(existingBooking.endDate)
+        let existingStartDate = Date.parse(existingBookingObj.startDate)
+        let existingEndDate = Date.parse(existingBookingObj.endDate)
 
         let currentStartDate = Date.parse(startDate)
         let currentEndDate = Date.parse(endDate)
 
-        if (!(currentEndDate < existingStartDate || currentStartDate > existingEndDate)) {
+        if (currentEndDate > existingStartDate && currentStartDate < existingEndDate) {
             res.status(403)
             return res.json({
                 "message": "Sorry, this spot is already booked for the specified dates",
