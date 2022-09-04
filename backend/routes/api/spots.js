@@ -51,7 +51,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2, "avgRating" // this rounds our average to 2 decimal places
+                    sequelize.fn('ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2), "avgRating" // this rounds our average to 2 decimal places
                 ]
             ]
         },
@@ -263,7 +263,7 @@ router.get("/:spotId", async (req, res, next) => {
     // find average star rating
     const averageRating = await Review.findOne({
         attributes: [
-            ['ROUND', sequelize.fn('AVG', sequelize.col('stars')), 2, 'avgStarRating']
+            [sequelize.fn('ROUND', sequelize.fn('AVG', sequelize.col('stars')), 2), 'avgStarRating'] // there has to be amore elegant way to di this!!?! ?
         ],
         where: {
             spotId: spotId
@@ -354,7 +354,7 @@ router.get('/', async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2, "avgRating"
+                    sequelize.fn('ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2), "avgRating"
                 ]
             ]
         },
