@@ -96,26 +96,6 @@ router.post(
             })
         }
 
-
-        // checking for unique email
-        let existingEmail = await User.findOne({
-            where: {
-                email
-            }
-        })
-
-        if (existingEmail) {
-            res.status(403)
-            return res.json({
-                "message": "User already exists",
-                "statusCode": 403,
-                "errors": {
-                    "email": "User with that email already exists"
-                }
-            })
-        }
-
-
         //checking for unique username
 
         let existingUser = await User.findOne({
@@ -135,6 +115,23 @@ router.post(
             })
         }
 
+        // checking for unique email
+        let existingEmail = await User.findOne({
+            where: {
+                email
+            }
+        })
+
+        if (existingEmail) {
+            res.status(403)
+            return res.json({
+                "message": "User already exists",
+                "statusCode": 403,
+                "errors": {
+                    "email": "User with that email already exists"
+                }
+            })
+        }
 
 
 

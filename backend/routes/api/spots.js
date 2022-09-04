@@ -51,7 +51,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), "avgRating"
+                    'ROUND', sequelize.fn("AVG", sequelize.col("stars"),2), "avgRating" // this rounds our average to 2 decimal places
                 ]
             ]
         },
