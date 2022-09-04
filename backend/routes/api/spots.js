@@ -290,19 +290,66 @@ router.get("/:spotId", async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
 
+    //get query params
     let {
         page,
-        size
-    } = req.query
-    page = parseInt(page)
-    size = parseInt(size)
+        size,
+        minLat,
+        maxLat,
+        minLng,
+        maxLng,
+        minPrice,
+        maxPrice
+    } = req.query;
+
+    //set default values
+    if (!page) page = 1;
+    if (!size) size = 20;
+
+    //parse from string to Int
+    page = parseInt(page);
+    size = parseInt(size);
+
+    let pagination = {} // create a pagination obj
+
+    if (size >= 1 && page >= 1) {
+        pagination.limit = size // limit results to our size
+        pagination.offset = size * (page - 1) // offset all previous results
+    }
+
+    // if the page and size query params are invalid
+    if (page <= 0 && size <= 0) {
+        res.status(400);
+        return res.json({
+            "page": "Page must be greater than or equal to 0",
+            "size": "Size must be greater than or equal to 0",
+        })
+    }
+
+    if (minPrice <= 0 || maxPrice <= 0) {
+        res.status(400)
+        res.json({
+            "message": "Validation Error",
+            "statusCode": 400,
+            "errors": {
+                "page": "Page must be greater than or equal to 0",
+                "size": "Size must be greater than or equal to 0",
+                "maxLat": "Maximum latitude is invalid",
+                "minLat": "Minimum latitude is invalid",
+                "minLng": "Maximum longitude is invalid",
+                "maxLng": "Minimum longitude is invalid",
+                "minPrice": "Maximum price must be greater than or equal to 0",
+                "maxPrice": "Minimum price must be greater than or equal to 0"
+            }
+        })
+    }
+
 
     const allSpots = await Spot.findAll({
 
         include: {
             model: Review,
             attributes: []
-
         },
         attributes: {
             include: [
@@ -312,12 +359,16 @@ router.get('/', async (req, res, next) => {
             ]
         },
         group: ['Spot.id'], // need this to return ALL spots
-        raw: true
-    })
+        ...pagination, // spread our pagination object here
+        raw: true, // we are making a raw SQL query--- ?
+        subQuery: false // makes sure the limit/offset aren't applied to the subqueries
+
+    });
 
     // go through spots array and see if each obj has an assoc image
     for (let spot of allSpots) {
 
+        // console.log(spot)
         const spotImage = await SpotImage.findOne({
 
             attributes: ['url'],
@@ -342,7 +393,7 @@ router.get('/', async (req, res, next) => {
 
     return res.json({
         Spots: allSpots,
-        page,
+        page,  //include our page and size numbers at the bottom of page
         size
     })
 
