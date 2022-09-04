@@ -44,10 +44,10 @@ router.get("/current", requireAuth, async (req, res, next) => {
     const allBookings = await Booking.findAll({
         where: {
             userId: currUserId
-        }
-        ,
+        },
         include: {
-            model: Spot
+            model: Spot, // NEED TO EXCLUDE CREATEDAT AND UPDATED AT
+            attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
         }
     });
 
@@ -55,7 +55,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
     let finalBookingArray = []
 
-    for (let booking of allBookings){
+    for (let booking of allBookings) {
 
         // convert each booking Obj to a json format so we can manipulate it
         let bookingObj = booking.toJSON()
@@ -64,7 +64,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         let previewImage = await SpotImage.findOne({
             where: {
                 spotId: bookingObj.Spot.id,
-                preview:true
+                preview: true
             }
         })
 
@@ -102,7 +102,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         bookingId
     } = req.params
 
-    const userId = req.user.id
+    const {userId} = req.user
 
     const {
         startDate,
@@ -123,8 +123,15 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         })
     }
 
+    // convert booking into json so we can manipulate it
+    let bookingObj = booking.toJSON()
+
+    let parsedStartDate = Date.parse(bookingObj.startDate)
+    let parsedEndDate = Date.parse(bookingObj.endDate)
+
+
     // Error response: Body validation errors ?~!?!?!
-    if (startDate > endDate) {
+    if (parsedEndDate > parsedStartDate) {
         res.status(400)
         return res.json({
             "message": "Validation error",
@@ -136,7 +143,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     }
 
     // Error response: Can't edit a booking that's past the end date
-    if (endDate < Date.now()) { // ??!?!?!?!?!
+    if (parsedEndDate < Date.now()) {
         res.status(403)
         return res.json({
             "message": "Past bookings can't be modified",
@@ -146,28 +153,52 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     // Error response: Booking conflict
 
     // get any existing booking and check for conflicts
-    const existingBooking = await Booking.findByPk(bookingId)
+    const existingBookings = await Booking.findAll({
+        where: {
+            spotId: bookingObj.spotId
+        }
+    })
 
-    if (existingBooking) {
-        res.status(403)
-        return res.json({
-            "message": "Sorry, this spot is already booked for the specified dates",
-            "statusCode": 403,
-            "errors": {
-                "startDate": "Start date conflicts with an existing booking",
-                "endDate": "End date conflicts with an existing booking"
-            }
-        })
+    //iterate through array and check for booking conflicts
+    for (let existingBooking of existingBookings) {
+        // convert each obj to json so we can manipulate it
+        const existingBookingObj = existingBooking.toJSON()
+
+        // console.log(existingBookingObj)
+
+        // get the dates of the existing booking and current one and parse them into milliseconds
+        let existingStartDate = Date.parse(existingBooking.startDate)
+        let existingEndDate = Date.parse(existingBooking.endDate)
+
+        let currentStartDate = Date.parse(startDate)
+        let currentEndDate = Date.parse(endDate)
+
+        if (!(currentEndDate < existingStartDate || currentStartDate > existingEndDate)) {
+            res.status(403)
+            return res.json({
+                "message": "Sorry, this spot is already booked for the specified dates",
+                "statusCode": 403,
+                "errors": {
+                    "startDate": "Start date conflicts with an existing booking",
+                    "endDate": "End date conflicts with an existing booking"
+                }
+            })
+        }
+
     }
 
 
-    // if everything is ok:
 
-    booking.startDate = req.body.startDate
-    booking.endDate = req.body.endDate
+    // Else, if we have checked all existing bookings and NO BOOKING conflict exists:
 
+    //update the changes to obj
+    bookingObj.startDate = startDate
+    bookingObj.endDate = endDate
+
+
+    //send success response
     res.status(200)
-    return res.json(booking)
+    return res.json(bookingObj)
 })
 
 

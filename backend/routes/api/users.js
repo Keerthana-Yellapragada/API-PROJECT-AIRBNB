@@ -69,35 +69,53 @@ const validateSignup = [
 
 // Sign up
 router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
-        const {
-            email,
-            firstName,
-            lastName,
-            password,
-            username
-        } = req.body;
-        const user = await User.signup({
-            email,
-            firstName,
-            lastName,
-            username,
-            password
-        });
-
-        await setTokenCookie(res, user);
-
-        return res.json({
-            id: user.id,
-            username: user.username,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            token: ""
-        });
-    }
-);
+        '/',
+        validateSignup,
+        async (req, res) => {
+            const {
+                email,
+                firstName,
+                lastName,
+                password,
+                username
+            } = req.body;
 
 
-module.exports = router;
+            //body validation errors
+            if (!email || !firstName || !lastName || !password || !username) {
+                res.status(400)
+                res.json({
+                        message: "Validation error",
+                        statusCode: 400,
+                        errors: {
+                            email: "Invalid email",
+                            username: "Username is required",
+                            firstName: "First Name is required",
+                            lastName: "Last Name is required"
+                        }
+
+                        })
+                };
+
+                const user = await User.signup({
+                    email,
+                    firstName,
+                    lastName,
+                    username,
+                    password
+                });
+
+                await setTokenCookie(res, user);
+
+                return res.json({
+                    id: user.id,
+                    username: user.username,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    token: ""
+                });
+            }
+        );
+
+
+        module.exports = router;

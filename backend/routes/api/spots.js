@@ -701,47 +701,72 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
 
-    // ERROR HANDLING: for a booking conflict !!!!!!!!!!!!!!!!! REDO THIS PROPERLY!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // find any existing bookings and see if dates conflict
-    const existingBooking = await Booking.findOne({
+
+    // get an array of all bookings for this spot
+    const existingBookingArray = await Booking.findAll({
         where: {
             spotId: spotId
         }
     });
 
-    console.log(existingBooking)
+    //iterate through array and check for conflicts with each booking obj
 
-    if (existingBooking) { // If there IS AN EXISTING BOOKING
-        let oldBookingDate = Date.parse(existingBooking.endDate)
+    if (existingBookingArray) {
 
-        if (oldBookingDate >= Date.parse(startDate)) { // if the end date of one booking overlaps with the start of another one:
+        //iterate though the array:
+        for (let existingBooking of existingBookingArray) {
 
-            // !!!!!!!!!!!!!! NEED TO REVISIT THIS CONDITIONAL LOGIC !!!!!!!!!!!!!!!!!!!!!!
-            res.status(403)
-            return res.json({
-                "message": "Sorry, this spot is already booked for the specified dates",
-                "statusCode": 403,
-                "errors": {
-                    "startDate": "Start date conflicts with an existing booking",
-                    "endDate": "End date conflicts with an existing booking"
-                }
-            })
+            // convert each obj to json so we can manipulate it
+            const existingBookingObj = existingBooking.toJSON()
+
+            // console.log(existingBookingObj)
+
+            // get the dates of the existing booking and current one and parse them into milliseconds
+            let existingStartDate = Date.parse(existingBooking.startDate)
+            let existingEndDate = Date.parse(existingBooking.endDate)
+
+            let currentStartDate = Date.parse(startDate)
+            let currentEndDate = Date.parse(endDate)
+
+            // compare dates to check for any conflicts:
+            // LOGIC:
+            // if there is an overlap in dates, don't allow booking
+            // ERROR HANDLING: BOOKING CONFLICTS
+            if (!(currentEndDate < existingStartDate || currentStartDate > existingEndDate)) {
+                res.status(403)
+                return res.json({
+                    "message": "Sorry, this spot is already booked for the specified dates",
+                    "statusCode": 403,
+                    "errors": {
+                        "startDate": "Start date conflicts with an existing booking",
+                        "endDate": "End date conflicts with an existing booking"
+                    }
+                })
+            }
         }
+
+        // if we finish checking all bookings and there is no conflict detected:
+
+        //if (currentEndDate < existingStartDate || currentStartDate > existingEndDate) {
+        // CREATE a new booking (if no conflicts exist)
+        const newBooking = await Booking.create({
+
+            userId: userId,
+            spotId: spotId,
+            startDate: startDate,
+            endDate: endDate
+        });
+
+        //success response
+        res.status(200)
+        return res.json(newBooking)
+
+
     }
 
 
-    // CREATE a new booking (if no conflicts exist)
-    const newBooking = await Booking.create({
-        startDate: startDate,
-        endDate: endDate,
-        userId: userId,
-        spotId: spotId
-    });
-
-    //success response
-    res.status(200)
-    return res.json(newBooking)
 
 });
 
