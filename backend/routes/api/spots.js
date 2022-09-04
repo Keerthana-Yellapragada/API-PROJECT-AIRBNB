@@ -263,7 +263,7 @@ router.get("/:spotId", async (req, res, next) => {
     // find average star rating
     const averageRating = await Review.findOne({
         attributes: [
-            ['ROUND',sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+            ['ROUND',sequelize.fn('AVG', sequelize.col('stars'),2), 'avgStarRating']
         ],
         where: {
             spotId: spotId
@@ -354,7 +354,7 @@ router.get('/', async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), "avgRating"
+                    'ROUND', sequelize.fn("AVG", sequelize.col("stars"),2), "avgRating"
                 ]
             ]
         },
