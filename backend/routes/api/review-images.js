@@ -80,6 +80,8 @@ router.delete("/:imageId", requireAuth, async (req, res, next) => {
 
     const userId = req.user.id
 
+  // add user authorization for deleting
+
     const reviewImage = await ReviewImage.findByPk(imageId)
 
     if (!reviewImage) {

@@ -102,7 +102,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     let userId = req.user.id
     let {
         spotId
-    } = req.params
+    } = req.params //WHY IS SPOT ID A STRING IN RESPONSE
 
     console.log("SPOT ID FOR THIS SPOT IS :", spotId)
 
@@ -302,21 +302,25 @@ router.get('/', async (req, res, next) => {
         maxPrice
     } = req.query;
 
-    //set default values
-    if (!page) page = 1;
-    if (!size) size = 20;
-
     //parse from string to Int
     page = parseInt(page);
     size = parseInt(size);
 
+    //set default values for invalid inputs
+    if (!page || isNaN(page) || page <= 0) page = 1;
+    if (!size || isNaN(size) || size <= 0) size = 20;
+
+
+
     let pagination = {} // create a pagination obj
 
+    //set limits and offset
     if (size >= 1 && page >= 1) {
         pagination.limit = size // limit results to our size
         pagination.offset = size * (page - 1) // offset all previous results
     }
 
+    //ERROR HANDLING:
     // if the page and size query params are invalid
     if (page <= 0 && size <= 0) {
         res.status(400);
@@ -344,7 +348,7 @@ router.get('/', async (req, res, next) => {
         })
     }
 
-
+// FIND ALL SPOTS
     const allSpots = await Spot.findAll({
 
         include: {

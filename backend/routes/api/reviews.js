@@ -34,6 +34,7 @@ const {
 //---------------- GET ALL REVIEWS FOR THE CURRENT USER/OWNER --------------
 router.get("/current", requireAuth, async (req, res) => {
 
+    const userId = req.user.id
 
     let reviewObj = {};
 
@@ -42,7 +43,7 @@ router.get("/current", requireAuth, async (req, res) => {
     // get all reviews
     let allReviews = await Review.findAll({
         where: {
-            userId: req.user.id //our current user
+            userId: userId //our current user
         },
         include: [{
                 model: User,
@@ -53,39 +54,51 @@ router.get("/current", requireAuth, async (req, res) => {
                 attributes: {
                     exclude: ['description', 'createdAt', 'updatedAt']
                 }
-            },
-            {
-                model:ReviewImage,
-                attributes: ['id', 'url']
             }
+            // ,{
+            //     model: ReviewImage,
+            //     attributes: ['id', 'url']
+            // }
         ]
     })
 
     //iterate through allReviews Array
-    for (let review of allReviews){
+    for (let review of allReviews) {
         // convert each review object into json format
         reviewObj = review.toJSON() // ****************** HAVE TO FORMAT IT BEFORE WE CAN ADD MANIPULATE OBJ
 
+        //console.log(review)
+        //console.log(reviewObj)
         // get the associated images
-        let image = await SpotImage.findByPk(review.id, {
-            where : {
+        let image = await SpotImage.findByPk(reviewObj.id, {
+            where: {
                 preview: true
             },
             attributes: ['url'],
-            raw:true
+            raw: true
         });
 
 
         // add preview image to each review obj's "Spot" property in the Array
-        if (!image){ // if there is no image, set to an empty string
+        if (!image) { // if there is no image, set to an empty string
             reviewObj.Spot.previewImage = ""
-        }
-        else { // if there is an image, add its url as a kvp
+        } else { // if there is an image, add its url as a kvp
             reviewObj.Spot.previewImage = image.url
         }
 
 
-        // push this new review obj into our final array
+        // get the associated review images:
+        let reviewImagesArray = await ReviewImage.findAll({
+            where: {
+                reviewId:reviewObj.id
+            }
+        })
+
+        //set this to a new property in our object
+        reviewObj.ReviewImages = reviewImagesArray
+
+
+        // push each newaly updated review obj into our final array
         finalArray.push(reviewObj)
 
     }
@@ -133,7 +146,7 @@ router.get("/current", requireAuth, async (req, res) => {
     //     review.Spot.previewImage = previewImage
     // }
 
-    })
+})
 
 
 //*********************************************************************** */
@@ -141,16 +154,23 @@ router.get("/current", requireAuth, async (req, res) => {
 
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
-    const {reviewId} = req.params
+    const
+       { reviewId}
+    = req.params
 
+    console.log(reviewId)
     const currUserId = req.user.id
 
     const {
         url
     } = req.body // get user input to insert changes
 
+    console.log(url)
+
     // get the review by pk
     let review = await Review.findByPk(reviewId)
+
+    console.log(review)
 
 
     //Error response: Couldn't find a Review with the specified id
@@ -165,38 +185,40 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
     // Error response: Cannot add any more images because there is a maximum of 10 images per resource
     // !!!!!!!!!!!!!!!!!NEED TO DO THIS PROPERLY !!!!!!!!!!!!!!!!!
 
+    let reviewObj = review.toJSON()
     // find the associated ReviewImages
-    const reviewImages = await ReviewImage.findAll({
+    const allReviewImages = await ReviewImage.findAll({
         where: {
-            reviewId: reviewId
+            reviewId: reviewObj.id
         },
         attributes: ['url']
     })
 
-    // ERROR HANDLING: count num of images-- try this with sequelize  aggregate!!!!
-    let numImages = reviewImages.length
+    // // ERROR HANDLING: count num of images-- try this with sequelize  aggregate!!!!
+    // let numImages = allReviewImages.length
 
-    if (numImages >= 10) {
-        res.status(403)
-        return res.json({
-            "message": "Maximum number of images for this resource was reached",
-            "statusCode": 403
-        })
-    }
+    // if (numImages >= 10) {
+    //     res.status(403)
+    //     return res.json({
+    //         "message": "Maximum number of images for this resource was reached",
+    //         "statusCode": 403
+    //     })
+    // }
 
 
 
     // ELSE IF ALL IS GOOD:
 
+
     //update url property
-    if (url) review.url = url
+    if (url) reviewObj.url = url
 
     //send success response obj
     res.status(200)
     return res.json({
 
-        id: review.id,
-        url: review.url
+        id: reviewObj.id,
+        url: reviewObj.url
 
     })
 
@@ -211,7 +233,9 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
 router.put("/:reviewId", requireAuth, async (req, res, next) => {
 
-    const {reviewId }= req.params
+    const {
+        reviewId
+    } = req.params
 
     const userId = req.user.id
 
@@ -253,8 +277,8 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     let reviewObj = currReview.toJSON()
 
     console.log(reviewObj)
-     // || !review || review === ''
-     // (typeof stars !== "integer")
+    // || !review || review === ''
+    // (typeof stars !== "integer")
     //else if all is fine:
 
     //console.log(stars)
@@ -263,7 +287,7 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     reviewObj.review = review
     reviewObj.stars = stars
 
-   // await reviewObj.save() // do we need this???
+    // await reviewObj.save() // do we need this???
 
     //else if all is fine:
 
@@ -282,7 +306,9 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
 
     const userId = req.user.id
 
-    const {reviewId} = req.params
+    const {
+        reviewId
+    } = req.params
 
     console.log(userId)
     console.log(reviewId)
