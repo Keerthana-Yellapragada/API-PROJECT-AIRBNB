@@ -252,7 +252,7 @@ router.get("/:spotId", async (req, res, next) => {
         raw: true
     })
 
-    // find related spot images
+    // find any related spot images
     const SpotImages = await SpotImage.findAll({
         attributes: ["id", "url", "preview"],
         where: {
