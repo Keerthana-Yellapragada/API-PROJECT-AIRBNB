@@ -51,7 +51,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars"),2), "avgRating" // this rounds our average to 2 decimal places
+                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2, "avgRating" // this rounds our average to 2 decimal places
                 ]
             ]
         },
@@ -263,7 +263,7 @@ router.get("/:spotId", async (req, res, next) => {
     // find average star rating
     const averageRating = await Review.findOne({
         attributes: [
-            ['ROUND',sequelize.fn('AVG', sequelize.col('stars'),2), 'avgStarRating']
+            ['ROUND', sequelize.fn('AVG', sequelize.col('stars')), 2, 'avgStarRating']
         ],
         where: {
             spotId: spotId
@@ -354,7 +354,7 @@ router.get('/', async (req, res, next) => {
         attributes: {
             include: [
                 [
-                    'ROUND', sequelize.fn("AVG", sequelize.col("stars"),2), "avgRating"
+                    'ROUND', sequelize.fn("AVG", sequelize.col("stars")), 2, "avgRating"
                 ]
             ]
         },
@@ -393,7 +393,7 @@ router.get('/', async (req, res, next) => {
 
     return res.json({
         Spots: allSpots,
-        page,  //include our page and size numbers at the bottom of page
+        page, //include our page and size numbers at the bottom of page
         size
     })
 
