@@ -146,14 +146,16 @@ router.post(
             password
         });
 
-        await setTokenCookie(res, user);
+       let cookie =  await setTokenCookie(res, user);
 
+       console.log(cookie)
         return res.json({
             id: user.id,
             username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
-            token: ""
+            email: user.email,
+            token: cookie
         });
     }
 );

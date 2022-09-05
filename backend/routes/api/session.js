@@ -66,7 +66,7 @@ router.post(
         }
 
 
-        await setTokenCookie(res, user);
+        let cookie = await setTokenCookie(res, user);
 
         return res.json({
             id: user.id,
@@ -74,7 +74,7 @@ router.post(
             firstName: user.firstName,
             lastName: user.lastName,
             email: user.email,
-            token: ""
+            token: cookie
         });
     }
 );
