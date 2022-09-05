@@ -702,7 +702,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
             where: {
                 spotId: spotId
             },
-            attributes: ['startDate', 'endDate', 'spotId'],
+            attributes: ['id', 'userId', 'startDate', 'endDate', 'spotId','createdAt', 'updatedAt'],
             include: {
                 model: User
             }
