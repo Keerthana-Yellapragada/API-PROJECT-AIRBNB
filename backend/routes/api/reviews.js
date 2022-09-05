@@ -214,7 +214,6 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
             res.status(200)
             return res.json(responseObj)
         }
-
     }
 
 });
