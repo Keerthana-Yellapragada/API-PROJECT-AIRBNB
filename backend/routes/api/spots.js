@@ -592,7 +592,6 @@ router.post('/', requireAuth, async (req, res, next) => {
 
 //*********************************************************************** */
 //--------------------DELETE A SPOT -------------------------------------
-// *************** !!! NEED TO FIX THIS-- WAS WORKING BUT DOESNT ANYMORE - FOREIGN KEY CONSTRAINT FAILED!?! !!! *********
 
 
 router.delete('/:spotId', async (req, res) => {
@@ -635,7 +634,7 @@ router.delete('/:spotId', async (req, res) => {
 
 // *****************************************************************************
 //--------------------- GET ALL BOOKINGS FOR A SPOT by spot id-----------------------------
-// ******************** !!! NEED TO FIX !!! returning null ***********************************
+
 
 
 router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
@@ -704,7 +703,8 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
             },
             attributes: ['id', 'userId', 'startDate', 'endDate', 'spotId','createdAt', 'updatedAt'],
             include: {
-                model: User
+                model: User,
+                attributes: ['id', 'firstName', 'lastName']
             }
         })
 
@@ -714,8 +714,6 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         })
 
     }
-
-
 
 
 });
