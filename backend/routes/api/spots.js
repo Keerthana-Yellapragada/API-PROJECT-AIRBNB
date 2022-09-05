@@ -104,7 +104,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
         spotId
     } = req.params //WHY IS SPOT ID A STRING IN RESPONSE
 
-    console.log("SPOT ID FOR THIS SPOT IS :", spotId)
+    //console.log("SPOT ID FOR THIS SPOT IS :", spotId)
 
     let {
         stars,
@@ -112,7 +112,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     } = req.body
 
     // find the spot by pk so we can get its id
-    let spot = await Spot.findByPk(spotId)
+    let spot = await Spot.findByPk(req.params.spotId)
 
     //ERROR HANDLING: if we can't find spot by id
     if (!spot) {
@@ -141,7 +141,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
         })
     }
 
-    //CREATE A NEW REVIEW
+    //ELSE CREATE A NEW REVIEW
     let newReview = await Review.create({
         stars: stars,
         review: review,
@@ -153,7 +153,6 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     //SEND RESPONSE
     res.status(201)
     return res.json({
-
         id: newReview.id,
         userId: newReview.userId,
         spotId: newReview.spotId,
@@ -646,6 +645,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         spotId
     } = req.params
 
+    console.log(spotId)
     // get the current logged-in user obj to get id
     let userId = req.user.id
 
@@ -678,8 +678,8 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         // get all bookings that match this spot.id
         const bookings = await Booking.findAll({
             where: {
-                spotId: spotId,
-                userId: userId
+                spotId: spotId
+                // ,userId: userId
             },
             attributes: ['startDate', 'endDate', 'spotId']
 
@@ -687,7 +687,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
 
         res.status(200)
-        res.json({
+        return res.json({
             Bookings: bookings
         })
 
@@ -708,11 +708,12 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         })
 
         res.status(200)
-        res.json({
+        return res.json({
             Bookings: bookings
         })
 
     }
+
 
 
 

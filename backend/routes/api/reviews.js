@@ -90,7 +90,7 @@ router.get("/current", requireAuth, async (req, res) => {
         // get the associated review images:
         let reviewImagesArray = await ReviewImage.findAll({
             where: {
-                reviewId:reviewObj.id
+                reviewId: reviewObj.id
             }
         })
 
@@ -154,24 +154,11 @@ router.get("/current", requireAuth, async (req, res) => {
 
 router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 
-    const
-       { reviewId}
-    = req.params
-
-    console.log(reviewId)
-    const currUserId = req.user.id
-
     const {
         url
-    } = req.body // get user input to insert changes
+    } = req.body
 
-    console.log(url)
-
-    // get the review by pk
-    let review = await Review.findByPk(reviewId)
-
-    console.log(review)
-
+    let review = await Review.findByPk(req.params.reviewId)
 
     //Error response: Couldn't find a Review with the specified id
     if (!review) {
@@ -181,47 +168,54 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
             "statusCode": 404
         })
     }
-
-    // Error response: Cannot add any more images because there is a maximum of 10 images per resource
-    // !!!!!!!!!!!!!!!!!NEED TO DO THIS PROPERLY !!!!!!!!!!!!!!!!!
-
-    let reviewObj = review.toJSON()
-    // find the associated ReviewImages
-    const allReviewImages = await ReviewImage.findAll({
-        where: {
-            reviewId: reviewObj.id
-        },
-        attributes: ['url']
-    })
-
-    // // ERROR HANDLING: count num of images-- try this with sequelize  aggregate!!!!
-    // let numImages = allReviewImages.length
-
-    // if (numImages >= 10) {
-    //     res.status(403)
-    //     return res.json({
-    //         "message": "Maximum number of images for this resource was reached",
-    //         "statusCode": 403
-    //     })
-    // }
+    // if the user isn't the creator of the review -- don't authorize
+    if (review.userId !== req.user.id) {
+        res.status(403)
+        return res.json({
+            message: "You must have authorization to add images to this review",
+            statusCode: 403
+        })
+    }
 
 
+    else if (review.userId === req.user.id) { // if the user is the one who made the review...
 
-    // ELSE IF ALL IS GOOD:
+        //get all review images associated with this review
+        const allReviewImages = await ReviewImage.findAll({
+            where: {
+                reviewId: review.id
+            },
+            attributes: ['url']
+        });
 
 
-    //update url property
-    if (url) reviewObj.url = url
+        // ERROR HANDLING: don't allow more than 10-- try this with sequelize  aggregate!!!!
+        let numImages = allReviewImages.length
 
-    //send success response obj
-    res.status(200)
-    return res.json({
+        if (numImages >= 10) { // ERROR: IF MORE THAN TEN DONT ALLOW NEW IMAGES TO BE ADDED
+            res.status(403)
+            return res.json({
+                "message": "Maximum number of images for this resource was reached",
+                "statusCode": 403
+            })
+        } else { // WE CAN CREATE A NEW IMAGE
 
-        id: reviewObj.id,
-        url: reviewObj.url
 
-    })
+            const newReviewImage = await ReviewImage.create({
+                url,
+                reviewId: req.params.reviewId
+            })
 
+            // add properties to response
+            let responseObj = {}
+            responseObj.id = newReviewImage.id
+            responseObj.url = newReviewImage.url
+
+            res.status(200)
+            return res.json(responseObj)
+        }
+
+    }
 
 });
 
@@ -245,10 +239,6 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     } = req.body
 
     const currReview = await Review.findByPk(reviewId)
-
-    // console.log(reviewId)
-    //console.log(currReview)
-
 
     //Error response: Couldn't find a Review with the specified id
     if (!currReview) {
@@ -277,21 +267,11 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     let reviewObj = currReview.toJSON()
 
     console.log(reviewObj)
-    // || !review || review === ''
-    // (typeof stars !== "integer")
-    //else if all is fine:
 
-    //console.log(stars)
-    //console.log(review)
 
     reviewObj.review = review
     reviewObj.stars = stars
 
-    // await reviewObj.save() // do we need this???
-
-    //else if all is fine:
-
-    // send response obj
 
     res.status(200)
     return res.json(reviewObj)
