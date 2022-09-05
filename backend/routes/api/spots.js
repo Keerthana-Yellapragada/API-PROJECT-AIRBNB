@@ -347,7 +347,7 @@ router.get('/', async (req, res, next) => {
         })
     }
 
-// FIND ALL SPOTS
+    // FIND ALL SPOTS
     const allSpots = await Spot.findAll({
 
         include: {
@@ -634,7 +634,7 @@ router.delete('/:spotId', async (req, res) => {
 
 
 // *****************************************************************************
-//--------------------- GET ALL BOOKINGS FOR A SPOT -----------------------------
+//--------------------- GET ALL BOOKINGS FOR A SPOT by spot id-----------------------------
 // ******************** !!! NEED TO FIX !!! returning null ***********************************
 
 
@@ -645,7 +645,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         spotId
     } = req.params
 
-    console.log(spotId)
+    // console.log(spotId)
     // get the current logged-in user obj to get id
     let userId = req.user.id
 
@@ -702,6 +702,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
             where: {
                 spotId: spotId
             },
+            attributes: ['startDate', 'endDate', 'spotId'],
             include: {
                 model: User
             }

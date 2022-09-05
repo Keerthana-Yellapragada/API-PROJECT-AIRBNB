@@ -16,22 +16,22 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        startDate: "2022-11-19",
-        endDate: "2022-11-20",
+        startDate: new Date(Date.UTC(2022, 10, 1)),
+        endDate: new Date(Date.UTC(2022, 10, 4)),
 
 
       },
       {
         spotId: 2,
         userId: 2,
-        startDate: "2022-11-19",
-        endDate: "2022-11-20",
+        startDate: new Date(Date.UTC(2022, 9, 1)),
+        endDate: new Date(Date.UTC(2022, 9, 6)),
       },
       {
         spotId: 3,
         userId: 3,
-        startDate: "2022-08-16",
-        endDate: "2022-08-24",
+        startDate: new Date(Date.UTC(2022, 11, 1)),
+        endDate: new Date(Date.UTC(2022, 11, 8)),
       }
     ])
   },

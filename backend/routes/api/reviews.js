@@ -91,7 +91,8 @@ router.get("/current", requireAuth, async (req, res) => {
         let reviewImagesArray = await ReviewImage.findAll({
             where: {
                 reviewId: reviewObj.id
-            }
+            },
+            attributes: ['id', 'url']
         })
 
         //set this to a new property in our object
