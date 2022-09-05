@@ -693,7 +693,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
     //-----------------------------------------------------------------------
-    // CASE 2: if you ARE the OWNER:
+    // CASE 2: if you ARE the OWNER :
     if (spotObj.ownerId == userId) {
 
         // get all bookings that match this spot.id and include the booking user's info as well
