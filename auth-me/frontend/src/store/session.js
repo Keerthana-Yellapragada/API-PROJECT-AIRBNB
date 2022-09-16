@@ -29,18 +29,25 @@ export const signup = (user) => async (dispatch) => {
     const {
         username,
         email,
-        password
+        password,
+        firstName,
+        lastName
     } = user;
+
+    console.log(user)
     const response = await csrfFetch("/api/users", {
         method: "POST",
         body: JSON.stringify({
             username,
             email,
             password,
+            firstName,
+            lastName
         }),
     });
     const data = await response.json();
-    dispatch(setUser(data.user));
+    // console.log(data)
+    dispatch(setUser(data));
     return response;
 };
 
@@ -73,7 +80,7 @@ const initialState = {
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
     const data = await response.json();
-    dispatch(setUser(data.user));
+    dispatch(setUser(data));
     return response;
 };
 
@@ -100,3 +107,12 @@ const sessionReducer = (state = initialState, action) => {
 };
 
 export default sessionReducer;
+
+
+// window.store.dispatch(window.sessionActions.signup({
+//     username: 'NewUser',
+//     email: 'new@user.io',
+//     password: 'password',
+//     firstName: 'keerthana',
+//     lastName: 'Yellapragada'
+// }));
