@@ -3,6 +3,8 @@ import {
     csrfFetch
 } from './csrf';
 
+// *****************************************************************************
+//****************************** ACTION CREATORS *****************************
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -19,6 +21,31 @@ const removeUser = () => {
     };
 };
 
+
+// *****************************************************************************
+//************************************ THUNKS **********************************
+// SIGNUP THUNK:
+export const signup = (user) => async (dispatch) => {
+    const {
+        username,
+        email,
+        password
+    } = user;
+    const response = await csrfFetch("/api/users", {
+        method: "POST",
+        body: JSON.stringify({
+            username,
+            email,
+            password,
+        }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+};
+
+
+//LOGIN THUNK:
 export const login = (user) => async (dispatch) => {
     const {
         credential,
@@ -32,13 +59,29 @@ export const login = (user) => async (dispatch) => {
         }),
     });
     const data = await response.json();
+    dispatch(setUser(data));
+    return response;
+};
+
+
+//our initial state before login
+const initialState = {
+    user: null
+};
+
+// RESTORE USER THUNK:
+export const restoreUser = () => async dispatch => {
+    const response = await csrfFetch('/api/session');
+    const data = await response.json();
     dispatch(setUser(data.user));
     return response;
 };
 
-const initialState = {
-    user: null
-};
+
+// *****************************************************************************
+// ******************************* REDUCERS ********************************
+
+
 
 const sessionReducer = (state = initialState, action) => {
     let newState;
@@ -57,11 +100,3 @@ const sessionReducer = (state = initialState, action) => {
 };
 
 export default sessionReducer;
-
-
-export const restoreUser = () => async dispatch => {
-    const response = await csrfFetch('/api/session');
-    const data = await response.json();
-    dispatch(setUser(data.user));
-    return response;
-};
