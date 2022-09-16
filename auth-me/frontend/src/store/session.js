@@ -52,6 +52,10 @@ export const signup = (user) => async (dispatch) => {
 };
 
 
+
+
+
+
 //LOGIN THUNK:
 export const login = (user) => async (dispatch) => {
     const {
@@ -76,6 +80,11 @@ const initialState = {
     user: null
 };
 
+
+
+
+
+
 // RESTORE USER THUNK:
 export const restoreUser = () => async dispatch => {
     const response = await csrfFetch('/api/session');
@@ -84,6 +93,15 @@ export const restoreUser = () => async dispatch => {
     return response;
 };
 
+// LOGOUT THINK:
+
+export const logout = () => async (dispatch) => {
+    const response = await csrfFetch('/api/session', {
+        method: 'DELETE',
+    });
+    dispatch(removeUser());
+    return response;
+};
 
 // *****************************************************************************
 // ******************************* REDUCERS ********************************
