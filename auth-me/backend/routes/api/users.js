@@ -84,8 +84,8 @@ router.post(
         if (!email || !username || !firstName || !lastName) {
             res.status(400)
             return res.json({
-                "message": "Validation error",
                 "statusCode": 400,
+                "message": "Validation error",
                 "errors": {
                     "email": "Invalid email",
                     "username": "Username is required",
@@ -125,8 +125,8 @@ router.post(
         if (existingEmail) {
             res.status(403)
             return res.json({
-                "message": "User already exists",
                 "statusCode": 403,
+                "message": "User already exists",
                 "errors": {
                     "email": "User with that email already exists"
                 }
@@ -136,7 +136,6 @@ router.post(
 
 
         // if all is good, then we can sign up the new user
-
 
         const user = await User.signup({
             email,
