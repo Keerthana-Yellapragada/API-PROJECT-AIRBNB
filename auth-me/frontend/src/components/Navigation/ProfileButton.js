@@ -28,12 +28,17 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-  return (
+  return ( // USER ICON SHOWS UP ONLY WHEN WE ARE LOGGED IN ALONG WITH LOGOUT BUTTON
     <>
       <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+
+        <div className="userProfileButton">
+             <i className = "fas fa-user-circle"/>
+        </div>
+
       </button>
       {showMenu && (
+
         <ul className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>

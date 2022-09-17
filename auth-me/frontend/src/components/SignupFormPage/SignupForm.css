@@ -25,7 +25,7 @@ input {
 }
 
 
-button {
+.submit {
      border: 10px 4px 5px 5px black;
      background-color: rgb(145, 188, 232);
      color: rgb(10, 9, 9);
