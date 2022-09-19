@@ -5,7 +5,7 @@
 // Update/Edit a Spot
 // Delete a Spot
 
-const LOAD_ALLSPOTS = 'spots/loadAllSpots'
+const GET_ALLSPOTS = 'spots/getAllSpots'
 const GET_SPOT= 'spots/getSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const UPDATE_SPOT = 'spots/updateSpot'
@@ -13,10 +13,10 @@ const REMOVE_SPOT = 'spots/removeSpot'
 
 
 // Get/Load All Spots
-const loadAllSpots = (spots) => {
+const getAllSpots = (spots) => {
     return {
-        type: LOAD_ALLSPOTS,
-        payload: spots
+        type: GET_ALLSPOTS,
+        spots
     }
 
 }
@@ -30,6 +30,7 @@ const getSpot = (spot) => {
     }
 }
 
+
 //create a spot
 const createSpot = (spot) => {
     return {
@@ -38,6 +39,7 @@ const createSpot = (spot) => {
 
     }
 }
+
 
 // edit/update a spot
 const updateSpot = (spot) => {
@@ -48,7 +50,7 @@ const updateSpot = (spot) => {
 }
 
 
-//delete/remove  a spot
+//delete/remove a spot
 const removeSpot = (spot) => {
     return {
         type: REMOVE_SPOT
@@ -60,7 +62,7 @@ const removeSpot = (spot) => {
 
 // *****************************************************************************
 //************************************ THUNKS **********************************
-
+export const getAllSpots =
 
 
 
