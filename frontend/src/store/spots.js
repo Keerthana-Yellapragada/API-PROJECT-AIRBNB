@@ -87,6 +87,7 @@ export const getSpotInfo = spotId => async dispatch => {
 
      if (response.ok) {
          const spotInfo = await response.json();
+         console.log(spotInfo)
          dispatch(getSpot(spotInfo)) // dispatch using out action creator from above to get spot's info by spotId
      }
 }
@@ -129,9 +130,10 @@ const initialState = {}
 
 
 const spotsReducer = (state=initialState, action) => {
+     let allSpots = {}
+
     switch(action.type) {
         case GET_ALLSPOTS:
-            const allSpots = {}
 
             //normalize our data
             action.spots.Spots.forEach(spot=> {
@@ -141,13 +143,14 @@ const spotsReducer = (state=initialState, action) => {
 
             return {...state, ...allSpots} //return a new updated state for spots
 
-            case GET_SPOT:
+        case GET_SPOT:
 
                 let spotDetails = action.spotInfo
                 let spotId = action.spotInfo.id
+
                 return {
-                ...state,
-                [state.spots.spotId]:{...spotDetails}
+                ...state,...allSpots,
+                [allSpots.spotId]:{...spotDetails}
                 }
 
             default: return state;
