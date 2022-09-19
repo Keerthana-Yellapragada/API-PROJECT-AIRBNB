@@ -125,9 +125,7 @@ export const deleteSpot = spotId => async dispatch => {
 // *****************************************************************************
 // ******************************* REDUCERS ********************************
 
-const initialState = {
-    spots: []
-}
+const initialState = {}
 
 // const normalizedSpots = (spots) => {
 // // normalize spots data!!!! NEED TO DO
