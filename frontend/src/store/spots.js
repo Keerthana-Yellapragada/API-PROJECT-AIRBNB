@@ -1,3 +1,7 @@
+import thunk from "redux-thunk"
+
+
+
 // *****************************************************************************
 //****************************** ACTION CREATORS *****************************
 // Create a Spot
@@ -120,3 +124,28 @@ export const deleteSpot = spotId => async dispatch => {
 
 // *****************************************************************************
 // ******************************* REDUCERS ********************************
+
+const initialState = {}
+
+// const normalizedSpots = (spots) => {
+// // normalize spots data!!!! NEED TO DO
+// }
+
+
+
+const spotsReducer = (state=initialState, action) => {
+    switch(action.type) {
+        case GET_ALLSPOTS:
+            const allSpots = {}
+
+            //normalize our data
+            action.spots.forEach(spot=>{
+                allSpots[spot.id] = spot
+            });
+            return {...state, ...allSpots} //return a new updated state for spots
+
+    }
+}
+
+
+export default spotsReducer
