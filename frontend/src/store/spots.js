@@ -71,7 +71,7 @@ const removeSpot = spotId => {
 // LOAD ALL SPOTS
 export const loadAllSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
-    console.log(response)
+    // console.log(response)
     if (response.ok) {
         const spotsList = await response.json();
         dispatch(getAllSpots(spotsList)) // dispatch using out action creator from above to get all spots
@@ -126,11 +126,6 @@ export const deleteSpot = spotId => async dispatch => {
 // ******************************* REDUCERS ********************************
 
 const initialState = {}
-
-// const normalizedSpots = (spots) => {
-// // normalize spots data!!!! NEED TO DO
-//     console.log(spots)
-// }
 
 
 const spotsReducer = (state=initialState, action) => {

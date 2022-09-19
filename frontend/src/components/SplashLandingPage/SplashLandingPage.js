@@ -1,7 +1,10 @@
-import { useState, useEffect } from 'react';
+import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllSpots } from '../../store/spots';
+import * as spotActions from '../../store/spots';
+import './SplashLandingPage'
+
 
 
 const SpotsBrowser = () => {
@@ -31,7 +34,7 @@ const SpotsBrowser = () => {
         allSpots.map(spot => {
           return (
     <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-        <div>
+        <div className="homepage">
             <div className="homepage-preview-image" style={{ backgroundImage: `url('${spot.previewImage}')` }}></div>
             <div>
               <div className="primary-text">{spot.name}</div>
@@ -58,43 +61,6 @@ const SpotsBrowser = () => {
       }
     </div>
   )
-  // return (
-  // <main>
-  //   <nav>
-  //     {allSpots.map((spot) => {
-  //       return (
-  //         <NavLink key={spot.name} to={`/spots/${spot.id}`}>
-  //           <div
-  //             className={
-  //               Number.parseInt(spotId) === spot.id // compare with the spotId that we deconstructed from params above
-  //                 ? "nav-entry is-selected"
-  //                 : "nav-entry"
-  //             }
-  //           >
-  //             <div
-  //               className="nav-entry-image"
-  //               style={{ backgroundImage: `url('${spot.previewImage}')` }}
-  //             ></div>
-  //             <div>
-  //               <div className="primary-text">{spot.name}</div>
-  //               <div className="secondary-text">
-
-  //                  {/* {spot.address} */}
-  //                  {`${spot.city}, ${spot.state}`}
-
-  //                  {/* {spot.country} */}
-  //                  {/* {spot.description} */}
-  //                  {`$${spot.price} night`}
-  //                  {/* {spot.avgRating} */}
-  //               </div>
-  //             </div>
-  //           </div>
-  //         </NavLink>
-  //       );
-  //     })}
-  //   </nav>
-  // </main>
-  // )
 
 }
 
