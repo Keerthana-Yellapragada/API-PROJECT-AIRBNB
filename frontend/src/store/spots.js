@@ -27,10 +27,10 @@ const getAllSpots = (spots) => {
 
 
 // Get a spot and its info
-const getSpot = (spot) => {
+const getSpot = (spotInfo) => {
     return {
         type: GET_SPOT,
-        payload: spot
+        payload: spotInfo
     }
 }
 
@@ -140,6 +140,16 @@ const spotsReducer = (state=initialState, action) => {
 
 
             return {...state, ...allSpots} //return a new updated state for spots
+
+            case GET_SPOT:
+
+                let spotDetails = action.spotInfo
+                let spotId = action.spotInfo.id
+                return {
+                ...state,
+                [state.spots.spotId]:{...spotDetails}
+                }
+
             default: return state;
     }
 }
