@@ -174,9 +174,9 @@ const spotsReducer = (state=initialState, action) => {
         //         [allSpots.spotId]:{...spotDetails}
         //         }
 
-        // case CREATE_SPOT:
-
-        //         return {...allSpots, ...newSpot} //??
+        case CREATE_SPOT:
+            let newSpot = action.payload
+            return {...allSpots, ...newSpot} //??
             default: return state;
     }
 }

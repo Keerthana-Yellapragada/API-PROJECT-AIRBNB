@@ -30,11 +30,17 @@ return (
         <div className={`spot-detail-image-background`}>
             <div
             className='spot-detail-image'
-            // style={{backgroundImage: `url('${spot.previewImage}')`}}
-            ></div>
+            // style={{backgroundImage: `${currentSpot.previewImage}`}}
+            >
+           <img src={currentSpot.previewImage}/>
+            </div>
             <h1 className="spot-name">{currentSpot.name}</h1>
         </div>
-        <div></div>
+        <div>
+           {` ${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
+            {`Description: ${currentSpot.description}`} {`$${currentSpot.price}/night`} {`Rating: ${currentSpot.avgRating} stars`}
+            {`Latitude: ${currentSpot.lat}`}    {`Longitude: ${currentSpot.lng}`}
+        </div>
     </div>
 
 )

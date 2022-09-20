@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createSpot, { createNewSpot } from "../../store/spots"
 
+
 const CreateSpotForm = () => {
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
@@ -33,119 +34,123 @@ const CreateSpotForm = () => {
 
 
   const handleSubmit = async (e) => {
-    e.preventDefualt(); // prevent default reloading of html form
+    e.preventDefault(); // prevent default reloading of html form
 
 
-  const spotInfoPayload = {
-    name,
-    address,
-    city,
-    state,
-    country,
-    lat,
-    lng,
-    description,
-    price
-  }
-
-  // let newSpot;
-
-  // try {
-  //   newSpot = await dispatch(createNewSpot(spotInfoPayload))
-  // } catch (error) {
-  //   if (error instanceof ValidationError) setErrorMessages(error.errors);
-  //   // If error is not a ValidationError, add slice at the end to remove extra
-  //   // "Error: "?!?!?
-  //   else setErrorMessages({
-  //     overall: error.toString().slice(7)
-  //   })
-  // }
-
-  // if (newSpot) { // if spot was created SUCCESSFULLY
-  //   setErrorMessages({}) // we don't have any error messages
-  // }
-
-  }
-
-  return (
+    const spotInfoPayload = {
+      name,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      description,
+      price
+    }
 
 
 
-    <form>
+    //CREATE THE NEW SPOT
+    let newSpot = await dispatch(createNewSpot(spotInfoPayload))
+
+    // if (!newSpot) throw new Error("There was an issue with your submission")
+
+
+    if (newSpot) {
+      setErrorMessages({});
+      history.push(`/spots/${newSpot.id}`);
+      // hideForm();
+    }
+
+    const handleCancelClick = (e) => {
+      e.preventDefault();
+
+      setErrorMessages({});
+
+      // hideForm();
+    };
+
+    return (
+
+      <section>
+
+        <form>
         // CREATE JSX HTML FORM TO CREATE SPOT
-      <input
-        type="string"
-        placeholder="Name of Your Spot"
-        required
-        value={name}
-        onChange={updateName} />
+          <input
+            type="string"
+            placeholder="Name of Your Spot"
+            required
+            value={name}
+            onChange={updateName} />
 
-      <input
-        type="string"
-        placeholder="address"
-        required
-        value={address}
-        onChange={updateAddress} />
+          <input
+            type="string"
+            placeholder="address"
+            required
+            value={address}
+            onChange={updateAddress} />
 
-      <input
-        type="string"
-        placeholder="city"
-        required
-        value={city}
-        onChange={updateCity} />
+          <input
+            type="string"
+            placeholder="city"
+            required
+            value={city}
+            onChange={updateCity} />
 
-      <input
-        type="string"
-        placeholder="state"
-        required
-        value={state}
-        onChange={updateState} />
+          <input
+            type="string"
+            placeholder="state"
+            required
+            value={state}
+            onChange={updateState} />
 
-      <input
-        type="string"
-        placeholder="country"
-        required
-        value={country}
-        onChange={updateCountry} />
+          <input
+            type="string"
+            placeholder="country"
+            required
+            value={country}
+            onChange={updateCountry} />
 
-      <input
-        type="number"
-        placeholder="Latitude"
-        required
-        value={lat}
-        onChange={updateLat} />
+          <input
+            type="number"
+            placeholder="Latitude"
+            required
+            value={lat}
+            onChange={updateLat} />
 
-      <input
-        type="number"
-        placeholder="Longitude"
-        required
-        value={lng}
-        onChange={updateLng} />
+          <input
+            type="number"
+            placeholder="Longitude"
+            required
+            value={lng}
+            onChange={updateLng} />
 
 
 
-      <input
-        type="number"
-        placeholder="100"
-        required
-        min="1"
-        value={price}
-        onChange={updatePrice} />
+          <input
+            type="number"
+            placeholder="100"
+            required
+            min="1"
+            value={price}
+            onChange={updatePrice} />
 
-      <input
-        type="string"
-        placeholder="Description"
-        required
-        value={description}
-        onChange={updateDescription} />
-{/*
-    <button type="submit">Create new Spot</button>
-    <button type="button" onClick={handleCancelClick}>Cancel</button>
- */}
+          <input
+            type="string"
+            placeholder="Description"
+            required
+            value={description}
+            onChange={updateDescription} />
 
-    </form>
-  )
+          <button type="submit">Create new Spot</button>
+          <button type="button" onClick={handleCancelClick}>Cancel</button>
 
+        </form>
+      </section>
+    )
+  }
 }
 
-export default createNewSpot;
+
+export default CreateSpotForm;
