@@ -57,7 +57,8 @@ const updateSpot = (spot) => {
 //delete/remove a spot
 const removeSpot = spotId => {
     return {
-        type: REMOVE_SPOT
+        type: REMOVE_SPOT,
+        payload: spotId
 
     }
 }
@@ -120,8 +121,11 @@ export const createNewSpot = spotData => async dispatch => {
 
 
 // EDIT A SPOT INFO
-export const editSpot = spotInfo => async dispatch => {
-    const response = await fetch(`/api/spots/${spotInfo.id}`, { //get the id from the spot obj and use that
+export const editSpot = (spotInfo) => async dispatch => {
+
+    console.log("THIS IS EDITED SPOT INFO IN THUNK: ", spotInfo)
+
+    const response = await csrfFetch(`/api/spots/${spotInfo.id}`, { //get the id from the spot obj and use that
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -130,16 +134,16 @@ export const editSpot = spotInfo => async dispatch => {
     });
 
     if (response.ok) {
-        const spot = await response.json();
-        dispatch(updateSpot(spot)) // dispatch using out action creator from above to get spot's info by spotId
-        return spot;
+        const editedSpot = await response.json();
+        dispatch(updateSpot(editedSpot)) // dispatch using out action creator from above to get spot's info by spotId
+        return editedSpot;
     }
 }
 
 
 // DELETE A POKEMON
 export const deleteSpot = spotId => async dispatch => {
-    const response = await fetch(`/api/spots/${spotId}`, {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
          method: 'DELETE'
     });
 
@@ -174,7 +178,20 @@ const spotsReducer = (state=initialState, action) => {
             console.log(action.payload)
             newState[action.payload.id] = action.payload
             return newState //??
-            default: return state;
+
+        case UPDATE_SPOT:
+            const updatedState = {...state}
+            console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
+            updatedState[action.payload.id] = action.payload
+            return updatedState;
+
+        case REMOVE_SPOT:
+            const modifiedState = {...state}
+            console.log("REACHED REDUCER FOR DELETE")
+            delete modifiedState[action.payload]
+            return modifiedState
+
+        default: return state;
     }
 }
 

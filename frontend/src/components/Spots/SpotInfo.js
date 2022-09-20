@@ -10,7 +10,7 @@ const SpotInfo = () => {
 
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-     console.log("THIS IS", allSpotsArray)
+     console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
      const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
      console.log(currentSpot)

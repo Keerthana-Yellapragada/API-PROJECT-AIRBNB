@@ -7,6 +7,8 @@ import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SplashLandingPage/SplashLandingPage";
 import SpotInfo from "./components/Spots/SpotInfo";
 import CreateSpotForm from "./components/CreateSpotForm/"
+import EditSpotForm from "./components/EditSpotForm";
+import DeleteSpotForm from "./components/DeleteSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,13 +24,13 @@ function App() {
         <Switch>
           <Route path="/spots/:spotId">
             <SpotInfo />
+            <EditSpotForm />
+            <DeleteSpotForm />
           </Route>
           <Route  path="/signup">
             <SignupFormPage />
           </Route>
-          {/* <Route exact path="/spots">
-            <CreateSpotForm />
-          </Route> */}
+
           <Route exact path="/">
             <SpotsBrowser />
           </Route>
