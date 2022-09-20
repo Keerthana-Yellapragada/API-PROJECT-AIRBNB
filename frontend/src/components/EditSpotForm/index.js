@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
-import editSpot from '../../store/spots';
+import  updateSpot, {editSpot} from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
 import SpotInfo from '../Spots/SpotInfo';
 
 
-const EditSpotForm = ({spots}) => {
+
+const EditSpotForm = () => {
     const dispatch = useDispatch();
     let {spotId} = useParams();
     const history = useHistory();
@@ -15,10 +16,10 @@ const EditSpotForm = ({spots}) => {
 
   //GET THIS SPOT
        const allSpotsArray = useSelector(state => Object.values(state.spots))
-       console.log("THIS IS ALL SPOTS ARRAY", allSpotsArray)
+       //console.log("THIS IS ALL SPOTS ARRAY", allSpotsArray)
 
        const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
-       console.log("THIS IS PREVIOUS SPOT INFO", currentSpotDetails)
+       //console.log("THIS IS CURRENT SPOT DETAILS ID", currentSpotDetails.id)
 
        spotId = parseInt(spotId)
 
@@ -52,10 +53,8 @@ const updatePrice = (e) => setPrice(e.target.value);
  const handleSubmit = async (e) => {
      e.preventDefault();
 
-
-
      const payload = {
-        spotId, // TO MAKE SURE WE INCLUDE ITS ID
+        ...currentSpotDetails, // TO MAKE SURE WE INCLUDE ITS ID
          name,
          address,
          city,
@@ -67,17 +66,17 @@ const updatePrice = (e) => setPrice(e.target.value);
          price
      };
 
-     console.log("THISSSSS IS EDITED PAYLOAD BEFORE DISPATCH ",payload)
+     //console.log("THISSSSS IS EDITED PAYLOAD BEFORE DISPATCH ",payload)
 
      const editedSpot = await dispatch(editSpot(payload));
 
-     console.log("THIS IS THE USER INPUT", editedSpot)
+    // console.log("THIS IS THE USER INPUT", editedSpot)
 
-     if (editedSpot) {
-      //  history.push(`/`)
-         history.push(`/spots/${spotId}`)
-        //  hideForm();
-     }
+    //  if (editedSpot) {
+    //   //  history.push(`/`)
+    //      history.push(`/spots/${spotId}`)
+    //     //  hideForm();
+    //  }
  };
 
  const handleCancelClick = (e) => {

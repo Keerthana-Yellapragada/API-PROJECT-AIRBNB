@@ -81,7 +81,7 @@ export const loadAllSpots = () => async dispatch => {
 
 
 export const createNewSpot = spotData => async dispatch => {
-    console.log("IS MY CODE RUNNING IN THIS THUNK")
+   // console.log("IS MY CODE RUNNING IN THIS THUNK")
     try {
         const response = await csrfFetch(`/api/spots`, {
             method: 'POST',
@@ -95,10 +95,10 @@ export const createNewSpot = spotData => async dispatch => {
             //  throw new ValidationError(error)
          }
         //else if all is good update our store state with new store data
-        console.log("THIS IS THE RESPONSE",response)
+       // console.log("THIS IS THE RESPONSE",response)
         let spotInfo = await response.json();
 
-        console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
+       // console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
 
          dispatch(createSpot(spotInfo)); // dispatch
         return spotInfo;
@@ -123,7 +123,7 @@ export const createNewSpot = spotData => async dispatch => {
 // EDIT A SPOT INFO
 export const editSpot = (spotInfo) => async dispatch => {
 
-    console.log("THIS IS EDITED SPOT INFO IN THUNK: ", spotInfo)
+   // console.log("THIS HITTING THE THUNK: ",spotInfo.id)
 
     const response = await csrfFetch(`/api/spots/${spotInfo.id}`, { //get the id from the spot obj and use that
         method: 'PUT',
@@ -175,19 +175,19 @@ const spotsReducer = (state=initialState, action) => {
 
         case CREATE_SPOT:
             const newState = {...state}
-            console.log(action.payload)
+            //console.log(action.payload)
             newState[action.payload.id] = action.payload
             return newState //??
 
         case UPDATE_SPOT:
             const updatedState = {...state}
-            console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
+            //console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
             updatedState[action.payload.id] = action.payload
             return updatedState;
 
         case REMOVE_SPOT:
             const modifiedState = {...state}
-            console.log("REACHED REDUCER FOR DELETE")
+           // console.log("REACHED REDUCER FOR DELETE")
             delete modifiedState[action.payload]
             return modifiedState
 
