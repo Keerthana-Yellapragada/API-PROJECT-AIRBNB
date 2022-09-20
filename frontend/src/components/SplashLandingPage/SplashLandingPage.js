@@ -33,34 +33,34 @@ const SpotsBrowser = () => {
       {
         allSpots.map(spot => {
           return (
-  <>
+                    <>
 
-    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-        <div className="homepage">
-            <div>
-              <div className='previewImage'>
-                   <img src={`${spot.previewImage}`}/>
-              </div>
-              <div className="primary-text">{spot.name}</div>
-               <div className="secondary-text">
+                      <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                          <div className="homepage">
+                              <div>
+                                <div className='previewImage'>
+                                    <img src={spot.previewImage}/>
+                                </div>
+                                <div className="primary-text">{spot.name}</div>
+                                <div className="secondary-text">
 
-                <div className='rating'>
-                  {spot.avgRating}
-                </div>
+                                  <div className='rating'>
+                                    {spot.avgRating}
+                                  </div>
 
-                <div className='price'>
-                  {spot.price}
-                </div>
+                                  <div className='price'>
+                                    {spot.price}
+                                  </div>
 
-                <div className='address'>
-                {`${spot.city},${spot.state}`}
-                </div>
-               </div>
-            </div>
-        </div>
-    </NavLink>
+                                  <div className='address'>
+                                  {`${spot.city},${spot.state}`}
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                      </NavLink>
 
-    </>
+                      </>
           )
         })
       }

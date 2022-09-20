@@ -5,7 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SplashLandingPage/SplashLandingPage";
-import SpotInfo from "./components/Spots";
+import SpotInfo from "./components/Spots/SpotInfo";
 import CreateSpotForm from "./components/Spots/CreateSpotForm"
 
 function App() {
@@ -26,13 +26,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/spots">
+            <CreateSpotForm />
+          </Route>
           <Route exact path="/">
             <SpotsBrowser />
           </Route>
-          <Route>
-            <CreateSpotForm />
 
-          </Route>
 
         </Switch>
       )}

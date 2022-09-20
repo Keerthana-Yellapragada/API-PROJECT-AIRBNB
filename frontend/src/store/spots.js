@@ -10,7 +10,7 @@ import thunk from "redux-thunk"
 // Delete a Spot
 
 const GET_ALLSPOTS = 'spots/getAllSpots'
-const GET_SPOT= 'spots/getSpot'
+// const GET_SPOT= 'spots/getSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const UPDATE_SPOT = 'spots/updateSpot'
 const REMOVE_SPOT = 'spots/removeSpot'
@@ -26,13 +26,13 @@ const getAllSpots = (spots) => {
 }
 
 
-// Get a spot and its info
-const getSpot = (spotInfo) => {
-    return {
-        type: GET_SPOT,
-        payload: spotInfo
-    }
-}
+// // Get a spot and its info
+// const getSpot = (spotInfo) => {
+//     return {
+//         type: GET_SPOT,
+//         payload: spotInfo
+//     }
+// }
 
 
 //create a spot
@@ -90,7 +90,7 @@ export const createNewSpot = spotData => async dispatch => {
         });
          if (!response.ok) {
              const error = await response.json()
-             throw new ValidationError(error)
+            //  throw new ValidationError(error)
          }
         // else if all is good update our store state with new store data
         const spot = await response.json();
@@ -102,16 +102,16 @@ export const createNewSpot = spotData => async dispatch => {
 };
 
 
-// GET A SPOT INFO
-export const getSpotInfo = spotId => async dispatch => {
-     const response = await fetch(`/api/spots/${spotId}`);
+// // GET A SPOT INFO
+// export const getSpotInfo = spotId => async dispatch => {
+//      const response = await fetch(`/api/spots/${spotId}`);
 
-     if (response.ok) {
-         const spotInfo = await response.json();
-         console.log(spotInfo)
-         dispatch(getSpot(spotInfo)) // dispatch using out action creator from above to get spot's info by spotId
-     }
-}
+//      if (response.ok) {
+//          const spot = await response.json();
+//          console.log(spot)
+//          dispatch(getSpot(spot)) // dispatch using out action creator from above to get spot's info by spotId
+//      }
+// }
 
 
 // EDIT A SPOT INFO
@@ -164,15 +164,15 @@ const spotsReducer = (state=initialState, action) => {
 
             return {...state, ...allSpots} //return a new updated state for spots
 
-        case GET_SPOT:
+        // case GET_SPOT:
 
-                let spotDetails = action.spotInfo
-                let spotId = action.spotInfo.id
+        //         let spotDetails = action.spot
+        //         let spotId = action.spot.id
 
-                return {
-                ...state,...allSpots,
-                [allSpots.spotId]:{...spotDetails}
-                }
+        //         return {
+        //         ...state,...allSpots,
+        //         [allSpots.spotId]:{...spotDetails}
+        //         }
 
         // case CREATE_SPOT:
 

@@ -34,7 +34,7 @@ const CreateSpotForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefualt(); // prevent default reloading of html form
-  }
+
 
   const spotInfoPayload = {
     name,
@@ -48,24 +48,24 @@ const CreateSpotForm = () => {
     price
   }
 
-  let newSpot;
+  // let newSpot;
 
-  try {
-    newSpot = await dispatch(createNewSpot(spotInfoPayload))
-  } catch (error) {
-    if (error instanceof ValidationError) setErrorMessages(error.errors);
-    // If error is not a ValidationError, add slice at the end to remove extra
-    // "Error: "?!?!?
-    else setErrorMessages({
-      overall: error.toString().slice(7)
-    })
+  // try {
+  //   newSpot = await dispatch(createNewSpot(spotInfoPayload))
+  // } catch (error) {
+  //   if (error instanceof ValidationError) setErrorMessages(error.errors);
+  //   // If error is not a ValidationError, add slice at the end to remove extra
+  //   // "Error: "?!?!?
+  //   else setErrorMessages({
+  //     overall: error.toString().slice(7)
+  //   })
+  // }
+
+  // if (newSpot) { // if spot was created SUCCESSFULLY
+  //   setErrorMessages({}) // we don't have any error messages
+  // }
+
   }
-
-  if (newSpot) { // if spot was created SUCCESSFULLY
-    setErrorMessages({}) // we don't have any error messages
-  }
-
-
 
   return (
 
@@ -138,10 +138,10 @@ const CreateSpotForm = () => {
         required
         value={description}
         onChange={updateDescription} />
-
+{/*
     <button type="submit">Create new Spot</button>
     <button type="button" onClick={handleCancelClick}>Cancel</button>
-
+ */}
 
     </form>
   )

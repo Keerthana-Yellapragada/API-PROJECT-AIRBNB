@@ -14,7 +14,7 @@ module.exports = {
     return queryInterface.bulkInsert('SpotImages', [
       {
         spotId: 1,
-        url: "https://unsplash.com/photos/BUdH3r6s0EM",
+        url: "https://images.unsplash.com/photo-1587061949409-02df41d5e562?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
         preview: true
       },
       {
