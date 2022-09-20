@@ -79,6 +79,27 @@ export const loadAllSpots = () => async dispatch => {
 }
 
 
+export const createNewSpot = spotData => async dispatch => {
+    try {
+        const response = await fetch(`/api/spots`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(spotData)
+        });
+         if (!response.ok) {
+             const error = await response.json()
+             throw new ValidationError(error)
+         }
+        // else if all is good update our store state with new store data
+        const spot = await response.json();
+         dispatch(createSpot(spot)); // dispatch
+        return spot;
+    } catch (error) {
+        throw error;
+    }
+};
 
 
 // GET A SPOT INFO
@@ -153,6 +174,9 @@ const spotsReducer = (state=initialState, action) => {
                 [allSpots.spotId]:{...spotDetails}
                 }
 
+        // case CREATE_SPOT:
+
+        //         return {...allSpots, ...newSpot} //??
             default: return state;
     }
 }

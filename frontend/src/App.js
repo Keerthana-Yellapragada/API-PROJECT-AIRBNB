@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SplashLandingPage/SplashLandingPage";
 import SpotInfo from "./components/Spots";
-
+import CreateSpotForm from "./components/Spots/CreateSpotForm"
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +28,10 @@ function App() {
           </Route>
           <Route exact path="/">
             <SpotsBrowser />
+          </Route>
+          <Route>
+            <CreateSpotForm />
+
           </Route>
 
         </Switch>

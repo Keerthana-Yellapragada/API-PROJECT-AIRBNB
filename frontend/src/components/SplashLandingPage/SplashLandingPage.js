@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllSpots } from '../../store/spots';
-import * as spotActions from '../../store/spots';
+
 import './SplashLandingPage.css'
 
 
@@ -37,7 +37,6 @@ const SpotsBrowser = () => {
 
     <NavLink key={spot.id} to={`/spots/${spot.id}`}>
         <div className="homepage">
-            <div className="homepage-preview-image" style={{ backgroundImage: `url('${spot.previewImage}')` }}></div>
             <div>
               <div className='previewImage'>
                    <img src={`${spot.previewImage}`}/>

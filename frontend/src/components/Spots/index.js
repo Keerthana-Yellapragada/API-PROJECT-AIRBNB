@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getSpotInfo from "../../store/spots";
 
+
 const SpotInfo = () => {
     const {spotId} = useParams(); // get spotId from params
     const dispatch = useDispatch();
