@@ -1,0 +1,15 @@
+.spot-details-wrapper{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.spot-details{
+font-weight: bold;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-self:center ;
+}

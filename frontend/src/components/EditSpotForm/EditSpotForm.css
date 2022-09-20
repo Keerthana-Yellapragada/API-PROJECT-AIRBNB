@@ -1,0 +1,13 @@
+button{
+    color: rgb(0, 0, 0);
+    max-height: auto;
+    max-width: auto;
+    border-radius: 8px;
+    width: 10%;
+
+}
+
+.edit-spot-title{
+    display:flex;
+    justify-content: center;
+}

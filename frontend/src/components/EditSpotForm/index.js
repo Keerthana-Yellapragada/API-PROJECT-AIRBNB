@@ -4,7 +4,7 @@ import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import  updateSpot, {editSpot} from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
 import SpotInfo from '../Spots/SpotInfo';
-
+import "./EditSpotForm.css"
 
 
 const EditSpotForm = () => {
@@ -13,7 +13,6 @@ const EditSpotForm = () => {
     const history = useHistory();
     const [errorMessages, setErrorMessages] = useState({});
 
-
   //GET THIS SPOT
        const allSpotsArray = useSelector(state => Object.values(state.spots))
        //console.log("THIS IS ALL SPOTS ARRAY", allSpotsArray)
@@ -21,7 +20,7 @@ const EditSpotForm = () => {
        const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
        //console.log("THIS IS CURRENT SPOT DETAILS ID", currentSpotDetails.id)
 
-       spotId = parseInt(spotId)
+       spotId = parseInt(spotId);
 
 //states
 const [name, setName] = useState(currentSpotDetails.name);
@@ -82,15 +81,15 @@ const updatePrice = (e) => setPrice(e.target.value);
  const handleCancelClick = (e) => {
     e.preventDefault();
     // hideForm();
-      history.push(`/`)
+      history.push(`/`) // DOESNT WORK-=-WHY!?!?!!?
  }
 
 // RETURN THE FORM COMPONENT
     return (
       <section>
 
-        <form>
-         <h1>EDIT SPOT INFORMATION</h1>
+        <form className="edit-spot-form">
+         <h1 className="edit-spot-title">EDIT SPOT INFORMATION</h1>
           <input
             type="string"
             placeholder="Name"
@@ -156,7 +155,7 @@ const updatePrice = (e) => setPrice(e.target.value);
             value={description}
             onChange={updateDescription} />
 
-          <button type="submit" onClick={handleSubmit}>Update Spot Information</button>
+          <button className="update-spot-button" type="submit" onClick={handleSubmit}>Update Spot Information</button>
           <button type="button" onClick={handleCancelClick}>Cancel</button>
 
         </form>

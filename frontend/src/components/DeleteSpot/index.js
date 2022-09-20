@@ -5,33 +5,32 @@ import removeSpot, { deleteSpot } from "../../store/spots"
 import { loadAllSpots } from '../../store/spots';
 
 const DeleteSpotForm = () => {
-        const dispatch = useDispatch(); // invoke dispatch
-        const history = useHistory();
-        let {spotId} = useParams();
-        const [errorMessages, setErrorMessages] = useState({});
+    const dispatch = useDispatch(); // invoke dispatch
+    const history = useHistory();
+    let { spotId } = useParams();
+    const [errorMessages, setErrorMessages] = useState({});
 
-        spotId = parseInt(spotId) // convert string to integer
-
-
-         useEffect(() => { // need this so spot info gets laoded each time
-             dispatch(loadAllSpots());
-         }, [dispatch, spotId]);
+    spotId = parseInt(spotId) // convert string to integer
 
 
+    useEffect(() => { // need this so spot info gets laoded each time
+        dispatch(loadAllSpots());
+    }, [dispatch, spotId]);
 
-        const handleSubmit = async(e) => {
-            e.preventDefault();
-            let deletedSpot = await dispatch(deleteSpot(spotId))
-            history.push('/') // WHY ISNT THIS WORKING!??!
 
-        }
 
-        //HANDLE CANCEL BUTTON CLICK EVENT
-        const handleCancelClick = (e) => {
-            e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let deletedSpot = await dispatch(deleteSpot(spotId))
+        history.push('/') // WHY ISNT THIS WORKING!??!
 
-            history.push(`/`) // WHY ISNT THIS WORKING!??!
-        };
+    }
+
+    //HANDLE CANCEL BUTTON CLICK EVENT
+    const handleCancelClick = (e) => {
+        e.preventDefault();
+        history.push(`/`) // WHY ISNT THIS WORKING!??!
+    };
 
 
 
@@ -40,9 +39,9 @@ const DeleteSpotForm = () => {
         <>
             <form>
                 <div>
-                <button type="submit" onClick={handleSubmit}>Delete Spot</button>
-                <button type="button" onClick={handleCancelClick}>Cancel</button>
-            </div>
+                    <button type="submit" onClick={handleSubmit}>Delete Spot</button>
+                    <button type="button" onClick={handleCancelClick}>Cancel</button>
+                </div>
 
             </form>
 

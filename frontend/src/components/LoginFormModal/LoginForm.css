@@ -7,9 +7,6 @@ input {
      margin: 10px;
      padding: 10px;
 
-
-
-
 }
 
 label {
@@ -27,7 +24,7 @@ label {
 .login {
     border-color:rgb(48, 55, 100);
     color: white;
-    background-color: rgb(99, 141, 173);
+    background-color: rgb(232, 4, 4);
     margin: 10px;
     padding: 10px;
     display: flex;

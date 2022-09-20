@@ -1,1 +1,17 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+
+html, button{
+    font-family: 'Open Sans';
+    font-size: 16
+    px
+}
+
+button {
+    border: 0;
+    background: none;
+    font-weight: bold;
+    padding: 5px;
+
+}

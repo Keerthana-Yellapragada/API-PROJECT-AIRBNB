@@ -45,7 +45,7 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button className="login-button" type="submit">Log In</button>
     </form>
   );
 }

@@ -32,7 +32,7 @@ const CreateSpotForm = () => {
   const updatePrice = (e) => setPrice(e.target.value);
 
 
-//HANDLE SUBMIT BUTTON CLICK EVENT
+  //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default reloading of html form
 
@@ -66,92 +66,92 @@ const CreateSpotForm = () => {
 
 
   //HANDLE CANCEL BUTTON CLICK EVENT
-    const handleCancelClick = (e) => {
-      e.preventDefault();
-      setErrorMessages({});
-      // hideForm();
-    };
+  const handleCancelClick = (e) => {
+    e.preventDefault();
+    setErrorMessages({});
+    // hideForm();
+  };
 
 
-    // RETURN THE FORM COMPONENT
-    return (
-      <section>
+  // RETURN THE FORM COMPONENT
+  return (
+    <section>
 
-        <form>
-         <h1> CREATE A NEW SPOT</h1>
-          <input
-            type="string"
-            placeholder="Name of Your Spot"
-            required
-            value={name}
-            onChange={updateName} />
+      <form>
+        <h1> CREATE A NEW SPOT</h1>
+        <input
+          type="string"
+          placeholder="Name of Your Spot"
+          required
+          value={name}
+          onChange={updateName} />
 
-          <input
-            type="string"
-            placeholder="address"
-            required
-            value={address}
-            onChange={updateAddress} />
+        <input
+          type="string"
+          placeholder="address"
+          required
+          value={address}
+          onChange={updateAddress} />
 
-          <input
-            type="string"
-            placeholder="city"
-            required
-            value={city}
-            onChange={updateCity} />
+        <input
+          type="string"
+          placeholder="city"
+          required
+          value={city}
+          onChange={updateCity} />
 
-          <input
-            type="string"
-            placeholder="state"
-            required
-            value={state}
-            onChange={updateState} />
+        <input
+          type="string"
+          placeholder="state"
+          required
+          value={state}
+          onChange={updateState} />
 
-          <input
-            type="string"
-            placeholder="country"
-            required
-            value={country}
-            onChange={updateCountry} />
+        <input
+          type="string"
+          placeholder="country"
+          required
+          value={country}
+          onChange={updateCountry} />
 
-          <input
-            type="number"
-            placeholder="Latitude"
-            required
-            value={lat}
-            onChange={updateLat} />
+        <input
+          type="number"
+          placeholder="Latitude"
+          required
+          value={lat}
+          onChange={updateLat} />
 
-          <input
-            type="number"
-            placeholder="Longitude"
-            required
-            value={lng}
-            onChange={updateLng} />
+        <input
+          type="number"
+          placeholder="Longitude"
+          required
+          value={lng}
+          onChange={updateLng} />
 
 
 
-          <input
-            type="number"
-            placeholder="100"
-            required
-            min="1"
-            value={price}
-            onChange={updatePrice} />
+        <input
+          type="number"
+          placeholder="100"
+          required
+          min="1"
+          value={price}
+          onChange={updatePrice} />
 
-          <input
-            type="string"
-            placeholder="Description"
-            required
-            value={description}
-            onChange={updateDescription} />
+        <input
+          type="string"
+          placeholder="Description"
+          required
+          value={description}
+          onChange={updateDescription} />
 
-          <button type="submit" onClick={handleSubmit}>Create new Spot</button>
-          <button type="button" onClick={handleCancelClick}>Cancel</button>
+        <button type="submit" onClick={handleSubmit}>Create new Spot</button>
+        <button type="button" onClick={handleCancelClick}>Cancel</button>
 
-        </form>
-      </section>
-    )
-  }
+      </form>
+    </section>
+  )
+}
 
 
 

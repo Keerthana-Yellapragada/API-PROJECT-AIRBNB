@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllSpots } from '../../store/spots';
@@ -28,43 +28,45 @@ const SpotsBrowser = () => {
   //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
 
   return (
-    <div>
-      <h1> AIRBNB HOME PAGE</h1>
-      {
-        allSpots.map(spot => {
-          return (
-                    <>
+    <>
+      <div className="homepage-title"> <h1> WELCOME TO AYRBNB </h1> </div>
+      <div className="homepage-wrapper">
+        {
+          allSpots.map(spot => {
+            return (
+              <>
+                <div className='homepage-spot-card'>
+                  <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                    <div >
+                      <div>
+                        <div className='previewImage'>
+                          <img src={spot.previewImage} />
+                        </div>
+                        <div className="primary-text">{spot.name}</div>
+                        <div className="secondary-text">
 
-                      <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                          <div className="homepage">
-                              <div>
-                                <div className='previewImage'>
-                                    <img src={spot.previewImage}/>
-                                </div>
-                                <div className="primary-text">{spot.name}</div>
-                                <div className="secondary-text">
-
-                                  <div className='rating'>
-                                    {spot.avgRating}
-                                  </div>
-
-                                  <div className='price'>
-                                    {spot.price}
-                                  </div>
-
-                                  <div className='address'>
-                                  {`${spot.city},${spot.state}`}
-                                  </div>
-                                </div>
-                              </div>
+                          <div className='rating'>
+                            {spot.avgRating}
                           </div>
-                      </NavLink>
 
-                  </>
-          )
-        })
-      }
-    </div>
+                          <div className='price'>
+                            {`$${spot.price}`}
+                          </div>
+
+                          <div className='address'>
+                            {`${spot.city}, ${spot.state}`}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </NavLink>
+                </div>
+              </>
+            )
+          })
+        }
+      </div>
+    </>
   )
 
 }

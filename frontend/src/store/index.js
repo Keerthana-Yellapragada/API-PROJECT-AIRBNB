@@ -5,8 +5,8 @@ import spotsReducer from "./spots";
 
 const rootReducer = combineReducers({
   // add reducer functions here
-   session: sessionReducer,
-   spots: spotsReducer
+  session: sessionReducer,
+  spots: spotsReducer
 
 });
 

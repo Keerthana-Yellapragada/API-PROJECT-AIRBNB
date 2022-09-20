@@ -1,35 +1,34 @@
 ul {
-    background-color: rgb(123, 181, 235);
-    border: 4px solid black;
+    background-color: rgb(255, 255, 255);
     margin: 4px;
     padding: 10px;
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-content: center;
     align-items: center;
 }
 
 
 .userProfileButton {
-    background-color:rgb(255, 24, 24);
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
     align-content: center;
     align-items: center;
     margin: 4px;
     padding: 10px;
-    border: 4px solid black
+    border: 1px solid black;
+    border-style: outset;
 }
 
 
 button {
-border: 1px black solid;
-display: inline-block;
-font-size: 16px;
-padding: 15px 32px;
-text-align: center;
-border-radius: 4px;
-background-color: #ffffff;
-
-
+    border: 1px black solid;
+    color: black;
+    display: flex;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255)
 }

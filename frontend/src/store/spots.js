@@ -81,7 +81,7 @@ export const loadAllSpots = () => async dispatch => {
 
 
 export const createNewSpot = spotData => async dispatch => {
-   // console.log("IS MY CODE RUNNING IN THIS THUNK")
+    // console.log("IS MY CODE RUNNING IN THIS THUNK")
     try {
         const response = await csrfFetch(`/api/spots`, {
             method: 'POST',
@@ -90,17 +90,17 @@ export const createNewSpot = spotData => async dispatch => {
             },
             body: JSON.stringify(spotData)
         });
-         if (!response.ok) {
-             const error = await response.json()
+        if (!response.ok) {
+            const error = await response.json()
             //  throw new ValidationError(error)
-         }
+        }
         //else if all is good update our store state with new store data
-       // console.log("THIS IS THE RESPONSE",response)
+        // console.log("THIS IS THE RESPONSE",response)
         let spotInfo = await response.json();
 
-       // console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
+        // console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
 
-         dispatch(createSpot(spotInfo)); // dispatch
+        dispatch(createSpot(spotInfo)); // dispatch
         return spotInfo;
     } catch (error) {
         throw error;
@@ -123,7 +123,7 @@ export const createNewSpot = spotData => async dispatch => {
 // EDIT A SPOT INFO
 export const editSpot = (spotInfo) => async dispatch => {
 
-   // console.log("THIS HITTING THE THUNK: ",spotInfo.id)
+    // console.log("THIS HITTING THE THUNK: ",spotInfo.id)
 
     const response = await csrfFetch(`/api/spots/${spotInfo.id}`, { //get the id from the spot obj and use that
         method: 'PUT',
@@ -144,7 +144,7 @@ export const editSpot = (spotInfo) => async dispatch => {
 // DELETE A POKEMON
 export const deleteSpot = spotId => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}`, {
-         method: 'DELETE'
+        method: 'DELETE'
     });
 
     dispatch(removeSpot(spotId)) // dispatch the action create to remove a user
@@ -159,35 +159,35 @@ export const deleteSpot = spotId => async dispatch => {
 const initialState = {}
 
 
-const spotsReducer = (state=initialState, action) => {
-     let allSpots = {}
+const spotsReducer = (state = initialState, action) => {
+    let allSpots = {}
 
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALLSPOTS:
 
             //normalize our data
-            action.spots.Spots.forEach(spot=> {
+            action.spots.Spots.forEach(spot => {
                 allSpots[spot.id] = spot
             })
 
 
-            return {...state, ...allSpots} //return a new updated state for spots
+            return { ...state, ...allSpots } //return a new updated state for spots
 
         case CREATE_SPOT:
-            const newState = {...state}
+            const newState = { ...state }
             //console.log(action.payload)
             newState[action.payload.id] = action.payload
             return newState //??
 
         case UPDATE_SPOT:
-            const updatedState = {...state}
+            const updatedState = { ...state }
             //console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
             updatedState[action.payload.id] = action.payload
             return updatedState;
 
         case REMOVE_SPOT:
-            const modifiedState = {...state}
-           // console.log("REACHED REDUCER FOR DELETE")
+            const modifiedState = { ...state }
+            // console.log("REACHED REDUCER FOR DELETE")
             delete modifiedState[action.payload]
             return modifiedState
 
