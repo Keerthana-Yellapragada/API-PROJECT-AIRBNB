@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SplashLandingPage/SplashLandingPage";
 import SpotInfo from "./components/Spots/SpotInfo";
-import CreateSpotForm from "./components/Spots/CreateSpotForm"
+import CreateSpotForm from "./components/CreateSpotForm/"
 
 function App() {
   const dispatch = useDispatch();
@@ -20,21 +20,21 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/spots/:spotId">
+          <Route path="/spots/:spotId">
             <SpotInfo />
           </Route>
-          <Route exact path="/signup">
+          <Route  path="/signup">
             <SignupFormPage />
           </Route>
-          <Route exact path="/spots">
+          {/* <Route exact path="/spots">
             <CreateSpotForm />
-          </Route>
+          </Route> */}
           <Route exact path="/">
             <SpotsBrowser />
           </Route>
-
-
-
+          <Route exact path="/spots">
+          <CreateSpotForm />
+          </Route>
         </Switch>
       )}
     </>

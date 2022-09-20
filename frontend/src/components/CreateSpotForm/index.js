@@ -32,10 +32,11 @@ const CreateSpotForm = () => {
   const updatePrice = (e) => setPrice(e.target.value);
 
 
-
+//HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent default reloading of html form
 
+    //console.log("I CLICKED SUBMIT")
 
     const spotInfoPayload = {
       name,
@@ -49,34 +50,35 @@ const CreateSpotForm = () => {
       price
     }
 
-
+    //console.log("THIS IS SPOT INFO PAYLOAD", spotInfoPayload)
 
     //CREATE THE NEW SPOT
-    let newSpot = await dispatch(createNewSpot(spotInfoPayload))
+    let newSpot = await dispatch(createNewSpot(spotInfoPayload)) //dispatch to update our store
 
-    // if (!newSpot) throw new Error("There was an issue with your submission")
-
+    //console.log("THIS IS NEW SPOT", newSpot)
 
     if (newSpot) {
       setErrorMessages({});
-      history.push(`/spots/${newSpot.id}`);
+      history.push(`/spots/${newSpot.id}`); //redirect to the new spot's details page
       // hideForm();
     }
+  }
 
+
+  //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
       e.preventDefault();
-
       setErrorMessages({});
-
       // hideForm();
     };
 
-    return (
 
+    // RETURN THE FORM COMPONENT
+    return (
       <section>
 
         <form>
-        // CREATE JSX HTML FORM TO CREATE SPOT
+         <h1> CREATE A NEW SPOT</h1>
           <input
             type="string"
             placeholder="Name of Your Spot"
@@ -143,14 +145,14 @@ const CreateSpotForm = () => {
             value={description}
             onChange={updateDescription} />
 
-          <button type="submit">Create new Spot</button>
+          <button type="submit" onClick={handleSubmit}>Create new Spot</button>
           <button type="button" onClick={handleCancelClick}>Cancel</button>
 
         </form>
       </section>
     )
   }
-}
+
 
 
 export default CreateSpotForm;

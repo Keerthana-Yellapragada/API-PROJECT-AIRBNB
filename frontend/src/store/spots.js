@@ -1,5 +1,5 @@
 import thunk from "redux-thunk"
-
+import { csrfFetch } from "./csrf"
 
 
 // *****************************************************************************
@@ -80,8 +80,9 @@ export const loadAllSpots = () => async dispatch => {
 
 
 export const createNewSpot = spotData => async dispatch => {
+    console.log("IS MY CODE RUNNING IN THIS THUNK")
     try {
-        const response = await fetch(`/api/spots`, {
+        const response = await csrfFetch(`/api/spots`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,10 +93,14 @@ export const createNewSpot = spotData => async dispatch => {
              const error = await response.json()
             //  throw new ValidationError(error)
          }
-        // else if all is good update our store state with new store data
-        const spot = await response.json();
-         dispatch(createSpot(spot)); // dispatch
-        return spot;
+        //else if all is good update our store state with new store data
+        console.log("THIS IS THE RESPONSE",response)
+        let spotInfo = await response.json();
+
+        console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
+
+         dispatch(createSpot(spotInfo)); // dispatch
+        return spotInfo;
     } catch (error) {
         throw error;
     }
@@ -164,19 +169,11 @@ const spotsReducer = (state=initialState, action) => {
 
             return {...state, ...allSpots} //return a new updated state for spots
 
-        // case GET_SPOT:
-
-        //         let spotDetails = action.spot
-        //         let spotId = action.spot.id
-
-        //         return {
-        //         ...state,...allSpots,
-        //         [allSpots.spotId]:{...spotDetails}
-        //         }
-
         case CREATE_SPOT:
-            let newSpot = action.payload
-            return {...allSpots, ...newSpot} //??
+            const newState = {...state}
+            console.log(action.payload)
+            newState[action.payload.id] = action.payload
+            return newState //??
             default: return state;
     }
 }

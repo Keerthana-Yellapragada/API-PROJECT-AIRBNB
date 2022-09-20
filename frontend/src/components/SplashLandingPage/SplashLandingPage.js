@@ -60,7 +60,7 @@ const SpotsBrowser = () => {
                           </div>
                       </NavLink>
 
-                      </>
+                  </>
           )
         })
       }
