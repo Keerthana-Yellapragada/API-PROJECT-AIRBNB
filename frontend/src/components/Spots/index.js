@@ -10,9 +10,9 @@ const SpotInfo = () => {
     //get the SPOT by spotId
     // const spot= useSelector(state => state.spots[spotId]) // find the slice of state that has the same spotId info from the normalized spots that we have
 
- const spots = useSelector(state => state.spots)
- const spotsArray = Object.values(spots)
- let spot = spotsArray.find(spot=> spot.id===spotId)
+ const spot = useSelector(state => state.spots.spotId)
+//  const spotsArray = Object.values(spots)
+//  let spot = spotsArray.find(spot=> spot.id===spotId)
 //  {
 //      const allSpotsArray = Object.values(state.spots)
 //      const currentSpot = allSpotsArray.find(spot => (spot.id === spotId))
@@ -22,9 +22,9 @@ const SpotInfo = () => {
 
 
 
-// useEffect(()=>{
-//     dispatch(getSpotInfo(spotId)); // dispatch our action creator with the spotId
-// }, [dispatch, spotId])
+useEffect(()=>{
+    dispatch(getSpotInfo(spotId)); // dispatch our action creator with the spotId
+}, [dispatch, spotId])
 
 if (!spot){ // if we don't have a matching spot, then display nothing
     return null

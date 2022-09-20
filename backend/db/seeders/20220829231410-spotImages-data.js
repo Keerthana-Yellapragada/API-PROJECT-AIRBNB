@@ -14,17 +14,17 @@ module.exports = {
     return queryInterface.bulkInsert('SpotImages', [
       {
         spotId: 1,
-        url: "image url",
+        url: "https://unsplash.com/photos/BUdH3r6s0EM",
         preview: true
       },
       {
         spotId: 2,
-        url: "image url",
+        url: "https://unsplash.com/photos/oji_NGmBI5o",
         preview: false
       },
       {
         spotId: 3,
-        url: "image url",
+        url: "https://unsplash.com/photos/nzAZxPyhZ2g",
         preview: true
       }
     ])

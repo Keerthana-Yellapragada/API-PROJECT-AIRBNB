@@ -1,3 +1,16 @@
-div{
- background-color: aquamarine;
+.homepage {
+background-color:rgb(255, 255, 255);
+display:inline-grid;
+gap:30px 30px;
+
+/* grid-column-start: 1;
+grid-column-end: 3; */
+}
+
+.primary-text {
+ background-color: rgb(255, 255, 255);
+ color: red;
+}
+.secondary-text{
+color:blue;
 }

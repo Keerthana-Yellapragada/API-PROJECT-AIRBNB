@@ -20,15 +20,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/spots/:spotId">
+            <SpotInfo />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/">
             <SpotsBrowser />
           </Route>
-          <Route path="/spots/:spotId">
-            <SpotInfo />
-          </Route>
+
         </Switch>
       )}
     </>
