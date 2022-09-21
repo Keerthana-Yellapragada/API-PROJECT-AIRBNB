@@ -9,6 +9,7 @@ import SpotInfo from "./components/Spots/SpotInfo";
 import CreateSpotForm from "./components/CreateSpotForm/"
 import EditSpotForm from "./components/EditSpotForm";
 import DeleteSpotForm from "./components/DeleteSpot";
+import CreateSpotButton from "./components/Navigation/CreateSpotButton";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ function App() {
           </Route>
 
           <Route exact path="/">
+            <CreateSpotButton />
             <SpotsBrowser />
+
           </Route>
           <Route exact path="/spots">
           <CreateSpotForm />

@@ -19,12 +19,12 @@ module.exports = {
       },
       {
         spotId: 2,
-        url: "https://unsplash.com/photos/oji_NGmBI5o",
-        preview: false
+        url: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80",
+        preview: true
       },
       {
         spotId: 3,
-        url: "https://unsplash.com/photos/nzAZxPyhZ2g",
+        url: "https://images.unsplash.com/photo-1483190656465-2c49e54d29f3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
         preview: true
       }
     ])
