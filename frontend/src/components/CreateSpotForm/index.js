@@ -18,7 +18,7 @@ const CreateSpotForm = () => {
   const [lng, setLng] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-
+ // const [images, setImages] = useState([])
 
   //update functions
   const updateName = (e) => setName(e.target.value);
@@ -30,7 +30,7 @@ const CreateSpotForm = () => {
   const updateLng = (e) => setLng(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
-
+  //const updateImages = (e) => setImages(e.target.value)
 
   //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
@@ -48,6 +48,7 @@ const CreateSpotForm = () => {
       lng,
       description,
       price
+      //,images
     }
 
     //console.log("THIS IS SPOT INFO PAYLOAD", spotInfoPayload)
@@ -68,7 +69,7 @@ const CreateSpotForm = () => {
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {
     e.preventDefault();
-    setErrorMessages({});
+    //setErrorMessages({});
     // hideForm();
   };
 
@@ -144,6 +145,12 @@ const CreateSpotForm = () => {
           required
           value={description}
           onChange={updateDescription} />
+{/*
+
+        <input type="file"
+          value={images}
+          onChange={updateImages} /> */}
+
 
         <button type="submit" onClick={handleSubmit}>Create new Spot</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>

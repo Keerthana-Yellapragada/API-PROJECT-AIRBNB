@@ -10,6 +10,11 @@ import CreateSpotForm from "./components/CreateSpotForm/"
 import EditSpotForm from "./components/EditSpotForm";
 import DeleteSpotForm from "./components/DeleteSpot";
 import CreateSpotButton from "./components/Navigation/CreateSpotButton";
+import CurrentOwnerSpots from "./components/CurrentOwnerSpots";
+import ReviewsBrowser from "./components/Reviews";
+import CreateReviewForm from "./components/CreateReviewForm";
+import UserReviewsBrowser from "./components/UsersReviews"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -23,23 +28,44 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          {/* <Route path="/spots/:spotId/images">
+
+          </Route> */}
+
+          <Route path="/spots/current/reviews">
+            <UserReviewsBrowser />
+          </Route>
+
+          <Route path="/spots/:spotId/reviews">
+            <ReviewsBrowser />
+            <CreateReviewForm />
+          </Route>
+
+
+
           <Route path="/spots/:spotId">
             <SpotInfo />
             <EditSpotForm />
             <DeleteSpotForm />
           </Route>
-          <Route  path="/signup">
+
+          <Route path="/signup">
             <SignupFormPage />
           </Route>
 
           <Route exact path="/">
             <CreateSpotButton />
             <SpotsBrowser />
+          </Route>
 
-          </Route>
           <Route exact path="/spots">
-          <CreateSpotForm />
+            <CreateSpotForm />
           </Route>
+
+          <Route exact path="/current/spots">
+            <CurrentOwnerSpots />
+          </Route>
+
         </Switch>
       )}
     </>

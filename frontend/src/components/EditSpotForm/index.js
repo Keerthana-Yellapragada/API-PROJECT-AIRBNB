@@ -22,6 +22,7 @@ const EditSpotForm = () => {
 
        spotId = parseInt(spotId);
 
+       // console.log("THIS IS NAME", currentSpotDetails.name)
 //states
 const [name, setName] = useState(currentSpotDetails.name);
 const [address, setAddress] = useState(currentSpotDetails.address);
@@ -71,11 +72,11 @@ const updatePrice = (e) => setPrice(e.target.value);
 
     // console.log("THIS IS THE USER INPUT", editedSpot)
 
-    //  if (editedSpot) {
-    //   //  history.push(`/`)
-    //      history.push(`/spots/${spotId}`)
-    //     //  hideForm();
-    //  }
+     if (editedSpot) {
+       history.push(`/`)
+         history.push(`/spots/${spotId}`)
+        //  hideForm();
+     }
  };
 
  const handleCancelClick = (e) => {

@@ -15,14 +15,15 @@ const DeleteSpotForm = () => {
 
     useEffect(() => { // need this so spot info gets laoded each time
         dispatch(loadAllSpots());
-    }, [dispatch, spotId]);
+    }, [dispatch]);
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let deletedSpot = await dispatch(deleteSpot(spotId))
-        history.push('/') // WHY ISNT THIS WORKING!??!
+        //history.push('/') // WHY ISNT THIS WORKING!??!
+        if (deletedSpot){<Redirect to="/" />}
 
     }
 

@@ -5,8 +5,8 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    align-content: center;
-    align-items: center;
+    /* align-content: center;
+    align-items: center; */
 }
 
 
