@@ -48,7 +48,6 @@ const UserReviewsBrowser = () => {
                                             <div className='address'> {review.review} </div>
                                         </div>
                                     </div>
-
                                 </NavLink>
 
                             </>

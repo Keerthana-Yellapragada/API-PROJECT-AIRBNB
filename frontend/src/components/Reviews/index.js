@@ -30,20 +30,21 @@ const ReviewsBrowser = () => {
 
     return (
         <>
-            <div className="reviews-title"> <h1> ALL REVIEWS</h1> </div>
+            <div className="reviews-title">
+            <h1> REVIEWS FOR THIS SPOT</h1>
+            </div>
             <div className="reviews-wrapper">
                 {
                     allReviews.map(review => {
                         return (
                             <>
-                                <NavLink key={review.id} to={`/api/spots/${spotId}/reviews`}>
+                                <NavLink key={review.id} to={`/reviews/${review.id}`}>
                                     <div >
                                         <div>
                                             <div className="primary-text-rating">{`${review.stars} stars`}</div>
                                             <div className='address'> {review.review} </div>
                                         </div>
                                     </div>
-
                                 </NavLink>
 
                             </>

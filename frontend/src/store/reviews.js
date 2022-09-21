@@ -78,7 +78,8 @@ const createReview = (review) => {
 
 const removeReview = reviewId => {
     return {
-        type: REMOVE_REVIEW
+        type: REMOVE_REVIEW,
+        payload: reviewId
 
     }
 }
@@ -221,6 +222,17 @@ const reviewsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload // normalize and add data
 
             return newState;
+///*************************************************************************** */
+
+        case REMOVE_REVIEW:
+            const modifiedState = {
+                ...state
+            }
+            // console.log("REACHED REDUCER FOR DELETE")
+            delete modifiedState[action.payload]
+
+            return modifiedState
+
 ///*************************************************************************** */
             default:
                 return state;

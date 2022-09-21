@@ -14,7 +14,7 @@ import CurrentOwnerSpots from "./components/CurrentOwnerSpots";
 import ReviewsBrowser from "./components/Reviews";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviewsBrowser from "./components/UsersReviews"
-
+import DeleteReviewForm from "./components/DeleteReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,8 +32,13 @@ function App() {
 
           </Route> */}
 
-          <Route path="/spots/current/reviews">
+          <Route exact path="/current/reviews">
             <UserReviewsBrowser />
+          </Route>
+
+          <Route exact path="/reviews/:reviewId">
+            add a page for review details
+              <DeleteReviewForm />
           </Route>
 
           <Route path="/spots/:spotId/reviews">
@@ -42,14 +47,17 @@ function App() {
           </Route>
 
 
-
-          <Route path="/spots/:spotId">
+          <Route exact path="/spots/:spotId">
             <SpotInfo />
             <EditSpotForm />
             <DeleteSpotForm />
           </Route>
 
-          <Route path="/signup">
+           <Route exact path="/spots">
+            <CreateSpotForm />
+          </Route>
+
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
 
@@ -58,13 +66,12 @@ function App() {
             <SpotsBrowser />
           </Route>
 
-          <Route exact path="/spots">
-            <CreateSpotForm />
-          </Route>
 
           <Route exact path="/current/spots">
             <CurrentOwnerSpots />
           </Route>
+
+
 
         </Switch>
       )}

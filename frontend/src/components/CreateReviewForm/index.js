@@ -52,6 +52,7 @@ const CreateReviewForm = () => {
 
       <form>
         <h1> POST A REVIEW</h1>
+        <h3>Tell us more about your experience!</h3>
         <input
           type="string"
           placeholder="Review"
