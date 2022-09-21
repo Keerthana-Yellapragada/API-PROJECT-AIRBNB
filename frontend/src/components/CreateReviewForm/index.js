@@ -5,6 +5,7 @@ import createReview, { createNewReview } from "../../store/reviews"
 
 
 const CreateReviewForm = () => {
+
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState({});
@@ -34,10 +35,8 @@ const CreateReviewForm = () => {
 
     if (newReview) {
       history.push(`/spots/${newReview.spotId}/reviews`); //redirect to the new spot's details page
-
-    }
-
   }
+}
 
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {

@@ -21,9 +21,7 @@ const DeleteReviewForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let deletedReview = await dispatch(deleteReview(reviewId))
-        //history.push('/') // WHY ISNT THIS WORKING!??!
-        if (deletedReview){<Redirect to="/" />}
+        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push("/"))
 
     }
 
@@ -32,7 +30,6 @@ const DeleteReviewForm = () => {
         e.preventDefault();
         history.push(`/`) // WHY ISNT THIS WORKING!??!
     };
-
 
 
 

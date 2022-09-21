@@ -15,6 +15,7 @@ import ReviewsBrowser from "./components/Reviews";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviewsBrowser from "./components/UsersReviews"
 import DeleteReviewForm from "./components/DeleteReview";
+import AddReviewButton from "./components/CreateReviewForm/AddReviewButton";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,20 +38,21 @@ function App() {
           </Route>
 
           <Route exact path="/reviews/:reviewId">
-            add a page for review details
+            // add a page for review details
               <DeleteReviewForm />
           </Route>
 
-          <Route path="/spots/:spotId/reviews">
+          <Route exact path="/spots/:spotId/reviews">
             <ReviewsBrowser />
             <CreateReviewForm />
           </Route>
-
 
           <Route exact path="/spots/:spotId">
             <SpotInfo />
             <EditSpotForm />
             <DeleteSpotForm />
+            {/* <AddReviewButton /> */}
+
           </Route>
 
            <Route exact path="/spots">
@@ -65,6 +67,7 @@ function App() {
             <CreateSpotButton />
             <SpotsBrowser />
           </Route>
+
 
 
           <Route exact path="/current/spots">

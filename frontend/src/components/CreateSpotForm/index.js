@@ -54,15 +54,9 @@ const CreateSpotForm = () => {
     //console.log("THIS IS SPOT INFO PAYLOAD", spotInfoPayload)
 
     //CREATE THE NEW SPOT
-    let newSpot = await dispatch(createNewSpot(spotInfoPayload)) //dispatch to update our store
+    let newSpot = await dispatch(createNewSpot(spotInfoPayload)).then(()=> history.push("/")) //dispatch to update our store
 
-    //console.log("THIS IS NEW SPOT", newSpot)
 
-    if (newSpot) {
-      setErrorMessages({});
-      history.push(`/spots/${newSpot.id}`); //redirect to the new spot's details page
-      // hideForm();
-    }
   }
 
 
