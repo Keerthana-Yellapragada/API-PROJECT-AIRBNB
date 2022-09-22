@@ -41,9 +41,10 @@ const UserReviewsBrowser = () => {
                     userReviews.map(review => {
                         return (
                             <>
-                                <NavLink key={review.id} to={`/api/reviews/${review.id}`}>
+                                <NavLink key={review.id} to={`/reviews/${review.id}`}>
                                     <div >
                                         <div>
+                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
                                             <div className="primary-text-rating">{`${review.stars} stars`}</div>
                                             <div className='address'> {review.review} </div>
                                         </div>

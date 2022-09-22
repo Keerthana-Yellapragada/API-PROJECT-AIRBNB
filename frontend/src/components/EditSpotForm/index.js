@@ -90,7 +90,7 @@ const updatePrice = (e) => setPrice(e.target.value);
       <section>
 
         <form className="edit-spot-form">
-         <h1 className="edit-spot-title">EDIT SPOT INFORMATION</h1>
+         <h1 className="edit-spot-title">EDIT YOUR LISTING</h1>
           <input
             type="string"
             placeholder="Name"
@@ -156,7 +156,7 @@ const updatePrice = (e) => setPrice(e.target.value);
             value={description}
             onChange={updateDescription} />
 
-          <button className="update-spot-button" type="submit" onClick={handleSubmit}>Update Spot Information</button>
+          <button className="update-spot-button" type="submit" onClick={handleSubmit}>Update Listing</button>
           <button type="button" onClick={handleCancelClick}>Cancel</button>
 
         </form>

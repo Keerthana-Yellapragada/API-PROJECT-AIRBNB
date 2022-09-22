@@ -18,9 +18,9 @@ const SpotInfo = () => {
 
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
-    }, [dispatch, spotId])
+    })
 
-    // WEHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
+    // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 
     if (!currentSpot) { // if we don't have a matching spot, then display nothing
         return null
@@ -50,10 +50,10 @@ const SpotInfo = () => {
                 <div className= "spot-details">
                     {`Rating: ${currentSpot.avgRating} stars`}
                 </div>
-
+{/*
                 <button>
                     <NavLink to={`/spots/${spotId}/reviews`}>Click to see Reviews</NavLink>
-                </button>
+                </button> */}
 
 
             </div>

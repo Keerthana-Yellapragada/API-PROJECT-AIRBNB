@@ -50,7 +50,7 @@ function App() {
             <SpotInfo />
             <EditSpotForm />
             <DeleteSpotForm />
-             <ReviewsBrowser />
+            <ReviewsBrowser />
             <CreateReviewForm />
 
 

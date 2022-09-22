@@ -22,6 +22,8 @@ const CreateReviewForm = () => {
   const updateReview = (e) => setReview(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
 
+  useEffect(()=>{},[dispatch, spotId])
+
   //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,10 +38,16 @@ const CreateReviewForm = () => {
       url
     }
 
-    let newReview = await dispatch(createNewReview(reviewImagePayload, reviewPayload)).then(()=> history.push(`/spots/${newReview.spotId}`))
-       //redirect to the new spot's details page
-  }
+    let newReview = await dispatch(createNewReview(reviewImagePayload, reviewPayload)) //dispatch to update our store
 
+    .then((newReview) => {
+      if (newReview) {
+        history.push(`/spots/${newReview.spotId}`)
+      }
+    // })
+    //   history.push(`/spots/${newReview.spotId}`); //redirect to the new spot's details page
+  }) // NEED TO ADD A USEEFFECT!!!!
+}
 
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {

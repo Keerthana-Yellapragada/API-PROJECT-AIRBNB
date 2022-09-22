@@ -23,7 +23,7 @@ const DeleteSpotForm = () => {
         e.preventDefault();
         // let deletedSpot =
         dispatch(deleteSpot(spotId))
-        history.push("/") // WHY ISNT THIS WORKING!??!
+         history.push("/")// WHY ISNT THIS WORKING!??!
 
 
     }
@@ -40,8 +40,8 @@ const DeleteSpotForm = () => {
     return (
         <>
             <form>
-                <div>
-                    <button type="submit" onClick={handleSubmit}>Delete Spot</button>
+               <div>
+                    <button type="submit" onClick={handleSubmit}>Delete Listing</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </div>
 
