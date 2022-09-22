@@ -98,6 +98,7 @@ export const createNewSpot = (imageData, spotData) => async dispatch => {
          let spotId = spotInfo.id
 
          console.log("SPOT ID IS", spotId)
+         //-------------------------------------------------
 
     const response2 = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
@@ -111,6 +112,7 @@ export const createNewSpot = (imageData, spotData) => async dispatch => {
     let imageInfo = await response2.json();
         //return (imageInfo);
 
+        // UPDATE STATE
         if (response.ok && response2.ok) {
            dispatch(createSpot(spotInfo));
                 return spotInfo;

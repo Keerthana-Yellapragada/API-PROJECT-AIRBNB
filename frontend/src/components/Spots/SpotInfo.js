@@ -18,7 +18,7 @@ const SpotInfo = () => {
 
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
-    })
+    },[dispatch, spotId])
 
     // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 

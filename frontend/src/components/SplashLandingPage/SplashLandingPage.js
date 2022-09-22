@@ -30,7 +30,7 @@ const SpotsBrowser = () => {
   return (
     <>
       <div className="homepage-title"> <h1> WELCOME TO AYRBNB </h1> </div>
-      <div className="homepage-wrapper">
+      <div className="homepage-grid-container">
         {
           allSpots.map(spot => {
             return (
