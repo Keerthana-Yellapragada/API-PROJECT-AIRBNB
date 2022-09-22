@@ -15,28 +15,31 @@ const CreateReviewForm = () => {
 
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
+  const [url, setUrl] = useState("")
 
   //update functions
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
+  const updateUrl = (e) => setUrl(e.target.value)
 
   //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
+    const reviewPayload = {
       stars,
       review,
       spotId,
       userId
     }
+    const reviewImagePayload = {
+      url
+    }
 
-    let newReview = await dispatch(createNewReview(payload)) //dispatch to update our store
-
-    if (newReview) {
-      history.push(`/spots/${newReview.spotId}/reviews`); //redirect to the new spot's details page
+    let newReview = await dispatch(createNewReview(reviewImagePayload, reviewPayload)).then(()=> history.push(`/spots/${newReview.spotId}`))
+       //redirect to the new spot's details page
   }
-}
+
 
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {
@@ -50,21 +53,34 @@ const CreateReviewForm = () => {
     <section>
 
       <form>
-        <h1> POST A REVIEW</h1>
+        <h1> LEAVE A REVIEW</h1>
         <h3>Tell us more about your experience!</h3>
+
         <input
+          id="review-info"
           type="string"
-          placeholder="Review"
+          placeholder="Your Review Here"
           required
           value={review}
           onChange={updateReview} />
 
+
+        <label htmlFor="stars-rating">Rating(0-5 stars)</label>
         <input
+           id="stars-rating"
           type="number"
-          placeholder="rating 0-5 stars"
+          placeholder="Rating: 0-5 stars"
           required
           value={stars}
           onChange={updateStars} />
+
+        <label htmlFor="url">Picture</label>
+        <input
+          id="url"
+          type="string"
+          placeholder='Insert image URL here'
+          value={url}
+          onChange={updateUrl} />
 
         <button type="submit" onClick={handleSubmit}>Post Your Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>

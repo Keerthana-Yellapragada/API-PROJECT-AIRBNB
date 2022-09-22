@@ -22,7 +22,8 @@ const DeleteSpotForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // let deletedSpot =
-        await dispatch(deleteSpot(spotId)).then(() => history.push("/")) // WHY ISNT THIS WORKING!??!
+        dispatch(deleteSpot(spotId))
+        history.push("/") // WHY ISNT THIS WORKING!??!
 
 
     }

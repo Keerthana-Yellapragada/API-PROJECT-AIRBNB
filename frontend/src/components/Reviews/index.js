@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllReviews } from '../../store/reviews';
 
-
-
-
+// REVIEWS FOR EACH SPOT
 
 const ReviewsBrowser = () => {
     const dispatch = useDispatch(); // invoke dispatch
@@ -17,11 +15,13 @@ const ReviewsBrowser = () => {
         return allReviewsArray;
     });
 
+    let filteredReviews = allReviews.filter(review=> review.spotId === spotId)
+
     useEffect(() => {
         dispatch(loadAllReviews(spotId)); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
-    }, [dispatch])
+    }, [dispatch, spotId])
 
-    if (!allReviews) { //if we don't have spots- don't display anything
+    if (!filteredReviews) { //if we don't have spots- don't display anything
         return null;
     }
 
@@ -35,12 +35,14 @@ const ReviewsBrowser = () => {
             </div>
             <div className="reviews-wrapper">
                 {
-                    allReviews.map(review => {
+                    filteredReviews.map(review => {
                         return (
                             <>
                                 <NavLink key={review.id} to={`/reviews/${review.id}`}>
                                     <div >
                                         <div>
+                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+
                                             <div className="primary-text-rating">{`${review.stars} stars`}</div>
                                             <div className='address'> {review.review} </div>
                                         </div>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-router-dom';
 import removeSpot, { deleteSpot } from "../../store/spots"
-import { deleteReview, loadUserReviews} from '../../store/reviews';
+import { deleteReview, loadUserReviews } from '../../store/reviews';
 
 const DeleteReviewForm = () => {
     const dispatch = useDispatch(); // invoke dispatch
@@ -16,6 +16,12 @@ const DeleteReviewForm = () => {
     useEffect(() => { // need this so spot info gets laoded each time
         dispatch(loadUserReviews());
     }, [dispatch]);
+
+    // const allSpots = useSelector(state => Object.values(state.spots));
+    // const thisReview = useSelector(state => state.reviews.reviewId);
+
+    // let thisSpot = allSpots.find(spot => thisReview.spotId === spot.id)
+    // let spotId = thisSpot.id
 
 
 

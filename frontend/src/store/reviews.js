@@ -120,7 +120,7 @@ export const loadUserReviews = () => async dispatch => {
 
 ///*************************************************************************** */
 // -------------------------  CREATE A REVIEW   ----------------------------------
-export const createNewReview = reviewData => async dispatch => {
+export const createNewReview = (reviewImageData, reviewData) => async dispatch => {
 
     let spotId = reviewData.spotId
 
@@ -131,10 +131,33 @@ export const createNewReview = reviewData => async dispatch => {
         },
         body: JSON.stringify(reviewData)
     });
-    let reviewInfo = await response.json();
 
-    dispatch(createReview(reviewInfo));
-    return reviewInfo;
+    let reviewInfo = await response.json();
+    //get reviewId from newly created review obj
+    let reviewId = reviewInfo.id
+    //use reviewId to create a reviewImage
+
+///:reviewId/images
+    const response2 = await csrfFetch(`/api/reviews/${reviewId}/images`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewImageData)
+
+    });
+
+    let imageInfo = await response2.json();
+        //return (imageInfo);
+
+    if (response.ok && response2.json){
+
+         dispatch(createReview(reviewInfo));
+
+         return reviewInfo;
+    }
+
+
 
 
 };

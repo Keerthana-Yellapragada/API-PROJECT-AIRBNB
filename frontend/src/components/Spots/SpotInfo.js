@@ -1,17 +1,26 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getSpotInfo from "../../store/spots";
+import { loadAllSpots } from '../../store/spots';
+
 import './SpotInfo.css'
 const SpotInfo = () => {
-    const { spotId } = useParams(); // get spotId from params
+    let { spotId } = useParams(); // get spotId from params
     const dispatch = useDispatch();
+
+    spotId = parseInt(spotId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
     //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
     const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
     //console.log(currentSpot)
 
+    useEffect(() => {
+        dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+    }, [dispatch, spotId])
+
+    // WEHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 
     if (!currentSpot) { // if we don't have a matching spot, then display nothing
         return null
@@ -41,6 +50,11 @@ const SpotInfo = () => {
                 <div className= "spot-details">
                     {`Rating: ${currentSpot.avgRating} stars`}
                 </div>
+
+                <button>
+                    <NavLink to={`/spots/${spotId}/reviews`}>Click to see Reviews</NavLink>
+                </button>
+
 
             </div>
         </div>
