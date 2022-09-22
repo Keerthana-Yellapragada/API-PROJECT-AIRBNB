@@ -52,7 +52,7 @@ router.delete("/:imageId", requireAuth, async (req, res, next) => {
     // Error response: Couldn't find a Spot Image with the specified id
     if (!image) {
         res.status(404)
-        res.json({
+        return res.json({
             "message": "Spot Image couldn't be found",
             "statusCode": 404
         })

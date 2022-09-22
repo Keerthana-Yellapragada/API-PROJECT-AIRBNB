@@ -177,7 +177,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
 
     // ERROR HANDLING: if we don't find the spot based on given id....
     if (!spotInfo) {
-        res.json({
+       return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
@@ -229,7 +229,7 @@ router.get("/:spotId", async (req, res, next) => {
     // ERROR HANDLING: if we don't find the spot based on given id....
     if (!spotInfo) {
 
-        res.json({
+        return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
@@ -331,7 +331,7 @@ router.get('/', async (req, res, next) => {
 
     if (minPrice <= 0 || maxPrice <= 0) {
         res.status(400)
-        res.json({
+        return res.json({
             "message": "Validation Error",
             "statusCode": 400,
             "errors": {

@@ -80,21 +80,7 @@ export const loadAllSpots = () => async dispatch => {
 
 // -------------------------  CREATE A SPOT   ----------------------------------
 
-export const createNewSpot = spotData => async dispatch => {
-    // console.log("IS MY CODE RUNNING IN THIS THUNK")
-
-    // console.log("THIS IS SPOTDATA INPUT", spotData)
-    // const spotDetails = {...spotData}
-    // delete spotDetails.images
-
-    //remove images form the spotData obj
-    // send only spot info to the action creator
-    //send images---where?
-    //create spot and use that id from response to send to spot images--- use 2 fetches inside thunk
-        // - 1 to spot table post
-        // get spot id from response and send fetch to spotimages table with another fetch
-        // include menu for preview
-
+export const createNewSpot = (imageData, spotData) => async dispatch => {
 
         const response = await csrfFetch(`/api/spots`, {
             method: 'POST',
@@ -103,40 +89,33 @@ export const createNewSpot = spotData => async dispatch => {
             },
             body: JSON.stringify(spotData)
         });
-        // if (!response.ok) {
-        //     const error = await response.json()
 
-        // }
-        // console.log("THIS IS THE RESPONSE",response)
+
         let spotInfo = await response.json();
+        console.log("THIS IS SPOT INFO INSIDE THUNK", spotInfo)
 
-        // console.log("THIS IS SPOT IN THUNK AFTER JSON", spotInfo)
-        dispatch(createSpot(spotInfo)); // dispatch
-         return spotInfo;
+        //get the spot Id from newly created spot
+         let spotId = spotInfo.id
 
+         console.log("SPOT ID IS", spotId)
 
-         //get the spot Id from newly created spot
-         //let spotId = spotInfo.spotId
+    const response2 = await csrfFetch(`/api/spots/${spotId}/images`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(imageData)
 
-         // send iamge to spotId
-//     const response2 = await csrfFetch(`/api/spots/:${spotId}/images`, {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             url: spotData.images,
-//             spotId:spotId,
-//             preview:true
-//         })
+    });
 
-//     });
-//     let newSpotImages = await response.json();
-//     // dispatch
-// console.log("THIS IS BEFORE RETURNING RESPONSE")
-//  return ({...spotInfo,
-//         images: newSpotImages
-//         }); // RETURN OUR SPOT INFO OBJECT
+    let imageInfo = await response2.json();
+        //return (imageInfo);
+
+        if (response.ok && response2.ok) {
+           dispatch(createSpot(spotInfo));
+                return spotInfo;
+        }
+
 
 };
 
