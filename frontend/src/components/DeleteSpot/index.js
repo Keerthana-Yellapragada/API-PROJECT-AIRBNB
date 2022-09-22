@@ -15,7 +15,7 @@ const DeleteSpotForm = () => {
 
     useEffect(() => { // need this so spot info gets laoded each time
         dispatch(loadAllSpots());
-    }, [dispatch);
+    }, [dispatch]);
 
 
 
