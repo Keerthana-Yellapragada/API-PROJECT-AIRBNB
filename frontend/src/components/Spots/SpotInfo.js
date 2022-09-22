@@ -5,6 +5,7 @@ import getSpotInfo from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
 
 import './SpotInfo.css'
+import { loadAllReviews } from '../../store/reviews';
 const SpotInfo = () => {
     let { spotId } = useParams(); // get spotId from params
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const SpotInfo = () => {
 
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+        dispatch(loadAllReviews(spotId))
     },[dispatch, spotId])
 
     // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!

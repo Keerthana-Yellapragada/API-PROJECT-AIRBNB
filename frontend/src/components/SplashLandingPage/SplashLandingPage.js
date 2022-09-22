@@ -29,20 +29,30 @@ const SpotsBrowser = () => {
 
   return (
     <>
-      <div className="homepage-title"> <h1> WELCOME TO AYRBNB </h1> </div>
+       <div className="homepage-title">
+          <i className="fa-brands fa-airbnb">ayrbnb</i>
+          {/* <h1>ayrbnb</h1> */}
+      </div>
+
+
       <div className="homepage-grid-container">
         {
           allSpots.map(spot => {
             return (
               <>
-                <div className='homepage-spot-card'>
+                  <div className='spot-card-container'>
                   <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                    <div >
-                      <div>
-                        <div className='previewImage'>
+
+                      <div className='flex-spot-container'>
+{/*
+                        <div className='previewImage'> */}
                           <img src={spot.previewImage} />
+                        {/* </div> */}
+
+                        <div className="primary-text">
+                          {spot.name}
                         </div>
-                        <div className="primary-text">{spot.name}</div>
+
                         <div className="secondary-text">
 
                           <div className='rating'>
@@ -56,11 +66,13 @@ const SpotsBrowser = () => {
                           <div className='address'>
                             {`${spot.city}, ${spot.state}`}
                           </div>
+
                         </div>
-                      </div>
+
                     </div>
                   </NavLink>
-                </div>
+                  </div>
+
               </>
             )
           })
