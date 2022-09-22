@@ -73,7 +73,7 @@ const updatePrice = (e) => setPrice(e.target.value);
     // console.log("THIS IS THE USER INPUT", editedSpot)
 
      if (editedSpot) {
-       history.push(`/`)
+      //  history.push(`/`)
          history.push(`/spots/${spotId}`)
         //  hideForm();
      }
