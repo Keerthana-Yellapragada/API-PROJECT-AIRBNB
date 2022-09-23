@@ -13,14 +13,14 @@ const SpotInfo = () => {
     spotId = parseInt(spotId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-    //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+    console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
     const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-    //console.log(currentSpot)
+    console.log(currentSpot)
 
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
         dispatch(loadAllReviews(spotId))
-    },[dispatch, spotId])
+    },[dispatch])
 
     // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 

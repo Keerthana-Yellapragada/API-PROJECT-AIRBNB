@@ -2,21 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 
-html, button{
+html,button{
     font-family: 'Open Sans';
     font-size: 16px;
 }
-
-button {
-    border: 0;
-    background: none;
-    font-weight: bold;
-    padding: 5px;
-
-}
-
-/* #root{
-    display: flex;
-    align-self: flex-start;
-
-} */

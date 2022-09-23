@@ -49,6 +49,8 @@ const SpotsBrowser = () => {
                           <img src={spot.previewImage} />
                         {/* </div> */}
 
+
+                      <div className="text-container">
                         <div className="primary-text">
                           {spot.name}
                         </div>
@@ -67,6 +69,7 @@ const SpotsBrowser = () => {
                             {`${spot.city}, ${spot.state}`}
                           </div>
 
+                          </div>
                         </div>
 
                     </div>

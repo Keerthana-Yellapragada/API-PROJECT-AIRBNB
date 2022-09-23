@@ -6,7 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import SpotsBrowser from "./components/SplashLandingPage/SplashLandingPage";
 import SpotInfo from "./components/Spots/SpotInfo";
-import CreateSpotForm from "./components/CreateSpotForm/"
+import CreateSpotFormModal from "./components/CreateSpotFormModal/"
 import EditSpotForm from "./components/EditSpotForm";
 import DeleteSpotForm from "./components/DeleteSpot";
 import CreateSpotButton from "./components/Navigation/CreateSpotButton";
@@ -56,16 +56,16 @@ function App() {
 
           </Route>
 
-           <Route exact path="/spots">
+           {/* <Route exact path="/spots">
             <CreateSpotForm />
-          </Route>
+          </Route> */}
 
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
 
           <Route exact path="/">
-            <CreateSpotButton />
+            <CreateSpotFormModal />
             <SpotsBrowser />
           </Route>
 

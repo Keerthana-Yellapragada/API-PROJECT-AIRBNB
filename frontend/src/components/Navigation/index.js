@@ -5,20 +5,23 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
+import SignupFormModal from '../SignupFormPage';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
-  if (sessionUser) {
+  if (sessionUser) { // if user is logged in, then show profile button
     sessionLinks = (
       <ProfileButton user={sessionUser} />
     );
-  } else {
+  } else { // or else, show login and signup
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <SignupFormModal />
+
+        {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
   }

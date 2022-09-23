@@ -3,7 +3,7 @@ button{
     max-height: auto;
     max-width: auto;
     border-radius: 8px;
-    width: 10%;
+    width: fit-content;
 
 }
 
