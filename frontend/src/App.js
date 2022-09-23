@@ -41,7 +41,7 @@ function App() {
           </Route>
 
           {/* <Route exact path="/spots/:spotId/reviews">
-            <ReviewsBrowser />
+            <ReviewsBrowser  />
             <CreateReviewForm />
             < DeleteReviewForm / >
           </Route> */}
