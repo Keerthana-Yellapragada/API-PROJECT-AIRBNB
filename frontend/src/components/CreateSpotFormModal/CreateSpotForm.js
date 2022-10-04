@@ -79,9 +79,9 @@ const CreateSpotForm = () => {
     <section>
 
       <form>
-        <h1> CREATE A NEW SPOT</h1>
-
-        <label htmlFor="Name">Name</label>
+        <h1> CREATE A LISTING</h1>
+{/*
+        <label htmlFor="Name">Name</label> */}
         <input
           id="Name"
           type="string"
@@ -89,8 +89,8 @@ const CreateSpotForm = () => {
           required
           value={name}
           onChange={updateName} />
-
-        <label htmlFor = "Address"> Address </label>
+{/*
+        <label htmlFor = "Address"> Address </label> */}
         <input
           id="address"
           type="string"
@@ -98,8 +98,8 @@ const CreateSpotForm = () => {
           required
           value={address}
           onChange={updateAddress} />
-
-        <label htmlFor="city">City</label>
+{/*
+        <label htmlFor="city">City</label> */}
         <input
           id="city"
           type="string"
@@ -107,8 +107,8 @@ const CreateSpotForm = () => {
           required
           value={city}
           onChange={updateCity} />
-
-        <label htmlFor="state">State</label>
+{/*
+        <label htmlFor="state">State</label> */}
         <input
           id="state"
           type="string"
@@ -117,7 +117,7 @@ const CreateSpotForm = () => {
           value={state}
           onChange={updateState} />
 
-        <label htmlFor="country">Country</label>
+        {/* <label htmlFor="country">Country</label> */}
         <input
           id="country"
           type="string"
@@ -126,8 +126,8 @@ const CreateSpotForm = () => {
           value={country}
           onChange={updateCountry} />
 
-
-        <label htmlFor="latitude">Latitude</label>
+{/*
+        <label htmlFor="latitude">Latitude</label> */}
         <input
           id="latitude"
           type="number"
@@ -136,8 +136,8 @@ const CreateSpotForm = () => {
           value={lat}
           onChange={updateLat} />
 
-
-        <label htmlFor="longitude">Longitude</label>
+{/*
+        <label htmlFor="longitude">Longitude</label> */}
         <input
           id="longitude"
           type="number"
@@ -146,8 +146,8 @@ const CreateSpotForm = () => {
           value={lng}
           onChange={updateLng} />
 
-
-        <label htmlFor="price">Price/night</label>
+{/*
+        <label htmlFor="price">Price/night</label> */}
         <input
           id="price"
           type="number"
@@ -156,8 +156,8 @@ const CreateSpotForm = () => {
           min="1"
           value={price}
           onChange={updatePrice} />
-
-        <label htmlFor="description">Description</label>
+{/*
+        <label htmlFor="description">Description</label> */}
         <input
           id="description"
           type="string"
@@ -166,8 +166,8 @@ const CreateSpotForm = () => {
           value={description}
           onChange={updateDescription} />
 
-
-        <label htmlFor="image">Picture</label>
+{/*
+        <label htmlFor="image">Add A Picture</label> */}
         <input
           id="image"
           type="string"

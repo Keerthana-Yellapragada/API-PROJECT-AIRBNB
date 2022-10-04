@@ -15,23 +15,26 @@
 
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center
+
 
 
 }
 
 
 .spot-card-container {
+    box-sizing: border-box;
+    margin: 5px;
+    padding:5px;
     display: flex;
+    border-radius: 20px;
     justify-content: center;
     align-content: center;
-    border:outset;
-    border-radius: 10px;
+    align-items: center;
     flex-basis: 1 1 1;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    width: 350px;
+    width: 25%;
+
 }
 
 
@@ -39,21 +42,15 @@
     display:flex;
     flex-basis: 1 1 1;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    align-items: center;
 
 }
 
-
-.previewImage {
-    width:100%
-}
 
 img {
-    align-self: center;
-    /* box-sizing: border-box; */
-    /* border-radius: 10%; */
     width: 100%;
+    aspect-ratio:1/1;
+    border-radius: 10%;
 }
 
 a {
