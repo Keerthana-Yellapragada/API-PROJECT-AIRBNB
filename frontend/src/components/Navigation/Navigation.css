@@ -1,8 +1,8 @@
 *{
     box-sizing: border-box;
 
-
 }
+
 .navbar-container{
     display:flex;
     flex-direction: row;
@@ -11,8 +11,8 @@
 
 }
 
-a {
-    color:red;
+.logo-name{
+    color:rgb(245, 19, 19)
 }
 
 
@@ -42,6 +42,7 @@ a {
 .logo {
     display: inline-flex;
     align-self: flex-start;
+    color: rgb(245, 19, 19);
 }
 
 .navbar button {
@@ -50,25 +51,25 @@ a {
     padding: 10px 10px;
     width:100%;
     border:none;
-    background-color: red;
+    background-color:rgb(245, 19, 19);
     color:white;
 
 }
 
 
 .profile-dropdown{
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    display: inline-block;
     list-style: none;
-    border: 2px solid black;
+    border: 2px solid rgb(180, 175, 175);
     border-width: 2px;
-    width: 50%;
+    width: 200px;
 }
 .profile-dropdown li {
+    display: block;
     color:rgb(172, 171, 171);
     font-size: 20px;
+    z-index: 1;
 }
 
 .userProfileButton{

@@ -32,7 +32,7 @@ function Navigation({ isLoaded }) {
 
         <div className="logo">
           <i className="fa-brands fa-airbnb"></i>
-          <NavLink exact to="/">ayrbnb</NavLink>
+          <NavLink className="logo-name" exact to="/">ayrbnb</NavLink>
           {/* {isLoaded && sessionLinks} */}
         </div>
 

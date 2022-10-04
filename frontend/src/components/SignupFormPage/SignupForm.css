@@ -26,8 +26,14 @@ input {
 }
 button {
     width:100%;
-    border-radius: 10px;
+    border-radius: 6px;
     border: none;
+    background-color: rgb(245, 19, 19);
+    color:white;
+    padding:10px;
+    margin:10px;
+    align-self: center;
+
 }
 
 input:focus{
@@ -35,7 +41,7 @@ input:focus{
 }
 
 .submit {
-     background-color: red;
+     background-color:rgb(245, 19, 19);
      color: white;
      padding: 10px;
      margin:10px;
@@ -46,5 +52,5 @@ input:focus{
 
 
 ul {
-    color: red;
+    color: rgb(245, 19, 19);
 }
