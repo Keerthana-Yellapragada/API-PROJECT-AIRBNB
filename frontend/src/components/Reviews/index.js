@@ -31,7 +31,9 @@ const ReviewsBrowser = () => {
     return (
         <>
             <div className="reviews-title">
-            <h1> REVIEWS FOR THIS SPOT</h1>
+
+            <i class="fa-solid fa-star">{`${filteredReviews.length} reviews`}</i>
+
             </div>
             <div className="reviews-wrapper">
                 {

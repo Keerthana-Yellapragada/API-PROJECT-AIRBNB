@@ -1,9 +1,16 @@
+*{
+    box-sizing: border-box;
+    margin:0px;
+    padding:0px;
+}
+
 .spot-details-wrapper{
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     align-content: center;
+    width: 40%;
 }
 
 .spot-details{
@@ -12,4 +19,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-self:center ;
+}
+
+
+img {
+    width:100%
 }

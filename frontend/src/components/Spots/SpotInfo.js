@@ -31,18 +31,29 @@ const SpotInfo = () => {
     return (
         <div className="spot-details">
 
-            <div className={`spot-detail-image-background`}>
-                <div className='spot-detail-image'>
-                    <img src={currentSpot.previewImage} alt="preview-image"/>
-                </div>
-            <h1 className="spot-name">{currentSpot.name}</h1>
+            <div className="spot-name">
+                <h1>{currentSpot.name}</h1>
             </div>
+
+             <div className= "spot-rating">
+                    {/* {`Rating: ${currentSpot.avgRating} stars`} */}
+                        <i class="fa-solid fa-star">{currentSpot.avgRating}</i>
+            </div>
+
+            <div className="spot-address">
+                    {`${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
+            </div>
+
+            <div className='spot-image'>
+                <img src={currentSpot.previewImage} alt="preview-image"/>
+            </div>
+
 
             <div className='spot-details-wrapper'>
 
-                <div className="spot-details">
+                {/* <div className="spot-address">
                     {`${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
-                </div>
+                </div> */}
 
                 <div className= "spot-details">
                     {`Description: ${currentSpot.description}`}
@@ -56,9 +67,9 @@ const SpotInfo = () => {
                     {`$${currentSpot.price}/night`}
                 </div>
 
-                <div className= "spot-details">
+                {/* <div className= "spot-details">
                     {`Rating: ${currentSpot.avgRating} stars`}
-                </div>
+                </div> */}
 {/*
                 <button>
                     <NavLink to={`/spots/${spotId}/reviews`}>Click to see Reviews</NavLink>

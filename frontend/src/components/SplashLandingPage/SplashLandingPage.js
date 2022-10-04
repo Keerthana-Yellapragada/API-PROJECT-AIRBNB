@@ -64,13 +64,15 @@ const SpotsBrowser = () => {
                             {spot.avgRating}
                           </div>
 
+                          <div className='address'>
+                            {`${spot.city}, ${spot.state}`}
+                          </div>
+
                           <div className='price'>
                             {`$${spot.price}`}
                           </div>
 
-                          <div className='address'>
-                            {`${spot.city}, ${spot.state}`}
-                          </div>
+
 
                           </div>
                         </div>
