@@ -15,6 +15,7 @@ import ReviewsBrowser from "./components/Reviews";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviewsBrowser from "./components/UsersReviews"
 import DeleteReviewForm from "./components/DeleteReview";
+import UserReviewsButton from "./components/Navigation/UserReviewButton";
 
 function App() {
   const dispatch = useDispatch();

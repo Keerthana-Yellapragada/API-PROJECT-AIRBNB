@@ -6,6 +6,8 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
+import UserReviewsBrowser from '../UsersReviews';
+import UserReviewsButton from './UserReviewButton';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -21,6 +23,7 @@ function Navigation({ isLoaded }) {
         <LoginFormModal />
         <SignupFormModal />
 
+
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
@@ -31,6 +34,9 @@ function Navigation({ isLoaded }) {
       <li>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
+      </li>
+      <li>
+        <NavLink exact to="/current/reviews">My Reviews</NavLink>
       </li>
     </ul>
   );
