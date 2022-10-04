@@ -6,8 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 import SignupFormModal from '../SignupFormPage';
-import UserReviewsBrowser from '../UsersReviews';
-import UserReviewsButton from './UserReviewButton';
+import CreateSpotFormModal from '../CreateSpotFormModal';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -23,22 +22,43 @@ function Navigation({ isLoaded }) {
         <LoginFormModal />
         <SignupFormModal />
 
-
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-      <li>
-        <NavLink exact to="/current/reviews">My Reviews</NavLink>
-      </li>
-    </ul>
+    <>
+    <div className='navbar-container'>
+
+       <div className="logo">
+          <h1>
+            <i className="fa-brands fa-airbnb"></i>
+            ayrbnb
+          </h1>
+          </div>
+
+
+      <div className="create-spot-container">
+        <CreateSpotFormModal />
+      </div>
+
+        <div className="navbar">
+          <ul>
+              <li>
+                <NavLink exact to="/">Home</NavLink>
+                {isLoaded && sessionLinks}
+              </li>
+              <li>
+                <NavLink exact to="/current/reviews">My Reviews</NavLink>
+              </li>
+
+          </ul>
+        </div>
+
+      </div>
+
+    </>
   );
 }
 

@@ -1,4 +1,9 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
 
+}
 
 .homepage-grid-container{
     /* display: grid;
@@ -45,7 +50,7 @@ size:100%;
 } */
 
 
-.homepage-title {
+.logo {
     color:red;
     font-size:xx-large;
       display: flex;

@@ -38,7 +38,8 @@ const ReviewsBrowser = () => {
                     filteredReviews.map(review => {
                         return (
                             <>
-                                <NavLink key={review.id} to={`/reviews/${review.id}`}>
+                            <div>
+                                {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
                                     <div >
                                         <div>
                                             {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
@@ -47,7 +48,8 @@ const ReviewsBrowser = () => {
                                             <div className='address'> {review.review} </div>
                                         </div>
                                     </div>
-                                </NavLink>
+                                {/* </NavLink> */}
+                            </div>
 
                             </>
                         )

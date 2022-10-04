@@ -29,10 +29,12 @@ const SpotsBrowser = () => {
 
   return (
     <>
-       <div className="homepage-title">
-          <i className="fa-brands fa-airbnb">ayrbnb</i>
-          {/* <h1>ayrbnb</h1> */}
-      </div>
+       {/* <div className="logo">
+          <h1>
+            <i className="fa-brands fa-airbnb"></i>
+            ayrbnb
+          </h1>
+      </div> */}
 
 
       <div className="homepage-grid-container">

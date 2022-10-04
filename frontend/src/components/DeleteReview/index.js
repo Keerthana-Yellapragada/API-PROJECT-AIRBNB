@@ -42,8 +42,7 @@ const DeleteReviewForm = () => {
         <>
             <form>
                 <div>
-                    <h2>Are you sure you want to delete your review?</h2>
-                    <button type="submit" onClick={handleSubmit}>Yes, delete my review</button>
+                    <button type="submit" onClick={handleSubmit}>Delete review</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </div>
 
