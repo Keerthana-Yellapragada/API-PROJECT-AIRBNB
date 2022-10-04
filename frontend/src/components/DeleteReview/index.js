@@ -8,7 +8,6 @@ const DeleteReviewForm = () => {
     const dispatch = useDispatch(); // invoke dispatch
     const history = useHistory();
     let { reviewId } = useParams();
-    const [errorMessages, setErrorMessages] = useState({});
 
     reviewId = parseInt(reviewId) // convert string to integer
 
@@ -43,7 +42,8 @@ const DeleteReviewForm = () => {
         <>
             <form>
                 <div>
-                    <button type="submit" onClick={handleSubmit}>Delete Review</button>
+                    <h2>Are you sure you want to delete your review?</h2>
+                    <button type="submit" onClick={handleSubmit}>Yes, delete my review</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </div>
 

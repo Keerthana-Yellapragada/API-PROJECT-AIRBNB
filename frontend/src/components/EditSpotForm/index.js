@@ -22,7 +22,7 @@ const EditSpotForm = () => {
 
        spotId = parseInt(spotId);
 
-       //console.log("THIS IS NAME", currentSpotDetails.name)
+       console.log("THIS IS NAME", currentSpotDetails.name)
 //states
 const [name, setName] = useState(currentSpotDetails.name);
 const [address, setAddress] = useState(currentSpotDetails.address);

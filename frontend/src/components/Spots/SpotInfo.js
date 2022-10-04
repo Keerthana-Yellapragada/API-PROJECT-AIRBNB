@@ -13,9 +13,9 @@ const SpotInfo = () => {
     spotId = parseInt(spotId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-    console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+   // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
     const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-    console.log(currentSpot)
+    console.log("THIS IS CURRENT SPOT", currentSpot)
 
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
@@ -30,25 +30,32 @@ const SpotInfo = () => {
 
     return (
         <div className="spot-details">
+
             <div className={`spot-detail-image-background`}>
                 <div className='spot-detail-image'>
-                    <img src={currentSpot.previewImage} />
+                    <img src={currentSpot.previewImage} alt="preview-image"/>
                 </div>
-                <h1 className="spot-name">{currentSpot.name}</h1>
+            <h1 className="spot-name">{currentSpot.name}</h1>
             </div>
+
             <div className='spot-details-wrapper'>
+
                 <div className="spot-details">
                     {`${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
                 </div>
+
                 <div className= "spot-details">
                     {`Description: ${currentSpot.description}`}
                 </div>
+
                 <div className= "spot-details">
                     {`Latitude: ${currentSpot.lat}`}    {`Longitude: ${currentSpot.lng}`}
                 </div>
+
                  <div className= "spot-details">
                     {`$${currentSpot.price}/night`}
                 </div>
+
                 <div className= "spot-details">
                     {`Rating: ${currentSpot.avgRating} stars`}
                 </div>
@@ -56,9 +63,8 @@ const SpotInfo = () => {
                 <button>
                     <NavLink to={`/spots/${spotId}/reviews`}>Click to see Reviews</NavLink>
                 </button> */}
-
-
             </div>
+
         </div>
 
     )
