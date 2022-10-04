@@ -34,6 +34,7 @@ function ProfileButton({ user }) {
       <button onClick={openMenu}>
 
         <div className="userProfileButton">
+          <i class="fa-solid fa-bars"></i>
           <i className="fas fa-user-circle" />
         </div>
 
@@ -47,7 +48,7 @@ function ProfileButton({ user }) {
              <NavLink exact to="/current/reviews">My Reviews</NavLink>
           </li>
           <li>
-            <NavLink exact to="/current/spots">My Listings</NavLink>
+            <NavLink exact to="/current/spots">My Listings </NavLink>
           </li>
           <li>
             <button onClick={logout}>Log Out</button>

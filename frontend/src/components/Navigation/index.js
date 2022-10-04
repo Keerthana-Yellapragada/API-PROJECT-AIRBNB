@@ -21,7 +21,6 @@ function Navigation({ isLoaded }) {
       <>
         <LoginFormModal />
         <SignupFormModal />
-
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
@@ -29,29 +28,24 @@ function Navigation({ isLoaded }) {
 
   return (
     <>
-    <div className='navbar-container'>
+      <div className='navbar-container'>
 
         <div className="logo">
-                     <i className="fa-brands fa-airbnb"></i>
-                     <NavLink exact to="/">ayrbnb</NavLink>
-                        {isLoaded && sessionLinks}
-          </div>
+          <i className="fa-brands fa-airbnb"></i>
+          <NavLink exact to="/">ayrbnb</NavLink>
+          {/* {isLoaded && sessionLinks} */}
+        </div>
+
 
         <div className="navbar">
-          <ul>
-
-            <li>
-                <CreateSpotFormModal />
-            </li>
-
-              {/* <li>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-              </li> */}
-
-
-          </ul>
+          <CreateSpotFormModal />
         </div>
+
+        <div className='user-profile'>
+          {isLoaded && sessionLinks}
+        </div>
+
+
 
       </div>
 

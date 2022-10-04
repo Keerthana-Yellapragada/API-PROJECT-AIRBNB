@@ -94,7 +94,7 @@ const CreateSpotForm = () => {
         <input
           id="address"
           type="string"
-          placeholder="address"
+          placeholder="Address"
           required
           value={address}
           onChange={updateAddress} />
@@ -103,7 +103,7 @@ const CreateSpotForm = () => {
         <input
           id="city"
           type="string"
-          placeholder="city"
+          placeholder="City"
           required
           value={city}
           onChange={updateCity} />
@@ -112,7 +112,7 @@ const CreateSpotForm = () => {
         <input
           id="state"
           type="string"
-          placeholder="state"
+          placeholder="State"
           required
           value={state}
           onChange={updateState} />
@@ -121,7 +121,7 @@ const CreateSpotForm = () => {
         <input
           id="country"
           type="string"
-          placeholder="country"
+          placeholder="Country"
           required
           value={country}
           onChange={updateCountry} />

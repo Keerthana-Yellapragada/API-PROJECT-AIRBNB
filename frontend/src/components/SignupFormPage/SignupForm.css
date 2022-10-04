@@ -4,8 +4,9 @@ form {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 3px;
-    padding: 3px;
+    align-content: center;
+    margin: 5px;
+    padding: 5px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -13,31 +14,37 @@ form {
 
 
 input {
-    border: 10px 4px 5px 5px black;
-    background-color: rgb(221, 237, 237);
+    border: 1px solid rgb(186, 184, 184);
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 3px;
-    padding: 3px;
+    margin: 0px;
+    padding: 10px;
     font-family: Arial, Helvetica, sans-serif;
+
+}
+button {
+    width:100%;
+    border-radius: 10px;
+    border: none;
+}
+
+input:focus{
+    border: 1px solid black;
+}
+
+.submit {
+     background-color: red;
+     color: white;
+     padding: 10px;
+     margin:10px;
+     align-self: center;
+     font-family: Arial, Helvetica, sans-serif;
 
 }
 
 
-.submit {
-     border: 10px 4px 5px 5px black;
-     background-color: rgb(145, 188, 232);
-     color: rgb(10, 9, 9);
-     display: flex;
-     font-weight: bold;
-     justify-content: center;
-     flex-direction: row;
-     margin: 2px;
-     padding: 2px;
-     font-family: Arial, Helvetica, sans-serif;
-     max-width: 100px;
-     align-items:center;
-     align-content:center;
-
+ul {
+    color: red;
 }
