@@ -31,27 +31,24 @@ function Navigation({ isLoaded }) {
     <>
     <div className='navbar-container'>
 
-       <div className="logo">
-          <h1>
-            <i className="fa-brands fa-airbnb"></i>
-            ayrbnb
-          </h1>
+        <div className="logo">
+                     <i className="fa-brands fa-airbnb"></i>
+                     <NavLink exact to="/">ayrbnb</NavLink>
+                        {isLoaded && sessionLinks}
           </div>
-
-
-      <div className="create-spot-container">
-        <CreateSpotFormModal />
-      </div>
 
         <div className="navbar">
           <ul>
-              <li>
+
+            <li>
+                <CreateSpotFormModal />
+            </li>
+
+              {/* <li>
                 <NavLink exact to="/">Home</NavLink>
                 {isLoaded && sessionLinks}
-              </li>
-              <li>
-                <NavLink exact to="/current/reviews">My Reviews</NavLink>
-              </li>
+              </li> */}
+
 
           </ul>
         </div>

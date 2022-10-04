@@ -37,7 +37,7 @@ const SpotsBrowser = () => {
       </div> */}
 
 
-      <div className="homepage-grid-container">
+      <div className="flex-container">
         {
           allSpots.map(spot => {
             return (
@@ -46,10 +46,10 @@ const SpotsBrowser = () => {
                   <NavLink key={spot.id} to={`/spots/${spot.id}`}>
 
                       <div className='flex-spot-container'>
-{/*
-                        <div className='previewImage'> */}
+
+                        <div className='previewImage'>
                           <img src={spot.previewImage} />
-                        {/* </div> */}
+                        </div>
 
 
                       <div className="text-container">
@@ -60,6 +60,7 @@ const SpotsBrowser = () => {
                         <div className="secondary-text">
 
                           <div className='rating'>
+                            <i class="fa-solid fa-star"></i>
                             {spot.avgRating}
                           </div>
 
