@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
-import createReview, { createNewReview } from "../../store/reviews"
+import createReview, { createNewReview, loadAllReviews } from "../../store/reviews"
 
 
 const CreateReviewForm = () => {
@@ -12,6 +12,7 @@ const CreateReviewForm = () => {
   let {spotId} = useParams();
   spotId = parseInt(spotId)
   const userId = useSelector(state=>state.session.user.id)
+  const reviews = useSelector(state=> state.reviews)
 
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
@@ -22,11 +23,15 @@ const CreateReviewForm = () => {
   const updateReview = (e) => setReview(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
 
-  useEffect(()=>{},[dispatch, spotId])
+  // useEffect(()=>{ // REDO!!!!
+  //   dispatch(loadAllReviews())
+  // },[dispatch])
 
   //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("THIS IS SPOT ID IN CREATE REVIEW", spotId)
 
     const reviewPayload = {
       stars,
@@ -42,7 +47,7 @@ const CreateReviewForm = () => {
 
     .then((newReview) => {
       if (newReview) {
-        history.push(`/spots/${newReview.spotId}`)
+        history.push(`/`)
       }
     // })
     //   history.push(`/spots/${newReview.spotId}`); //redirect to the new spot's details page

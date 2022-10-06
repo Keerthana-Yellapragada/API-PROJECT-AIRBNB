@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-router-dom';
-import removeSpot, { deleteSpot } from "../../store/spots"
-import { deleteReview, loadUserReviews } from '../../store/reviews';
+//import removeSpot, { deleteSpot } from "../../store/spots"
+import { loadAllReviews, deleteReview} from '../../store/reviews';
 
 const DeleteReviewForm = () => {
     const dispatch = useDispatch(); // invoke dispatch
@@ -11,29 +11,29 @@ const DeleteReviewForm = () => {
 
     reviewId = parseInt(reviewId) // convert string to integer
 
+    const allSpots = useSelector(state => Object.values(state.spots));
+    const currReview = useSelector(state => state.reviews.reviewId);
+    let thisSpot = allSpots.find(spot => currReview.spotId === spot.id)
+    let spotId = thisSpot.id
 
-    useEffect(() => { // need this so spot info gets laoded each time
-        dispatch(loadUserReviews());
+
+
+    useEffect(() => {
+        dispatch(loadAllReviews(spotId));
     }, [dispatch]);
-
-    // const allSpots = useSelector(state => Object.values(state.spots));
-    // const thisReview = useSelector(state => state.reviews.reviewId);
-
-    // let thisSpot = allSpots.find(spot => thisReview.spotId === spot.id)
-    // let spotId = thisSpot.id
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push("/current/reviews"))
+        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push(`/spots/${spotId}`))
 
     }
 
     //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/`) // WHY ISNT THIS WORKING!??!
+        history.push(`/spots/${spotId}`)
     };
 
 

@@ -5,15 +5,15 @@ import removeSpot, { deleteSpot } from "../../store/spots"
 import { loadAllSpots } from '../../store/spots';
 
 const DeleteSpotForm = () => {
-    const dispatch = useDispatch(); // invoke dispatch
+    const dispatch = useDispatch();
     const history = useHistory();
     let { spotId } = useParams();
     const [errorMessages, setErrorMessages] = useState({});
 
-    spotId = parseInt(spotId) // convert string to integer
+    spotId = parseInt(spotId)
 
 
-    useEffect(() => { // need this so spot info gets laoded each time
+    useEffect(() => {
         dispatch(loadAllSpots());
     }, [dispatch]);
 
@@ -21,9 +21,8 @@ const DeleteSpotForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // let deletedSpot =
         dispatch(deleteSpot(spotId))
-         history.push("/")// WHY ISNT THIS WORKING!??!
+         history.push("/")
 
 
     }
@@ -31,7 +30,7 @@ const DeleteSpotForm = () => {
     //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/`) // WHY ISNT THIS WORKING!??!
+        history.push(`/spots/${spotId}`)
     };
 
 

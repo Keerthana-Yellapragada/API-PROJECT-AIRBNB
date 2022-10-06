@@ -22,7 +22,7 @@ const EditSpotForm = () => {
 
        spotId = parseInt(spotId);
 
-       console.log("THIS IS NAME", currentSpotDetails.name)
+       //console.log("THIS IS NAME", currentSpotDetails.name)
 //states
 const [name, setName] = useState(currentSpotDetails.name);
 const [address, setAddress] = useState(currentSpotDetails.address);
@@ -46,7 +46,7 @@ const updateLng = (e) => setLng(e.target.value);
 const updateDescription = (e) => setDescription(e.target.value);
 const updatePrice = (e) => setPrice(e.target.value);
 
- useEffect(() => { // need this so spot info gets laoded each time
+ useEffect(() => {
      dispatch(loadAllSpots());
  }, [dispatch, spotId]);
 
@@ -82,7 +82,7 @@ const updatePrice = (e) => setPrice(e.target.value);
  const handleCancelClick = (e) => {
     e.preventDefault();
     // hideForm();
-      history.push(`/`) // DOESNT WORK-=-WHY!?!?!!?
+      history.push(`/spots/${spotId}`)
  }
 
 // RETURN THE FORM COMPONENT

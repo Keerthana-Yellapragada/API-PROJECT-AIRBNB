@@ -15,10 +15,10 @@ const ReviewsBrowser = () => {
         return allReviewsArray;
     });
 
-    let filteredReviews = allReviews.filter(review=> review.spotId === spotId)
+    let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
     useEffect(() => {
-        dispatch(loadAllReviews(spotId)); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+        dispatch(loadAllReviews(spotId));
     }, [dispatch, spotId])
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
@@ -32,7 +32,7 @@ const ReviewsBrowser = () => {
         <>
             <div className="reviews-title">
 
-            <i class="fa-solid fa-star">{`${filteredReviews.length} reviews`}</i>
+                <i class="fa-solid fa-star">{`${filteredReviews.length} reviews`}</i>
 
             </div>
             <div className="reviews-wrapper">
@@ -40,8 +40,7 @@ const ReviewsBrowser = () => {
                     filteredReviews.map(review => {
                         return (
                             <>
-                            <div>
-                                {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
+                                <div>
                                     <div >
                                         <div>
                                             {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
@@ -50,8 +49,11 @@ const ReviewsBrowser = () => {
                                             <div className='address'> {review.review} </div>
                                         </div>
                                     </div>
-                                {/* </NavLink> */}
-                            </div>
+
+                                    <button>
+                                        <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
+                                    </button>
+                                </div>
 
                             </>
                         )

@@ -22,7 +22,7 @@
 }
 
 .navbar ul {
-    display: block;
+    display: inline-block;
      list-style-type: none;
      width: 300px;
      margin: 10px;
@@ -30,7 +30,6 @@
      background-color: #ffffff;
      list-style: none;
 }
-
 .navbar ul li {
     margin: 20px;
     padding: 20px;
@@ -46,13 +45,13 @@
 }
 
 .navbar button {
-    display: block;
     font-weight: bold;
     padding: 10px 10px;
     width:100%;
     border:none;
     background-color:rgb(245, 19, 19);
     color:white;
+    align-self: center;
 
 }
 
