@@ -18,7 +18,7 @@ a {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 20px;
+    margin: 40px;
 
 }
 
@@ -28,7 +28,8 @@ a {
 .flex-container{
     display:flex;
     flex-wrap: wrap;
-    justify-content: center
+    justify-content: center;
+    width: 100%
 }
 
 /* for each spot card */

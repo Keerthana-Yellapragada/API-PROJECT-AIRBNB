@@ -47,7 +47,6 @@ function Navigation({ isLoaded }) {
         </div>
 
 
-
       </div>
     </header>
 

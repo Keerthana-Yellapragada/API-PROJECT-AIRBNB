@@ -4,20 +4,33 @@
     padding:0px;
 
 }
+
+header{
+    display:flex;
+     justify-content: space-between;
+     align-content: center;
+     flex-direction: row;
+     height:100%;
+}
+
 /* container for entire main navbar container */
 .main-navbar-flex-container{
     display:flex;
     flex-direction: row;
     height:100%;
+    width:100%;
     justify-content: space-between;
+    align-items: center;
+    align-content: space-between
 
 }
 
 /* styling for logo */
 .logo-flex-container {
-    display: inline-flex;
-    align-self: flex-start;
-    color: rgb(245, 19, 19);
+    display:flex;
+    color: #f51313;
+    width:auto;
+    font-size: 25px;
 
 }
 
@@ -27,13 +40,19 @@
 }
 
 /* main navbar container */
-.main-navbar-flex-container .create-spot-container{
-    display:flex;
-    /* justify-content: flex-end; */
+.create-spot-container{
+    display:inline-flex;
+    align-self: center;
+    border-radius: 20px;
 }
 
-.create-spot-container ul {
-    display: inline-block;
+.user-profile-container {
+    display: flex;
+    align-self: flex-end;
+}
+ .user-profile-container ul {
+    align-self: inline-flex;
+    display: block;
      list-style-type: none;
      width: 300px;
      margin: 10px;
@@ -41,22 +60,24 @@
      background-color: #ffffff;
      list-style: none;
 }
-.create-spot-container ul li {
-    margin: 20px;
-    padding: 20px;
-    color: rgb(255, 255, 255);
+ .user-profile-container ul li {
+    display:block;
+    margin: 5px;
+    padding: 5px;
+    color: rgb(174, 171, 171);
     text-decoration: none;
     list-style: none;
 }
 
 
 .create-spot-container button {
+    display:block;
     font-weight: bold;
     padding: 10px 10px;
     width:100%;
     border:none;
-    background-color:rgb(245, 19, 19);
-    color:white;
+    /* background-color:rgb(245, 19, 19);
+    color:white; */
     align-self: center;
 
 }
@@ -68,7 +89,7 @@
     list-style: none;
     border: 2px solid rgb(180, 175, 175);
     border-width: 2px;
-    width: 200px;
+    width: 600px;
 }
 .profile-dropdown li {
     display: block;
@@ -79,5 +100,5 @@
 
 .userProfileButton{
     margin:15px;
-    border-radius: 100%;
+    border-radius: 50%;
 }
