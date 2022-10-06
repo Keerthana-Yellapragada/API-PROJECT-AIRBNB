@@ -27,9 +27,9 @@ const CreateReviewForm = () => {
   const updateReview = (e) => setReview(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
 
-  // useEffect(()=>{ // REDO!!!!
-  //   dispatch(loadAllReviews())
-  // },[dispatch])
+  useEffect(()=>{ // REDO!!!!
+    dispatch(loadAllReviews())
+  },[dispatch])
 
   //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
@@ -51,7 +51,7 @@ const CreateReviewForm = () => {
 
     .then((newReview) => {
       if (newReview) {
-        history.push(`/`)
+        history.push(`/spots/${spotId}`)
       }
     // })
     //   history.push(`/spots/${newReview.spotId}`); //redirect to the new spot's details page
@@ -61,7 +61,7 @@ const CreateReviewForm = () => {
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {
     e.preventDefault();
-    history.push("/")
+    history.push(`/spots/${spotId}`)
   };
 
 

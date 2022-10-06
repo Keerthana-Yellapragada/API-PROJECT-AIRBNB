@@ -21,7 +21,7 @@ const ReviewsBrowser = () => {
 
     useEffect(() => {
         dispatch(loadAllReviews(spotId));
-    }, [dispatch, spotId])
+    }, [dispatch])
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
         return null;
