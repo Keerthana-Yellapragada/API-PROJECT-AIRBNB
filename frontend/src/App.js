@@ -15,6 +15,7 @@ import ReviewsBrowser from "./components/Reviews";
 import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviewsBrowser from "./components/UsersReviews"
 import DeleteReviewForm from "./components/DeleteReview";
+import { useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
 
   return (
     <>

@@ -10,6 +10,8 @@ const ReviewsBrowser = () => {
     let { spotId } = useParams(); // use params
     spotId = parseInt(spotId)
 
+    //const userId = useSelector(state => state.session.user.id)
+
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
         return allReviewsArray;
@@ -32,7 +34,7 @@ const ReviewsBrowser = () => {
         <>
             <div className="reviews-title">
 
-                <i class="fa-solid fa-star">{`${filteredReviews.length} reviews`}</i>
+                <i className="fa-solid fa-star">{`${filteredReviews.length} reviews`}</i>
 
             </div>
             <div className="reviews-wrapper">
@@ -50,9 +52,9 @@ const ReviewsBrowser = () => {
                                         </div>
                                     </div>
 
-                                    <button>
+                                    {/* <button>
                                         <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
-                                    </button>
+                                    </button> */}
                                 </div>
 
                             </>

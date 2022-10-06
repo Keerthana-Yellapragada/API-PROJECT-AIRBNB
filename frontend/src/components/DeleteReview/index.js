@@ -8,32 +8,25 @@ const DeleteReviewForm = () => {
     const dispatch = useDispatch(); // invoke dispatch
     const history = useHistory();
     let { reviewId } = useParams();
-
     reviewId = parseInt(reviewId) // convert string to integer
 
-    const allSpots = useSelector(state => Object.values(state.spots));
-    const currReview = useSelector(state => state.reviews.reviewId);
-    let thisSpot = allSpots.find(spot => currReview.spotId === spot.id)
-    let spotId = thisSpot.id
-
-
-
-    useEffect(() => {
-        dispatch(loadAllReviews(spotId));
-    }, [dispatch]);
-
+    // const allSpots = useSelector(state => Object.values(state.spots));
+    //let currReview = useSelector(state => state.reviews.reviewId);
+    //console.log("this is curr review", currReview)
+    // let thisSpot = allSpots.find(spot => currReview.spotId === spot.id)
+    // let spotId = thisSpot.id
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push(`/spots/${spotId}`))
+        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push(`/current/reviews`))
 
     }
 
     //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/spots/${spotId}`)
+        history.push(`/current/reviews`)
     };
 
 

@@ -18,6 +18,10 @@ const CreateReviewForm = () => {
   const [review, setReview] = useState("");
   const [url, setUrl] = useState("")
 
+  // if (!userId) {
+  //   console.log("Must be logged in to leave a review")
+  // }
+
   //update functions
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
@@ -31,7 +35,7 @@ const CreateReviewForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("THIS IS SPOT ID IN CREATE REVIEW", spotId)
+    //console.log("THIS IS SPOT ID IN CREATE REVIEW", spotId)
 
     const reviewPayload = {
       stars,

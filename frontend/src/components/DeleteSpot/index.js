@@ -8,7 +8,7 @@ const DeleteSpotForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     let { spotId } = useParams();
-    const [errorMessages, setErrorMessages] = useState({});
+    //const [errorMessages, setErrorMessages] = useState({});
 
     spotId = parseInt(spotId)
 

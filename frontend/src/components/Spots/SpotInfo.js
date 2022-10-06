@@ -3,14 +3,16 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getSpotInfo from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
-
 import './SpotInfo.css'
 import { loadAllReviews } from '../../store/reviews';
+
 const SpotInfo = () => {
-    let { spotId } = useParams(); // get spotId from params
     const dispatch = useDispatch();
+    let { spotId } = useParams(); // get spotId from params
 
     spotId = parseInt(spotId)
+
+    console.log("SPOT ID ID ", spotId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
@@ -20,7 +22,7 @@ const SpotInfo = () => {
     useEffect(() => {
         dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
         dispatch(loadAllReviews(spotId))
-    },[dispatch])
+    })
 
     // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 
