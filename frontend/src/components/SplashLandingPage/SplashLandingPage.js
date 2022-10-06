@@ -17,69 +17,58 @@ const SpotsBrowser = () => {
   });
 
   useEffect(() => {
-    dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+    dispatch(loadAllSpots());
   }, [dispatch])
 
-  if (!allSpots) { //if we don't have spots- don't display anything
+  if (!allSpots) {
     return null;
   }
 
 
   //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
-
   return (
     <>
-       {/* <div className="logo">
-          <h1>
-            <i className="fa-brands fa-airbnb"></i>
-            ayrbnb
-          </h1>
-      </div> */}
-
-
       <div className="flex-container">
         {
           allSpots.map(spot => {
             return (
               <>
-                  <div className='spot-card-container'>
+                <div className='spot-card-flex-container'>
                   <NavLink key={spot.id} to={`/spots/${spot.id}`}>
 
-                      <div className='flex-spot-container'>
+                    <div className='flex-spot-container'>
 
-                        <div className='previewImage'>
+                        <div className='image-container'>
                           <img src={spot.previewImage} />
                         </div>
 
 
-                      <div className="text-container">
-                        <div className="primary-text">
-                          {spot.name}
+                        <div className="top-text-container">
+
+                            <div className='top-address-container'>
+                              {`${spot.city}, ${spot.state}`}
+                            </div>
+
+                            <div className='rating-container'>
+                              <i class="fa-solid fa-star"></i>
+                              {spot.avgRating}
+                            </div>
+
                         </div>
 
-                        <div className="secondary-text">
-
-                          <div className='rating'>
-                            <i class="fa-solid fa-star"></i>
-                            {spot.avgRating}
-                          </div>
-
-                          <div className='address'>
-                            {`${spot.city}, ${spot.state}`}
-                          </div>
-
-                          <div className='price'>
-                            {`$${spot.price}`}
-                          </div>
-
-
-
+                        <div className="bottom-text-container">
+                           <div className='bottom-address-container'>
+                              {`${spot.city}, ${spot.state}`}
+                            </div>
+                          <div className='price-container'>
+                            {`$${spot.price} night`}
                           </div>
                         </div>
 
-                    </div>
+                      </div>
+
                   </NavLink>
-                  </div>
+                </div>
 
               </>
             )

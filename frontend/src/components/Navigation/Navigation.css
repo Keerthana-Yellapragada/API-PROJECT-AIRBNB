@@ -1,9 +1,11 @@
 *{
     box-sizing: border-box;
+    margin:0px;
+    padding:0px;
 
 }
-
-.navbar-container{
+/* container for entire main navbar container */
+.main-navbar-flex-container{
     display:flex;
     flex-direction: row;
     height:100%;
@@ -11,17 +13,26 @@
 
 }
 
+/* styling for logo */
+.logo-flex-container {
+    display: inline-flex;
+    align-self: flex-start;
+    color: rgb(245, 19, 19);
+
+}
+
+/* ayrbnb logo name text styling */
 .logo-name{
     color:rgb(245, 19, 19)
 }
 
-
-.navbar-container .navbar{
+/* main navbar container */
+.main-navbar-flex-container .create-spot-container{
     display:flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
-.navbar ul {
+.create-spot-container ul {
     display: inline-block;
      list-style-type: none;
      width: 300px;
@@ -30,7 +41,7 @@
      background-color: #ffffff;
      list-style: none;
 }
-.navbar ul li {
+.create-spot-container ul li {
     margin: 20px;
     padding: 20px;
     color: rgb(255, 255, 255);
@@ -38,13 +49,8 @@
     list-style: none;
 }
 
-.logo {
-    display: inline-flex;
-    align-self: flex-start;
-    color: rgb(245, 19, 19);
-}
 
-.navbar button {
+.create-spot-container button {
     font-weight: bold;
     padding: 10px 10px;
     width:100%;

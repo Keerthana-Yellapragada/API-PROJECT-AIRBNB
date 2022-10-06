@@ -1,28 +1,38 @@
+/* reset default styling */
 * {
     box-sizing: border-box;
     margin:0;
     padding: 0;
 
 }
+/* styling for logo */
+a {
+    text-decoration: none
+}
+/* styling for ayrbnb logo */
 
-.flex-container{
-    /* display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 25% 25% 25% 25%;
-    grid-gap: 10px;
-    justify-content: space-between;
-    align-items: space-between; */
-
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center
-
-
+.logo {
+    color: red;
+    font-size: xx-large;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px;
 
 }
 
+/* STYLING FOR THE MAIN ELEMENTS OF SPLASH PAGE */
 
-.spot-card-container {
+/* for the container that holds all cards */
+.flex-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+/* for each spot card */
+.spot-card-flex-container {
     box-sizing: border-box;
     margin: 5px;
     padding:5px;
@@ -37,56 +47,51 @@
 
 }
 
-
-.flex-spot-container{
+/* image container */
+.image-container {
     display:flex;
-    flex-basis: 1 1 1;
-    flex-direction: column;
-    align-items: center;
-
+    justify-content:center;
 }
 
-
+/* styling for preview image*/
 img {
     width: 100%;
     aspect-ratio:1/1;
     border-radius: 10%;
 }
 
-a {
-    text-decoration: none
-}
-
-
-
-.logo {
-    color:red;
-    font-size:xx-large;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      margin: 20px;
-
-}
-.primary-text {
+/* container for rating and city, state */
+.top-text-container {
     display: flex;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
+    justify-content: space-between;
+    font-size: 13px;
+    padding-top: 5px;
+}
+.top-address-container {
     font-weight: bold;
 }
+/*
+.rating-container {
+     align-self: flex-end;
+} */
 
-.secondary-text {
-    display: flex;
-    color: blue;
-}
-
-
-
-
-.text-container{
+/* container for price */
+.bottom-text-container {
     display: flex;
     flex-direction: column;
-    align-content: center;
-    justify-content: center;
+    color: rgb(149, 149, 155);
+    font-size: 13px;
+}
+
+.bottom-address-container {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.price-container {
+    color:black;
+    padding-top: 5px;
+    font-weight: bold;
 }
