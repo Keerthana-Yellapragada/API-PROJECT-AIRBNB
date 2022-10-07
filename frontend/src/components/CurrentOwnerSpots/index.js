@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllSpots } from "../../store/spots";
-
+import './CurrentOwnerSpots.css'
 
 const OwnerSpotsBrowser = () => {
   const dispatch = useDispatch(); // invoke dispatch
