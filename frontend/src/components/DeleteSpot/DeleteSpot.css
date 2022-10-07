@@ -1,0 +1,23 @@
+html {
+    display: flex;
+    justify-content: center;
+}
+
+.delete-spot-flex-container {
+
+   border-bottom: 1px solid rgb(183, 177, 177);
+}
+
+
+.delete-spot-button-container{
+    display:flex;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    padding: 25px 0px 25px 0px;
+
+}
+
+.delete-spot-flex-container h1 {
+    padding-top: 25px
+}

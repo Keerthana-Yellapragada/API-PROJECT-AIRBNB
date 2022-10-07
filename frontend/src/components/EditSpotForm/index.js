@@ -89,10 +89,14 @@ const updatePrice = (e) => setPrice(e.target.value);
 
 // RETURN THE FORM COMPONENT
     return (
-      <section>
+      <div className='edit-spot-flex-container'>
 
-        <form className="edit-spot-form">
-         <h1 className="edit-spot-title">EDIT YOUR LISTING</h1>
+        <form className="edit-spot-form-container">
+
+        <div className='title-container'>
+         <h1 className="title">Update Your Listing</h1>
+         </div>
+
           <input
             type="string"
             placeholder="Name"
@@ -158,11 +162,13 @@ const updatePrice = (e) => setPrice(e.target.value);
             value={description}
             onChange={updateDescription} />
 
-          <button className="update-spot-button" type="submit" onClick={handleSubmit}>Update Listing</button>
-          <button type="button" onClick={handleCancelClick}>Cancel</button>
+      <div className='edit-spot-button-container'>
+          <button className="update-button" type="submit" onClick={handleSubmit}>Update Listing</button>
+          <button className='cancel-button' type="button" onClick={handleCancelClick}>Cancel</button>
+      </div>
 
         </form>
-      </section>
+      </div>
     )
 
 

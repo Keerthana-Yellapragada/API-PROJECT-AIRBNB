@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllReviews } from '../../store/reviews';
+import './ReviewsBrowser.css'
 
 // REVIEWS FOR EACH SPOT
 
@@ -43,21 +44,22 @@ const ReviewsBrowser = () => {
                     filteredReviews.map(review => {
                         return (
                             <>
-                                <div>
+                            <div className='reviews-flex-container'>
+                                <div className='review-card-container'>
                                     <div >
-                                        <div>
+                                        <div className='review-details-container'>
                                             {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
 
-                                            <div className="primary-text-rating">{`${review.stars} stars`}</div>
-                                            <div className='address'> {review.review} </div>
+                                            <div className="review-rating">{`${review.stars} stars`}</div>
+                                            <div className='review-content'> {review.review} </div>
                                         </div>
                                     </div>
 
-                                    {/* <button>
+                                    <button className='delete-review-button'>
                                         <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
-                                    </button> */}
+                                    </button>
                                 </div>
-
+                            </div>
                             </>
                         )
                     })

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-router-dom';
 import removeSpot, { deleteSpot } from "../../store/spots"
 import { loadAllSpots } from '../../store/spots';
+import './DeleteSpot.css'
 
 const DeleteSpotForm = () => {
     const dispatch = useDispatch();
@@ -38,8 +39,9 @@ const DeleteSpotForm = () => {
 
     return (
         <>
-            <form>
-               <div>
+            <form className='delete-spot-flex-container'>
+                <h1>Remove This Listing</h1>
+               <div className='delete-spot-button-container'>
                     <button type="submit" onClick={handleSubmit}>Delete Listing</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </div>

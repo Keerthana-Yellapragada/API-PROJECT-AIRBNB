@@ -58,7 +58,7 @@ a {
 }
 
 /* styling for preview image*/
-img {
+.image-container img {
     width: 100%;
     aspect-ratio:1/1;
     border-radius: 5%;
