@@ -69,7 +69,8 @@ const updatePrice = (e) => setPrice(e.target.value);
 
      //console.log("THISSSSS IS EDITED PAYLOAD BEFORE DISPATCH ",payload)
 
-     const editedSpot = await dispatch(editSpot(payload)).then(dispatch(loadAllSpots()));
+     const editedSpot = await dispatch(editSpot(payload))
+     dispatch(loadAllSpots());
 
     // console.log("THIS IS THE USER INPUT", editedSpot)
 

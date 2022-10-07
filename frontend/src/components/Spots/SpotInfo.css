@@ -1,27 +1,84 @@
-*{
+html {
     box-sizing: border-box;
-    margin:0px;
-    padding:0px;
-}
-
-.spot-details-wrapper{
-    display:flex;
-    flex-direction: column;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.spot-header-container {
+    border-top: 1px solid rgb(200, 200, 200);
+    /* padding: 25px 25px 25px 25px; */
+    display: block;
+}
+
+.spot-header-name-container {
+    display: inline;
+    padding: 20px;
+    font-size: 2vh;
+    font-weight:bold;
+}
+
+.spot-header-info-container {
+    display: flex;
+    justify-content: flex-start;
     align-content: center;
-    width: 40%;
 }
 
-.spot-details{
-font-weight: bold;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-self:center ;
+.spot-address {
+    font-style: underline;
+    font-weight:bold;
+    display: flex;
+    padding: 5px;
+
+}
+
+.spot-stars {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.spot-rating {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.spot-image-container {
+    width: 100%;
+    padding: 25px 0px 0px 0px;
+}
+
+.spot-details-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding: 25px 0px 25px 0px;
+    border-bottom: 1px solid rgb(194, 191, 191);
+    font-weight: bold;
 }
 
 
-img {
-    width:100%
+.price-rating-side-container {
+    display: flex;
+    align-self: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid black; */
+    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 10%);
+    padding: 25px;
+    border-radius: 6%;
+    width: 20%;
+    height: 20%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+}
+
+.spot-description-rating {
+    padding: 20px;
+}
+
+.spot-description{
+    font-size: 2vh;
 }

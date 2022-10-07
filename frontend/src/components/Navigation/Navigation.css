@@ -82,7 +82,7 @@ header{
 
 }
 
-
+/*
 .profile-dropdown{
     position: relative;
     display: inline-block;
@@ -97,7 +97,7 @@ header{
     color:rgb(172, 171, 171);
     font-size: 20px;
     z-index: 1;
-}
+} */
 
 
 .userProfileButton{

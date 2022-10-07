@@ -12,77 +12,77 @@ const SpotInfo = () => {
 
     spotId = parseInt(spotId)
 
-    console.log("SPOT ID", spotId)
-
+    //console.log("SPOT ID", spotId)
 
 
     useEffect(() => {
         console.log("this is working")
         dispatch(loadAllSpots());
         dispatch(loadAllReviews(spotId))
-    },[dispatch, spotId])
+    }, [dispatch, spotId])
 
 
 
-const allSpotsArray = useSelector(state => Object.values(state.spots))
-console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
-const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-console.log("THIS IS CURRENT SPOT", currentSpot)
+    const allSpotsArray = useSelector(state => Object.values(state.spots))
+    //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
-if (!currentSpot) { // if we don't have a matching spot, then display nothing
-    return null
-}
+    const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
+    //console.log("THIS IS CURRENT SPOT", currentSpot)
+
+    if (!currentSpot) { // if we don't have a matching spot, then display nothing
+        return null
+    }
+
 
 
     return (
-        <div className="spot-details">
+        <>
+            <div className="spot-header-container">
 
-            <div className="spot-name">
-                <h1>{currentSpot.name}</h1>
-            </div>
-
-             <div className= "spot-rating">
-                    {/* {`Rating: ${currentSpot.avgRating} stars`} */}
-                        <i class="fa-solid fa-star">{currentSpot.avgRating}</i>
-            </div>
-
-            <div className="spot-address">
-                    {`${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
-            </div>
-
-            <div className='spot-image'>
-                <img src={currentSpot.previewImage} alt="preview-image"/>
-            </div>
-
-
-            <div className='spot-details-wrapper'>
-
-                {/* <div className="spot-address">
-                    {`${currentSpot.address}, ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
-                </div> */}
-
-                <div className= "spot-details">
-                    {`Description: ${currentSpot.description}`}
+                <div className="spot-header-name-container">
+                    <h1>{currentSpot.name}</h1>
                 </div>
 
-                <div className= "spot-details">
-                    {`Latitude: ${currentSpot.lat}`}    {`Longitude: ${currentSpot.lng}`}
+                <div className='spot-header-info-container'>
+                    <div className="spot-stars">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div className="spot-rating">
+                        {currentSpot.avgRating}
+                    </div>
+
+                    <div className="spot-address">
+                        {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
+                    </div>
                 </div>
 
-                 <div className= "spot-details">
-                    {`$${currentSpot.price}/night`}
-                </div>
-
-                {/* <div className= "spot-details">
-                    {`Rating: ${currentSpot.avgRating} stars`}
-                </div> */}
-{/*
-                <button>
-                    <NavLink to={`/spots/${spotId}/reviews`}>Click to see Reviews</NavLink>
-                </button> */}
             </div>
 
-        </div>
+            <div className='spot-image-container'>
+                <img src={currentSpot.previewImage} alt="preview-image" />
+            </div>
+
+
+            <div className='spot-details-container'>
+
+                <div className="spot-description">
+                    {currentSpot.description}
+                </div>
+
+                <div className='price-rating-side-container'>
+                    <div className="spot-description-price">
+                        {`$${currentSpot.price} night`}
+                    </div>
+
+                    <div className="spot-description-rating">
+                        <i class="fa-solid fa-star"></i>
+                        {currentSpot.avgRating}
+                    </div>
+                </div>
+
+            </div>
+
+        </>
 
     )
 

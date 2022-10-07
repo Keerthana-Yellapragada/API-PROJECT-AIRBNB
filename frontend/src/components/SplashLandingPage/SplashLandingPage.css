@@ -1,10 +1,13 @@
-/* reset default styling */
-* {
-    box-sizing: border-box;
-    margin:0;
-    padding: 0;
+/* styling for entire page */
 
+html {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin:25px;
+    padding:0px;
 }
+
 /* styling for logo */
 a {
     text-decoration: none
@@ -58,7 +61,7 @@ a {
 img {
     width: 100%;
     aspect-ratio:1/1;
-    border-radius: 10%;
+    border-radius: 5%;
 }
 
 /* container for rating and city, state */
