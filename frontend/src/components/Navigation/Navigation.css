@@ -93,10 +93,12 @@ header{
 }
 .profile-dropdown li {
     display: block;
+    position: absolute;
     color:rgb(172, 171, 171);
     font-size: 20px;
     z-index: 1;
 }
+
 
 .userProfileButton{
     margin:15px;

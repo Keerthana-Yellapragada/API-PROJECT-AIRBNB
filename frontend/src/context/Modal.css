@@ -1,4 +1,5 @@
 #modal {
+    box-sizing: border-box;
     position: fixed;
     top: 0;
     right: 0;
@@ -7,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20%;
 }
 
 #modal-background {
@@ -21,4 +23,7 @@
 #modal-content {
     position: absolute;
     background-color: white;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
 }

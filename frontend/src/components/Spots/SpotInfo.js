@@ -12,23 +12,27 @@ const SpotInfo = () => {
 
     spotId = parseInt(spotId)
 
-    console.log("SPOT ID ID ", spotId)
+    console.log("SPOT ID", spotId)
 
-    const allSpotsArray = useSelector(state => Object.values(state.spots))
-   // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
-    const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-   // console.log("THIS IS CURRENT SPOT", currentSpot)
+
 
     useEffect(() => {
-        dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+        console.log("this is working")
+        dispatch(loadAllSpots());
         dispatch(loadAllReviews(spotId))
-    })
+    },[dispatch, spotId])
 
-    // WHY DOES PAGE LOOK BLANK AFTER REFRESHING!?!?!?!!!!!!!!@!!!!
 
-    if (!currentSpot) { // if we don't have a matching spot, then display nothing
-        return null
-    }
+
+const allSpotsArray = useSelector(state => Object.values(state.spots))
+console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
+console.log("THIS IS CURRENT SPOT", currentSpot)
+
+if (!currentSpot) { // if we don't have a matching spot, then display nothing
+    return null
+}
+
 
     return (
         <div className="spot-details">

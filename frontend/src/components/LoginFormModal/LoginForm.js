@@ -21,7 +21,7 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className='login-form-container' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -29,6 +29,7 @@ function LoginForm() {
       </ul>
 
         <input
+          className="input-field"
           type="text"
           placeholder="Username or Email"
           value={credential}
@@ -37,6 +38,7 @@ function LoginForm() {
         />
 
         <input
+          className="input-field"
           type="password"
           placeholder="Password"
           value={password}

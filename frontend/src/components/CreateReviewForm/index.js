@@ -27,15 +27,13 @@ const CreateReviewForm = () => {
   const updateReview = (e) => setReview(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
 
-  useEffect(()=>{ // REDO!!!!
-    dispatch(loadAllReviews())
-  },[dispatch])
+  useEffect(()=>{
+    dispatch(loadAllReviews(spotId))
+  },[dispatch, spotId])
 
-  //HANDLE SUBMIT BUTTON CLICK EVENT
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    //console.log("THIS IS SPOT ID IN CREATE REVIEW", spotId)
 
     const reviewPayload = {
       stars,
@@ -48,11 +46,17 @@ const CreateReviewForm = () => {
     }
 
     let newReview = await dispatch(createNewReview(reviewImagePayload, reviewPayload)) //dispatch to update our store
+    dispatch(loadAllReviews(spotId))
 
     .then((newReview) => {
       if (newReview) {
+      // dispatch(loadAllReviews(spotId))
         history.push(`/spots/${spotId}`)
       }
+
+
+
+
     // })
     //   history.push(`/spots/${newReview.spotId}`); //redirect to the new spot's details page
   }) // NEED TO ADD A USEEFFECT!!!!

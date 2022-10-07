@@ -14,13 +14,15 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) { // if user is logged in, then show profile button
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <ProfileButton className='profile-dropdown-button' user={sessionUser} />
     );
   } else { // or else, show login and signup
     sessionLinks = (
       <>
-        <LoginFormModal />
-        <SignupFormModal />
+        <div className='profile-dropdown-content'>
+            <LoginFormModal />
+            <SignupFormModal />
+        </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
     );
@@ -43,7 +45,10 @@ function Navigation({ isLoaded }) {
         </div>
 
         <div className='user-profile-container'>
-          {isLoaded && sessionLinks}
+          <div></div>
+          <div className='profile-dropdown-content'>
+              {isLoaded && sessionLinks}
+          </div>
         </div>
 
 

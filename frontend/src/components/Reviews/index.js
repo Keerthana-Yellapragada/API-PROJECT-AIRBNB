@@ -11,6 +11,10 @@ const ReviewsBrowser = () => {
     spotId = parseInt(spotId)
 
     //const userId = useSelector(state => state.session.user.id)
+    useEffect(() => {
+        console.log("THIS IS IN REVIEWS USEFFECT")
+        dispatch(loadAllReviews(spotId));
+    }, [])
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
@@ -19,9 +23,6 @@ const ReviewsBrowser = () => {
 
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
-    useEffect(() => {
-        dispatch(loadAllReviews(spotId));
-    }, [dispatch])
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
         return null;

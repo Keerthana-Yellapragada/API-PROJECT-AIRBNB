@@ -167,46 +167,47 @@ const initialState = {}
 
 
 const spotsReducer = (state = initialState, action) => {
-    let allSpots = {}
+    let newState;
 
     switch (action.type) {
 ///*****************************************************************************/
 
         case GET_ALLSPOTS:
             //normalize our data
+            newState = {...state}
             action.spots.Spots.forEach(spot => {
-                allSpots[spot.id] = spot
+                newState[spot.id] = spot
             })
 
-            return { ...state, ...allSpots } //return a new updated state for spots
+            return newState; //return a new updated state for spots
 
 ///*************************************************************************** */
 
         case CREATE_SPOT:
-            const newState = { ...state }
+            newState = { ...state }
             //console.log(action.payload)
             newState[action.payload.id] = action.payload
            // newState[action.payload.previewImage] = action.payload.images
 
-            return newState //??
+            return newState
 
 ///*************************************************************************** */
 
         case UPDATE_SPOT:
-            const updatedState = { ...state }
+            newState = { ...state }
             //console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
-            updatedState[action.payload.id] = action.payload
+            newState[action.payload.id] = action.payload
 
-            return updatedState;
+            return newState;
 
 ///*************************************************************************** */
 
         case REMOVE_SPOT:
-            const modifiedState = { ...state }
+           newState = { ...state }
             // console.log("REACHED REDUCER FOR DELETE")
-            delete modifiedState[action.payload]
+            delete newState[action.payload]
 
-            return modifiedState
+            return newState
 
 ///*************************************************************************** */
 

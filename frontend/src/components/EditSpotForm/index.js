@@ -13,6 +13,10 @@ const EditSpotForm = () => {
     const history = useHistory();
     const [errorMessages, setErrorMessages] = useState({});
 
+ useEffect(() => {
+   dispatch(loadAllSpots());
+ }, [dispatch, spotId]);
+
   //GET THIS SPOT
        const allSpotsArray = useSelector(state => Object.values(state.spots))
        //console.log("THIS IS ALL SPOTS ARRAY", allSpotsArray)
@@ -46,9 +50,6 @@ const updateLng = (e) => setLng(e.target.value);
 const updateDescription = (e) => setDescription(e.target.value);
 const updatePrice = (e) => setPrice(e.target.value);
 
- useEffect(() => {
-     dispatch(loadAllSpots());
- }, [dispatch, spotId]);
 
  const handleSubmit = async (e) => {
      e.preventDefault();
@@ -68,7 +69,7 @@ const updatePrice = (e) => setPrice(e.target.value);
 
      //console.log("THISSSSS IS EDITED PAYLOAD BEFORE DISPATCH ",payload)
 
-     const editedSpot = await dispatch(editSpot(payload));
+     const editedSpot = await dispatch(editSpot(payload)).then(dispatch(loadAllSpots()));
 
     // console.log("THIS IS THE USER INPUT", editedSpot)
 
