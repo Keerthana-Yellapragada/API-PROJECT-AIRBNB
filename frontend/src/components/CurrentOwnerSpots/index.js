@@ -5,63 +5,74 @@ import { loadAllSpots } from "../../store/spots";
 import './CurrentOwnerSpots.css'
 
 const OwnerSpotsBrowser = () => {
-  const dispatch = useDispatch(); // invoke dispatch
+  const dispatch = useDispatch();
 
-  //console.log("BEGINNING OF COMPONENT")
 
-const allSpots = useSelector(state => Object.values(state.spots));
-const userId = useSelector(state => state.session.user.id)
-console.log("THIS IS USERID", userId)
+  const allSpots = useSelector(state => Object.values(state.spots));
+  const userId = useSelector(state => state.session.user.id)
 
+  //console.log("THIS IS USERID", userId)
 
   useEffect(() => {
-    dispatch(loadAllSpots()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+    dispatch(loadAllSpots());
   }, [dispatch])
 
-  if (!allSpots) { //if we don't have spots- don't display anything
+  if (!allSpots) {
     return null;
   }
 
   let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
-  console.log("THESE ARE FILTERED SPOTS", filteredSpots)
+  // console.log("THESE ARE FILTERED SPOTS", filteredSpots)
 
-  //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
-
-  return (
-
+  dispatch(loadAllSpots())
+    return (
     <>
-      <div className="owner-spots-title"> <h1> MY LISTINGS </h1> </div>
-      <div className="owner-spots-wrapper">
+    <div className='title'>
+      <h1> My Listings </h1>
+    </div>
+
+      <div className="flex-container">
         {
           filteredSpots.map(spot => {
             return (
               <>
-                <div className='homepage-spot-card'>
+                <div className='spot-card-flex-container'>
                   <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                    <div >
-                      <div>
-                        <div className='previewImage'>
+
+                    <div className='flex-spot-container'>
+
+                        <div className='image-container'>
                           <img src={spot.previewImage} />
                         </div>
-                        <div className="primary-text">{spot.name}</div>
-                        <div className="secondary-text">
 
-                          <div className='rating'>
-                            {spot.avgRating}
-                          </div>
 
-                          <div className='price'>
-                            {`$${spot.price}`}
-                          </div>
+                        <div className="top-text-container">
 
-                          <div className='address'>
-                            {`${spot.city}, ${spot.state}`}
+                            <div className='top-address-container'>
+                              {`${spot.city}, ${spot.state}`}
+                            </div>
+
+                            <div className='rating-container'>
+                              <i class="fa-solid fa-star"></i>
+                              {spot.avgRating}
+                            </div>
+
+                        </div>
+
+                        <div className="bottom-text-container">
+                           <div className='bottom-address-container'>
+                              {`${spot.city}, ${spot.state}`}
+                            </div>
+                          <div className='price-container'>
+                            {`$${spot.price} night`}
                           </div>
                         </div>
+
                       </div>
-                    </div>
+
                   </NavLink>
                 </div>
+
               </>
             )
           })
@@ -69,6 +80,53 @@ console.log("THIS IS USERID", userId)
       </div>
     </>
   )
+
+
+  // return (
+
+  //   <>
+  //     <div className="owner-spots-title">
+  //       <h1> My Listings </h1>
+  //     </div>
+
+  //     <div className="owner-spots-wrapper">
+  //       {
+  //         filteredSpots.map(spot => {
+  //           return (
+  //             <>
+  //               <div className='homepage-spot-card'>
+  //                 <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+  //                   <div >
+  //                     <div>
+  //                       <div className='previewImage'>
+  //                         <img src={spot.previewImage} />
+  //                       </div>
+  //                       <div className="primary-text">{spot.name}</div>
+  //                       <div className="secondary-text">
+
+  //                         <div className='rating'>
+  //                           {spot.avgRating}
+  //                         </div>
+
+  //                         <div className='price'>
+  //                           {`$${spot.price}`}
+  //                         </div>
+
+  //                         <div className='address'>
+  //                           {`${spot.city}, ${spot.state}`}
+  //                         </div>
+  //                       </div>
+  //                     </div>
+  //                   </div>
+  //                 </NavLink>
+  //               </div>
+  //             </>
+  //           )
+  //         })
+  //       }
+  //     </div>
+  //   </>
+  // )
 
 }
 

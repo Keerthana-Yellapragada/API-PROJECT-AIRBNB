@@ -12,8 +12,15 @@ html {
 a {
     text-decoration: none
 }
-/* styling for ayrbnb logo */
+.title{
+    display: flex;
+    justify-content: center;
+    padding:25px;
+    border-bottom: 1px solid rgb(177, 173, 173);
+    border-top: 1px solid rgb(177, 173, 173);
+}
 
+/* styling for ayrbnb logo */
 .logo {
     color: red;
     font-size: xx-large;
@@ -32,7 +39,8 @@ a {
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%
+    width: 100%;
+    border-bottom: 1px solid rgb(177, 173, 173);
 }
 
 /* for each spot card */
@@ -45,9 +53,9 @@ a {
     justify-content: center;
     align-content: center;
     align-items: center;
-    flex-basis: 1 1 1;
+    flex-basis: 250px;
     flex-direction: column;
-    width: 25%;
+
 
 }
 

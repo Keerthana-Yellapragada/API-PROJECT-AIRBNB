@@ -5,7 +5,7 @@ import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createSpot, { createNewSpot } from "../../store/spots"
 
 
-const CreateSpotForm = () => {
+const CreateSpotForm = ({closeProp}) => {
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState({});
@@ -59,8 +59,9 @@ const CreateSpotForm = () => {
       url,
       preview
     }
+     closeProp()
     //CREATE THE NEW SPOT
-    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload)).then(() => history.push("/")) //dispatch to update our store
+    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload)).then(() => history.push(`spots/${newSpot.id}`)) //dispatch to update our store
 
 
   }

@@ -5,12 +5,17 @@ import CreateSpotForm from './CreateSpotForm';
 function CreateSpotFormModal() {
   const [showModal, setShowModal] = useState(false);
 
+  const closeModal=() => {
+    setShowModal(false)
+  }
+
   return (
     <>
       <button onClick={() => setShowModal(true)}>Become A Host</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateSpotForm />
+
+          <CreateSpotForm  closeProp={closeModal}/>
         </Modal>
       )}
     </>

@@ -1,0 +1,18 @@
+html {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+    padding: 0px;
+}
+
+.owner-spots-title{
+    display:flex;
+    justify-content: flex-start;
+    padding:25px;
+
+}
+
+.owner-spots-wrapper{
+
+}
