@@ -21,6 +21,7 @@ const CreateSpotForm = ({closeProp}) => {
   const [price, setPrice] = useState("");
   const [url, setUrl] = useState("");
   const [preview, setPreview] = useState(false)
+  const [validationErrors, setValidationErrors] = useState([]);
 
   //update functions
   const updateName = (e) => setName(e.target.value);
@@ -34,11 +35,21 @@ const CreateSpotForm = ({closeProp}) => {
   const updatePrice = (e) => setPrice(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
   const updatePreview = (e) => setPreview(!preview)
-  //HANDLE SUBMIT BUTTON CLICK EVENT
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // prevent default reloading of html form
 
-    //console.log("I CLICKED SUBMIT")
+
+  useEffect(()=> {
+    const errors=[];
+
+    if (lat < 0 || lat > 90) {errors.push("Please enter a valid latitude")}
+    if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
+    if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
+    if (url && !url.split().includes('http')){errors.push("Please enter a valid URL")}
+    setValidationErrors(errors)
+
+  },[lat,lng,price,url])
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const spotInfoPayload = {
       name,
@@ -50,29 +61,24 @@ const CreateSpotForm = ({closeProp}) => {
       lng,
       description,
       price
-      //,images
     }
-
-    //console.log("THIS IS SPOT INFO PAYLOAD", spotInfoPayload)
 
     const imagePayload = {
       url,
       preview
     }
-     closeProp()
-    //CREATE THE NEW SPOT
-    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload)).then(() => history.push(`spots/${newSpot.id}`)) //dispatch to update our store
+     closeProp();
 
+    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload)).then(() => history.push(`spots/${newSpot.id}`)) //dispatch to update our store
 
   }
 
 
-  //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {
     e.preventDefault();
-    //setErrorMessages({});
-    // hideForm();
   };
+
+
 
 
   // RETURN THE FORM COMPONENT
@@ -80,7 +86,11 @@ const CreateSpotForm = ({closeProp}) => {
     <section>
 
       <form>
-        <h1> CREATE A LISTING</h1>
+        <h1> Create A New Listing</h1>
+        <ul className="errors">
+        {validationErrors.length > 0 &&
+          validationErrors.map((error) => <li key={error}>{error}</li>)}
+        </ul>
 {/*
         <label htmlFor="Name">Name</label> */}
         <input
@@ -171,21 +181,24 @@ const CreateSpotForm = ({closeProp}) => {
         <label htmlFor="image">Add A Picture</label> */}
         <input
           id="image"
+          required
           type="string"
           placeholder='Insert image URL here'
           value={url}
           onChange={updateUrl} />
 
 
-        <label htmlFor="preview">Select the box below to set the above image as the preview image for your listing</label>
+        <label className="add-preview-image" htmlFor="preview">Select the box below to set the above image as the preview image for your listing</label>
         <input
+          className='checkbox'
           id="preview"
           type="checkbox"
           value={preview}
           onChange={updatePreview} />
 
 
-        <button type="submit" onClick={handleSubmit}>Create New Spot</button>
+        <button type = "submit"
+        disabled = {validationErrors.length > 0 ? true : false} onClick = {handleSubmit} > Create New Spot </button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
 
       </form>

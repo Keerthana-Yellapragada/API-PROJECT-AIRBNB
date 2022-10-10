@@ -17,6 +17,7 @@ const CreateReviewForm = () => {
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
   const [url, setUrl] = useState("")
+  const [validationErrors, setValidationErrors] = useState([]);
 
   // if (!userId) {
   //   console.log("Must be logged in to leave a review")
@@ -31,9 +32,24 @@ const CreateReviewForm = () => {
     dispatch(loadAllReviews(spotId))
   },[dispatch, spotId])
 
+  useEffect(()=> {
+    const errors= [];
+    if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
+
+    setValidationErrors(errors)
+  },[stars])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+     let errors= [];
+    if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
+    if(!review) { errors.push("Please provide a review")}
 
+    setValidationErrors(errors)
+
+    if(errors.length) {
+      return null
+    }
 
     const reviewPayload = {
       stars,
@@ -74,8 +90,14 @@ const CreateReviewForm = () => {
     <section>
 
       <form>
-        <h1> LEAVE A REVIEW</h1>
+        <h1> Leave A Review! </h1>
         <h3>Tell us more about your experience!</h3>
+
+         <ul className="errors">
+        {validationErrors.length > 0 &&
+          validationErrors.map((error) => <li key={error}>{error}</li>)}
+        </ul>
+
 
         <input
           id="review-info"
@@ -85,8 +107,8 @@ const CreateReviewForm = () => {
           value={review}
           onChange={updateReview} />
 
-
-        <label htmlFor="stars-rating">Rating(0-5 stars)</label>
+{/*
+        <label htmlFor="stars-rating">Rating(0-5 stars)</label> */}
         <input
            id="stars-rating"
           type="number"
@@ -95,10 +117,11 @@ const CreateReviewForm = () => {
           value={stars}
           onChange={updateStars} />
 
-        <label htmlFor="url">Picture</label>
+        {/* <label htmlFor="url">Picture</label> */}
         <input
           id="url"
           type="string"
+          required
           placeholder='Insert image URL here'
           value={url}
           onChange={updateUrl} />

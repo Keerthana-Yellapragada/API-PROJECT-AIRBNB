@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 20%;
+
 }
 
 #modal-background {
@@ -25,5 +26,32 @@
     background-color: white;
     display: flex;
     align-content: center;
+    justify-content: center;
     flex-direction: column;
+    padding:20px;
+    border-radius: 4%;
+    width: fit-content;
+}
+
+form .errors li {
+    font-weight: bold;
+    padding: 15 px;
+    list-style: none;
+}
+
+form h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    padding:15px;
+}
+
+
+.add-preview-image{
+    padding: 30px;
+}
+
+.checkbox {
+    padding:30px;
 }

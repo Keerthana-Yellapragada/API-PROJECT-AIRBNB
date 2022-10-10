@@ -6,8 +6,8 @@ import { loadUserReviews } from '../../store/reviews';
 
 
 const UserReviewsBrowser = () => {
-    const dispatch = useDispatch(); // invoke dispatch
-    let { spotId } = useParams(); // use params
+    const dispatch = useDispatch();
+    let { spotId } = useParams();
     spotId = parseInt(spotId)
 
     const allReviews = useSelector(state => {
@@ -17,21 +17,18 @@ const UserReviewsBrowser = () => {
 
     const userId = useSelector(state=>state.session.user.id)
 
-   // console.log("THIS IS USER ID", userId)
-   // console.log("THIS IS ALL REVIEWS", allReviews)
+
 
     useEffect(() => {
-        dispatch(loadUserReviews()); // dispatch our invoked loadAllSpots thunkmiddleware which will invoke getAllSpots thunk
+        dispatch(loadUserReviews());
     }, [dispatch])
 
-    if (!allReviews) { //if we don't have spots- don't display anything
+    if (!allReviews) {
         return null;
     }
 
     //GET REVIEWS OF CURRENT USER
     let userReviews = allReviews.filter(review => review.userId === userId )
-    //console.log(userReviews)
-    //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
 
     return (
         <>

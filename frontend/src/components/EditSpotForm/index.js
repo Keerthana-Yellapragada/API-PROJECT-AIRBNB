@@ -36,7 +36,7 @@ const EditSpotForm = () => {
   const [lng, setLng] = useState(currentSpotDetails.lng);
   const [description, setDescription] = useState(currentSpotDetails.description);
   const [price, setPrice] = useState(currentSpotDetails.price);
-
+  const [validationErrors, setValidationErrors] = useState([]);
 
   //update functions
   const updateName = (e) => setName(e.target.value);
@@ -50,10 +50,20 @@ const EditSpotForm = () => {
   const updatePrice = (e) => setPrice(e.target.value);
 
 
-  if (!currentSpotDetails) {
-    return null
-  }
+useEffect(()=> {
+    const errors=[];
 
+    if (lat < 0 || lat > 90) {errors.push("Please enter a valid latitude")}
+    if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
+    if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
+
+    setValidationErrors(errors)
+
+  },[lat,lng,price])
+
+if (!currentSpotDetails) {
+  return null
+}
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,19 +81,11 @@ const EditSpotForm = () => {
       price
     };
 
-    //console.log("THISSSSS IS EDITED PAYLOAD BEFORE DISPATCH ",payload)
-
     const editedSpot = await dispatch(editSpot(payload))
+    dispatch(loadAllSpots())
 
-    dispatch(loadAllSpots());
+    history.push(`/spots/${spotId}`)
 
-    // console.log("THIS IS THE USER INPUT", editedSpot)
-
-    if (editedSpot) {
-      //  history.push(`/`)
-      history.push(`/spots/${spotId}`)
-      //  hideForm();
-    }
   };
 
   const handleCancelClick = (e) => {
@@ -97,10 +99,15 @@ const EditSpotForm = () => {
     <div className='edit-spot-flex-container'>
 
       <form className="edit-spot-form-container">
-
-        <div className='title-container'>
+         <div className='title-container'>
           <h1 className="title">Update This Listing</h1>
         </div>
+
+         <ul className="errors">
+        {validationErrors.length > 0 &&
+          validationErrors.map((error) => <li key={error}>{error}</li>)}
+        </ul>
+
 
         <input
           type="string"
