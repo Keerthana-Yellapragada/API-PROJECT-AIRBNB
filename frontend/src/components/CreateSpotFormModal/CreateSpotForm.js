@@ -43,7 +43,8 @@ const CreateSpotForm = ({closeProp}) => {
     if (lat < 0 || lat > 90) {errors.push("Please enter a valid latitude")}
     if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
     if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
-    if (url && !url.split().includes('http')){errors.push("Please enter a valid URL")}
+    if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
+
     setValidationErrors(errors)
 
   },[lat,lng,price,url])
@@ -67,15 +68,17 @@ const CreateSpotForm = ({closeProp}) => {
       url,
       preview
     }
-     closeProp();
 
-    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload)).then(() => history.push(`spots/${newSpot.id}`)) //dispatch to update our store
 
+    let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload))
+    history.push(`/spots/${newSpot.id}`)
+    closeProp();
   }
 
 
   const handleCancelClick = (e) => {
     e.preventDefault();
+    closeProp();
   };
 
 
@@ -85,12 +88,12 @@ const CreateSpotForm = ({closeProp}) => {
   return (
     <section>
 
-      <form>
+      <form onSubmit = {handleSubmit}>
         <h1> Create A New Listing</h1>
-        <ul className="errors">
+        <div >
         {validationErrors.length > 0 &&
-          validationErrors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+          validationErrors.map((error) => <div className="errors" key={error}>{error}</div>)}
+        </div>
 {/*
         <label htmlFor="Name">Name</label> */}
         <input
@@ -198,7 +201,7 @@ const CreateSpotForm = ({closeProp}) => {
 
 
         <button type = "submit"
-        disabled = {validationErrors.length > 0 ? true : false} onClick = {handleSubmit} > Create New Spot </button>
+        disabled = {validationErrors.length > 0 ? true : false}  > Create New Spot </button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
 
       </form>

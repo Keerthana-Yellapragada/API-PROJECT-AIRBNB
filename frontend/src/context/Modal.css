@@ -28,21 +28,18 @@
     align-content: center;
     justify-content: center;
     flex-direction: column;
-    padding:20px;
+    padding:30px;
     border-radius: 4%;
     width: fit-content;
 }
 
-form .errors li {
-    font-weight: bold;
-    padding: 15 px;
-    list-style: none;
-}
+
 
 form h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
     font-weight: bold;
     padding:15px;
 }
@@ -54,4 +51,10 @@ form h1 {
 
 .checkbox {
     padding:30px;
+}
+
+.errors {
+    color:red;
+    padding: 8px;
+    text-align: center;
 }

@@ -89,14 +89,14 @@ const CreateReviewForm = () => {
   return (
     <section>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1> Leave A Review! </h1>
         <h3>Tell us more about your experience!</h3>
 
-         <ul className="errors">
+         <div className="errors">
         {validationErrors.length > 0 &&
-          validationErrors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+          validationErrors.map((error) => <div key={error}>{error}</div>)}
+        </div>
 
 
         <input
@@ -126,7 +126,7 @@ const CreateReviewForm = () => {
           value={url}
           onChange={updateUrl} />
 
-        <button type="submit" onClick={handleSubmit}>Post Your Review</button>
+        <button type="submit" >Post Your Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
 
       </form>

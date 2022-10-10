@@ -16,7 +16,7 @@ const EditSpotForm = () => {
 
   useEffect(() => {
     dispatch(loadAllSpots());
-  },[dispatch, spotId]);
+  }, [dispatch, spotId]);
 
 
   //GET THIS SPOT
@@ -50,20 +50,20 @@ const EditSpotForm = () => {
   const updatePrice = (e) => setPrice(e.target.value);
 
 
-useEffect(()=> {
-    const errors=[];
+  useEffect(() => {
+    const errors = [];
 
-    if (lat < 0 || lat > 90) {errors.push("Please enter a valid latitude")}
-    if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
-    if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
+    if (lat < 0 || lat > 90) { errors.push("Please enter a valid latitude") }
+    if (lng < -180 || lng > 180) { errors.push("Please enter a valid longitude") }
+    if (price < 0) { errors.push("You can host for free if you really wish to, but please specify $0 in the price field.") }
 
     setValidationErrors(errors)
 
-  },[lat,lng,price])
+  }, [lat, lng, price])
 
-if (!currentSpotDetails) {
-  return null
-}
+  if (!currentSpotDetails) {
+    return null
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -90,7 +90,7 @@ if (!currentSpotDetails) {
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    // hideForm();
+
     history.push(`/spots/${spotId}`)
   }
 
@@ -98,15 +98,15 @@ if (!currentSpotDetails) {
   return (
     <div className='edit-spot-flex-container'>
 
-      <form className="edit-spot-form-container">
-         <div className='title-container'>
+      <form onSubmit={handleSubmit} className="edit-spot-form-container">
+        <div className='title-container'>
           <h1 className="title">Update This Listing</h1>
         </div>
 
-         <ul className="errors">
-        {validationErrors.length > 0 &&
-          validationErrors.map((error) => <li key={error}>{error}</li>)}
-        </ul>
+        <div className="errors">
+          {validationErrors.length > 0 &&
+            validationErrors.map((error) => <div key={error}>{error}</div>)}
+        </div>
 
 
         <input
@@ -175,7 +175,7 @@ if (!currentSpotDetails) {
           onChange={updateDescription} />
 
         <div className='edit-spot-button-container'>
-          <button className="update-button" type="submit" onClick={handleSubmit}>Update Listing</button>
+          <button className="update-button" type="submit">Update Listing</button>
           <button className='cancel-button' type="button" onClick={handleCancelClick}>Cancel</button>
         </div>
 

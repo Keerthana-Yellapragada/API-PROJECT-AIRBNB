@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect,useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 
@@ -8,6 +8,12 @@ function LoginForm() {
   const [credential, setCredential] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    const errors=[];
+
+    if(credential && !credential.includes('@')){errors.push("Please provide a valid email")}
+  }, [credential,password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,11 +28,11 @@ function LoginForm() {
 
   return (
     <form className='login-form-container' onSubmit={handleSubmit}>
-      <ul>
+      <div >
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <div className="errors" key={idx}>{error}</div>
         ))}
-      </ul>
+      </div>
 
         <input
           className="input-field"

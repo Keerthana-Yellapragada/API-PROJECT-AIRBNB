@@ -33,9 +33,9 @@ const DeleteReviewForm = () => {
 
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
-                    <button type="submit" onClick={handleSubmit}>Delete review</button>
+                    <button type="submit">Delete review</button>
                     <button type="button" onClick={handleCancelClick}>Cancel</button>
                 </div>
 
