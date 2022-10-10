@@ -4,13 +4,12 @@ import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-rou
 import removeSpot, { deleteSpot } from "../../store/spots"
 import { loadAllSpots } from '../../store/spots';
 import './DeleteSpot.css'
+import {closeProp} from "../../context/Modal"
 
-const DeleteSpotForm = () => {
+const DeleteSpotForm = ({closeProp}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     let { spotId } = useParams();
-    //const [errorMessages, setErrorMessages] = useState({});
-
     spotId = parseInt(spotId)
 
 
@@ -23,7 +22,9 @@ const DeleteSpotForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(deleteSpot(spotId))
+         closeProp();
          history.push("/")
+
 
 
     }
@@ -31,7 +32,9 @@ const DeleteSpotForm = () => {
     //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
         e.preventDefault();
-        history.push(`/spots/${spotId}`)
+        closeProp();
+        history.push("/current/spots")
+
     };
 
 
@@ -40,10 +43,10 @@ const DeleteSpotForm = () => {
     return (
         <>
             <form className='delete-spot-flex-container'>
-                <h1>Remove This Listing</h1>
+                <h1>Are you sure you want to remove this listing?</h1>
                <div className='delete-spot-button-container'>
-                    <button type="submit" onClick={handleSubmit}>Delete Listing</button>
-                    <button type="button" onClick={handleCancelClick}>Cancel</button>
+                    <button type="submit" onClick={handleSubmit}>Yes, Remove Listing</button>
+                    <button type="button" onClick={handleCancelClick}>No, Cancel</button>
                 </div>
 
             </form>

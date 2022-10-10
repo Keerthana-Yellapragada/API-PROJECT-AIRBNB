@@ -13,6 +13,14 @@ html {
 
 }
 
-.owner-spots-wrapper{
+/* .owner-spots-wrapper{
+
+} */
+
+.modal-button{
+    display:flex;
+    align-self:center;
+    justify-content:center;
+    padding:5px;
 
 }

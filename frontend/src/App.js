@@ -50,27 +50,16 @@ function App() {
 
           <Route exact path="/spots/:spotId">
             <SpotInfo />
-            <EditSpotForm />
-            <DeleteSpotForm />
-            <ReviewsBrowser />
-            <CreateReviewForm />
-
-
           </Route>
-
-           {/* <Route exact path="/spots">
-            <CreateSpotForm />
-          </Route> */}
 
           <Route exact path="/signup">
             <SignupFormPage />
           </Route>
 
           <Route exact path="/">
-            {/* <CreateSpotFormModal /> */}
+
             <SpotsBrowser />
           </Route>
-
 
 
           <Route exact path="/current/spots">

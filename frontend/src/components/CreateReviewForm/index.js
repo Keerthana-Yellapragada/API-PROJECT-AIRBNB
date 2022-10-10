@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createReview, { createNewReview, loadAllReviews } from "../../store/reviews"
-
+import "./CreateReview.css"
 
 const CreateReviewForm = () => {
 
@@ -13,6 +13,7 @@ const CreateReviewForm = () => {
   spotId = parseInt(spotId)
   const userId = useSelector(state=>state.session.user.id)
   const reviews = useSelector(state=> state.reviews)
+  const currSpot = useSelector(state=>state.spots.spotId)
 
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
@@ -40,6 +41,11 @@ const CreateReviewForm = () => {
   },[stars])
 
   const handleSubmit = async (e) => {
+
+if (currSpot.ownerId === userId) {
+  return null
+}
+
     e.preventDefault();
      let errors= [];
     if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
@@ -87,7 +93,7 @@ const CreateReviewForm = () => {
 
   // RETURN THE FORM COMPONENT
   return (
-    <section>
+    <div className='create-review-container'>
 
       <form onSubmit={handleSubmit}>
         <h1> Leave A Review! </h1>
@@ -130,7 +136,7 @@ const CreateReviewForm = () => {
         <button type="button" onClick={handleCancelClick}>Cancel</button>
 
       </form>
-    </section>
+    </div>
   )
 }
 

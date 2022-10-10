@@ -5,14 +5,21 @@ import getSpotInfo from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
 import './SpotInfo.css'
 import { loadAllReviews } from '../../store/reviews';
+import EditSpotForm from "../EditSpotForm"
+import DeleteSpotForm from "../DeleteSpot"
+import ReviewsBrowser from "../Reviews"
+import CreateReviewForm from "../CreateReviewForm"
+import CreateReviewFormModal from '../CreateReviewForm/CreateReviewModal';
+import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams(); // get spotId from params
 
     spotId = parseInt(spotId)
-
     //console.log("SPOT ID", spotId)
+
+    const userId = useSelector(state => state.session.user.id)
 
 
     useEffect(() => {
@@ -45,7 +52,7 @@ const SpotInfo = () => {
 
                 <div className='spot-header-info-container'>
                     <div className="spot-stars">
-                        <i class="fa-solid fa-star"></i>
+                        <i className="fa-solid fa-star"></i>
                     </div>
                     <div className="spot-rating">
                         {currentSpot.avgRating}
@@ -82,11 +89,26 @@ const SpotInfo = () => {
 
             </div>
 
+            {/* {
+              ((userId && userId === currentSpot.ownerId) ? <EditSpotFormModal/> : null)
+
+            }
+            {
+                ((userId && userId === currentSpot.ownerId) ? <DeleteSpotForm /> : null)
+            } */}
+
+            {/* {
+                (userId && userId === currentSpot.userId ? < CreateReviewForm /> : null)
+            } */}
+
+             < ReviewsBrowser />
+             < CreateReviewFormModal />
+
+            {
+                (userId && !userId === currentSpot.userId ? <CreateReviewForm /> : null)
+            }
         </>
-
     )
-
-
 }
 
 

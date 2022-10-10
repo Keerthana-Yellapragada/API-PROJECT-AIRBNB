@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllSpots } from "../../store/spots";
+import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
+import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 import './CurrentOwnerSpots.css'
 
 const OwnerSpotsBrowser = () => {
@@ -71,6 +73,11 @@ const OwnerSpotsBrowser = () => {
                       </div>
 
                   </NavLink>
+
+                       <EditSpotFormModal />
+                       <DeleteSpotFormModal />
+
+
                 </div>
 
               </>
@@ -78,6 +85,7 @@ const OwnerSpotsBrowser = () => {
           })
         }
       </div>
+
     </>
   )
 

@@ -7,7 +7,7 @@ import SpotInfo from '../Spots/SpotInfo';
 import "./EditSpotForm.css"
 
 
-const EditSpotForm = () => {
+const EditSpotForm = ({closeProp}) => {
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = parseInt(spotId);
@@ -83,15 +83,17 @@ const EditSpotForm = () => {
 
     const editedSpot = await dispatch(editSpot(payload))
     dispatch(loadAllSpots())
-
+    closeProp();
     history.push(`/spots/${spotId}`)
+
 
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
+    closeProp();
+    history.push(`/current/spots`)
 
-    history.push(`/spots/${spotId}`)
   }
 
   // RETURN THE FORM COMPONENT
