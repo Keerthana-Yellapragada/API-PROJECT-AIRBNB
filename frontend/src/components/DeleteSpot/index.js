@@ -21,9 +21,9 @@ const DeleteSpotForm = ({closeProp}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(deleteSpot(spotId))
-         closeProp();
-         history.push("/")
+           closeProp();
+        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/"))
+
 
 
 

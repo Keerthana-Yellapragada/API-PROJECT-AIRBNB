@@ -16,7 +16,7 @@ function DeleteSpotFormModal() {
 
   return (
     <>
-      <button className="modal-button" onClick={() => setShowModal(true)}>Delete this Listing</button>
+      <button className="modal-button" onClick={() => setShowModal(true)}>Delete Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <DeleteSpotForm closeProp={closeModal}/>

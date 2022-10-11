@@ -55,7 +55,7 @@ const OwnerSpotsBrowser = () => {
                             </div>
 
                             <div className='rating-container'>
-                              <i class="fa-solid fa-star"></i>
+                              <i className="fa-solid fa-star"></i>
                               {spot.avgRating}
                             </div>
 

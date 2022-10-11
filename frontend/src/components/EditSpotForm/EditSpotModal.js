@@ -16,7 +16,7 @@ function EditSpotFormModal() {
 
   return (
     <>
-      <button className="modal-button" onClick={() => setShowModal(true)}>Update Your Listing</button>
+      <button className="modal-button" onClick={() => setShowModal(true)}>Update Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <EditSpotForm closeProp={closeModal}/>
