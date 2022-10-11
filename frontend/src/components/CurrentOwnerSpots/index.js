@@ -8,12 +8,11 @@ import './CurrentOwnerSpots.css'
 
 const OwnerSpotsBrowser = () => {
   const dispatch = useDispatch();
-
-
   const allSpots = useSelector(state => Object.values(state.spots));
   const userId = useSelector(state => state.session.user.id)
+  let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
 
-  //console.log("THIS IS USERID", userId)
+
 
   useEffect(() => {
     dispatch(loadAllSpots());
@@ -23,10 +22,9 @@ const OwnerSpotsBrowser = () => {
     return null;
   }
 
-  let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
-  // console.log("THESE ARE FILTERED SPOTS", filteredSpots)
+  dispatch(loadAllSpots()); //rehydrate state
 
-  dispatch(loadAllSpots())
+
     return (
     <>
     <div className='title'>
@@ -89,56 +87,7 @@ const OwnerSpotsBrowser = () => {
     </>
   )
 
-
-  // return (
-
-  //   <>
-  //     <div className="owner-spots-title">
-  //       <h1> My Listings </h1>
-  //     </div>
-
-  //     <div className="owner-spots-wrapper">
-  //       {
-  //         filteredSpots.map(spot => {
-  //           return (
-  //             <>
-  //               <div className='homepage-spot-card'>
-  //                 <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-  //                   <div >
-  //                     <div>
-  //                       <div className='previewImage'>
-  //                         <img src={spot.previewImage} />
-  //                       </div>
-  //                       <div className="primary-text">{spot.name}</div>
-  //                       <div className="secondary-text">
-
-  //                         <div className='rating'>
-  //                           {spot.avgRating}
-  //                         </div>
-
-  //                         <div className='price'>
-  //                           {`$${spot.price}`}
-  //                         </div>
-
-  //                         <div className='address'>
-  //                           {`${spot.city}, ${spot.state}`}
-  //                         </div>
-  //                       </div>
-  //                     </div>
-  //                   </div>
-  //                 </NavLink>
-  //               </div>
-  //             </>
-  //           )
-  //         })
-  //       }
-  //     </div>
-  //   </>
-  // )
-
-}
-
-
+  }
 
 
 export default OwnerSpotsBrowser;

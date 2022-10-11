@@ -7,7 +7,7 @@ import {
   closeProp
 } from "../../context/Modal"
 
-function EditSpotFormModal() {
+function EditSpotFormModal({closeProp}) {
   const [showModal, setShowModal] = useState(false);
 
   const closeModal=() => {

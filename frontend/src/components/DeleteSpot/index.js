@@ -24,9 +24,6 @@ const DeleteSpotForm = ({closeProp}) => {
            closeProp();
         const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/"))
 
-
-
-
     }
 
     //HANDLE CANCEL BUTTON CLICK EVENT
@@ -42,10 +39,10 @@ const DeleteSpotForm = ({closeProp}) => {
 
     return (
         <>
-            <form className='delete-spot-flex-container'>
+            <form onSubmit={handleSubmit} className='delete-spot-flex-container'>
                 <h1>Are you sure you want to remove this listing?</h1>
                <div className='delete-spot-button-container'>
-                    <button type="submit" onClick={handleSubmit}>Yes, Remove Listing</button>
+                    <button type="submit" >Yes, Remove Listing</button>
                     <button type="button" onClick={handleCancelClick}>No, Cancel</button>
                 </div>
 

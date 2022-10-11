@@ -37,7 +37,6 @@ function SignupFormPage() {
         {errors.map((error, idx) => <div key={idx}>{error}</div>)}
       </div>
 
-
         <input
           type="text"
           placeholder="Email"
