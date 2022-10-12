@@ -15,10 +15,8 @@ import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 const SpotInfo = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams(); // get spotId from params
-
     spotId = parseInt(spotId)
     //console.log("SPOT ID", spotId)
-
     const userId = useSelector(state => state.session.user.id)
 
 
@@ -34,13 +32,14 @@ const SpotInfo = () => {
     //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
     const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-    //console.log("THIS IS CURRENT SPOT", currentSpot)
+    console.log("THIS IS CURRENT SPOT ID", currentSpot.ownerId)
 
     if (!currentSpot) { // if we don't have a matching spot, then display nothing
         return null
     }
 
-
+ dispatch(loadAllSpots());
+ dispatch(loadAllReviews(spotId));
 
     return (
         <>
@@ -89,23 +88,11 @@ const SpotInfo = () => {
 
             </div>
 
-            {/* {
-              ((userId && userId === currentSpot.ownerId) ? <EditSpotFormModal/> : null)
 
-            }
-            {
-                ((userId && userId === currentSpot.ownerId) ? <DeleteSpotForm /> : null)
-            } */}
-
-            {/* {
-                (userId && userId === currentSpot.userId ? < CreateReviewForm /> : null)
-            } */}
-
-             < ReviewsBrowser />
-             < CreateReviewFormModal />
+             <ReviewsBrowser />
 
             {
-                (userId && !userId === currentSpot.userId ? <CreateReviewForm /> : null)
+                (userId && (userId !== currentSpot.userId) ? <CreateReviewFormModal /> : null)
             }
         </>
     )

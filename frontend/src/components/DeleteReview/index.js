@@ -19,7 +19,9 @@ const DeleteReviewForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let deletedReview = await dispatch(deleteReview(reviewId)).then(() => history.push(`/current/reviews`))
+        let deletedReview = await dispatch(deleteReview(reviewId))
+        //.then(() => history.push(`/current/reviews`))
+        history.push(`/current/reviews`)
 
     }
 

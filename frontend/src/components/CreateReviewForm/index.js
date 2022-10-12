@@ -50,12 +50,13 @@ if (currSpot.ownerId === userId) {
      let errors= [];
     if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
     if(!review) { errors.push("Please provide a review")}
-
+    if (userId === currSpot.ownerId)("Cannot leave a review at your own listing")
     setValidationErrors(errors)
 
     if(errors.length) {
       return null
     }
+
 
     const reviewPayload = {
       stars,
