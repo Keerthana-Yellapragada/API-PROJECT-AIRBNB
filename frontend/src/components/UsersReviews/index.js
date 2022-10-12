@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadUserReviews } from '../../store/reviews';
 
+import './UserReviews.css'
 
 
 const UserReviewsBrowser = () => {
@@ -31,27 +32,32 @@ const UserReviewsBrowser = () => {
 
     return (
         <>
-            <div className="reviews-title"> <h1> MY REVIEWS</h1> </div>
+            <div className="reviews-title"> <h1> Your Reviews</h1> </div>
             <div className="reviews-wrapper">
-                {
-                    userReviews.map(review => {
-                        return (
-                            <>
-                                {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
-                                <div >
-                                    <div>
-                                        {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
-                                        <div className="primary-text-rating">{`${review.stars} stars`}</div>
-                                        <div className='address'> {review.review} </div>
-                                        <button><NavLink to={`/reviews/${review.id}`}>Delete this Review</NavLink></button>
+                {userReviews.map(review => {
+                    return (
+
+
+                            <div className='user-review-card'>
+
+                                    <div className="user-review-title">
+                                        <i className="fa-solid fa-star"></i>
+                                        <div>{review.stars}</div>
+                                        {/* <div className="primary-text-rating">{`${review.stars} stars`}</div> */}
                                     </div>
-                                </div>
-                                {/* </NavLink> */}
+
+                                    {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+
+                                    <div className='review-content'> {review.review} </div>
+
+                                    <button className='review-button'><NavLink className="go-to-review-link" to={`/reviews/${review.id}`}>Go To Review</NavLink></button>
+
+                            </div>
 
 
-                            </>
-                        )
-                    })
+
+                    )
+                })
                 }
             </div>
         </>

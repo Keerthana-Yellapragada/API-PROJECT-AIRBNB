@@ -18,15 +18,46 @@ html {
 }
 
 .delete-review-button {
-    margin:15px;
-    width:100%;
+    margin:10px;
+    padding:10px;
+    width:80%;
 }
 
 .reviews-title {
     padding:20px 0px 20px 0px;
 }
 
-/*
+
 .fa-solid fa-star{
     padding:20px;
-} */
+    align-self: center;
+}
+
+.current-review-card {
+
+    padding:50px;
+    margin:50px;
+    border-bottom: 1px solid grey;
+
+}
+
+.review-title {
+    display:flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: flex-start;
+
+}
+
+
+.delete-review-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width:100%;
+}
+
+.delete-review-form{
+    width:100%
+}

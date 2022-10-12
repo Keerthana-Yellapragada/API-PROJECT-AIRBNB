@@ -16,6 +16,7 @@ import CreateReviewForm from "./components/CreateReviewForm";
 import UserReviewsBrowser from "./components/UsersReviews"
 import DeleteReviewForm from "./components/DeleteReview";
 import { useSelector } from "react-redux";
+import ReviewInfo from "./components/Reviews/ReviewInfo";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,23 +31,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          {/* <Route path="/spots/:spotId/images">
-
-          </Route> */}
 
           <Route exact path="/current/reviews">
             <UserReviewsBrowser />
           </Route>
 
           <Route exact path="/reviews/:reviewId">
-              <DeleteReviewForm />
+              <ReviewInfo />
           </Route>
-
-          {/* <Route exact path="/spots/:spotId/reviews">
-            <ReviewsBrowser  />
-            <CreateReviewForm />
-            < DeleteReviewForm / >
-          </Route> */}
 
           <Route exact path="/spots/:spotId">
             <SpotInfo />
@@ -57,16 +49,12 @@ function App() {
           </Route>
 
           <Route exact path="/">
-
             <SpotsBrowser />
           </Route>
-
 
           <Route exact path="/current/spots">
             <CurrentOwnerSpots />
           </Route>
-
-
 
         </Switch>
       )}

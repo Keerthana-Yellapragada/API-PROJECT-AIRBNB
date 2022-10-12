@@ -1,0 +1,36 @@
+
+.reviews-wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+
+.reviews-title{
+    display: flex;
+    align-content:center;
+    justify-content: center;
+
+}
+.go-to-review-link {
+    font-style: none;
+    color:white
+}
+
+.user-review-card{
+    /* border: 1px solid rgb(223, 218, 218); */
+    padding: 20px;
+    margin:20px;
+    border:outset;
+    width:600px;
+    height: auto;
+
+
+}
+
+.review-button{
+    align-self: center;
+    width:fit-content
+}
