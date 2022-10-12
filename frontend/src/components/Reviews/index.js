@@ -12,7 +12,10 @@ const ReviewsBrowser = () => {
     let { spotId } = useParams(); // use params
     spotId = parseInt(spotId)
 
-    //const userId = useSelector(state => state.session.user.id)
+    const sessionUser = useSelector(state => state.session.user)
+    const userId = sessionUser.id
+    //console.log("userid", userId)
+
     useEffect(() => {
         //console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
@@ -57,9 +60,10 @@ const ReviewsBrowser = () => {
                                             <div className='review-content'> {review.review} </div>
                                         </div>
                                         < div className = 'delete-review-button-container' >
-                                        <button className='delete-review-button'>
-                                            <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
-                                        </button>
+                                            {userId === review.userId ? (<button className='delete-review-button'>
+                                         <NavLink key={review.id} to={`/reviews/${review.id}`}> See Review</NavLink>
+                                        </button>) : null}
+
                                         </div>
                                     </div>
 
