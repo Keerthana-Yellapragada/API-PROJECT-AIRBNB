@@ -32,15 +32,15 @@ const UserReviewsBrowser = () => {
 
     return (
         <>
-            <div className="reviews-title"> <h1> Your Reviews</h1> </div>
-            <div className="user-reviews-wrapper">
+            <div className="user-reviews-title"> <h1> Your Reviews</h1> </div>
+            <div className="reviews-wrapper">
                 {userReviews.map(review => {
                     return (
 
 
                             <div className='user-review-card'>
 
-                                    <div className="user-review-title">
+                                    <div className="review-title">
                                         <i className="fa-solid fa-star"></i>
                                         <div>{review.stars}</div>
                                         {/* <div className="primary-text-rating">{`${review.stars} stars`}</div> */}
