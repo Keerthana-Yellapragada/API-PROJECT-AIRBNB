@@ -31,6 +31,7 @@
     padding:30px;
     border-radius: 4%;
     width: fit-content;
+    border-bottom: 1px solid rgb(179, 174, 174);
 }
 
 
@@ -41,7 +42,7 @@ form h1 {
     align-items: center;
     align-content: center;
     font-weight: bold;
-    padding:15px;
+    padding:0px 15px 15px 15px;
 }
 
 
@@ -50,11 +51,19 @@ form h1 {
 }
 
 .checkbox {
-    padding:30px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    border-bottom: 1px solid grey;
 }
 
 .errors {
     color:red;
     padding: 8px;
     text-align: center;
+}
+
+.DemoUser-login-button {
+    margin:20px;
+    width:93%;
+
 }

@@ -102,7 +102,7 @@ const EditSpotForm = ({closeProp}) => {
 
       <form onSubmit={handleSubmit} className="edit-spot-form-container">
         <div className='title-container'>
-          <h1 className="title">Update This Listing</h1>
+          <h1 className="edit-spot-title">Edit This Listing</h1>
         </div>
 
         <div className="errors">
@@ -177,7 +177,7 @@ const EditSpotForm = ({closeProp}) => {
           onChange={updateDescription} />
 
         <div className='edit-spot-button-container'>
-          <button className="update-button" type="submit">Update Listing</button>
+          <button className="update-button" type="submit">Save Changes & Update</button>
           <button className='cancel-button' type="button" onClick={handleCancelClick}>Cancel</button>
         </div>
 

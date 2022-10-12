@@ -28,6 +28,7 @@ function LoginForm() {
 
   return (
     <form className='login-form-container' onSubmit={handleSubmit}>
+      <h1>Welcome Back!</h1>
       <div >
         {errors.map((error, idx) => (
           <div className="errors" key={idx}>{error}</div>

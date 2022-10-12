@@ -28,15 +28,16 @@ input {
 
 }
 
-button {
+.login-button {
     width: 100%;
     border-radius: 6px;
     border: none;
     background-color: rgb(245, 19, 19);
     color: white;
     padding: 10px;
-    margin: 10px;
+    margin: 20px;
     align-self: center;
+
 
 }
 

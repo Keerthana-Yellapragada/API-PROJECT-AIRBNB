@@ -4,14 +4,21 @@ html {
 }
 
 .title-container {
-    padding:25px 0px 25px 0px;
+    box-sizing: border;
+    padding:0px 25px 0px 25px;
+
 }
 
-.edit-spot-button-container button {
-    padding:10px;
-    margin: 15px 0px 15px 0px;
+.title-container h1{
+    font-size:2vh;
+
 }
 
-.edit-spot-flex-container{
-    border-bottom: 1px solid rgb(183, 177, 177)
+.edit-spot-button-container{
+     padding:0px;
+     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }

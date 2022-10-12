@@ -36,7 +36,7 @@ function SignupFormPage() {
       <div className="errors">
         {errors.map((error, idx) => <div key={idx}>{error}</div>)}
       </div>
-
+        <h1>Get Started Today!</h1>
         <input
           type="text"
           placeholder="Email"
