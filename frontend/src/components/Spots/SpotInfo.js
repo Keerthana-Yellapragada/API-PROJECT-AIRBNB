@@ -19,11 +19,11 @@ const SpotInfo = () => {
     spotId = parseInt(spotId)
 
     const sessionUser = useSelector(state => state.session.user)
-    const userId = sessionUser.id
-    //console.log("userid", userId)
+    let userId = sessionUser.id
+    console.log("userid", userId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-   // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
     //console.log("THIS IS CURRENT SPOT", currentSpot)
@@ -38,74 +38,81 @@ const SpotInfo = () => {
         return null
     }
 
-    return (
-        <>
-            <div className='spot-info-page-container'>
-                <div className="spot-header-container">
+    if (!userId) {
 
-                    <div className="spot-header-name-container">
-                        <h1>{currentSpot.name}</h1>
-                    </div>
+    return null
+}
 
-                    <div className='spot-header-info-container'>
-                        <div className="spot-stars">
-                            <i className="fa-solid fa-star"></i>
-                        </div>
-                        <div className="spot-rating">
-                            {currentSpot.avgRating}
-                        </div>
+return (
+    <>
+        <div className='spot-info-page-container'>
+            <div className="spot-header-container">
 
-                        <div className="spot-address">
-                            {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
-                        </div>
-                    </div>
-
+                <div className="spot-header-name-container">
+                    <h1>{currentSpot.name}</h1>
                 </div>
 
-                <div className='spot-image-container'>
-                    <img src={currentSpot.previewImage} alt="preview-image" />
-                </div>
-
-
-                <div className='spot-details-container'>
-
-                    <div className="spot-description">
-                        {currentSpot.description}
+                <div className='spot-header-info-container'>
+                    <div className="spot-stars">
+                        <i className="fa-solid fa-star"></i>
+                    </div>
+                    <div className="spot-rating">
+                        {currentSpot.avgRating}
                     </div>
 
-                    <div className='price-rating-side-container'>
-                        <div className="spot-description-price">
-                            {`$${currentSpot.price} night`}
-                        </div>
-
-                        <div className="spot-description-rating">
-                            <i class="fa-solid fa-star"></i>
-                            {currentSpot.avgRating}
-                        </div>
+                    <div className="spot-address">
+                        {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
                     </div>
-
                 </div>
 
-
-                <ReviewsBrowser />
-
-
-                <div className='edit-delete-spot-buttons-container'>
-
-                    {
-                        userId && userId !== currentSpot.ownerId ? <CreateReviewFormModal /> : null
-                    }
-                    {
-                        userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
-                    }
-                    {
-                        userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
-                    }
-
-                </div>
             </div>
-        </>
-    )
+
+            <div className='spot-image-container'>
+                <img src={currentSpot.previewImage} alt="preview-image" />
+            </div>
+
+
+            <div className='spot-details-container'>
+                <div>
+                    {`Entire place hosted by ${currentSpot.ownerId}`}
+                </div>
+                <div className="spot-description">
+                    {currentSpot.description}
+                </div>
+
+                <div className='price-rating-side-container'>
+                    <div className="spot-description-price">
+                        {`$${currentSpot.price} night`}
+                    </div>
+
+                    <div className="spot-description-rating">
+                        <i class="fa-solid fa-star"></i>
+                        {currentSpot.avgRating}
+                    </div>
+                </div>
+
+            </div>
+
+
+            <ReviewsBrowser />
+
+
+            <div className='edit-delete-spot-buttons-container'>
+
+                {
+                    userId && userId !== currentSpot.ownerId ? <CreateReviewFormModal /> : null
+                }
+                {
+                    userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
+                }
+                {
+                    userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
+                }
+
+            </div>
+        </div>
+    </>
+)
 }
 
 

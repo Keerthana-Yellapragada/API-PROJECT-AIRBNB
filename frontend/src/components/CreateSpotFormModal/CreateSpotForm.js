@@ -10,6 +10,10 @@ const CreateSpotForm = ({closeProp}) => {
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState({});
 
+    // const sessionUser = useSelector(state => state.session.user)
+    // let userId = sessionUser.id
+    // console.log("userid", userId)
+
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -44,7 +48,7 @@ const CreateSpotForm = ({closeProp}) => {
     if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
     if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
     if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
-
+    // if (!userId) {errors.push("Must be logged in to continue")}
     setValidationErrors(errors)
 
   },[lat,lng,price,url])
@@ -94,6 +98,7 @@ const CreateSpotForm = ({closeProp}) => {
         {validationErrors.length > 0 &&
           validationErrors.map((error) => <div className="errors" key={error}>{error}</div>)}
         </div>
+
 {/*
         <label htmlFor="Name">Name</label> */}
         <input

@@ -16,6 +16,13 @@ const ReviewsBrowser = () => {
     const userId = sessionUser.id
     //console.log("userid", userId)
 
+       const allSpotsArray = useSelector(state => Object.values(state.spots))
+       // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+
+       const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
+       //console.log("THIS IS CURRENT SPOT", currentSpot)
+
+
     useEffect(() => {
         //console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
@@ -32,7 +39,8 @@ const ReviewsBrowser = () => {
 
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
-        return (<h1>No Reviews Yet!</h1>);
+        // return (<h1>No Reviews Yet!</h1>);
+        return null;
     }
 
 
@@ -42,8 +50,10 @@ const ReviewsBrowser = () => {
         <>
             <div className="reviews-title">
                 <i className="fa-solid fa-star"></i>
-                {`${filteredReviews.length} reviews`}
-                {/* {spotInfo.avgRating} */}
+                {
+                    `${currentSpot.avgRating === null? "NEW" : currentSpot.avgRating} ${filteredReviews.length} reviews`
+                }
+               {currentSpot.avgRating}
             </div>
 
             <div className="reviews-wrapper">

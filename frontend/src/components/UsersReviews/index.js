@@ -26,7 +26,7 @@ const UserReviewsBrowser = () => {
     }, [dispatch])
 
     if (!userReviews) {
-        return (<h1>You don't haven't left reviews yet!</h1>);
+        return (<h1>You haven't left any reviews yet!</h1>);
     }
 
 
