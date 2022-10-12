@@ -33,7 +33,7 @@ const UserReviewsBrowser = () => {
     return (
         <>
             <div className="reviews-title"> <h1> Your Reviews</h1> </div>
-            <div className="reviews-wrapper">
+            <div className="user-reviews-wrapper">
                 {userReviews.map(review => {
                     return (
 

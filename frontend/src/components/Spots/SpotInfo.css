@@ -5,7 +5,9 @@ html {
     display: flex;
     justify-content: center;
 }
-
+.spot-info-page-container{
+    margin:100px;
+}
 .spot-header-container {
     border-top: 1px solid rgb(200, 200, 200);
     /* padding: 25px 25px 25px 25px; */
@@ -46,12 +48,20 @@ html {
 .spot-image-container {
     width: 100%;
     padding: 25px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
 }
 .spot-image-container img {
-    width: 100%;
+    width: 45%;
     aspect-ratio: 1/1;
     border-radius: 5%;
+    align-self: center;
 }
+
+
+
 
 .spot-details-container {
     display: flex;
@@ -86,4 +96,18 @@ html {
 
 .spot-description{
     font-size: 2vh;
+}
+
+
+.edit-delete-spot-buttons-container{
+    width: 100%;
+    padding-top:25px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid rgb(208, 205, 205);
+}
+.edit-delete-spot-buttons-container button{
+    width:100%;
+    padding:10px;
 }

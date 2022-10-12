@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllReviews } from '../../store/reviews';
-import {loadAllSpots} from '../../store/spots'
+import { loadAllSpots } from '../../store/spots'
 import './ReviewsBrowser.css'
 
 // REVIEWS FOR EACH SPOT
@@ -17,13 +17,13 @@ const ReviewsBrowser = () => {
         console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
         dispatch(loadAllSpots())
-    }, [dispatch,spotId])
+    }, [dispatch, spotId])
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
         return allReviewsArray;
     });
-    const spotInfo = useSelector(state=>state.spots.spotId)
+    const spotInfo = useSelector(state => state.spots.spotId)
 
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
@@ -56,11 +56,13 @@ const ReviewsBrowser = () => {
                                             <div className="review-rating">{`${review.stars} stars`}</div>
                                             <div className='review-content'> {review.review} </div>
                                         </div>
+                                        < div className = 'delete-review-button-container' >
+                                        <button className='delete-review-button'>
+                                            <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
+                                        </button>
+                                        </div>
                                     </div>
 
-                                    <button className='delete-review-button'>
-                                        <NavLink key={review.id} to={`/reviews/${review.id}`}> Delete this review</NavLink>
-                                    </button>
                                 </div>
                             </>
                         )

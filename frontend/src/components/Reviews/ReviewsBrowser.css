@@ -7,20 +7,44 @@ html {
 
 .reviews-wrapper {
     display: flex;
-    padding:10px;
-}
+    flex-wrap: wrap;
+    flex-direction: column;
 
+    justify-content: center;
+    align-content: flex-start;
+
+}
+.delete-review-button button {
+width: 100%;
+border-radius: 6px;
+border: none;
+background-color: rgb(245, 19, 19);
+color: white;
+padding: 10px;
+display:flex;
+align-self:flex-start
+}
+.delete-review-button-container{
+    display: flex;
+    justify-content: flex-start;
+}
 .review-card-flex-container{
-    padding: 15px 0px 15px 0px;
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    align-content: flex-start;
+
+    width:20%
 }
 
-.delete-review-button {
-    margin:10px;
-    padding:10px;
-    width:80%;
+.review-details-container img{
+    width:100%
+}
+
+
+
+.delete-review-button a {
+    color:white;
+    width:100%;
 }
 
 .reviews-title {
