@@ -11,35 +11,46 @@ import ReviewsBrowser from "../Reviews"
 import CreateReviewForm from "../CreateReviewForm"
 import CreateReviewFormModal from '../CreateReviewForm/CreateReviewModal';
 import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
+import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams(); // get spotId from params
     spotId = parseInt(spotId)
     //console.log("SPOT ID", spotId)
-    const userId = useSelector(state => state.session.user.id)
+    const sessionUser = useSelector(state => state.session.user)
+    const userId = sessionUser.id
+    console.log("userid", userId)
 
+     const allSpotsArray = useSelector(state => Object.values(state.spots))
+     console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+
+     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
+     console.log("THIS IS CURRENT SPOT", currentSpot)
 
     useEffect(() => {
         console.log("this is working")
         dispatch(loadAllSpots());
-        dispatch(loadAllReviews(spotId))
+       dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
 
+ if (!currentSpot) { // if we don't have a matching spot, then display nothing
+     return null
+ }
 
 
-    const allSpotsArray = useSelector(state => Object.values(state.spots))
-    //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+    // const allSpotsArray = useSelector(state => Object.values(state.spots))
+    // //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
-    const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-    console.log("THIS IS CURRENT SPOT ID", currentSpot.ownerId)
+    // const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
+    // console.log("THIS IS CURRENT SPOT owner ID", currentSpot.ownerId)
 
-    if (!currentSpot) { // if we don't have a matching spot, then display nothing
-        return null
-    }
+    // if (!currentSpot) { // if we don't have a matching spot, then display nothing
+    //     return null
+    // }
 
- dispatch(loadAllSpots());
- dispatch(loadAllReviews(spotId));
+//  dispatch(loadAllSpots());
+//  dispatch(loadAllReviews(spotId));
 
     return (
         <>
@@ -91,8 +102,15 @@ const SpotInfo = () => {
 
              <ReviewsBrowser />
 
+
+             {
+                userId && userId !== currentSpot.ownerId ? <CreateReviewFormModal /> : null
+            }
             {
-                (userId && (userId !== currentSpot.userId) ? <CreateReviewFormModal /> : null)
+                userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
+            }
+            {
+                userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
             }
         </>
     )

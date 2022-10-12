@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllReviews } from '../../store/reviews';
-// import {loadAllSpots} from '../../store/spots'
+import {loadAllSpots} from '../../store/spots'
 import './ReviewsBrowser.css'
 
 // REVIEWS FOR EACH SPOT
@@ -16,8 +16,8 @@ const ReviewsBrowser = () => {
     useEffect(() => {
         console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
-        // dispatch(loadAllSpots())
-    }, [])
+        dispatch(loadAllSpots())
+    }, [dispatch,spotId])
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)

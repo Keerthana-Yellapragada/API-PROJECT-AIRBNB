@@ -72,8 +72,11 @@ const OwnerSpotsBrowser = () => {
 
                   </NavLink>
 
-                       <EditSpotFormModal />
-                       <DeleteSpotFormModal />
+              <div className="edit-delete-spot-navlinks">
+               <NavLink to = {`/spots/${spot.id}`} >Update</NavLink>
+              <NavLink to = {`/spots/${spot.id}`} >Remove</NavLink>
+
+              </div>
 
 
                 </div>
