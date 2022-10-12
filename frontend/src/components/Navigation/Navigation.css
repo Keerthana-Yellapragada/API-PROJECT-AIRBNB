@@ -21,8 +21,7 @@ header{
     width:100%;
     justify-content: space-between;
     align-items: center;
-    align-content: center;
-    margin:10px 25px 10px 25px;
+    align-content: space-between
 
 }
 
@@ -82,18 +81,7 @@ header{
     align-self: center;
 
 }
-.profile-dropdown-content{
-    display:flex;
-    flex-direction: row;
-    align-content: center;
 
-}
-.profile-dropdown-content button{
-    display: block;
-    width: fit-content;
-    font-weight: bold;
-
-}
 /*
 .profile-dropdown{
     position: relative;

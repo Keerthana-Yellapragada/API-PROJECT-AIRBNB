@@ -15,18 +15,18 @@ import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
-    let { spotId } = useParams(); // get spotId from params
+    let { spotId } = useParams();
     spotId = parseInt(spotId)
-    //console.log("SPOT ID", spotId)
+
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser.id
-    console.log("userid", userId)
+    //console.log("userid", userId)
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-    console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+   // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-    console.log("THIS IS CURRENT SPOT", currentSpot)
+    //console.log("THIS IS CURRENT SPOT", currentSpot)
 
     useEffect(() => {
         console.log("this is working")

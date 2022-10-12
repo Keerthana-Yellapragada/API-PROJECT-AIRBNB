@@ -14,9 +14,9 @@ const ReviewsBrowser = () => {
 
     //const userId = useSelector(state => state.session.user.id)
     useEffect(() => {
-        console.log("THIS IS IN REVIEWS USEFFECT")
+        //console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
-        dispatch(loadAllSpots())
+        dispatch(loadAllSpots());
     }, [dispatch, spotId])
 
     const allReviews = useSelector(state => {
@@ -29,7 +29,7 @@ const ReviewsBrowser = () => {
 
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
-        return null;
+        return (<h1>No Reviews Yet!</h1>);
     }
 
 
@@ -51,7 +51,7 @@ const ReviewsBrowser = () => {
                                 <div className='review-card-flex-container'>
                                     <div >
                                         <div className='review-details-container'>
-                                            {review.ReviewImages.map(reviewImage => <img className="review-image" src={reviewImage.url}></img>)}
+                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
 
                                             <div className="review-rating">{`${review.stars} stars`}</div>
                                             <div className='review-content'> {review.review} </div>

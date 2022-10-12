@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
      */
     return queryInterface.bulkInsert('Spots', [{
-      ownerId: 1,
+      ownerId: 3,
       address: " 1234 De Anza Ave",
       city: "San Jose",
       state: "CA",
@@ -72,7 +72,7 @@ module.exports = {
       price: 100.00
     },
     {
-      ownerId: 1,
+      ownerId: 3,
       address: " 4689 Plum Ave",
       city: "Las Vegas",
       state: "NV",

@@ -69,3 +69,14 @@ html {
 .user-reviews-title {
     justify-content: center;
 }
+
+.review-button a {
+    color:white;
+    text-align: center;
+
+}
+
+
+.review-button {
+    width: auto;
+}

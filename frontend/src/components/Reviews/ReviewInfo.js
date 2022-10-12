@@ -3,7 +3,7 @@ import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadUserReviews } from '../../store/reviews';
 import DeleteReviewForm from '../DeleteReview';
-import './ReviewsBrowser.css'
+import './ReviewInfo.css'
 
 const ReviewInfo = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const ReviewInfo = () => {
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
     const currentReview = allReviewsArray.find(review => review.id === reviewId)
 
-    console.log("current review is ", currentReview)
+    //console.log("current review is ", currentReview)
 
     if (!currentReview) {
         return (<h1>Sorry, no review was found.</h1>)
@@ -27,13 +27,15 @@ const ReviewInfo = () => {
 
     return (
         <>
-            <div className='review-card-flex-container'>
+            <div className='current-review-card-flex-container'>
             <div className='current-review-card'>
-                <div className="review-title">
+                <div className="current-review-title">
                     <i className="fa-solid fa-star"></i>
-                    <div className='review-stars'>{currentReview.stars}</div>
+                    <div className='current-review-stars'>{currentReview.stars}</div>
                 </div>
+                <div  className="current-review-images-container">
                       {currentReview.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+                      </div>
                        <div className='current-review-content'> {currentReview.review} </div>
             </div>
 
