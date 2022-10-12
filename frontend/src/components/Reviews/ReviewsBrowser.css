@@ -85,3 +85,9 @@ align-self:flex-start
 .delete-review-form{
     width:100%
 }
+
+.review-image {
+    border-radius:10%;
+    padding-bottom:10px;
+
+}

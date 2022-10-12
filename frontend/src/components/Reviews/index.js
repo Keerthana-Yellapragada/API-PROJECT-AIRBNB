@@ -51,7 +51,7 @@ const ReviewsBrowser = () => {
                                 <div className='review-card-flex-container'>
                                     <div >
                                         <div className='review-details-container'>
-                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+                                            {review.ReviewImages.map(reviewImage => <img className="review-image" src={reviewImage.url}></img>)}
 
                                             <div className="review-rating">{`${review.stars} stars`}</div>
                                             <div className='review-content'> {review.review} </div>

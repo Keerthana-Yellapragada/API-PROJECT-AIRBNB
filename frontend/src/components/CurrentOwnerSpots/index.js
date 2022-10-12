@@ -72,14 +72,12 @@ const OwnerSpotsBrowser = () => {
 
                   </NavLink>
 
-              <div className="edit-delete-spot-navlinks">
-               <NavLink to = {`/spots/${spot.id}`} >Update</NavLink>
-                < NavLink to = {`/spots/${spot.id}`} >Remove</NavLink>
+              <div className="button-container">
+               <button className='edit-spot-button'><NavLink to = {`/spots/${spot.id}`}>Update</NavLink></button>
+                <button className='delete-spot-button'>< NavLink to = {`/spots/${spot.id}`} >Remove</NavLink></button>
               </div>
 
-
                 </div>
-
               </>
             )
           })
