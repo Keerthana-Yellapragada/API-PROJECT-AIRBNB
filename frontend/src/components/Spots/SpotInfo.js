@@ -34,23 +34,9 @@ const SpotInfo = () => {
        dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
 
- if (!currentSpot) { // if we don't have a matching spot, then display nothing
+ if (!currentSpot) {
      return null
  }
-
-
-    // const allSpotsArray = useSelector(state => Object.values(state.spots))
-    // //console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
-
-    // const currentSpot = allSpotsArray.find(spot => spot.id === +spotId)
-    // console.log("THIS IS CURRENT SPOT owner ID", currentSpot.ownerId)
-
-    // if (!currentSpot) { // if we don't have a matching spot, then display nothing
-    //     return null
-    // }
-
-//  dispatch(loadAllSpots());
-//  dispatch(loadAllReviews(spotId));
 
     return (
         <>

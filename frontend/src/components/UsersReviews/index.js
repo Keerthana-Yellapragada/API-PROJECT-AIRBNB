@@ -9,26 +9,25 @@ const UserReviewsBrowser = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams();
     spotId = parseInt(spotId)
+    const userId = useSelector(state => state.session.user.id)
+
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
         return allReviewsArray;
     });
-
-    const userId = useSelector(state=>state.session.user.id)
-
+    //GET REVIEWS OF CURRENT USER
+    let userReviews = allReviews.filter(review => review.userId === userId)
 
 
     useEffect(() => {
         dispatch(loadUserReviews());
     }, [dispatch])
 
-    if (!allReviews) {
-        return null;
+    if (!userReviews) {
+        return (<h1>You don't haven't left reviews yet!</h1>);
     }
 
-    //GET REVIEWS OF CURRENT USER
-    let userReviews = allReviews.filter(review => review.userId === userId )
 
     return (
         <>
@@ -39,14 +38,14 @@ const UserReviewsBrowser = () => {
                         return (
                             <>
                                 {/* <NavLink key={review.id} to={`/reviews/${review.id}`}> */}
-                                    <div >
-                                        <div>
-                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
-                                            <div className="primary-text-rating">{`${review.stars} stars`}</div>
-                                            <div className='address'> {review.review} </div>
-                                            <button><NavLink to={`/reviews/${review.id}`}>Delete this Review</NavLink></button>
-                                        </div>
+                                <div >
+                                    <div>
+                                        {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+                                        <div className="primary-text-rating">{`${review.stars} stars`}</div>
+                                        <div className='address'> {review.review} </div>
+                                        <button><NavLink to={`/reviews/${review.id}`}>Delete this Review</NavLink></button>
                                     </div>
+                                </div>
                                 {/* </NavLink> */}
 
 
