@@ -115,19 +115,19 @@ module.exports = {
             },
             {
               spotId: 18,
-              userId: 3,
+              userId: 1,
               review: "We had a comfortable stay here. Could have been cleaner though",
               stars: 3
             },
             {
               spotId: 19,
-              userId: 3,
+              userId: 1,
               review: "We had a memorable stay here with our kids over the holidays! ",
               stars: 4
             },
             {
               spotId: 20,
-              userId: 3,
+              userId: 1,
               review: "Host are warm and welcoming and the place was great! Highly recommend!",
               stars: 5
             }

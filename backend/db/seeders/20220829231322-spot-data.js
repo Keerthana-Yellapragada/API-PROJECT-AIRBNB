@@ -215,7 +215,7 @@ module.exports = {
       price: 150.00
     },
     {
-      ownerId: 1,
+      ownerId: 2,
       address: "212 Primrose Lane",
       city: "San Francisco",
       state: "CA",
@@ -227,7 +227,7 @@ module.exports = {
       price: 200.00
     },
      {
-       ownerId: 1,
+       ownerId: 2,
        address: "265 Parrot Dr",
        city: "Gilroy",
        state: "CA",
@@ -239,7 +239,7 @@ module.exports = {
        price: 250.00
      },
       {
-        ownerId: 1,
+        ownerId: 2,
         address: "6045 Subrook Lane",
         city: "Palm Springs",
         state: "CA",
