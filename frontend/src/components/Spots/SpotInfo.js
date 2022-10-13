@@ -17,31 +17,33 @@ const SpotInfo = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams();
     spotId = parseInt(spotId)
+            console.log("SPOT ID IS ", spotId)
 
-    const sessionUser = useSelector(state => state.session.user)
-    let userId = sessionUser.id
-    console.log("userid", userId)
+  useEffect(() => {
+      console.log("spotid useeffectis working")
+      dispatch(loadAllSpots());
+      dispatch(loadAllReviews(spotId))
+  }, [dispatch, spotId])
 
     const allSpotsArray = useSelector(state => Object.values(state.spots))
-    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+    console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-    //console.log("THIS IS CURRENT SPOT", currentSpot)
+    console.log("THIS IS CURRENT SPOT", currentSpot)
 
-    useEffect(() => {
-        console.log("this is working")
-        dispatch(loadAllSpots());
-        dispatch(loadAllReviews(spotId))
-    }, [dispatch, spotId])
+
+    const sessionUser = useSelector(state => state.session.user)
+    let userId;
+    if (sessionUser) {
+        userId = sessionUser.id
+    }
+        console.log("userid", userId)
 
     if (!currentSpot) {
         return null
     }
 
-    if (!userId) {
 
-    return null
-}
 
 return (
     <>
@@ -95,13 +97,13 @@ return (
 
 
             <ReviewsBrowser />
-
+            <CreateReviewFormModal />
 
             <div className='edit-delete-spot-buttons-container'>
-
+{/*
                 {
                     userId && userId !== currentSpot.ownerId ? <CreateReviewFormModal /> : null
-                }
+                } */}
                 {
                     userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
                 }

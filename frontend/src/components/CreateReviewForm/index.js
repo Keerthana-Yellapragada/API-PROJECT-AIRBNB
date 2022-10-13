@@ -4,14 +4,23 @@ import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createReview, { createNewReview, loadAllReviews } from "../../store/reviews"
 import "./CreateReview.css"
 
-const CreateReviewForm = () => {
+const CreateReviewForm = ({closeProp}) => {
 
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
-  const [errorMessages, setErrorMessages] = useState({});
   let {spotId} = useParams();
   spotId = parseInt(spotId)
-  const userId = useSelector(state=>state.session.user.id)
+
+   useEffect(() => {
+     dispatch(loadAllReviews(spotId))
+   }, [dispatch, spotId])
+
+  const sessionUser = useSelector(state=>state.session.user)
+  let userId;
+  if (sessionUser){
+    userId = sessionUser.id
+  }
+
   const reviews = useSelector(state=> state.reviews)
   const currSpot = useSelector(state=>state.spots.spotId)
 
@@ -20,42 +29,42 @@ const CreateReviewForm = () => {
   const [url, setUrl] = useState("")
   const [validationErrors, setValidationErrors] = useState([]);
 
-  // if (!userId) {
-  //   console.log("Must be logged in to leave a review")
-  // }
 
   //update functions
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
   const updateUrl = (e) => setUrl(e.target.value)
 
-  useEffect(()=>{
-    dispatch(loadAllReviews(spotId))
-  },[dispatch, spotId])
 
   useEffect(()=> {
     const errors= [];
     if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
+    if (review && review==="") {
+      errors.push("Please provide a review")
+    }
+    if (!userId) {
+      errors.push("Must be logged in to leave a review")
+    }
 
     setValidationErrors(errors)
-  },[stars])
+  },[stars, review, sessionUser])
+
+
 
   const handleSubmit = async (e) => {
 
-if (currSpot.ownerId === userId) {
-  return null
-}
-
     e.preventDefault();
-     let errors= [];
-    if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
-    if(!review) { errors.push("Please provide a review")}
-    if (userId === currSpot.ownerId){errors.push("Cannot leave a review at your own listing")}
-    setValidationErrors(errors);
 
-    if(errors.length) {
-      return null
-    }
+    //  let errors= [];
+    // if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
+    // if(!review) { errors.push("Please provide a review")}
+    //  if(!userId){errors.push("Must be logged in to leave a review")}
+    // if (userId === currSpot.ownerId){errors.push("Cannot leave a review at your own listing")}
+    // setValidationErrors(errors);
+
+    // if(errors.length) {
+    //   return null
+    // }
 
 
     const reviewPayload = {
@@ -73,16 +82,12 @@ if (currSpot.ownerId === userId) {
 
     .then((newReview) => {
       if (newReview) {
-      // dispatch(loadAllReviews(spotId))
+      dispatch(loadAllReviews(spotId))
         history.push(`/spots/${spotId}`)
+        closeProp();
       }
 
-
-
-
-    // })
-    //   history.push(`/spots/${newReview.spotId}`); //redirect to the new spot's details page
-  }) // NEED TO ADD A USEEFFECT!!!!
+  })
 }
 
   //HANDLE CANCEL BUTTON CLICK EVENT
@@ -133,7 +138,7 @@ if (currSpot.ownerId === userId) {
           value={url}
           onChange={updateUrl} />
 
-        <button type="submit" >Post Your Review</button>
+        <button disabled={validationErrors.length ? true :false} type="submit" >Post Your Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>
 
       </form>

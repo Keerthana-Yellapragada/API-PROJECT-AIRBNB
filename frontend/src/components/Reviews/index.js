@@ -12,9 +12,14 @@ const ReviewsBrowser = () => {
     let { spotId } = useParams(); // use params
     spotId = parseInt(spotId)
 
-    const sessionUser = useSelector(state => state.session.user)
-    const userId = sessionUser.id
-    //console.log("userid", userId)
+    // const sessionUser = useSelector(state => state.session.user)
+    // if (sessionUser){const userId = sessionUser.id}
+    // //console.log("userid", userId)
+ useEffect(() => {
+        //console.log("THIS IS IN REVIEWS USEFFECT")
+        dispatch(loadAllReviews(spotId));
+        dispatch(loadAllSpots());
+    }, [dispatch, spotId])
 
        const allSpotsArray = useSelector(state => Object.values(state.spots))
        // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
@@ -23,11 +28,16 @@ const ReviewsBrowser = () => {
        //console.log("THIS IS CURRENT SPOT", currentSpot)
 
 
-    useEffect(() => {
-        //console.log("THIS IS IN REVIEWS USEFFECT")
-        dispatch(loadAllReviews(spotId));
-        dispatch(loadAllSpots());
-    }, [dispatch, spotId])
+    const sessionUser = useSelector(state => state.session.user)
+    let userId;
+    // if (sessionUser){const userId = sessionUser.id}
+    // //console.log("userid", userId)
+
+      if (sessionUser) {
+          let userId = sessionUser.id
+      }
+      //console.log("userid", userId)
+
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
@@ -53,7 +63,7 @@ const ReviewsBrowser = () => {
                 {
                     `${currentSpot.avgRating === null? "NEW" : currentSpot.avgRating} ${filteredReviews.length} reviews`
                 }
-               {currentSpot.avgRating}
+
             </div>
 
             <div className="reviews-wrapper">
