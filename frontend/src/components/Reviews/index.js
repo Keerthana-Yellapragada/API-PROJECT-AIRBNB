@@ -61,7 +61,7 @@ const ReviewsBrowser = () => {
             <div className="reviews-title">
                 <i className="fa-solid fa-star"></i>
                 {
-                    `${currentSpot.avgRating === null? "NEW" : currentSpot.avgRating} ${filteredReviews.length} reviews`
+                    `${currentSpot.avgRating === null? "NEW" : currentSpot.avgRating} · ${filteredReviews.length} reviews`
                 }
 
             </div>

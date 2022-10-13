@@ -31,6 +31,8 @@ const SpotInfo = () => {
     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
     console.log("THIS IS CURRENT SPOT", currentSpot)
 
+    const allReviewsArray = useSelector(state=> Object.values(state.reviews))
+        console.log("THIS IS ALLREVIEWSARRAY ", allReviewsArray)
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
@@ -54,18 +56,29 @@ return (
                     <h1>{currentSpot.name}</h1>
                 </div>
 
-                <div className='spot-header-info-container'>
+                <div>
+                    < i className = "fa-solid fa-star" > </i>
+                    {
+                        `${currentSpot.avgRating} · ${allReviewsArray.length} reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
+                    }
+
+                </div>
+
+                {/* <div className='spot-header-info-container'>
                     <div className="spot-stars">
                         <i className="fa-solid fa-star"></i>
                     </div>
                     <div className="spot-rating">
-                        {currentSpot.avgRating}
+                       {` ${currentSpot.avgRating}`}
                     </div>
 
                     <div className="spot-address">
-                        {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`}
+                        {
+                            `${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
+                        }
                     </div>
-                </div>
+                </div> */}
+
 
             </div>
 
@@ -75,10 +88,14 @@ return (
 
 
             <div className='spot-details-container'>
-                <div>
+                <div className="hosted-by-container">
                     {`Entire place hosted by ${currentSpot.ownerId}`}
+
                 </div>
-                <div className="spot-description">
+                <div className="spot-bed-bath-container">
+                      {" 4 guests · 2 bedrooms · 2 bed · 2 bath"}
+                </div>
+                <div className="spot-description-container">
                     {currentSpot.description}
                 </div>
 
