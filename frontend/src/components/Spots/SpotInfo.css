@@ -9,11 +9,12 @@ html {
     margin:100px;
 }
 .spot-header-container {
-    /* border-top: 1px solid rgb(200, 200, 200); */
-    /* padding: 25px 25px 25px 25px; */
     display: block;
 }
 
+.spot-header-container h1{
+    font-size: 35px;
+}
 .spot-header-name-container {
     display: inline;
     padding: 20px;
@@ -76,35 +77,55 @@ html {
 }
 
 .hosted-by-container{
-    font-size: 35px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.owner-pic {
+    font-size: 60px;
+    display: flex;
+    align-self: flex-end;
+    justify-self: center;
+    color: grey
 }
 
 .spot-bed-bath-container{
- font-size: 20px;
- padding:10px 10px 10px 0px;
- border-bottom: 1px solid grey;
+ font-size: 18px;
+ padding-bottom: 10px;
+border-bottom: 1px solid rgb(224, 216, 216);
  font-weight: normal
 }
 
 
+.owner-picture{
+    font-size: 60px;
+    color: grey
+}
 
-
-
-
-
+.aircover-title-image img{
+    width: 200px;
+    padding: 30px;
+    padding-left:0px;
+}
+.aircover-info{
+    padding-bottom: 30px;
+    font-weight: normal;
+    border-bottom: 1px solid rgb(224, 216, 216);
+}
 .price-rating-side-container {
     display: flex;
     align-self: flex-end;
     justify-content: space-between;
     align-items: center;
     /* border: 1px solid black; */
-    box-shadow: 5px 5px 5px 5px rgb(0 0 0 / 10%);
+
     padding: 25px;
     margin:30px;
     border-radius: 6%;
     width: 30%;
     height: 60%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
     text-align: center;
 
 }
@@ -127,7 +148,6 @@ html {
 
 
 
-
 .edit-delete-spot-buttons-container{
     width: 100%;
     padding:0px;
@@ -136,10 +156,50 @@ html {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    border-top: 1px solid rgb(208, 205, 205);
+    border-top: 1px solid rgb(224, 216, 216);
 }
 .edit-delete-spot-buttons-container button{
     width:45%;
     padding:10px;
     margin:0px;
+}
+
+
+
+
+/* LOCATION CONTAINER */
+
+.location-container{
+ display:flex;
+ justify-content: flex-start;
+ font-weight: normal;
+ font-size: 16px;
+}
+
+.fa-location-dot {
+    margin:20px;
+    font-size: 40px;
+    margin-left:0px;
+
+}
+
+.location-info-title {
+    font-weight: bold;
+    color: black;
+    padding-bottom: 4px;
+}
+
+.location-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    color: grey
+}
+
+
+
+
+.spot-description-container{
+    border-top: 1px solid rgb(224, 216, 216);
 }
