@@ -77,14 +77,26 @@ header {
 }
 
 .user-profile-container ul li {
-    display: block;
+    display: flex;
+    /* justify-content: center; */
     margin: 5px;
     padding: 5px;
+    padding-left: 10px;
     color: rgb(174, 171, 171);
     text-decoration: none;
     list-style: none;
 }
+.logout-button {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    border: none;
+    margin:0px;
+    background-color: rgb(245, 19, 19);
+    color: white;
 
+
+}
 
 .create-spot-container button {
     display: block;

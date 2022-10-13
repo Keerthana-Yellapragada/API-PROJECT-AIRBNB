@@ -51,7 +51,7 @@ function ProfileButton({ user }) {
             <NavLink exact to="/current/spots">My Listings </NavLink>
           </li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="logout-button" onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}
