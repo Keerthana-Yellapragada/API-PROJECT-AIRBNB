@@ -83,7 +83,7 @@ const SpotInfo = () => {
                 </div>
 
                 <div className='spot-image-container'>
-                    <img src={currentSpot.previewImage} alt="preview-image" />
+                    <img className="spot-image" src={currentSpot.previewImage} alt="preview-image" />
                 </div>
 
                 {

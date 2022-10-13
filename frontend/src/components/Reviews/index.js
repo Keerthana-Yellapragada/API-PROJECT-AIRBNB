@@ -74,9 +74,14 @@ const ReviewsBrowser = () => {
                                 <div className='review-card-flex-container'>
                                     <div >
                                         <div className='review-details-container'>
-                                            {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+                                            {review.ReviewImages.map(reviewImage => <img className ="review-image" src={reviewImage.url}></img>)}
 
-                                            <div className="review-rating">{`${review.stars} stars`}</div>
+                                            <div className="review-rating">
+                                                <i className="user-review-profile-photo fa-solid fa-circle-user"></i>
+                                                <div className='review-user-name'>{review.User.firstName}</div>
+                                                <i className="review-user-star fa-solid fa-star"></i>
+                                                <div>{review.stars}</div>
+                                            </div>
                                             <div className='review-content'> {review.review} </div>
                                         </div>
                                         < div className = 'see-review-button-container' >
