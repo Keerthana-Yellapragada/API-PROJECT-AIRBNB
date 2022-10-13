@@ -53,7 +53,7 @@ header{
 /* main navbar container */
 .create-spot-container{
     display:flex;
-    align-self: flex-end;
+    align-self: center;
     border-radius: 20px;
 }
 
