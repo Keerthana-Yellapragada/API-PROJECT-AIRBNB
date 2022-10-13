@@ -31,9 +31,9 @@ function ProfileButton({ user }) {
 
   return ( // USER ICON SHOWS UP ONLY WHEN WE ARE LOGGED IN ALONG WITH LOGOUT BUTTON
     <>
-      <button onClick={openMenu}>
+      <button className="userProfileButton" onClick={openMenu}>
 
-        <div className="userProfileButton">
+        <div className="userProfileIcons">
           <i className="fa-solid fa-bars"></i>
           <i className="fas fa-user-circle" />
         </div>
@@ -41,8 +41,8 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
 
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
+        <ul className="profile-dropdown-list">
+          <li>{`Logged in as: ${user.username}`}</li>
           <li>{user.email}</li>
           <li>
              <NavLink exact to="/current/reviews">My Reviews</NavLink>

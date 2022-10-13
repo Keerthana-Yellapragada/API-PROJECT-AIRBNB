@@ -16,7 +16,6 @@ a {
     display: flex;
     justify-content: center;
     padding:25px;
-    border-bottom: 1px solid rgb(177, 173, 173);
     border-top: 1px solid rgb(177, 173, 173);
 }
 
@@ -41,6 +40,7 @@ a {
     justify-content: center;
     width: 100%;
     border-bottom: 1px solid rgb(177, 173, 173);
+    padding:25px;
 }
 
 /* for each spot card */
@@ -84,10 +84,6 @@ a {
 .top-address-container {
     font-weight: bold;
 }
-/*
-.rating-container {
-     align-self: flex-end;
-} */
 
 /* container for price */
 .bottom-text-container {

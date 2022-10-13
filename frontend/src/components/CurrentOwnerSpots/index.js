@@ -9,7 +9,9 @@ import './CurrentOwnerSpots.css'
 const OwnerSpotsBrowser = () => {
   const dispatch = useDispatch();
   const allSpots = useSelector(state => Object.values(state.spots));
-  const userId = useSelector(state => state.session.user.id)
+  const sessionUser = useSelector(state => state.session.user)
+  let userId = sessionUser.id
+
   let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
 
 
@@ -28,7 +30,7 @@ const OwnerSpotsBrowser = () => {
     return (
     <>
     <div className='title'>
-      <h1> My Listings </h1>
+      {/* <h1> {`${sessionUser.firstName}'s Listings`} </h1> */}
     </div>
 
       <div className="flex-container">

@@ -34,18 +34,19 @@ function Navigation({ isLoaded }) {
       <div className='main-navbar-flex-container'>
 
         <div className="logo-flex-container">
-          <i className="fa-brands fa-airbnb"></i>
-          <NavLink className="logo-name" exact to="/">ayrbnb</NavLink>
+          <i className="fa-brands fa-airbnb logo-image"></i>
+          <div className='logo-name-text'><NavLink className="logo-name" exact to="/">ayrbnb</NavLink></div>
           {/* {isLoaded && sessionLinks} */}
         </div>
-
+{/*
+        <h1>{` Welcome, ${sessionUser.firstName}!`}</h1> */}
 
         <div className="create-spot-container">
           <CreateSpotFormModal />
         </div>
 
         <div className='user-profile-container'>
-          <div></div>
+
           <div className='profile-dropdown-content'>
               {isLoaded && sessionLinks}
           </div>
