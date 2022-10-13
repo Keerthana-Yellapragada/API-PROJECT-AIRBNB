@@ -9,11 +9,12 @@ html {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
     justify-content: center;
     align-content: flex-start;
 
+
 }
+
 .delete-review-button button {
 width: 100%;
 border-radius: 6px;
@@ -24,6 +25,8 @@ padding: 10px;
 display:flex;
 align-self:flex-start
 }
+
+
 .delete-review-button-container{
     display: flex;
     justify-content: flex-start;
@@ -37,9 +40,14 @@ align-self:flex-start
 }
 
 .review-details-container img{
-    width:100%
+    width:100%;
+
+
 }
 
+.review-details-container {
+   margin:0px;
+}
 
 
 .delete-review-button a {
@@ -49,12 +57,13 @@ align-self:flex-start
 
 .reviews-title {
     padding:20px 0px 20px 0px;
+    font-size: 25px;
 }
 
 
-.fa-solid fa-star{
-    padding:20px;
-    align-self: center;
+.fa-star{
+    padding:10px 10px 10px 0px;
+
 }
 
 .current-review-card {

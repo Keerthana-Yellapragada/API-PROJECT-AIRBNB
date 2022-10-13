@@ -27,7 +27,7 @@ const ReviewInfo = () => {
 
     return (
         <>
-            <div className='current-review-card-flex-container'>
+         <div className='current-review-card-flex-container'>
             <div className='current-review-card'>
                 <div className="current-review-title">
                     <i className="fa-solid fa-star"></i>

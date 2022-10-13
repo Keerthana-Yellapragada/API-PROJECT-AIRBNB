@@ -79,8 +79,8 @@ const ReviewsBrowser = () => {
                                             <div className="review-rating">{`${review.stars} stars`}</div>
                                             <div className='review-content'> {review.review} </div>
                                         </div>
-                                        < div className = 'delete-review-button-container' >
-                                            {userId === review.userId ? (<button className='delete-review-button'>
+                                        < div className = 'see-review-button-container' >
+                                            {userId === review.userId ? (<button className='see-review-button'>
                                          <NavLink key={review.id} to={`/reviews/${review.id}`}> See Review</NavLink>
                                         </button>) : null}
 

@@ -6,7 +6,7 @@ html {
     justify-content: center;
 }
 .spot-info-page-container{
-    margin:100px;
+
 }
 .spot-header-container {
     display: block;
@@ -14,6 +14,7 @@ html {
 
 .spot-header-container h1{
     font-size: 35px;
+    font-weight: 600;
 }
 .spot-header-name-container {
     display: inline;
@@ -33,7 +34,6 @@ html {
     font-weight:bold;
     display: flex;
     padding: 5px;
-
 }
 
 .spot-stars {
@@ -62,8 +62,6 @@ html {
     border-radius: 5%;
     align-self: center;
 }
-
-
 
 
 .spot-details-container {
@@ -140,9 +138,10 @@ border-bottom: 1px solid rgb(224, 216, 216);
 
 
 .spot-description-container{
-    padding:20px;
+    padding:40px;
     padding-left:0px;
     font-weight: normal;
+    font-size: 16px;
 }
 
 
@@ -169,27 +168,33 @@ border-bottom: 1px solid rgb(224, 216, 216);
 
 /* LOCATION CONTAINER */
 
-.location-container{
+.location-container,
+.check-in-door-container {
  display:flex;
  justify-content: flex-start;
  font-weight: normal;
  font-size: 16px;
+ padding-top: 20px;
 }
-
-.fa-location-dot {
+.check-in-door-container{
+    padding-bottom: 20px;
+}
+.fa-location-dot, .fa-door-open {
     margin:20px;
     font-size: 40px;
     margin-left:0px;
 
 }
 
-.location-info-title {
+.location-info-title,
+.check-in-door-title {
     font-weight: bold;
     color: black;
     padding-bottom: 4px;
 }
 
-.location-info{
+.location-info,
+.check-in-door-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -202,4 +207,11 @@ border-bottom: 1px solid rgb(224, 216, 216);
 
 .spot-description-container{
     border-top: 1px solid rgb(224, 216, 216);
+    border-bottom: 1px solid rgb(224, 216, 216);
+}
+
+
+.leave-review-button{
+    margin-left:0px;
+    padding-left:0px;
 }
