@@ -756,7 +756,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
     }
 
 
-
     // find any existing bookings and see if dates conflict
 
     // get an array of all bookings for this spot

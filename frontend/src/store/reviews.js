@@ -120,7 +120,7 @@ export const loadUserReviews = () => async dispatch => {
 
 ///*************************************************************************** */
 // -------------------------  CREATE A REVIEW   ----------------------------------
-export const createNewReview = (reviewImageData, reviewData) => async dispatch => {
+export const createNewReview = (reviewData) => async dispatch => {
 
     let spotId = reviewData.spotId
 
@@ -139,27 +139,27 @@ export const createNewReview = (reviewImageData, reviewData) => async dispatch =
 
 ///:reviewId/images
 
-if (reviewImageData.url !== "") {
-    const response2 = await csrfFetch(`/api/reviews/${reviewId}/images`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reviewImageData)
+// if (reviewImageData.url !== "") {
+//     const response2 = await csrfFetch(`/api/reviews/${reviewId}/images`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(reviewImageData)
 
-    });
+//     });
 
-    let imageInfo = await response2.json();
-        //return (imageInfo);
+//     let imageInfo = await response2.json();
+//         //return (imageInfo);
 
-    if (response.ok && response2.json){
+//     if (response.ok && response2.json){
 
-         dispatch(createReview(reviewInfo));
+//          dispatch(createReview(reviewInfo));
 
-         return reviewInfo;
-    }
+//          return reviewInfo;
+//     }
 
-}
+// }
 
 
 };

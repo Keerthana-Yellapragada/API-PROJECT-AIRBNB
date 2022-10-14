@@ -26,14 +26,14 @@ const CreateReviewForm = ({closeProp}) => {
 
   const [stars, setStars] = useState("");
   const [review, setReview] = useState("");
-  const [url, setUrl] = useState("")
+  // const [url, setUrl] = useState("")
   const [validationErrors, setValidationErrors] = useState([]);
 
 
   //update functions
   const updateStars = (e) => setStars(e.target.value);
   const updateReview = (e) => setReview(e.target.value);
-  const updateUrl = (e) => setUrl(e.target.value)
+  // const updateUrl = (e) => setUrl(e.target.value)
 
 
   useEffect(()=> {
@@ -61,11 +61,11 @@ const CreateReviewForm = ({closeProp}) => {
       spotId,
       userId
     }
-    const reviewImagePayload = {
-      url
-    }
+    // const reviewImagePayload = {
+    //   url
+    // }
 
-    let newReview = await dispatch(createNewReview(reviewImagePayload, reviewPayload)) //dispatch to update our store
+    let newReview = await dispatch(createNewReview(reviewPayload)) //dispatch to update our store
     dispatch(loadAllReviews(spotId))
 
     .then((newReview) => {
@@ -118,13 +118,13 @@ const CreateReviewForm = ({closeProp}) => {
           onChange={updateStars} />
 
         {/* <label htmlFor="url">Picture</label> */}
-        <input
+        {/* <input
           id="url"
           type="string"
 
           placeholder='Insert image URL here'
           value={url}
-          onChange={updateUrl} />
+          onChange={updateUrl} /> */}
 
         <button disabled={validationErrors.length ? true :false} type="submit" >Post Your Review</button>
         <button type="button" onClick={handleCancelClick}>Cancel</button>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
 import { loadAllReviews } from '../../store/reviews';
-import { loadAllSpots } from '../../store/spots'
+import { loadAllSpots, loadOneSpot } from '../../store/spots'
 import './ReviewsBrowser.css'
 
 // REVIEWS FOR EACH SPOT
@@ -12,38 +12,37 @@ const ReviewsBrowser = () => {
     let { spotId } = useParams(); // use params
     spotId = parseInt(spotId)
 
-    // const sessionUser = useSelector(state => state.session.user)
-    // if (sessionUser){const userId = sessionUser.id}
-    // //console.log("userid", userId)
  useEffect(() => {
-        //console.log("THIS IS IN REVIEWS USEFFECT")
+        console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
-        dispatch(loadAllSpots());
+        //dispatch(loadAllSpots());
+        dispatch(loadOneSpot(spotId))
     }, [dispatch, spotId])
 
-       const allSpotsArray = useSelector(state => Object.values(state.spots))
-       // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+    //    const allSpotsArray = useSelector(state => Object.values(state.spots))
+    //    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
-       const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-       //console.log("THIS IS CURRENT SPOT", currentSpot)
+    //    const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
+    //    //console.log("THIS IS CURRENT SPOT", currentSpot)
 
+
+    const currentSpot = useSelector(state => state.spots)
+    console.log("THIS IS CURRENT SPOT IN REVIEWS BROWSER", currentSpot)
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
-    // if (sessionUser){const userId = sessionUser.id}
-    // //console.log("userid", userId)
 
       if (sessionUser) {
           let userId = sessionUser.id
       }
-      //console.log("userid", userId)
+
 
 
     const allReviews = useSelector(state => {
         const allReviewsArray = Object.values(state.reviews)
         return allReviewsArray;
     });
-    const spotInfo = useSelector(state => state.spots.spotId)
+
 
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
@@ -61,7 +60,7 @@ const ReviewsBrowser = () => {
             <div className="reviews-title">
                 <i className="review-browser-star fa-solid fa-star"></i>
                 {
-                    `${currentSpot.avgRating === null? "NEW" : currentSpot.avgRating} · ${filteredReviews.length} reviews`
+                    `${currentSpot.avgStarRating === null? "NEW" : currentSpot.avgStarRating} · ${currentSpot.numReviews} reviews`
                 }
 
             </div>

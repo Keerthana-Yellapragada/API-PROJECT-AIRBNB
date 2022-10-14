@@ -14,6 +14,7 @@ import { csrfFetch } from "./csrf"
 ///*************************************************************************** */
 
 const GET_ALLSPOTS = 'spots/getAllSpots'
+const GET_ONESPOT = 'spots/getOneSpot'
 const CREATE_SPOT = 'spots/createSpot'
 const UPDATE_SPOT = 'spots/updateSpot'
 const REMOVE_SPOT = 'spots/removeSpot'
@@ -29,6 +30,17 @@ const getAllSpots = (spots) => {
     }
 
 }
+///*************************************************************************** */
+
+// *** GET ONE SPOT ***
+
+const getOneSpot = (spot) => {
+    return {
+        type: GET_ONESPOT,
+        payload:spot
+    }
+}
+
 ///*************************************************************************** */
 
 // **** CREATE A SPOT ****
@@ -76,29 +88,46 @@ export const loadAllSpots = () => async dispatch => {
     }
 }
 
+
+//*************************************************************************** */
+
+// -------------------------  LOAD ONE SPOT   ----------------------------------
+
+export const loadOneSpot = (spotId) => async dispatch => {
+
+    const response = await fetch(`/api/spots/${spotId}`);
+    console.log("THUNK RESPONSE", response)
+    //response also includes spot owners details(id, firstname, lastname)
+
+    if (response.ok) {
+        const spot = await response.json();
+        dispatch(getOneSpot(spot)) // dispatch using out action creator from above to get all spots
+    }
+}
+
 ///*************************************************************************** */
 
 // -------------------------  CREATE A SPOT   ----------------------------------
 
 export const createNewSpot = (imageData, spotData) => async dispatch => {
 
-        const response = await csrfFetch(`/api/spots`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(spotData)
-        });
+    const response = await csrfFetch(`/api/spots`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(spotData)
+    });
 
 
-        let spotInfo = await response.json();
-        //console.log("THIS IS SPOT INFO INSIDE THUNK", spotInfo)
+    let spotInfo = await response.json();
+    //console.log("THIS IS SPOT INFO INSIDE THUNK", spotInfo)
 
-        //get the spot Id from newly created spot
-         let spotId = spotInfo.id
+    //get the spot Id from newly created spot
+    let spotId = spotInfo.id
 
-         //console.log("SPOT ID IS", spotId)
-         //-------------------------------------------------
+    //console.log("SPOT ID IS", spotId)
+    //-------------------------------------------------
 
     const response2 = await csrfFetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
@@ -110,13 +139,13 @@ export const createNewSpot = (imageData, spotData) => async dispatch => {
     });
 
     let imageInfo = await response2.json();
-        //return (imageInfo);
+    //return (imageInfo);
 
-        // UPDATE STATE
-        if (response.ok && response2.ok) {
-           dispatch(createSpot(spotInfo));
-                return spotInfo;
-        }
+    // UPDATE STATE
+    if (response.ok && response2.ok) {
+        dispatch(createSpot(spotInfo));
+        return spotInfo;
+    }
 
 
 };
@@ -170,46 +199,60 @@ const spotsReducer = (state = initialState, action) => {
     let newState;
 
     switch (action.type) {
-///*****************************************************************************/
+        ///*****************************************************************************/
 
         case GET_ALLSPOTS:
             //normalize our data
-            newState = {...state}
+            newState = { ...state }
             action.spots.Spots.forEach(spot => {
                 newState[spot.id] = spot
             })
 
             return newState; //return a new updated state for spots
 
-///*************************************************************************** */
+        ///*************************************************************************** */
+        case GET_ONESPOT:
+
+            newState={...state}
+
+            console.log(" THIS IS SPOT INFO PAYLOAD INSIDE GETONESPOT REDUCER", action.payload)
+
+            newState[action.payload.id] = action.payload
+
+            return {
+                ...newState[action.payload.id]
+            }; //return a new updated state for spots
+
+        ///*************************************************************************** */
 
         case CREATE_SPOT:
             newState = { ...state }
             //console.log(action.payload)
             newState[action.payload.id] = action.payload
-           // newState[action.payload.previewImage] = action.payload.images
+            // newState[action.payload.previewImage] = action.payload.images
 
             return newState
 
-///*************************************************************************** */
+        ///*************************************************************************** */
 
         case UPDATE_SPOT:
             newState = { ...state }
             //console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
+            //update by key
             newState[action.payload.id] = action.payload
 
             return newState;
 
-///*************************************************************************** */
+        ///*************************************************************************** */
 
         case REMOVE_SPOT:
-           newState = { ...state }
+            newState = { ...state }
             // console.log("REACHED REDUCER FOR DELETE")
             delete newState[action.payload]
 
             return newState
 
-///*************************************************************************** */
+        ///*************************************************************************** */
 
         default:
             return state;

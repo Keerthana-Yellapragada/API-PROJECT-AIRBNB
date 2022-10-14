@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import getSpotInfo from "../../store/spots";
-import { loadAllSpots } from '../../store/spots';
+import { loadAllSpots, loadOneSpot } from '../../store/spots';
 import './SpotInfo.css'
 import { loadAllReviews } from '../../store/reviews';
 import EditSpotForm from "../EditSpotForm"
@@ -17,19 +17,24 @@ const SpotInfo = () => {
     const dispatch = useDispatch();
     let { spotId } = useParams();
     spotId = parseInt(spotId)
-    console.log("SPOT ID IS ", spotId)
+
+    //console.log("SPOT ID IS ", spotId)
 
     useEffect(() => {
         console.log("spotid useeffectis working")
-        dispatch(loadAllSpots());
+        // dispatch(loadAllSpots());
+        dispatch(loadOneSpot(spotId))
         dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
 
-    const allSpotsArray = useSelector(state => Object.values(state.spots))
-   // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
+//     const allSpotsArray = useSelector(state => Object.values(state.spots))
+//    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
-    const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-    //console.log("THIS IS CURRENT SPOT", currentSpot)
+//     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
+//     //console.log("THIS IS CURRENT SPOT", currentSpot)
+
+const currentSpot = useSelector(state=>state.spots)
+console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
     //console.log("THIS IS ALLREVIEWSARRAY ", allReviewsArray)
@@ -45,7 +50,7 @@ const SpotInfo = () => {
         return null
     }
 
-
+    dispatch(loadOneSpot(spotId))
 
     return (
         <>
@@ -58,32 +63,24 @@ const SpotInfo = () => {
                     <div>
                         < i className="fa-solid fa-star" > </i>
                         {
-                            `${currentSpot.avgRating} · ${allReviewsArray.length} reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
+                            `${currentSpot.avgStarRating} · ${allReviewsArray.length} reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
                         }
 
                     </div>
 
-                    {/* <div className='spot-header-info-container'>
-                    <div className="spot-stars">
-                        <i className="fa-solid fa-star"></i>
-                    </div>
-                    <div className="spot-rating">
-                       {` ${currentSpot.avgRating}`}
-                    </div>
-
-                    <div className="spot-address">
-                        {
-                            `${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
-                        }
-                    </div>
-                </div> */}
                     {
     /* ********************************************************************************** */}
 
                 </div>
 
                 <div className='spot-image-container'>
-                    <img className="spot-image" src={currentSpot.previewImage} alt="preview-image" />
+
+                    {console.log("SPOTIMAGESARRAY", currentSpot.SpotImages[0].url)}
+
+                    <img className="spot-image" src={currentSpot.SpotImages[0].url} alt="preview-image" />
+
+                    {/* <img className="spot-image" src={currentSpot.previewImage} alt="preview-image" /> */}
+
                 </div>
 
                 {
@@ -92,7 +89,7 @@ const SpotInfo = () => {
                 <div className='spot-details-container'>
 
                     <div className="hosted-by-container">
-                        {`Entire place hosted by ${currentSpot.ownerId}`}
+                        {`Entire place hosted by ${currentSpot.Owner.firstName}`}
                         <div className="owner-pic"><i className="fa-solid fa-circle-user"></i></div>
                     </div>
 
@@ -158,7 +155,7 @@ const SpotInfo = () => {
 
                         <div className="spot-description-rating">
                             <i class="fa-solid fa-star"></i>
-                            {currentSpot.avgRating}
+                            {currentSpot.avgStarRating}
                         </div>
                     </div>
 
@@ -169,7 +166,7 @@ const SpotInfo = () => {
                 <ReviewsBrowser />
                 <CreateReviewFormModal />
 
-                <div className='edit-delete-spot-buttons-container'>
+                {/* <div className='edit-delete-spot-buttons-container'>
 
                     {
                         userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
@@ -178,7 +175,7 @@ const SpotInfo = () => {
                         userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
                     }
 
-                </div>
+                </div> */}
             </div>
         </>
     )
