@@ -37,8 +37,8 @@ function ProfileButton({ user }) {
       <button className="userProfileButton" onClick={openMenu}>
 
         <div className="userProfileIcons">
-          <i className="fa-solid fa-bars fa-2x"></i>
-          <i className="fas fa-user-circle fa-2x" />
+          <i className="fa-solid fa-bars fa-lg"></i>
+          <i className = "navbar-user-circle fas fa-user-circle fa-2x" > </i>
         </div>
 
       </button>
