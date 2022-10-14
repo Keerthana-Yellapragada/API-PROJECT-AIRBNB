@@ -20,8 +20,8 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div className='profile-dropdown-content'>
-            <LoginFormModal />
-            <SignupFormModal />
+          <LoginFormModal />
+          <SignupFormModal />
         </div>
         {/* <NavLink to="/signup">Sign Up</NavLink> */}
       </>
@@ -30,31 +30,35 @@ function Navigation({ isLoaded }) {
 
   return (
 
-    <header>
-      <div className='main-navbar-flex-container'>
 
-        <div className="logo-flex-container">
-          <i className="fa-brands fa-airbnb logo-image"></i>
-          <div className='logo-name-text'><NavLink className="logo-name" exact to="/">ayrbnb</NavLink></div>
-          {/* {isLoaded && sessionLinks} */}
-        </div>
-{/*
-        <h1>{` Welcome, ${sessionUser.firstName}!`}</h1> */}
+      <header>
+        <nav className='main-navbar-flex-container'>
 
-        <div className="create-spot-container">
-          <CreateSpotFormModal />
-        </div>
+          <div className="logo-flex-container">
+            <i className="fa-brands fa-airbnb logo-image"></i>
+            <div className='logo-name-text'><NavLink className="logo-name" exact to="/">ayrbnb</NavLink></div>
+            {/* {isLoaded && sessionLinks} */}
+          </div>
 
-        <div className='user-profile-container'>
+{sessionUser? (<h1>{` Welcome, ${sessionUser.firstName}!`}</h1>) : (<h1>Welcome To ayrbnb!</h1>)}
 
-          <div className='profile-dropdown-content'>
+
+        <div className='navbar-right'>
+          <div className="create-spot-container">
+            <CreateSpotFormModal />
+          </div>
+
+          <div className='user-profile-container'>
+
+            <div className='profile-dropdown-content'>
               {isLoaded && sessionLinks}
+            </div>
           </div>
         </div>
 
+        </nav>
+      </header>
 
-      </div>
-    </header>
 
   );
 }

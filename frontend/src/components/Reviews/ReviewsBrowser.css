@@ -66,13 +66,15 @@ align-self:flex-start
 }
 
 
-.fa-star{
+.review-browser-star {
     padding:10px 7px 10px 0px;
 
 }
 
 .current-review-card {
-
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
     padding:50px;
     margin:50px;
     border-bottom: 1px solid grey;
@@ -133,4 +135,19 @@ align-self:flex-start
     color:grey;
     font-size:35px;
     padding-right: 10px;
+}
+
+.current-review-title {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.current-review-rating {
+    padding: 0px;
+    padding-bottom: 10px;
+}
+
+.current-review-page-star{
+    padding:0px;
 }

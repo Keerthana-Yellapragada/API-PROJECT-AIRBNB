@@ -30,8 +30,8 @@ const ReviewInfo = () => {
          <div className='current-review-card-flex-container'>
             <div className='current-review-card'>
                 <div className="current-review-title">
-                    <i className="fa-solid fa-star"></i>
-                    <div className='current-review-stars'>{currentReview.stars}</div>
+                    <i className="current-review-page-star fa-solid fa-star"></i>
+                    <div className='current-review-rating'>{currentReview.stars}</div>
                 </div>
                 <div  className="current-review-images-container">
                       {currentReview.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
