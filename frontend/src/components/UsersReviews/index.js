@@ -45,8 +45,8 @@ const UserReviewsBrowser = () => {
                                         <div>{review.stars}</div>
                                         {/* <div className="primary-text-rating">{`${review.stars} stars`}</div> */}
                                     </div>
-
-                                    {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}
+{/*
+                                    {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)} */}
 
                                     <div className='review-content'> {review.review} </div>
 

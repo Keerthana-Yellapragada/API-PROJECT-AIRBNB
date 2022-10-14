@@ -52,6 +52,9 @@ const ReviewsBrowser = () => {
         return null;
     }
 
+    dispatch(loadAllReviews(spotId));
+    //dispatch(loadAllSpots());
+    dispatch(loadOneSpot(spotId))
 
     //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
 
@@ -74,7 +77,7 @@ const ReviewsBrowser = () => {
                                 <div className='review-card-flex-container'>
                                     <div >
                                         <div className='review-details-container'>
-                                            {review.ReviewImages.map(reviewImage => <img className ="review-image" src={reviewImage.url}></img>)}
+                                            {/* {review.ReviewImages.map(reviewImage => <img className ="review-image" src={reviewImage.url}></img>)} */}
 
                                             <div className="review-rating">
                                                 <i className="user-review-profile-photo fa-solid fa-circle-user"></i>

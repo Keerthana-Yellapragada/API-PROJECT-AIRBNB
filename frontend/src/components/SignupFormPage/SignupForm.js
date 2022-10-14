@@ -34,7 +34,7 @@ function SignupFormPage() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="errors">
-        {errors.map((error, idx) => <div key={idx}>{error}</div>)}
+        {errors.map((error, idx) => <div className='backend-errors' key={idx}>{error}</div>)}
       </div>
         <h1>Get Started Today!</h1>
         <input

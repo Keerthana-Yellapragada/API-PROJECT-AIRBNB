@@ -96,7 +96,7 @@ export const loadAllSpots = () => async dispatch => {
 export const loadOneSpot = (spotId) => async dispatch => {
 
     const response = await fetch(`/api/spots/${spotId}`);
-    console.log("THUNK RESPONSE", response)
+    //console.log("THUNK RESPONSE", response)
     //response also includes spot owners details(id, firstname, lastname)
 
     if (response.ok) {
@@ -215,7 +215,7 @@ const spotsReducer = (state = initialState, action) => {
 
             newState={...state}
 
-            console.log(" THIS IS SPOT INFO PAYLOAD INSIDE GETONESPOT REDUCER", action.payload)
+            //console.log(" THIS IS SPOT INFO PAYLOAD INSIDE GETONESPOT REDUCER", action.payload)
 
             newState[action.payload.id] = action.payload
 

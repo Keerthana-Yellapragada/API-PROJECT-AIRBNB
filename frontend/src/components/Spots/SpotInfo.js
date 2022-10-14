@@ -18,11 +18,11 @@ const SpotInfo = () => {
     let { spotId } = useParams();
     spotId = parseInt(spotId)
 
-    //console.log("SPOT ID IS ", spotId)
+    console.log("SPOT ID in spotinfo IS ", spotId)
 
     useEffect(() => {
         console.log("spotid useeffectis working")
-        // dispatch(loadAllSpots());
+       //dispatch(loadAllSpots());
         dispatch(loadOneSpot(spotId))
         dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
@@ -35,6 +35,8 @@ const SpotInfo = () => {
 
 const currentSpot = useSelector(state=>state.spots)
 console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
+
+console.log("SPOTIMAGEs array", currentSpot.SpotImages)
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
     //console.log("THIS IS ALLREVIEWSARRAY ", allReviewsArray)
@@ -49,8 +51,13 @@ console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
     if (!currentSpot) {
         return null
     }
+    if(!currentSpot.SpotImages){
+        return null;
+    }
 
     dispatch(loadOneSpot(spotId))
+    dispatch(loadAllReviews(spotId))
+
 
     return (
         <>
@@ -75,11 +82,7 @@ console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
 
                 <div className='spot-image-container'>
 
-                    {console.log("SPOTIMAGESARRAY", currentSpot.SpotImages[0].url)}
-
                     <img className="spot-image" src={currentSpot.SpotImages[0].url} alt="preview-image" />
-
-                    {/* <img className="spot-image" src={currentSpot.previewImage} alt="preview-image" /> */}
 
                 </div>
 
@@ -166,7 +169,7 @@ console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
                 <ReviewsBrowser />
                 <CreateReviewFormModal />
 
-                {/* <div className='edit-delete-spot-buttons-container'>
+                <div className='edit-delete-spot-buttons-container'>
 
                     {
                         userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
@@ -175,7 +178,7 @@ console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
                         userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
                     }
 
-                </div> */}
+                </div>
             </div>
         </>
     )

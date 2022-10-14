@@ -52,3 +52,7 @@ input:focus{
      font-family: Arial, Helvetica, sans-serif;
 
 }
+
+.backend-errors{
+    color:red;
+}
