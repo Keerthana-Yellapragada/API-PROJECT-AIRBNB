@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
-import updateSpot, { editSpot } from "../../store/spots";
+import updateSpot, { editSpot, loadOneSpot } from "../../store/spots";
 import { loadAllSpots } from '../../store/spots';
 import SpotInfo from '../Spots/SpotInfo';
 import "./EditSpotForm.css"
@@ -15,14 +15,18 @@ const EditSpotForm = ({closeProp}) => {
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
-    dispatch(loadAllSpots());
+    //dispatch(loadAllSpots());
+    dispatch(loadOneSpot(spotId))
   }, [dispatch, spotId]);
 
 
   //GET THIS SPOT
   const allSpotsArray = useSelector(state => Object.values(state.spots))
 
-  const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
+   let currentSpotDetails = useSelector(state => state.spots)
+   console.log("THIS IS CURRENT SPOT IN editspot", currentSpotDetails)
+
+  // const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
 
 
   console.log("CURRENT SPOT DETAILS", currentSpotDetails)
@@ -61,8 +65,10 @@ const EditSpotForm = ({closeProp}) => {
 
   }, [lat, lng, price])
 
+
+
   if (!currentSpotDetails) {
-    return null
+    return null;
   }
 
   const handleSubmit = async (e) => {
@@ -86,7 +92,6 @@ const EditSpotForm = ({closeProp}) => {
     closeProp();
     history.push(`/spots/${spotId}`)
 
-
   };
 
   const handleCancelClick = (e) => {
@@ -95,6 +100,8 @@ const EditSpotForm = ({closeProp}) => {
     history.push(`/current/spots`)
 
   }
+
+  dispatch(loadOneSpot(spotId))
 
   // RETURN THE FORM COMPONENT
   return (
