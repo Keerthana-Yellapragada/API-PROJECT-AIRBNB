@@ -12,8 +12,8 @@ header {
     flex-direction: row;
     height: 100%;
     border-bottom: 1px solid rgb(227, 224, 224);
-    padding-left: 45px;
-    padding-right: 25px;
+    /* padding-left: 45px;
+    padding-right: 25px; */
 }
 
 /* container for entire main navbar container */

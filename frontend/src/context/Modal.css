@@ -43,7 +43,9 @@ form h1 {
     align-content: center;
     font-weight: bold;
     padding:0px 15px 15px 15px;
+    margin-bottom: 10px;
     font-size:2vh;
+    border-bottom: 1px solid rgb(217, 212, 212);
 }
 
 
@@ -54,7 +56,7 @@ form h1 {
 .checkbox {
     box-sizing: border-box;
     margin-bottom: 12px;
-    border-bottom: 1px solid grey;
+    border-bottom:1px solid rgb(207, 205, 205);
 }
 
 .errors {
