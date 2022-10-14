@@ -48,7 +48,7 @@ module.exports = {
       price: 180.00
     },
     {
-      ownerId: 1,
+      ownerId: 2,
       address: " 4590 Plaza Drive",
       city: "New York City",
       state: "NY",
@@ -60,7 +60,7 @@ module.exports = {
       price: 300.00
     },
     {
-      ownerId: 1,
+      ownerId: 3,
       address: " 1590 Lakewood Drive",
       city: "Denver",
       state: "CO",
@@ -132,7 +132,7 @@ module.exports = {
       price: 100.00
     },
     {
-      ownerId: 2,
+      ownerId: 1,
       address: "1758 Pine Ave",
       city: "Detroit",
       state: "MI",
@@ -155,7 +155,7 @@ module.exports = {
       description: "Entire Single Family home. Pets Allowed. All amenities provided. Minimum 1 night booking.",
       price: 70.00
     }, {
-      ownerId: 2,
+      ownerId: 1,
       address: "1356 Water Lane",
       city: "Phoenix",
       state: "AZ",
@@ -191,7 +191,7 @@ module.exports = {
       price: 120.00
     },
     {
-      ownerId: 1,
+      ownerId: 2,
       address: "1190 Ginger Lane",
       city: "Richmond",
       state: "VA",
@@ -203,7 +203,7 @@ module.exports = {
       price: 150.00
     },
     {
-      ownerId: 1,
+      ownerId: 3,
       address: "350 Waterfront Lane",
       city: "Georgia City",
       state: "GA",

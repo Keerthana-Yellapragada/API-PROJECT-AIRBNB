@@ -205,3 +205,14 @@ button.create-spot-button:hover {
 .profile-dropdown-list a:hover{
     background-color: lightgrey ;
 }
+
+
+.welcome-banner-container {
+    display: flex;
+    align-self: center;
+    white-space: nowrap;
+    padding: 30px;
+    padding-bottom: 40px;
+    font-size: 160%;
+    font-weight: bold;
+}
