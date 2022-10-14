@@ -66,7 +66,8 @@ const ReviewsBrowser = () => {
 
             </div>
 
-            <div className="reviews-wrapper">
+     <div className='review-wrapper-container'>
+            <div className="reviews-browser-wrapper">
                 {
                     filteredReviews.map(review => {
                         return (
@@ -98,6 +99,7 @@ const ReviewsBrowser = () => {
                     })
                 }
             </div>
+        </div>
         </>
     )
 

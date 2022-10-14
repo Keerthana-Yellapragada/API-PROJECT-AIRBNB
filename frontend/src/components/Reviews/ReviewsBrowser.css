@@ -1,15 +1,27 @@
 
-.reviews-wrapper {
+.reviews-browser-wrapper {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-content: flex-start;
-    margin: 20px;
-    margin-left:0px;
-
+    flex-direction: row;
+    justify-content:space-between;
+    align-content: center;
+    align-items: center;
+    width:100%;
+    align-self:flex-start;
+    margin:0px;
+    padding:0px;
 
 }
+
+.review-card-flex-container {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding: 30px;
+    padding-left:0px;
+    width: 40%;
+}
+
 
 .delete-review-button button {
 width: 100%;
@@ -26,13 +38,6 @@ align-self:flex-start
 .delete-review-button-container{
     display: flex;
     justify-content: flex-start;
-}
-.review-card-flex-container{
-    display:flex;
-    flex-direction: column;
-    align-content: flex-start;
-
-    width:20%
 }
 
 .review-details-container img{

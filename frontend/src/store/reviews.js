@@ -138,6 +138,8 @@ export const createNewReview = (reviewImageData, reviewData) => async dispatch =
     //use reviewId to create a reviewImage
 
 ///:reviewId/images
+
+if (reviewImageData.url !== "") {
     const response2 = await csrfFetch(`/api/reviews/${reviewId}/images`, {
         method: 'POST',
         headers: {
@@ -157,7 +159,7 @@ export const createNewReview = (reviewImageData, reviewData) => async dispatch =
          return reviewInfo;
     }
 
-
+}
 
 
 };
