@@ -48,7 +48,7 @@ const UserReviewsBrowser = () => {
 {/*
                                     {review.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)} */}
 
-                                    <div className='review-content'> {review.review} </div>
+                                    <div className='user-review-content'> {review.review} </div>
 
                                     <button className='review-button'><NavLink className="go-to-review-link" to={`/reviews/${review.id}`}>Go To Review</NavLink></button>
 

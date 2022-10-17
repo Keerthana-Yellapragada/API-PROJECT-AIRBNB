@@ -9,3 +9,9 @@ html {
     padding-left: 25px;
     padding-right: 25px;
  }
+
+
+ #root {
+ max-width:500px;
+ margin:auto
+ }

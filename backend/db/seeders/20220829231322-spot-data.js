@@ -48,7 +48,7 @@ module.exports = {
       price: 180.00
     },
     {
-      ownerId: 2,
+      ownerId: 4,
       address: " 4590 Plaza Drive",
       city: "New York City",
       state: "NY",
@@ -72,7 +72,7 @@ module.exports = {
       price: 100.00
     },
     {
-      ownerId: 3,
+      ownerId: 4,
       address: " 4689 Plum Ave",
       city: "Las Vegas",
       state: "NV",
@@ -84,7 +84,7 @@ module.exports = {
       price: 400.00
     },
     {
-      ownerId: 1,
+      ownerId: 4,
       address: "4566 Calisto Drive",
       city: "Palo Alto",
       state: "CA",
@@ -108,7 +108,7 @@ module.exports = {
       price: 160.00
     },
     {
-      ownerId: 1,
+      ownerId: 3,
       address: "5879 Ruby Ave",
       city: "San Jose",
       state: "CA",
@@ -179,14 +179,14 @@ module.exports = {
       price: 20.00
     },
     {
-      ownerId: 1,
+      ownerId: 3,
       address: "1190 Peach Lane",
       city: "New Orleans",
       state: "LA",
       country: "USA",
       lat: 10.00,
       lng: 80.00,
-      name: "Colorful Apartment in central New Orleans",
+      name: "Colorful Apartment in Central New Orleans",
       description: "Entire apartment for rent. Walkable distance to downtown. No pets Allowed. Basic amenities provided. Minimum 2 nights booking.",
       price: 120.00
     },
@@ -215,7 +215,7 @@ module.exports = {
       price: 150.00
     },
     {
-      ownerId: 2,
+      ownerId: 5,
       address: "212 Primrose Lane",
       city: "San Francisco",
       state: "CA",
@@ -227,7 +227,7 @@ module.exports = {
       price: 200.00
     },
      {
-       ownerId: 2,
+       ownerId: 5,
        address: "265 Parrot Dr",
        city: "Gilroy",
        state: "CA",

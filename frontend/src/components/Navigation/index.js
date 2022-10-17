@@ -35,8 +35,8 @@ function Navigation({ isLoaded }) {
       <nav className='main-navbar-flex-container'>
 
         <div className="logo-flex-container">
-          <i className="fa-brands fa-airbnb logo-image"></i>
-          <div className='logo-name-text'><NavLink className="logo-name" exact to="/">ayrbnb</NavLink></div>
+         <i class="fa-solid fa-kiwi-bird logo-name"></i>
+          <div className='logo-name-text'><NavLink className="logo-name" exact to="/">keerbnb</NavLink></div>
           {/* {isLoaded && sessionLinks} */}
         </div>
 
