@@ -156,7 +156,9 @@ const SpotInfo = () => {
                 {
     /* ********************************************************************************** */}
                 <ReviewsBrowser />
-                <CreateReviewFormModal />
+
+                <div className='create-review-container'>  <CreateReviewFormModal /></div>
+
 
                 <div className='edit-delete-spot-buttons-container'>
 
