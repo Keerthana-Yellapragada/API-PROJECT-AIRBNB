@@ -28,20 +28,18 @@ const ReviewsBrowser = () => {
       }
 
 
-    const allReviews = useSelector(state => {Object.values(state.reviews)
+    const allReviews = useSelector(state => Object.values(state.reviews));
 
-    });
-
-    if (!allReviews) {
-        return null
-    }
+    // if (!allReviews) {
+    //     return null;
+    // }
 
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
-        return (<h1>No Reviews Yet!</h1>);
-        // return null;
+        // return (<div>{"No Reviews Yet!"}</div>);
+        return null;
     }
 
 
@@ -73,6 +71,7 @@ const ReviewsBrowser = () => {
                                                 <div className='review-user-name'>{review.User.firstName}</div>
                                                 <i className="review-user-star fa-solid fa-star"></i>
                                                 <div>{review.stars}</div>
+                                                {/* <div>{review.createdAt}</div> */}
                                             </div>
                                             <div className='review-content'> {review.review} </div>
                                         </div>

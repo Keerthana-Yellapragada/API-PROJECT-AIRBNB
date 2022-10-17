@@ -1,21 +1,24 @@
-
+/*
 .reviews-info-wrapper {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
     align-content: center;
-}
+} */
 
 .current-review-card-flex-container {
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
-    width: 100%
+    justify-content: center;
+    align-content:center;
+    width: 50%;
+    margin:auto;
 }
 
 .current-review-content {
     display: flex;
+    justify-content: center;
     margin: 30px 0px 20px 0px;
 }
 
@@ -30,10 +33,10 @@
     width: 60%
 }
 
-.current-review-card{
+/* .current-review-card{
     margin:25px;
     padding:0px;
-}
+} */
 
 
 
