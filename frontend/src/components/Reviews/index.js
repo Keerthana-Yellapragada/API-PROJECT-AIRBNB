@@ -13,21 +13,12 @@ const ReviewsBrowser = () => {
     spotId = parseInt(spotId)
 
  useEffect(() => {
-        //console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
-        //dispatch(loadAllSpots());
         dispatch(loadOneSpot(spotId))
     }, [dispatch, spotId])
 
-    //    const allSpotsArray = useSelector(state => Object.values(state.spots))
-    //    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
-
-    //    const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-    //    //console.log("THIS IS CURRENT SPOT", currentSpot)
-
-
     const currentSpot = useSelector(state => state.spots)
-    //console.log("THIS IS CURRENT SPOT IN REVIEWS BROWSER", currentSpot)
+
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
@@ -35,7 +26,6 @@ const ReviewsBrowser = () => {
       if (sessionUser) {
           let userId = sessionUser.id
       }
-
 
 
     const allReviews = useSelector(state => {
@@ -48,13 +38,10 @@ const ReviewsBrowser = () => {
 
 
     if (!filteredReviews) { //if we don't have spots- don't display anything
-        // return (<h1>No Reviews Yet!</h1>);
-        return null;
+        return (<h1>No Reviews Yet!</h1>);
+        // return null;
     }
 
-    //dispatch(loadAllReviews(spotId));
-    //dispatch(loadAllSpots());
-    //dispatch(loadOneSpot(spotId))
 
     //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
 
@@ -63,7 +50,7 @@ const ReviewsBrowser = () => {
             <div className="reviews-title">
                 <i className="review-browser-star fa-solid fa-star"></i>
                 {
-                    `${currentSpot.avgStarRating === null? "NEW" : currentSpot.avgStarRating} · ${currentSpot.numReviews} reviews`
+                    `${!currentSpot.avgStarRating? "NEW" : currentSpot.avgStarRating} · ${!currentSpot.numReviews? 0: currentSpot.numReviews} reviews`
                 }
 
             </div>

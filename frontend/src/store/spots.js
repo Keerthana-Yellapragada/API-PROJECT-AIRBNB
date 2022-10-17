@@ -37,7 +37,7 @@ const getAllSpots = (spots) => {
 const getOneSpot = (spot) => {
     return {
         type: GET_ONESPOT,
-        payload:spot
+        payload: spot
     }
 }
 
@@ -84,7 +84,7 @@ export const loadAllSpots = () => async dispatch => {
     // console.log(response)
     if (response.ok) {
         const spotsList = await response.json();
-        dispatch(getAllSpots(spotsList)) // dispatch using out action creator from above to get all spots
+        dispatch(getAllSpots(spotsList))
     }
 }
 
@@ -96,12 +96,12 @@ export const loadAllSpots = () => async dispatch => {
 export const loadOneSpot = (spotId) => async dispatch => {
 
     const response = await fetch(`/api/spots/${spotId}`);
-    //console.log("THUNK RESPONSE", response)
+
     //response also includes spot owners details(id, firstname, lastname)
 
     if (response.ok) {
         const spot = await response.json();
-        dispatch(getOneSpot(spot)) // dispatch using out action creator from above to get all spots
+        dispatch(getOneSpot(spot))
     }
 }
 
@@ -156,8 +156,6 @@ export const createNewSpot = (imageData, spotData) => async dispatch => {
 
 export const editSpot = (spotInfo) => async dispatch => {
 
-    // console.log("THIS HITTING THE THUNK: ",spotInfo.id)
-
     const response = await csrfFetch(`/api/spots/${spotInfo.id}`, { //get the id from the spot obj and use that
         method: 'PUT',
         headers: {
@@ -202,36 +200,32 @@ const spotsReducer = (state = initialState, action) => {
         ///*****************************************************************************/
 
         case GET_ALLSPOTS:
-            //normalize our data
+
+            //normalize the data
             newState = { ...state }
             action.spots.Spots.forEach(spot => {
                 newState[spot.id] = spot
             })
 
-            return newState; //return a new updated state for spots
+            return newState;
 
         ///*************************************************************************** */
         case GET_ONESPOT:
 
-            newState={}
-            //newState={...state}
+            newState = {}
 
-            //console.log(" THIS IS SPOT INFO PAYLOAD INSIDE GETONESPOT REDUCER", action.payload)
 
             newState[action.payload.id] = action.payload
 
-            return {...newState}
-            // return {
-            //     ...newState[action.payload.id]
-            // }; //return a new updated state for spots
+            return { ...newState }
+
 
         ///*************************************************************************** */
 
         case CREATE_SPOT:
             newState = { ...state }
-            //console.log(action.payload)
+
             newState[action.payload.id] = action.payload
-            // newState[action.payload.previewImage] = action.payload.images
 
             return newState
 
@@ -239,8 +233,6 @@ const spotsReducer = (state = initialState, action) => {
 
         case UPDATE_SPOT:
             newState = { ...state }
-            //console.log("THIS IS PAYLOAD INSIDE THE REDUCER", action.payload)
-            //update by key
             newState[action.payload.id] = action.payload
 
             return newState;
@@ -249,7 +241,7 @@ const spotsReducer = (state = initialState, action) => {
 
         case REMOVE_SPOT:
             newState = { ...state }
-            // console.log("REACHED REDUCER FOR DELETE")
+
             delete newState[action.payload]
 
             return newState

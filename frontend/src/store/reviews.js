@@ -253,7 +253,7 @@ const reviewsReducer = (state = initialState, action) => {
             const modifiedState = {
                 ...state
             }
-            // console.log("REACHED REDUCER FOR DELETE")
+
             delete modifiedState[action.payload]
 
             return modifiedState

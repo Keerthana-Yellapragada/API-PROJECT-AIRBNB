@@ -15,23 +15,13 @@ const EditSpotForm = ({closeModal}) => {
   const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
-    //dispatch(loadAllSpots());
+
     dispatch(loadOneSpot(spotId))
   }, [dispatch, spotId]);
 
 const allSpots = useSelector(state => Object.values(state.spots))
 const currentSpotDetails = allSpots.find(spot => spot.id === spotId)
 
-  // //GET THIS SPOT
-  // const allSpotsArray = useSelector(state => Object.values(state.spots))
-
-  //  let currentSpotDetails = useSelector(state => state.spots)
-  //  //console.log("THIS IS CURRENT SPOT IN editspot", currentSpotDetails)
-
-  // // const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
-
-
-  // //console.log("CURRENT SPOT DETAILS", currentSpotDetails)
 
   const [name, setName] = useState(currentSpotDetails.name);
   const [address, setAddress] = useState(currentSpotDetails.address);

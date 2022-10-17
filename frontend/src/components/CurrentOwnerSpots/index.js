@@ -9,6 +9,7 @@ import './CurrentOwnerSpots.css'
 const OwnerSpotsBrowser = () => {
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(loadAllSpots());
   }, [dispatch])
@@ -24,9 +25,9 @@ const OwnerSpotsBrowser = () => {
     return null;
   }
 
-  dispatch(loadAllSpots()); //rehydrate state
-
-
+  if (!filteredSpots){
+    return null;
+  }
     return (
     <>
     <div className='title'>

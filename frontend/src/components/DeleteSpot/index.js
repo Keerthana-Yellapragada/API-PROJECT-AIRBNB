@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-router-dom';
-import removeSpot, { deleteSpot } from "../../store/spots"
-import { loadAllSpots } from '../../store/spots';
+import removeSpot, { deleteSpot, loadOneSpot } from "../../store/spots"
+import { loadAllSpots}from '../../store/spots';
+
 import './DeleteSpot.css'
 import {closeModal} from "../../context/Modal"
 
@@ -14,7 +15,7 @@ const DeleteSpotForm = ({closeModal}) => {
 
 
     useEffect(() => {
-        dispatch(loadAllSpots());
+        dispatch(loadOneSpot(spotId));
     }, [dispatch, spotId]);
 
 
@@ -22,8 +23,9 @@ const DeleteSpotForm = ({closeModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         closeModal();
-        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/current/spots"));
-
+        await dispatch(deleteSpot(spotId))
+        await dispatch(loadAllSpots())
+        history.push("/current/spots")
     }
 
     //HANDLE CANCEL BUTTON CLICK EVENT
@@ -33,9 +35,6 @@ const DeleteSpotForm = ({closeModal}) => {
         history.push("/current/spots")
     };
 
-
-
-    //dispatch(loadAllSpots())
 
 
     return (

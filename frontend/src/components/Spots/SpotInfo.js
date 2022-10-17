@@ -19,7 +19,7 @@ const SpotInfo = () => {
     spotId = parseInt(spotId)
 
     useEffect(() => {
-        //console.log("spotid useeffectis working")
+
         dispatch(loadOneSpot(spotId))
         dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
@@ -28,17 +28,18 @@ const SpotInfo = () => {
     const allSpots = useSelector(state => Object.values(state.spots))
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
-    console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
+
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
 
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
+
     if (sessionUser) {
         userId = sessionUser.id
     }
-    //console.log("userid", userId)
+
 
     if (!currentSpot) {
         return null
