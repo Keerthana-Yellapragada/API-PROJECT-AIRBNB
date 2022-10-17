@@ -82,7 +82,9 @@ function ProfileButton({ user }) {
           {showMenu && (
 
             <ul className="profile-dropdown-list">
-              <li><SignupFormModal /> </li>
+              <li>
+                <SignupFormModal />
+              </li >
               <li><LoginFormModal /></li>
             </ul>
           )}
