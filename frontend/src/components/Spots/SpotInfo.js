@@ -18,7 +18,7 @@ const SpotInfo = () => {
     let { spotId } = useParams();
     spotId = parseInt(spotId)
 
-    console.log("SPOT ID in spotinfo IS ", spotId)
+    //console.log("SPOT ID in spotinfo IS ", spotId)
 
     useEffect(() => {
         console.log("spotid useeffectis working")
@@ -34,9 +34,9 @@ const SpotInfo = () => {
 //     //console.log("THIS IS CURRENT SPOT", currentSpot)
 
 const currentSpot = useSelector(state=>state.spots)
-console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
+//console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
 
-console.log("SPOTIMAGEs array", currentSpot.SpotImages)
+//console.log("SPOTIMAGEs array", currentSpot.SpotImages)
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
     //console.log("THIS IS ALLREVIEWSARRAY ", allReviewsArray)

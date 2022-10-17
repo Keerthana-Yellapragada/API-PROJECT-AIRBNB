@@ -4,7 +4,7 @@ import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createReview, { createNewReview, loadAllReviews } from "../../store/reviews"
 
 
-const CreateReviewForm = ({closeProp}) => {
+const CreateReviewForm = ({closeModal}) => {
 
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
@@ -72,7 +72,7 @@ const CreateReviewForm = ({closeProp}) => {
       if (newReview) {
       dispatch(loadAllReviews(spotId))
         history.push(`/spots/${spotId}`)
-        closeProp();
+        closeModal();
       }
 
   })

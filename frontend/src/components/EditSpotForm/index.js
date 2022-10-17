@@ -7,7 +7,7 @@ import SpotInfo from '../Spots/SpotInfo';
 import "./EditSpotForm.css"
 
 
-const EditSpotForm = ({closeProp}) => {
+const EditSpotForm = ({closeModal}) => {
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = parseInt(spotId);
@@ -24,12 +24,12 @@ const EditSpotForm = ({closeProp}) => {
   const allSpotsArray = useSelector(state => Object.values(state.spots))
 
    let currentSpotDetails = useSelector(state => state.spots)
-   console.log("THIS IS CURRENT SPOT IN editspot", currentSpotDetails)
+   //console.log("THIS IS CURRENT SPOT IN editspot", currentSpotDetails)
 
   // const currentSpotDetails = allSpotsArray.find(spot => spot.id === +spotId)
 
 
-  console.log("CURRENT SPOT DETAILS", currentSpotDetails)
+  //console.log("CURRENT SPOT DETAILS", currentSpotDetails)
 
   const [name, setName] = useState(currentSpotDetails.name);
   const [address, setAddress] = useState(currentSpotDetails.address);
@@ -89,14 +89,14 @@ const EditSpotForm = ({closeProp}) => {
 
     const editedSpot = await dispatch(editSpot(payload))
     dispatch(loadAllSpots())
-    closeProp();
+    closeModal();
     history.push(`/spots/${spotId}`)
 
   };
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    closeProp();
+    closeModal();
     history.push(`/current/spots`)
 
   }

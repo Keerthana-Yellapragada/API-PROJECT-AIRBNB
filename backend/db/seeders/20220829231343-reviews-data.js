@@ -18,6 +18,12 @@ module.exports = {
         stars: 3
       },
       {
+        spotId: 1,
+        userId: 5,
+        review: "Beautiful location. We loved the redwood trees and the remote, peaceful surroundings.",
+        stars: 3
+      },
+      {
         spotId: 2,
         userId: 2,
         review: "A great space to decompress for a few days and enjoy peacefulness in nature. Mary and Matt are incredibly kind and great at communication. Thank you again!",

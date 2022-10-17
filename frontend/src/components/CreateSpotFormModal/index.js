@@ -15,7 +15,7 @@ function CreateSpotFormModal() {
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
 
-          <CreateSpotForm  closeProp={closeModal}/>
+          <CreateSpotForm  closeModal={closeModal}/>
         </Modal>
       )}
     </>

@@ -4,7 +4,7 @@ import { Modal } from '../../context/Modal';
 import "../../context/Modal.css"
 import DeleteSpotForm from '.';
 import {
-  closeProp
+  closeModal
 } from "../../context/Modal"
 
 function DeleteSpotFormModal() {
@@ -19,7 +19,7 @@ function DeleteSpotFormModal() {
       <button className="modal-button" onClick={() => setShowModal(true)}>Delete Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <DeleteSpotForm closeProp={closeModal}/>
+          <DeleteSpotForm closeModal={closeModal}/>
         </Modal>
       )}
     </>

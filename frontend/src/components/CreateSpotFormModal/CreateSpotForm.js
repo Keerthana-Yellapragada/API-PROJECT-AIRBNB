@@ -5,7 +5,7 @@ import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createSpot, { createNewSpot } from "../../store/spots"
 
 
-const CreateSpotForm = ({closeProp}) => {
+const CreateSpotForm = ({closeModal}) => {
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
   const [errorMessages, setErrorMessages] = useState({});
@@ -76,13 +76,13 @@ const CreateSpotForm = ({closeProp}) => {
 
     let newSpot = await dispatch(createNewSpot(imagePayload, spotInfoPayload))
     history.push(`/spots/${newSpot.id}`)
-    closeProp();
+    closeModal();
   }
 
 
   const handleCancelClick = (e) => {
     e.preventDefault();
-    closeProp();
+    closeModal();
   };
 
 

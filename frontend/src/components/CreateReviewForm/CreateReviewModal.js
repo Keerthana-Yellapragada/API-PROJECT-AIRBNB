@@ -15,7 +15,7 @@ function CreateReviewFormModal() {
       <button className="leave-review-button" onClick={() => setShowModal(true)}>Leave A Review!</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <CreateReviewForm  closeProp={closeModal}/>
+          <CreateReviewForm  closeModal={closeModal}/>
         </Modal>
       )}
     </>

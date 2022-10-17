@@ -13,7 +13,7 @@ const ReviewsBrowser = () => {
     spotId = parseInt(spotId)
 
  useEffect(() => {
-        console.log("THIS IS IN REVIEWS USEFFECT")
+        //console.log("THIS IS IN REVIEWS USEFFECT")
         dispatch(loadAllReviews(spotId));
         //dispatch(loadAllSpots());
         dispatch(loadOneSpot(spotId))
@@ -27,7 +27,7 @@ const ReviewsBrowser = () => {
 
 
     const currentSpot = useSelector(state => state.spots)
-    console.log("THIS IS CURRENT SPOT IN REVIEWS BROWSER", currentSpot)
+    //console.log("THIS IS CURRENT SPOT IN REVIEWS BROWSER", currentSpot)
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;

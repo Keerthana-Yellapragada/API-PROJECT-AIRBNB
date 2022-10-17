@@ -4,10 +4,10 @@ import { Modal } from '../../context/Modal';
 import "../../context/Modal.css"
 import EditSpotForm from '.';
 import {
-  closeProp
+  closeModal
 } from "../../context/Modal"
 
-function EditSpotFormModal({closeProp}) {
+function EditSpotFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   const closeModal=() => {
@@ -19,7 +19,7 @@ function EditSpotFormModal({closeProp}) {
       <button className="modal-button" onClick={() => setShowModal(true)}>Update Listing</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <EditSpotForm closeProp={closeModal}/>
+          <EditSpotForm closeModal={closeModal}/>
         </Modal>
       )}
     </>

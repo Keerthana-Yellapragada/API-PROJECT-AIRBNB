@@ -4,9 +4,9 @@ import { Link, NavLink, Redirect, Route, useHistory, useParams } from 'react-rou
 import removeSpot, { deleteSpot } from "../../store/spots"
 import { loadAllSpots } from '../../store/spots';
 import './DeleteSpot.css'
-import {closeProp} from "../../context/Modal"
+import {closeModal} from "../../context/Modal"
 
-const DeleteSpotForm = ({closeProp}) => {
+const DeleteSpotForm = ({closeModal}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     let { spotId } = useParams();
@@ -21,7 +21,7 @@ const DeleteSpotForm = ({closeProp}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-           closeProp();
+           closeModal();
         const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/"))
 
     }
@@ -29,7 +29,7 @@ const DeleteSpotForm = ({closeProp}) => {
     //HANDLE CANCEL BUTTON CLICK EVENT
     const handleCancelClick = (e) => {
         e.preventDefault();
-        closeProp();
+        closeModal();
         history.push("/current/spots")
 
     };

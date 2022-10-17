@@ -11,22 +11,23 @@ import CreateSpotFormModal from '../CreateSpotFormModal';
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  if (sessionUser) { // if user is logged in, then show profile button
-    sessionLinks = (
+  // let sessionLinks;
+  // if (sessionUser) { // if user is logged in, then show profile button
+    let sessionLinks = (
       <ProfileButton className='profile-dropdown-button' user={sessionUser} />
     );
-  } else { // or else, show login and signup
-    sessionLinks = (
-      <>
-        <div className='profile-dropdown-content'>
-          <LoginFormModal />
-          <SignupFormModal />
-        </div>
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
-      </>
-    );
-  }
+  // } else { // or else, show login and signup
+  //   sessionLinks = (
+  //   <>
+  //     <ProfileButton user={sessionUser}/>
+  //       {/* <div className='profile-dropdown-content'>
+  //         <LoginFormModal />
+  //         <SignupFormModal />
+  //       </div> */}
+  //       {/* <NavLink to="/signup">Sign Up</NavLink> */}
+  //     </>
+  //   );
+  // }
 
   return (
 
