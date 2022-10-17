@@ -131,7 +131,8 @@ align-self:flex-start
 
 .review-user-star{
 
-    padding: 2px 2px  0px 2px;
+    padding: 3px;
+    align-self: center;
 
 }
 

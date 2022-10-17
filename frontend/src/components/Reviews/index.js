@@ -17,8 +17,11 @@ const ReviewsBrowser = () => {
         dispatch(loadOneSpot(spotId))
     }, [dispatch, spotId])
 
-    const currentSpot = useSelector(state => state.spots)
-
+    let currentSpot = useSelector(state => state.spots)
+    currentSpot = currentSpot[spotId]
+console.log(currentSpot)
+// console.log("current spot is", currentSpot[spotId])
+// console.log("avgrev", currentSpot[spotId].numReviews)
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
