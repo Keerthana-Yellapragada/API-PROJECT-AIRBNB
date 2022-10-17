@@ -73,12 +73,13 @@ z-index: 0;
     display: flex;
     align-self: center;
     border-radius: 20px;
+
 }
 
 .user-profile-container {
     position: relative;
     display: flex;
-    align-self: flex-end;
+    align-self: center
 }
 
 .user-profile-container ul {
@@ -95,8 +96,8 @@ z-index: 0;
 .user-profile-container ul li {
     display: flex;
     /* justify-content: center; */
-    margin: 5px;
-    padding: 5px;
+    margin: 5px 0px;
+    padding: 5px 0px;
     padding-left: 10px;
     /* color: rgb(174, 171, 171); */
     text-decoration: none;
@@ -116,19 +117,23 @@ z-index: 0;
 
 .create-spot-container button {
     display: block;
-    font-weight: 800;
-    font-size: 95%;
-    padding: 10px 10px;
+    font-weight: 900;
+    font-size: 100%;
+    padding: 20px;
     width: 100%;
+    height:auto;
     border: none;
+    border-radius: 30px;
     /* align-self: flex-end;
     justify-content:flex-end; */
     background-color: white;
     color: black
 
 }
-button.create-spot-button:hover {
-    background-color: rgb(180, 174, 174);
+
+
+.create-spot-container :hover {
+    background-color: whitesmoke;
 }
 
 
@@ -158,11 +163,7 @@ button.create-spot-button:hover {
     /* padding:10px 0px; */
 }
 
-/* .fa-bars {
-    align-self: center;
-    padding-bottom:20px;
 
-} */
 
 .navbar-user-circle{
     color:grey;
@@ -170,7 +171,7 @@ button.create-spot-button:hover {
 }
 
 .userProfileButton:hover {
-    box-shadow: 0px 0px 5px 0.6px rgba(186, 184, 184, 0.7);
+    box-shadow: 0px 0px 5px 0.8px rgba(186, 184, 184, 0.7);
 
 }
 
@@ -194,7 +195,7 @@ button.create-spot-button:hover {
 }
 
 .profile-dropdown-list li:hover {
-    background-color:rgb(200, 192, 192);
+    background-color:whitesmoke;
 }
 
 .profile-dropdown-list a {
@@ -203,9 +204,6 @@ button.create-spot-button:hover {
     color: black;
 
 }
-/* .profile-dropdown-list a:hover{
-    background-color: rgb(197, 193, 193) ;
-} */
 
 
 .welcome-banner-container {

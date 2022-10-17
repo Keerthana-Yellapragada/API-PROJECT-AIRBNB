@@ -19,7 +19,6 @@ const SpotInfo = () => {
     spotId = parseInt(spotId)
 
     useEffect(() => {
-
         dispatch(loadOneSpot(spotId))
         dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
@@ -29,12 +28,24 @@ const SpotInfo = () => {
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
 
+        const sessionUser = useSelector(state => state.session.user)
+        let userId;
+
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
+//console.log("THIS IS ALL REVIEWS ARRAY",allReviewsArray)
+
+if (!allReviewsArray) {
+    return null;
+}
 
 
-    const sessionUser = useSelector(state => state.session.user)
-    let userId;
+let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
+//console.log("SPOT REVIEWS", spotReviews)
+
+
+
+
 
     if (sessionUser) {
         userId = sessionUser.id
@@ -48,6 +59,8 @@ const SpotInfo = () => {
         return null;
     }
 
+
+
     return (
         <>
             <div className='spot-info-page-container'>
@@ -56,10 +69,10 @@ const SpotInfo = () => {
                         <h1>{currentSpot.name}</h1>
                     </div>
 
-                    <div>
+                    <div className="spot-sub-header-info-container">
                         < i className="fa-solid fa-star" > </i>
                         {
-                            `${currentSpot.avgStarRating} · ${allReviewsArray.length} reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
+                            `${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} · ${!spotReviews.length? 0 : spotReviews.length } reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
                         }
 
                     </div>

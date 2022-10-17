@@ -8,11 +8,10 @@ import createSpot, { createNewSpot } from "../../store/spots"
 const CreateSpotForm = ({closeModal}) => {
   const dispatch = useDispatch(); // invoke dispatch
   const history = useHistory();
-  const [errorMessages, setErrorMessages] = useState({});
 
-    // const sessionUser = useSelector(state => state.session.user)
-    // let userId = sessionUser.id
-    // console.log("userid", userId)
+ const sessionUser = useSelector(state => state.session.user)
+
+
 
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -48,10 +47,12 @@ const CreateSpotForm = ({closeModal}) => {
     if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
     if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
     if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
-    // if (!userId) {errors.push("Must be logged in to continue")}
+    if (!sessionUser) {errors.push("Must be logged in to continue")}
     setValidationErrors(errors)
 
   },[lat,lng,price,url])
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

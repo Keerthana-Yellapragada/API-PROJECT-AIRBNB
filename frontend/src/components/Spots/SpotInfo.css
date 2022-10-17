@@ -14,13 +14,17 @@
     display: inline;
     padding: 20px;
     font-size: 1rem;
-    font-weight:bold;
+    font-weight:900;
 }
 
 .spot-header-info-container {
     display: flex;
     justify-content: flex-start;
     align-content: center;
+}
+.spot-sub-header-info-container{
+    font-weight: 900;
+    font-size: 120%
 }
 
 .spot-address {
@@ -87,16 +91,16 @@
 }
 
 .spot-bed-bath-container{
- font-size: 18px;
- padding-bottom: 10px;
-border-bottom: 1px solid rgb(224, 216, 216);
- font-weight: normal
+ font-size: 20px;
+ padding:0px 0px 10px 0px;
+ border-bottom: 1px solid rgb(224, 216, 216);
+ font-weight: normal;
 }
 
 
 .owner-picture{
     font-size: 60px;
-    color: grey
+    color: rgb(143, 139, 139)
 }
 
 .aircover-title-image img{

@@ -28,11 +28,13 @@ const ReviewsBrowser = () => {
       }
 
 
-    const allReviews = useSelector(state => {
-        const allReviewsArray = Object.values(state.reviews)
-        return allReviewsArray;
+    const allReviews = useSelector(state => {Object.values(state.reviews)
+
     });
 
+    if (!allReviews) {
+        return null
+    }
 
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 

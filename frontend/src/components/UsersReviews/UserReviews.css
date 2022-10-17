@@ -1,7 +1,13 @@
 
 .user-review-content{
-    margin:10px 0px;
+    margin:15px 0px;
 }
+.user-review-star {
+
+    padding-right: 5px;
+    align-self: center;
+}
+
 .user-reviews-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -50,10 +56,6 @@
 }
 
 
-.fa-solid fa-star {
-    padding: 20px;
-    align-self: center;
-}
 
 .current-review-card {
 
@@ -77,4 +79,5 @@
 .review-button {
     width: auto;
     margin: 5px 0px;
+    padding:15px;
 }

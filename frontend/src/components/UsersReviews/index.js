@@ -41,7 +41,7 @@ const UserReviewsBrowser = () => {
                             <div className='user-review-card'>
 
                                     <div className="review-title">
-                                        <i className="fa-solid fa-star"></i>
+                                        <i className="fa-solid fa-star user-review-star"></i>
                                         <div>{review.stars}</div>
                                         {/* <div className="primary-text-rating">{`${review.stars} stars`}</div> */}
                                     </div>
