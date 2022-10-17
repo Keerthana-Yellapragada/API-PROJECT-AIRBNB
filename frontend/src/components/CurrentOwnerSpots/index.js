@@ -24,7 +24,7 @@ const OwnerSpotsBrowser = () => {
     return null;
   }
 
-  dispatch(loadAllSpots()); //rehydrate state
+  //dispatch(loadAllSpots()); //rehydrate state
 
 
     return (

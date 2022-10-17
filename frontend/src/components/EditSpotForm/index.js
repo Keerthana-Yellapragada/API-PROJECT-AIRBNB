@@ -88,7 +88,8 @@ const EditSpotForm = ({closeModal}) => {
     };
 
     const editedSpot = await dispatch(editSpot(payload))
-    dispatch(loadAllSpots())
+    // dispatch(loadAllSpots())
+     dispatch(loadOneSpot(spotId))
     closeModal();
     history.push(`/spots/${spotId}`)
 
@@ -101,7 +102,7 @@ const EditSpotForm = ({closeModal}) => {
 
   }
 
-  dispatch(loadOneSpot(spotId))
+  //dispatch(loadOneSpot(spotId))
 
   // RETURN THE FORM COMPONENT
   return (

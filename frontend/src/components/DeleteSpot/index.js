@@ -22,7 +22,7 @@ const DeleteSpotForm = ({closeModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
            closeModal();
-        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/"))
+        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/current/spots"))
 
     }
 
@@ -31,7 +31,6 @@ const DeleteSpotForm = ({closeModal}) => {
         e.preventDefault();
         closeModal();
         history.push("/current/spots")
-
     };
 
 

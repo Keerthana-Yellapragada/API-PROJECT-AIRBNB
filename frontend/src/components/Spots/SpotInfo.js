@@ -55,8 +55,8 @@ const currentSpot = useSelector(state=>state.spots)
         return null;
     }
 
-    dispatch(loadOneSpot(spotId))
-    dispatch(loadAllReviews(spotId))
+    // dispatch(loadOneSpot(spotId))
+    // dispatch(loadAllReviews(spotId))
 
 
     return (

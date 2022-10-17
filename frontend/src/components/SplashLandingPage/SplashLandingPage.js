@@ -9,7 +9,7 @@ import './SplashLandingPage.css'
 
 const SpotsBrowser = () => {
   const dispatch = useDispatch(); // invoke dispatch
-  const { spotId } = useParams(); // use params
+  //const { spotId } = useParams(); // use params
 
   const allSpots = useSelector(state => {
     const allSpotsArray = Object.values(state.spots)
@@ -18,7 +18,7 @@ const SpotsBrowser = () => {
 
   useEffect(() => {
     dispatch(loadAllSpots());
-  }, [dispatch])
+  }, [])
 
   if (!allSpots) {
     return null;

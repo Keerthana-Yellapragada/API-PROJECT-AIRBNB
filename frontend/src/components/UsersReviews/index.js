@@ -23,7 +23,7 @@ const UserReviewsBrowser = () => {
 
     useEffect(() => {
         dispatch(loadUserReviews());
-    }, [dispatch])
+    }, [dispatch, spotId])
 
     if (!userReviews) {
         return (<h1>You haven't left any reviews yet!</h1>);

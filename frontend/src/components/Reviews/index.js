@@ -52,9 +52,9 @@ const ReviewsBrowser = () => {
         return null;
     }
 
-    dispatch(loadAllReviews(spotId));
+    //dispatch(loadAllReviews(spotId));
     //dispatch(loadAllSpots());
-    dispatch(loadOneSpot(spotId))
+    //dispatch(loadOneSpot(spotId))
 
     //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
 

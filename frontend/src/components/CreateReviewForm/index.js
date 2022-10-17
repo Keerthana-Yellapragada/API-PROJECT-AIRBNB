@@ -68,14 +68,17 @@ const CreateReviewForm = ({closeModal}) => {
     let newReview = await dispatch(createNewReview(reviewPayload)) //dispatch to update our store
     dispatch(loadAllReviews(spotId))
 
-    .then((newReview) => {
-      if (newReview) {
-      dispatch(loadAllReviews(spotId))
-        history.push(`/spots/${spotId}`)
-        closeModal();
-      }
+    closeModal();
+    history.push(`/spots/${spotId}`)
+    // .then((newReview) => {
+    //   if (newReview) {
+    //   dispatch(loadAllReviews(spotId))
+    //   closeModal();
+    //   history.push(`/spots/${spotId}`)
 
-  })
+    //   }
+
+  //})
 }
 
   //HANDLE CANCEL BUTTON CLICK EVENT
