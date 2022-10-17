@@ -15,19 +15,17 @@ header {
     justify-content: space-between;
     align-content: center;
     flex-direction: row;
-    /* padding-right: 11%;
-    padding-left: 11%; */
     height: 100%;
-    width:100%;
+    width:auto;
     border-bottom: 1px solid rgb(227, 224, 224);
-    /* padding-left: 45px;
-    padding-right: 25px; */
+
+
 }
 
 /* container for entire main navbar container */
 .main-navbar-flex-container {
-position:sticky;
-z-index: 0;
+    position: sticky;
+    z-index: 0;
     display: flex;
     flex-direction: row;
     height: 100%;
@@ -64,11 +62,12 @@ z-index: 0;
 
 /* main navbar container */
 
-.navbar-right{
-    display:flex;
+.navbar-right {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 .create-spot-container {
     display: flex;
     align-self: center;
@@ -103,12 +102,13 @@ z-index: 0;
     text-decoration: none;
     list-style: none;
 }
+
 .logout-button {
     display: block;
     width: 100%;
     border-radius: 6px;
     border: none;
-    margin:0px;
+    margin: 0px;
     background-color: rgb(245, 19, 19);
     color: white;
 
@@ -121,14 +121,13 @@ z-index: 0;
     font-size: 100%;
     padding: 20px;
     width: 100%;
-    height:auto;
+    height: auto;
     border: none;
     border-radius: 30px;
     /* align-self: flex-end;
     justify-content:flex-end; */
     background-color: white;
     color: black
-
 }
 
 
@@ -139,17 +138,17 @@ z-index: 0;
 
 .userProfileButton {
     position: relative;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    align-content:center;
+    align-content: center;
     background-color: #fff;
-    color:black;
+    color: black;
     border: 1px solid rgb(228, 223, 223);
     width: fit-content;
     border-radius: 30px;
-    padding:0px;
-    margin:5px;
+    padding: 0px;
+    margin: 5px;
 
 
 }
@@ -165,8 +164,8 @@ z-index: 0;
 
 
 
-.navbar-user-circle{
-    color:grey;
+.navbar-user-circle {
+    color: grey;
 
 }
 
@@ -195,7 +194,7 @@ z-index: 0;
 }
 
 .profile-dropdown-list li:hover {
-    background-color:whitesmoke;
+    background-color: whitesmoke;
 }
 
 .profile-dropdown-list a {
