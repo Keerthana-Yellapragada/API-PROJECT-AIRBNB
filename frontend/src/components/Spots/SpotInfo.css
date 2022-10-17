@@ -170,17 +170,18 @@
 /* LOCATION CONTAINER */
 
 .location-container,
-.check-in-door-container {
+.check-in-door-container,
+.free-cancellation-container {
  display:flex;
  justify-content: flex-start;
  font-weight: normal;
  font-size: 16px;
  padding-top: 20px;
 }
-.check-in-door-container{
-    padding-bottom: 20px;
-}
-.fa-location-dot, .fa-door-open {
+
+.fa-location-dot,
+.fa-door-open,
+.fa-calendar-xmark {
     margin:20px;
     font-size: 40px;
     margin-left:0px;
@@ -188,14 +189,16 @@
 }
 
 .location-info-title,
-.check-in-door-title {
+.check-in-door-title,
+.free-cancellation-title {
     font-weight: bold;
     color: black;
     padding-bottom: 4px;
 }
 
 .location-info,
-.check-in-door-info {
+.check-in-door-info,
+.free-cancellation-info {
     display: flex;
     flex-direction: column;
     justify-content: center;

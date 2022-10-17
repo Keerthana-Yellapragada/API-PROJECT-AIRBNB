@@ -132,7 +132,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
                     <div className="check-in-door-container" >
-                        <div className='check-in-door-image'><i class="fa-solid fa-door-open"></i></div>
+                        <div className='check-in-door-image'><i className="fa-solid fa-door-open"></i></div>
                         < div className='check-in-door-info' >
                             < div className='check-in-door-title' >
                                 {"Self check-in"}
@@ -142,6 +142,19 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                             </div>
                         </div>
                     </div>
+
+                 <div className="free-cancellation-container" >
+                        < div className = 'free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
+                        < div className = 'free-cancellation-info' >
+                            < div className = 'free-cancellation-title' >
+                                {"Free Cancellation for 48 hours"}
+                            </div>
+                            < div className='free-cancellation-info-description' >
+                                {"50% refund on cancellations after 48 hours"}
+                            </div>
+                        </div>
+                    </div>
+
 
                     {/* ********************************************************************************** */}
 
