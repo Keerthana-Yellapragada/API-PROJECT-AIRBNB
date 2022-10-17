@@ -5,19 +5,20 @@
 
 }
 
-.header-container{
+/* .header-container{
     margin-left: 10%;
     margin-right: 10%;
-}
+} */
 
 header {
     display: flex;
     justify-content: space-between;
     align-content: center;
     flex-direction: row;
-    padding-right: 11%;
-    padding-left: 11%;
+    /* padding-right: 11%;
+    padding-left: 11%; */
     height: 100%;
+    width:100%;
     border-bottom: 1px solid rgb(227, 224, 224);
     /* padding-left: 45px;
     padding-right: 25px; */
@@ -46,16 +47,16 @@ z-index: 0;
 
 }
 
-/* ayrbnb logo name text styling */
+/* keerbnb logo name text styling */
 .logo-name {
     color: rgb(245, 19, 19);
     padding-left: 10px;
 
 }
 
-.logo-image {
+/* .logo-image {
     padding-top: 5px;
-}
+} */
 
 .logo-name-text {
     padding-bottom: 10px;
@@ -115,8 +116,8 @@ z-index: 0;
 
 .create-spot-container button {
     display: block;
-    font-weight: bold;
-    font-size: 90%;
+    font-weight: 800;
+    font-size: 95%;
     padding: 10px 10px;
     width: 100%;
     border: none;

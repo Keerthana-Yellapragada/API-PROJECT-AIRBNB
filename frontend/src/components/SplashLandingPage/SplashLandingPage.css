@@ -12,7 +12,7 @@ a {
     border-top: 1px solid rgb(177, 173, 173);
 }
 
-/* styling for ayrbnb logo */
+/* styling for keerbnb logo */
 .logo {
     color: red;
     font-size: xx-large;
@@ -30,10 +30,12 @@ a {
 .flex-container{
     display:flex;
     flex-wrap: wrap;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-around;
     width: 100%;
     border-bottom: 1px solid rgb(177, 173, 173);
-    padding:25px;
+    align-content: center
+    /* padding:25px; */
 }
 
 /* for each spot card */
@@ -42,7 +44,7 @@ a {
     margin: 5px;
     padding:5px;
     display: flex;
-    border-radius: 20px;
+    border-radius: 5%;
     justify-content: center;
     align-content: center;
     align-items: center;
