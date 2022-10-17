@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useParams } from 'react-router-dom';
-import { loadAllSpots } from "../../store/spots";
+import { loadAllSpots,  } from "../../store/spots";
 import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
 import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 import './CurrentOwnerSpots.css'
 
 const OwnerSpotsBrowser = () => {
   const dispatch = useDispatch();
-  const allSpots = useSelector(state => Object.values(state.spots));
-  const sessionUser = useSelector(state => state.session.user)
-  let userId = sessionUser.id
-
-  let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
-
-
 
   useEffect(() => {
     dispatch(loadAllSpots());
   }, [dispatch])
 
+
+  const sessionUser = useSelector(state => state.session.user)
+  let userId = sessionUser.id
+
+  const allSpots = useSelector(state => Object.values(state.spots));
+  let filteredSpots = allSpots.filter(spot => spot.ownerId === userId)
+
   if (!allSpots) {
     return null;
   }
 
-  //dispatch(loadAllSpots()); //rehydrate state
+  dispatch(loadAllSpots()); //rehydrate state
 
 
     return (

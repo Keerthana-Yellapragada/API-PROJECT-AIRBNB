@@ -18,28 +18,20 @@ const SpotInfo = () => {
     let { spotId } = useParams();
     spotId = parseInt(spotId)
 
-    //console.log("SPOT ID in spotinfo IS ", spotId)
-
     useEffect(() => {
-        console.log("spotid useeffectis working")
-       //dispatch(loadAllSpots());
+        //console.log("spotid useeffectis working")
         dispatch(loadOneSpot(spotId))
         dispatch(loadAllReviews(spotId))
     }, [dispatch, spotId])
 
-//     const allSpotsArray = useSelector(state => Object.values(state.spots))
-//    // console.log("THIS IS ALLSPOTSARRAY ", allSpotsArray)
 
-//     const currentSpot = allSpotsArray.find(spot => spot.id == spotId)
-//     //console.log("THIS IS CURRENT SPOT", currentSpot)
+    const allSpots = useSelector(state => Object.values(state.spots))
+    const currentSpot = allSpots.find(spot => spot.id === spotId)
 
-const currentSpot = useSelector(state=>state.spots)
-//console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
-
-//console.log("SPOTIMAGEs array", currentSpot.SpotImages)
+    console.log("THIS IS CURRENT SPOT IN SPOTINFO", currentSpot)
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
-    //console.log("THIS IS ALLREVIEWSARRAY ", allReviewsArray)
+
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
@@ -51,13 +43,9 @@ const currentSpot = useSelector(state=>state.spots)
     if (!currentSpot) {
         return null
     }
-    if(!currentSpot.SpotImages){
+    if (!currentSpot.SpotImages) {
         return null;
     }
-
-    // dispatch(loadOneSpot(spotId))
-    // dispatch(loadAllReviews(spotId))
-
 
     return (
         <>
@@ -114,7 +102,7 @@ const currentSpot = useSelector(state=>state.spots)
                     </div>
 
 
-{/* ********************************************************************************** */}
+                    {/* ********************************************************************************** */}
 
                     <div className="location-container">
                         <div className='location-pin-image'><i className="fa-solid fa-location-dot"></i></div>
@@ -141,16 +129,16 @@ const currentSpot = useSelector(state=>state.spots)
                         </div>
                     </div>
 
-                 {/* ********************************************************************************** */}
+                    {/* ********************************************************************************** */}
 
                     <div className="spot-description-container">
                         {currentSpot.description}
                     </div>
 
-                {/* ********************************************************************************** */}
+                    {/* ********************************************************************************** */}
 
 
-                {/* ********************************************************************************** */}
+                    {/* ********************************************************************************** */}
                     <div className='price-rating-side-container'>
                         <div className="spot-description-price">
                             {`$${currentSpot.price} night`}

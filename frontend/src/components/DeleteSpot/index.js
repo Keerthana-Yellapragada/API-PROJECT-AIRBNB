@@ -15,14 +15,14 @@ const DeleteSpotForm = ({closeModal}) => {
 
     useEffect(() => {
         dispatch(loadAllSpots());
-    }, [dispatch]);
+    }, [dispatch, spotId]);
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-           closeModal();
-        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/current/spots"))
+        closeModal();
+        const deletedSpot = await dispatch(deleteSpot(spotId)).then(history.push("/current/spots"));
 
     }
 
@@ -34,6 +34,8 @@ const DeleteSpotForm = ({closeModal}) => {
     };
 
 
+
+    //dispatch(loadAllSpots())
 
 
     return (

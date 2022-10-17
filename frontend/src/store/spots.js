@@ -213,15 +213,17 @@ const spotsReducer = (state = initialState, action) => {
         ///*************************************************************************** */
         case GET_ONESPOT:
 
-            newState={...state}
+            newState={}
+            //newState={...state}
 
             //console.log(" THIS IS SPOT INFO PAYLOAD INSIDE GETONESPOT REDUCER", action.payload)
 
             newState[action.payload.id] = action.payload
 
-            return {
-                ...newState[action.payload.id]
-            }; //return a new updated state for spots
+            return {...newState}
+            // return {
+            //     ...newState[action.payload.id]
+            // }; //return a new updated state for spots
 
         ///*************************************************************************** */
 

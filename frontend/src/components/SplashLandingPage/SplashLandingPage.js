@@ -9,7 +9,7 @@ import './SplashLandingPage.css'
 
 const SpotsBrowser = () => {
   const dispatch = useDispatch(); // invoke dispatch
-  //const { spotId } = useParams(); // use params
+  const { spotId } = useParams(); // use params
 
   const allSpots = useSelector(state => {
     const allSpotsArray = Object.values(state.spots)
@@ -18,11 +18,12 @@ const SpotsBrowser = () => {
 
   useEffect(() => {
     dispatch(loadAllSpots());
-  }, [])
+  },[])
 
   if (!allSpots) {
     return null;
   }
+
 
 
   //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
@@ -31,6 +32,8 @@ const SpotsBrowser = () => {
       <div className="flex-container">
         {
           allSpots.map(spot => {
+            console.log("THIS IS SPOT", spot.id)
+
             return (
               <>
                 <div className='spot-card-flex-container'>
