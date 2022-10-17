@@ -14,13 +14,13 @@ module.exports = {
     return queryInterface.bulkInsert('Reviews', [{
         spotId: 1,
         userId: 1,
-        review: " Clean place and great hosts. We really enjoyed our stay here.",
+        review: "Beautiful location. We loved the redwood trees and the remote, peaceful surroundings.",
         stars: 3
       },
       {
         spotId: 2,
         userId: 2,
-        review: " Cozy and private. My family really enjoyed our stay here.",
+        review: "A great space to decompress for a few days and enjoy peacefulness in nature. Mary and Matt are incredibly kind and great at communication. Thank you again!",
         stars: 4
       },
       {
@@ -32,19 +32,19 @@ module.exports = {
        {
          spotId: 4,
          userId: 3,
-         review: "Great place!!",
+         review: "Amazing place perfect for relaxing. Wife and are already talking about coming back!",
          stars: 4
        },
         {
           spotId: 5,
           userId: 3,
-          review: "Clean and cozy!",
+          review: "Beautiful location, very well suited for couples getting away together, or in our case small family gathering. Better for older kids, but definitely worth it.",
           stars: 4
         },
         {
           spotId: 6,
           userId: 3,
-          review: "We enjoyed our stay here!",
+          review: "Amazing, Magical, and Unforgettable! Million dollar views, and breathtaking night skies!!!",
           stars: 5
         },
          {
@@ -62,7 +62,7 @@ module.exports = {
           {
             spotId: 9,
             userId: 3,
-            review: "Friendly hosts! Would come again!",
+            review: "Beautiful property and friendly hosts! Would come again!",
             stars: 4
           },
           {
@@ -74,8 +74,8 @@ module.exports = {
             {
               spotId: 11,
               userId: 3,
-              review: "Still waiting for my refund. Host is very unresponsive",
-              stars: 1
+              review: "This a great place to chill and relax! The host is awesome!",
+              stars: 3
             },
             {
               spotId: 12,
