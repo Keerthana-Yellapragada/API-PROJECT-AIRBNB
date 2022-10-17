@@ -227,7 +227,7 @@ module.exports = {
       price: 200.00
     },
      {
-       ownerId: 5,
+       ownerId: 1,
        address: "265 Parrot Dr",
        city: "Gilroy",
        state: "CA",
@@ -239,7 +239,7 @@ module.exports = {
        price: 250.00
      },
       {
-        ownerId: 2,
+        ownerId: 1,
         address: "6045 Subrook Lane",
         city: "Palm Springs",
         state: "CA",

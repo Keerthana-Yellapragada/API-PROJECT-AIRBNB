@@ -174,9 +174,9 @@ console.log("SPOTIMAGEs array", currentSpot.SpotImages)
                     {
                         userId && userId === currentSpot.ownerId ? < EditSpotFormModal /> : null
                     }
-                    {/* {
+                    {
                         userId && userId === currentSpot.ownerId ? < DeleteSpotFormModal /> : null
-                    } */}
+                    }
 
                 </div>
             </div>

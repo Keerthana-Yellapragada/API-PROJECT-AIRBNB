@@ -31,7 +31,7 @@ a {
     display:flex;
     flex-wrap: wrap;
     /* justify-content: center; */
-    justify-content: space-around;
+    /* justify-content: center; */
     width: 100%;
     border-bottom: 1px solid rgb(177, 173, 173);
     align-content: center
@@ -48,7 +48,7 @@ a {
     justify-content: center;
     align-content: center;
     align-items: center;
-    flex-basis: 250px;
+    flex-basis: 300px;
     flex-direction: column;
 
 
