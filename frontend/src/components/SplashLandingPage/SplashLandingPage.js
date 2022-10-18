@@ -32,7 +32,7 @@ const SpotsBrowser = () => {
       <div className="flex-container">
         {
           allSpots.map(spot => {
-            console.log("THIS IS SPOT", spot.id)
+            //console.log("THIS IS SPOT", spot.id)
 
             return (
               <>
