@@ -17,6 +17,7 @@ import UserReviewsBrowser from "./components/UsersReviews"
 import DeleteReviewForm from "./components/DeleteReview";
 import { useSelector } from "react-redux";
 import ReviewInfo from "./components/Reviews/ReviewInfo";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,38 +29,42 @@ function App() {
 
   return (
     <>
-<div id="root">
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
+      <div className="root">
+        <Navigation isLoaded={isLoaded} />
 
-          <Route exact path="/current/reviews">
-            <UserReviewsBrowser />
-          </Route>
+        {isLoaded && (
+          <Switch>
 
-          <Route exact path="/reviews/:reviewId">
+            <Route exact path="/current/reviews">
+              <UserReviewsBrowser />
+            </Route>
+
+            <Route exact path="/reviews/:reviewId">
               <ReviewInfo />
-          </Route>
+            </Route>
 
-          <Route exact path="/spots/:spotId">
-            <SpotInfo />
-          </Route>
+            <Route exact path="/spots/:spotId">
+              <SpotInfo />
+            </Route>
 
-          <Route exact path="/signup">
-            <SignupFormPage />
-          </Route>
+            <Route exact path="/signup">
+              <SignupFormPage />
+            </Route>
 
-          <Route exact path="/">
-            <SpotsBrowser />
-          </Route>
+            <Route exact path="/">
+              <SpotsBrowser />
+            </Route>
 
-          <Route exact path="/current/spots">
-            <CurrentOwnerSpots />
-          </Route>
+            <Route exact path="/current/spots">
+              <CurrentOwnerSpots />
+            </Route>
 
-        </Switch>
-      )}
-</div>
+          </Switch>
+
+        )}
+
+        <Footer />
+      </div>
     </>
   );
 }

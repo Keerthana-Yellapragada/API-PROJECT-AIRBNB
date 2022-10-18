@@ -203,6 +203,7 @@ const spotsReducer = (state = initialState, action) => {
 
             //normalize the data
             newState = { ...state }
+
             action.spots.Spots.forEach(spot => {
                 newState[spot.id] = spot
             })
@@ -213,7 +214,6 @@ const spotsReducer = (state = initialState, action) => {
         case GET_ONESPOT:
 
             newState = {}
-
 
             newState[action.payload.id] = action.payload
 

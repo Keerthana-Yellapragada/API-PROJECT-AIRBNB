@@ -5,13 +5,10 @@ html,button{
     font-size: 16px;
 }
 
-/* html {
-    padding-left: 25px;
-    padding-right: 25px;
- } */
 
 
- #root {
- max-width:90%;
- margin:auto
- }
+.root {
+    width:95%;
+    margin:auto;
+    text-align: center;
+}
