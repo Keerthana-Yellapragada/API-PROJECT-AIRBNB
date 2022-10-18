@@ -3,8 +3,7 @@
 
 Keerbnb is a website inspired by Airbnb. It can be used to create listings, manage listings, leave reviews, make bookings, etc.
 
-Here is the link to the live site: https://keerthana-final-airbnb-project.herokuapp.com/
-
+[Click here to visit the live site](https://keerthana-final-airbnb-project.herokuapp.com/)
 
 # Wiki Links
 * Feature List
