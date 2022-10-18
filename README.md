@@ -1,3 +1,100 @@
+
+# Keerbnb
+
+Keerbnb is a website inspired by Airbnb. It can be used to create listings, manage listings, leave reviews, make bookings, etc.
+
+Here is the link to the live site: https://keerthana-final-airbnb-project.herokuapp.com/
+
+
+# Wiki Links
+* Feature List
+* Database Schema
+* Redux Store State Shape
+* Frontend Routes
+* API Routes
+
+# Tech Stack
+
+This project is built with the following:
+
+## Frameworks, Platforms, Libraries:
+* Javascript
+* HTML5
+* CSS
+* Express.js
+* React
+* Redux
+
+## Database:
+* Postgres
+
+## Hosting:
+* Heroku
+
+
+# Landing Page
+
+Welcome to the homepage! You can access the Login and Signup modals from the dropdown navigation menu on the top right corner of the page.
+
+A "Demo User" button has been included under the "Login" selection for your convenience. You can now checkout the website without signing up.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # AirBnB Clone
 
 ## Database Schema Design
