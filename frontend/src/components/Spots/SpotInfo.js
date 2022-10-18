@@ -173,7 +173,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
                         <div className="spot-description-rating">
                             <i class="fa-solid fa-star"></i>
-                            {currentSpot.avgStarRating}
+                            {!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating}
                         </div>
                     </div>
 

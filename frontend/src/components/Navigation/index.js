@@ -9,32 +9,14 @@ import SignupFormModal from '../SignupFormPage';
 import CreateSpotFormModal from '../CreateSpotFormModal';
 
 function Navigation({ isLoaded }) {
+
   const sessionUser = useSelector(state => state.session.user);
 
-  let sessionLinks;
-  // let sessionLinks;
-  if (sessionUser) { // if user is logged in, then show profile button
-    // let sessionLinks = (
-    //   <ProfileButton className='profile-dropdown-button' user={sessionUser} />
-    // );
-    sessionLinks = (
-      <ProfileButton className='profile-dropdown-button' user={sessionUser} />
-    );
-  } else { // or else, show login and signup
-    sessionLinks = (
-    <>
-      <ProfileButton user={sessionUser}/>
-        <div className='profile-dropdown-content'>
-          <LoginFormModal />
-          <SignupFormModal />
-        </div>
-        {/* <NavLink to="/signup">Sign Up</NavLink> */}
-      </>
-    );
-  }
+  // SESSION LINKS WILL BE RENDER WITH THE PROFILE BUTTON(WHICH RENDERS DIFF LINKS ACCORDING TO WHETHER OR NOT USER IS LOGGED IN)
+  let sessionLinks = (<ProfileButton className='profile-dropdown-button' user={sessionUser} />);
+
 
   return (
-
 
     <header>
       <nav className='main-navbar-flex-container'>
@@ -47,7 +29,7 @@ function Navigation({ isLoaded }) {
 
         <div className='welcome-banner-container'>
 
-          {sessionUser ? (` Welcome, ${sessionUser.firstName}!`) : ("Welcome To ayrbnb!")}
+          {sessionUser ? (` Welcome, ${sessionUser.firstName}!`) : ("Welcome To keerbnb!")}
 
         </div>
         <div className='navbar-right'>
