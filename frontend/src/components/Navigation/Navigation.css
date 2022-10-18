@@ -190,8 +190,8 @@ header {
     position: absolute;
     right: 0%;
     top: 120%;
-    width: fit-content;
-    border-radius: 15px;
+    width: 18%;
+    border-radius: 6%;
     padding: 10px;
     box-shadow: 0px 0px 12px 0.5px rgb(185 178 178 / 70%);
 }
