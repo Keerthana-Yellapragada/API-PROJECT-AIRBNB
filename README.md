@@ -57,8 +57,10 @@ A "Demo User" button has been included under the "Login" selection for your conv
 
 
 
+# Listings
 
-# Create a Listing
+
+## Create a Listing
 
 By clicking on the "Become A Host" button, you can enter information and create a new listing. This new listing will now also be visible under the "Manage Listings" page which can be accessed through the dropdown navigation menu on the top right corner. Users can update and remove their listings from this page if desired.
 
@@ -70,12 +72,27 @@ By clicking on the "Become A Host" button, you can enter information and create 
 
 
 
-# Listing Details Page
+## Listing Details Page
 
-A listing's details can be viewed on the listing's page. The associated images and reviews are also visible. Users can create reviews by clicking on the " Leave A Review " button and owners of the listing can update and remove their listing from this page.
+### A listing's details can be viewed on the listing's page.
+
+The associated images and reviews are also visible.
+Users can create reviews by clicking on the " Leave A Review " button
 
 
 <img width="899" alt="Screen Shot 2022-10-18 at 2 09 26 PM" src="https://user-images.githubusercontent.com/85444662/196800184-ddedda1c-4c63-4998-b69a-57f0781de2d2.png">
+
+
+
+### Hosts can view buttons to update and delete their listings
+
+
+<img width="1157" alt="Screen Shot 2022-10-19 at 2 01 03 PM" src="https://user-images.githubusercontent.com/85444662/196803808-f00fda8a-6098-4d04-a31e-32b89f2fca92.png">
+
+<img width="1151" alt="Screen Shot 2022-10-19 at 2 01 26 PM" src="https://user-images.githubusercontent.com/85444662/196803382-4eb65413-e303-416d-870a-63d562b209a7.png">
+
+<img width="1149" alt="Screen Shot 2022-10-19 at 2 01 16 PM" src="https://user-images.githubusercontent.com/85444662/196803420-c5842c99-1f35-4a4f-be44-ff090a7c5283.png">
+
 
 
 
@@ -83,17 +100,29 @@ A listing's details can be viewed on the listing's page. The associated images a
 # Reviews
 
 
-## Creating a Review
+
+
+## Leaving a Review
+
+Users can leave a review on a listing's page by clicking the "Leave A Review" button. They must include a star rating as well.
+
+<img width="1386" alt="Screen Shot 2022-10-19 at 1 18 56 PM" src="https://user-images.githubusercontent.com/85444662/196803956-dd006262-f6b4-4948-bddc-c88803f0cdaa.png">
+
 
 <img width="946" alt="Screen Shot 2022-10-18 at 2 10 25 PM" src="https://user-images.githubusercontent.com/85444662/196801432-3d48f21b-07ae-40e5-a915-76eaa5b0617b.png">
 
 
-# Manage Reviews Page
+## Manage Reviews Page
+
+Users can view all of their reviews left by them under the "Manage Reviews" page which can be accessed through the navigation drop down menu.
+
+
 <img width="946" alt="Screen Shot 2022-10-18 at 2 10 35 PM" src="https://user-images.githubusercontent.com/85444662/196801330-033bcc99-20f5-4fdc-91ae-6a11aabc09c5.png">
 
 
+On the "My Reviews" page, users can click on any review to visit its page to see more information. Here they can delete their review if they wish to.
 
-
+<img width="1167" alt="Screen Shot 2022-10-19 at 1 57 38 PM" src="https://user-images.githubusercontent.com/85444662/196803176-0b3d83c7-c995-40d4-999f-a8e96588396d.png">
 
 
 
