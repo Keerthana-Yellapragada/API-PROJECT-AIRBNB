@@ -25,16 +25,16 @@ const UserReviewsBrowser = () => {
         dispatch(loadUserReviews());
     }, [dispatch, spotId])
 
-    if (!userReviews) {
-        return (<h1>You haven't left any reviews yet!</h1>);
-    }
+    // if (!userReviews) {
+    //     return (<h1>You haven't left any reviews yet!</h1>);
+    // }
 
 
     return (
         <>
             <div className="user-reviews-title"> <h1> Your Reviews</h1> </div>
             <div className="user-reviews-wrapper">
-                {userReviews.map(review => {
+                {!userReviews.length ? (<h2 className='no-reviews-banner'>You haven't left any reviews yet!</h2>) : (userReviews.map(review => {
                     return (
 
 
@@ -58,7 +58,7 @@ const UserReviewsBrowser = () => {
 
                     )
                 })
-                }
+                )}
             </div>
         </>
     )

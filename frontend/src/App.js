@@ -59,6 +59,8 @@ function App() {
               <CurrentOwnerSpots />
             </Route>
 
+            <Route className='page-not-found'> 404 Page Not Found</Route>
+
           </Switch>
 
         )}

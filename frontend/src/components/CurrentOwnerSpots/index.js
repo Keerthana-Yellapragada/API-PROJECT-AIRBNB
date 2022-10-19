@@ -25,20 +25,20 @@ const OwnerSpotsBrowser = () => {
     return null;
   }
 
-  if (!filteredSpots){
-    return (
-      <h2> You haven't created any listings yet!</h2>
-    )
-  }
+  // if (!filteredSpots){
+  //   return (
+  //     <h2> You haven't created any listings yet!</h2>
+  //   )
+  // }
     return (
     <>
     <div className='title'>
-      <h2 className='owner-spots-title'> {`${sessionUser.firstName}'s Listings`} </h2>
+      <h1 className='owner-spots-title'> {`${sessionUser.firstName}'s Listings`} </h1>
     </div>
 
       <div className="flex-container">
-        {
-          filteredSpots.map(spot => {
+        {!filteredSpots.length ? (<h2 className='no-listings-yet-banner'>You haven't created any lisitings yet!</h2>):
+          (filteredSpots.map(spot => {
             return (
               <>
                 <div className='spot-card-flex-container'>
@@ -86,7 +86,7 @@ const OwnerSpotsBrowser = () => {
               </>
             )
           })
-        }
+        )}
       </div>
 
     </>
