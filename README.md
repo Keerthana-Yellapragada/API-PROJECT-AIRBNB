@@ -30,18 +30,19 @@ This project is built with the following:
 ## Hosting:
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
-# Here is a video demonstration of how to use the website!
-
-
-https://user-images.githubusercontent.com/85444662/196811394-ef7d2a42-4e1f-42dd-92aa-b9b0749a3408.mov
-
-
 
 # Landing Page
 
 Welcome to the homepage! You can access the Login and Signup modals from the dropdown navigation menu on the top right corner of the page.
 
 A "Demo User" button has been included under the "Login" selection for your convenience. You can now checkout the website without signing up.
+
+
+# Here is a video demonstration of how to use the website!
+
+https://user-images.githubusercontent.com/85444662/196811394-ef7d2a42-4e1f-42dd-92aa-b9b0749a3408.mov
+
+
 
 ## Homepage
 Users can view all the listings on the website from the homepage. By clicking the logo on the upper left hand side, users can return to the homepage at any time.
