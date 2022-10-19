@@ -37,6 +37,59 @@ Welcome to the homepage! You can access the Login and Signup modals from the dro
 
 A "Demo User" button has been included under the "Login" selection for your convenience. You can now checkout the website without signing up.
 
+## Landing Page
+<img width="1180" alt="Screen Shot 2022-10-18 at 2 08 43 PM" src="https://user-images.githubusercontent.com/85444662/196798900-870cd021-c625-4eb1-9e38-a3f1070d6608.png">
+
+## Navigation Menu
+
+<img width="183" alt="Screen Shot 2022-10-18 at 2 09 58 PM" src="https://user-images.githubusercontent.com/85444662/196801167-c5a38fa3-c9be-4bb0-a377-1e2d1e05e120.png">
+
+
+## Signup
+<img width="335" alt="Screen Shot 2022-10-18 at 2 10 09 PM" src="https://user-images.githubusercontent.com/85444662/196799053-ee6b36f9-b0c9-4072-9386-dd6baacc7acf.png">
+
+## Login
+<img width="301" alt="Screen Shot 2022-10-18 at 2 10 02 PM" src="https://user-images.githubusercontent.com/85444662/196801121-fedc0886-ba62-4294-a68c-0cb8d1402932.png">
+
+
+## Logout
+<img width="374" alt="Screen Shot 2022-10-19 at 1 17 06 PM" src="https://user-images.githubusercontent.com/85444662/196800792-81fdbd2e-ee9e-4313-aef1-14aa2f930608.png">
+
+
+
+
+# Create a Listing
+
+By clicking on the "Become A Host" button, you can enter information and create a new listing. This new listing will now also be visible under the "Manage Listings" page which can be accessed through the dropdown navigation menu on the top right corner. Users can update and remove their listings from this page if desired.
+
+<img width="1362" alt="Screen Shot 2022-10-19 at 1 16 34 PM" src="https://user-images.githubusercontent.com/85444662/196800911-d5bbb426-6482-4db2-bb47-fd3944e72e27.png">
+
+<img width="1379" alt="Screen Shot 2022-10-19 at 1 17 16 PM" src="https://user-images.githubusercontent.com/85444662/196800225-e5e55981-7a76-4e1c-b065-2cf7d15d6f73.png">
+
+
+
+
+
+# Listing Details Page
+
+A listing's details can be viewed on the listing's page. The associated images and reviews are also visible. Users can create reviews by clicking on the " Leave A Review " button and owners of the listing can update and remove their listing from this page.
+
+
+<img width="899" alt="Screen Shot 2022-10-18 at 2 09 26 PM" src="https://user-images.githubusercontent.com/85444662/196800184-ddedda1c-4c63-4998-b69a-57f0781de2d2.png">
+
+
+
+
+# Reviews
+
+
+## Creating a Review
+
+<img width="946" alt="Screen Shot 2022-10-18 at 2 10 25 PM" src="https://user-images.githubusercontent.com/85444662/196801432-3d48f21b-07ae-40e5-a915-76eaa5b0617b.png">
+
+
+# Manage Reviews Page
+<img width="946" alt="Screen Shot 2022-10-18 at 2 10 35 PM" src="https://user-images.githubusercontent.com/85444662/196801330-033bcc99-20f5-4fdc-91ae-6a11aabc09c5.png">
 
 
 
@@ -62,30 +115,7 @@ A "Demo User" button has been included under the "Login" selection for your conv
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#-----------------------------------------------------------------------------------
 
 
 
