@@ -73,7 +73,7 @@ Users can host their homes by creating listings. This is a core feature of Keerb
 ## Create a Listing
 
 By clicking on the "Become A Host" button, users can enter information and create a new listing.
- Their newly created listing will be visible on the homepage and under the "Manage Listings" page which can be accessed through the dropdown navigation menu on the top right corner.
+Their newly created listing will be visible on the homepage and under the "Manage Listings" page which can be accessed through the dropdown navigation menu on the top right corner.
 
 Users can update information and remove their listings from this page if desired.
 
@@ -88,9 +88,7 @@ Users can update information and remove their listings from this page if desired
 
 ## Listing Details Page
 
-A listing's details can be viewed on the listing's page.
-
-A listing's average rating, images, and reviews are also displayed on the page.
+A listing's details can be viewed on the listing's page along with its average rating, images, and reviews.
 
 Users can leave reviews by clicking on the " Leave A Review " button
 
