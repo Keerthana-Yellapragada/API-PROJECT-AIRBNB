@@ -45,7 +45,7 @@ Users can view all the listings on the website from the homepage. By clicking th
 ## Navigation Menu
 The navigation drop down menu on the upper right hand corner of the website allows users to log in, signup, and access their profile pages.
 
-<img width="183" alt="Screen Shot 2022-10-18 at 2 09 58 PM" src="https://user-images.githubusercontent.com/85444662/196801167-c5a38fa3-c9be-4bb0-a377-1e2d1e05e120.png">
+<img width="1158" alt="Screen Shot 2022-10-19 at 2 15 09 PM" src="https://user-images.githubusercontent.com/85444662/196806040-37f8e0ea-2fa0-478d-94a3-f39ba3cf868c.png">
 
 
 ## Signup
@@ -78,6 +78,8 @@ Users can update information and remove their listings from this page if desired
 
 <img width="1362" alt="Screen Shot 2022-10-19 at 1 16 34 PM" src="https://user-images.githubusercontent.com/85444662/196800911-d5bbb426-6482-4db2-bb47-fd3944e72e27.png">
 
+### User's Listing Page
+
 <img width="1379" alt="Screen Shot 2022-10-19 at 1 17 16 PM" src="https://user-images.githubusercontent.com/85444662/196800225-e5e55981-7a76-4e1c-b065-2cf7d15d6f73.png">
 
 
@@ -99,10 +101,15 @@ Users can leave reviews by clicking on the " Leave A Review " button
 ### Hosts can update and delete their listings from the listing's page
 
 
+### Hosts can make changes to their listings through the listing page
 <img width="1157" alt="Screen Shot 2022-10-19 at 2 01 03 PM" src="https://user-images.githubusercontent.com/85444662/196803808-f00fda8a-6098-4d04-a31e-32b89f2fca92.png">
 
+
+### Delete A Listing
 <img width="1151" alt="Screen Shot 2022-10-19 at 2 01 26 PM" src="https://user-images.githubusercontent.com/85444662/196803382-4eb65413-e303-416d-870a-63d562b209a7.png">
 
+
+### Update A Listing
 <img width="1149" alt="Screen Shot 2022-10-19 at 2 01 16 PM" src="https://user-images.githubusercontent.com/85444662/196803420-c5842c99-1f35-4a4f-be44-ff090a7c5283.png">
 
 
@@ -140,6 +147,9 @@ On the "My Reviews" page, users can click on any review to visit its page to see
 
 
 
+# Upcoming Features
+## Editing Reviews
+## Making and Managing Bookings
 
 
 
