@@ -22,14 +22,9 @@ const ReviewInfo = () => {
     // console.log("current review", currentReview)
     // console.log("current review spot : ", allReviewsArray[reviewId].Spot.name)
 
-    //get the spot that this review is for
-    // const  allSpots = useSelector(state=>Object.values(state.spots))
-    // let reviewSpot = allSpots.find(spot => spot.id === currentReview.spotId)
-    // console.log("REVIEW SPOT", reviewSpot)
-
 
     if (!currentReview) {
-        return (<h1>Sorry, no review was found.</h1>)
+        return (<h1 className='review-not-found'>Sorry, no review was found.</h1>)
     }
 
 
@@ -41,7 +36,7 @@ const ReviewInfo = () => {
                 <div className="current-review-title">
                     <i className="current-review-page-star fa-solid fa-star"></i>
                     <div className='current-review-rating'>{currentReview.stars}</div>
-                      {/* <div className='review-spot-name'>{currentReview.Spot.name}</div> */}
+
                 </div>
                 {/* <div  className="current-review-images-container">
                       {currentReview.ReviewImages.map(reviewImage => <img src={reviewImage.url}></img>)}

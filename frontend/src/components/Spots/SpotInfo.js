@@ -53,7 +53,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
     if (!currentSpot) {
-        return null
+        return (<h1 className='spot-not-found'>Sorry, no listing was found.</h1>)
     }
     if (!currentSpot.SpotImages) {
         return null;

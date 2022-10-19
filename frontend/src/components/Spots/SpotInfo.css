@@ -238,3 +238,10 @@
     max-width: 70%;
     /* border:3px solid blue; */
 }
+
+.spot-not-found{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding:50px;
+}
