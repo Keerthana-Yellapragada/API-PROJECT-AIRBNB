@@ -51,12 +51,13 @@ The navigation drop down menu on the upper right hand corner of the website allo
 ## Signup
 Allows users to signup with a valid email address, username, and password.
 
-<img width="335" alt="Screen Shot 2022-10-18 at 2 10 09 PM" src="https://user-images.githubusercontent.com/85444662/196799053-ee6b36f9-b0c9-4072-9386-dd6baacc7acf.png">
+<img width="1161" alt="Screen Shot 2022-10-19 at 2 21 07 PM" src="https://user-images.githubusercontent.com/85444662/196807997-4ea22db7-19bf-4055-bee0-04f0d739a69d.png">
+
 
 ## Login
 Allows pre-existing users to sign in with a valid email/username and password
 
-<img width="301" alt="Screen Shot 2022-10-18 at 2 10 02 PM" src="https://user-images.githubusercontent.com/85444662/196801121-fedc0886-ba62-4294-a68c-0cb8d1402932.png">
+<img width="1148" alt="Screen Shot 2022-10-19 at 2 21 26 PM" src="https://user-images.githubusercontent.com/85444662/196808025-37dc9c32-7f52-4a6f-a41e-cf4845be7fde.png">
 
 
 ## Logout
@@ -100,8 +101,6 @@ Users can leave reviews by clicking on the " Leave A Review " button
 
 ### Hosts can update and delete their listings from the listing's page
 
-
-### Hosts can make changes to their listings through the listing page
 <img width="1157" alt="Screen Shot 2022-10-19 at 2 01 03 PM" src="https://user-images.githubusercontent.com/85444662/196803808-f00fda8a-6098-4d04-a31e-32b89f2fca92.png">
 
 
