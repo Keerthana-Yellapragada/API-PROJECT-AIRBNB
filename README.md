@@ -8,11 +8,13 @@ Keerbnb is a website clone inspired by Airbnb. Keerbnb can be used to create lis
 [Click here to visit the live site](https://keerthana-final-airbnb-project.herokuapp.com/)
 
 # Wiki Links
-* Feature List
-* Database Schema
-* Redux Store State Shape
-* Frontend Routes
-* API Routes
+
+Click on the links below to see more information about the project.
+
+* [API Routes](https://github.com/Keerthana-Yellapragada/API-PROJECT-AIRBNB/wiki/API-ROUTES)
+* [Database Schema](https://github.com/Keerthana-Yellapragada/API-PROJECT-AIRBNB/wiki/Database-Schema)
+* [Feature List](https://github.com/Keerthana-Yellapragada/API-PROJECT-AIRBNB/wiki/Features-List)
+* [Redux Store State Shape](https://github.com/Keerthana-Yellapragada/API-PROJECT-AIRBNB/wiki/Redux-State-Shape)
 
 # Tech Stack
 
