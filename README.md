@@ -30,6 +30,12 @@ This project is built with the following:
 ## Hosting:
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
+# Here is a Video Demo of how to use the website!
+
+
+https://user-images.githubusercontent.com/85444662/196811394-ef7d2a42-4e1f-42dd-92aa-b9b0749a3408.mov
+
+
 
 # Landing Page
 
@@ -139,7 +145,6 @@ Users can view all of their reviews left by them under the "Manage Reviews" page
 On the "My Reviews" page, users can click on any review to visit its page to see more information. Here they can delete their review if they wish to.
 
 <img width="1167" alt="Screen Shot 2022-10-19 at 1 57 38 PM" src="https://user-images.githubusercontent.com/85444662/196803176-0b3d83c7-c995-40d4-999f-a8e96588396d.png">
-
 
 
 
