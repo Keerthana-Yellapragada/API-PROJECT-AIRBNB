@@ -18,6 +18,7 @@ import DeleteReviewForm from "./components/DeleteReview";
 import { useSelector } from "react-redux";
 import ReviewInfo from "./components/Reviews/ReviewInfo";
 import Footer from "./components/Footer";
+import PageNotFound from "./components/404PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,7 +60,8 @@ function App() {
               <CurrentOwnerSpots />
             </Route>
 
-            <Route className='page-not-found'> 404 Page Not Found</Route>
+          <Route> <PageNotFound /></Route>
+
 
           </Switch>
 

@@ -11,12 +11,3 @@ html,button{
     width:95%;
     margin:auto;
 }
-
-
-
-.page-not-found{
-font-weight: bold;
-font-size: 50%;
-display: flex;
-justify-content: content;
-}
