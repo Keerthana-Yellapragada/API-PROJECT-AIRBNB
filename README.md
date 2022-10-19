@@ -30,7 +30,7 @@ This project is built with the following:
 ## Hosting:
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
-# Here is a Video Demo of how to use the website!
+# Here is a video demonstration of how to use the website!
 
 
 https://user-images.githubusercontent.com/85444662/196811394-ef7d2a42-4e1f-42dd-92aa-b9b0749a3408.mov
