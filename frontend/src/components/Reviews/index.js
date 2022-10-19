@@ -40,10 +40,10 @@ console.log(currentSpot)
     let filteredReviews = allReviews.filter(review => review.spotId === spotId)
 
 
-    if (!filteredReviews) { //if we don't have spots- don't display anything
-        // return (<div>{"No Reviews Yet!"}</div>);
-        return null;
-    }
+    // if (!filteredReviews) { //if we don't have spots- don't display anything
+    //     // return (<div>{"No Reviews Yet!"}</div>);
+    //     return null;;
+    // }
 
 
     //RETURN THE JSX/HTML COMPONENT WE WANT TO RENDER:
@@ -60,7 +60,8 @@ console.log(currentSpot)
 
      <div className='review-wrapper-container'>
             <div className="reviews-browser-wrapper">
-                {
+                {!filteredReviews.length ? (<h3 className='no-reviews-banner'>No Reviews Yet! Be the first to leave a review</h3>) :
+                (
                     filteredReviews.map(review => {
                         return (
                             <>
@@ -90,7 +91,7 @@ console.log(currentSpot)
                             </>
                         )
                     })
-                }
+                )}
             </div>
         </div>
         </>

@@ -12,7 +12,7 @@ const EditSpotForm = ({closeModal}) => {
   let { spotId } = useParams();
   spotId = parseInt(spotId);
   const history = useHistory();
-  const [errorMessages, setErrorMessages] = useState({});
+  // const [errorMessages, setErrorMessages] = useState({});
 
   useEffect(() => {
 
@@ -177,7 +177,7 @@ const currentSpotDetails = allSpots.find(spot => spot.id === spotId)
           onChange={updateDescription} />
 
         <div className='edit-spot-button-container'>
-          <button className="update-button" type="submit">Save Changes & Update</button>
+          <button className="update-button" disabled={!!validationErrors.length} type="submit">Save Changes & Update</button>
           <button className='cancel-button' type="button" onClick={handleCancelClick}>Cancel</button>
         </div>
 

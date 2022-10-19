@@ -26,12 +26,14 @@ const OwnerSpotsBrowser = () => {
   }
 
   if (!filteredSpots){
-    return null;
+    return (
+      <h2> You haven't created any listings yet!</h2>
+    )
   }
     return (
     <>
     <div className='title'>
-      {/* <h1> {`${sessionUser.firstName}'s Listings`} </h1> */}
+      <h2 className='owner-spots-title'> {`${sessionUser.firstName}'s Listings`} </h2>
     </div>
 
       <div className="flex-container">
@@ -57,7 +59,7 @@ const OwnerSpotsBrowser = () => {
 
                             <div className='rating-container'>
                               <i className="fa-solid fa-star"></i>
-                              {spot.avgRating}
+                              {!spot.avgRating ? "NEW" : spot.avgRating}
                             </div>
 
                         </div>

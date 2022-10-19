@@ -157,3 +157,13 @@ align-self:flex-start
 .current-review-page-star{
     padding:0px;
 }
+
+
+
+.no-reviews-banner{
+    width:100%;
+    padding-bottom: 6%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}

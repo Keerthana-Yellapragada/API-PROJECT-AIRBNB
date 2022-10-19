@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import createReview, { createNewReview, loadAllReviews } from "../../store/reviews"
-
+import {loadOneSpot} from "../../store/spots"
 
 const CreateReviewForm = ({closeModal}) => {
 
@@ -67,7 +67,7 @@ const CreateReviewForm = ({closeModal}) => {
 
     let newReview = await dispatch(createNewReview(reviewPayload)) //dispatch to update our store
     dispatch(loadAllReviews(spotId))
-
+    dispatch(loadOneSpot(spotId))
     closeModal();
     history.push(`/spots/${spotId}`)
     // .then((newReview) => {
@@ -84,6 +84,7 @@ const CreateReviewForm = ({closeModal}) => {
   //HANDLE CANCEL BUTTON CLICK EVENT
   const handleCancelClick = (e) => {
     e.preventDefault();
+    closeModal();
     history.push(`/spots/${spotId}`)
   };
 

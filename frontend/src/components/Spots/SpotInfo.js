@@ -181,9 +181,14 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
                 {
     /* ********************************************************************************** */}
-                <ReviewsBrowser />
+                {<ReviewsBrowser />}
 
-                <div className='create-review-container'>  <CreateReviewFormModal /></div>
+
+                {userId && userId === currentSpot.ownerId ? null : (
+                <div className='create-review-container'>
+                <CreateReviewFormModal />
+                </div>
+                )}
 
 
                 <div className='edit-delete-spot-buttons-container'>
