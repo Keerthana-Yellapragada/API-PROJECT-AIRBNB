@@ -45,7 +45,7 @@ const ReviewInfo = () => {
                 </div> */}
                        <div className='current-review-content'> {currentReview.review} </div>
             </div>
-              <EditReviewForm/>
+              {/* <EditReviewForm/> */}
               <DeleteReviewForm />
             </div>
         </>
