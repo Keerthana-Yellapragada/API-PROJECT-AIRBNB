@@ -51,7 +51,7 @@ const CreateSpotForm = ({closeModal}) => {
     if (description.length > 254){errors.push("Description must be less than 254 characters")}
     setValidationErrors(errors)
 
-  },[lat,lng,price,url])
+  },[lat,lng,price,url,description])
 
 
 
