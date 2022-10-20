@@ -48,6 +48,7 @@ const CreateSpotForm = ({closeModal}) => {
     if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
     if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
     if (!sessionUser) {errors.push("Must be logged in to continue")}
+    if (description.length > 254){errors.push("Description must be less than 254 characters")}
     setValidationErrors(errors)
 
   },[lat,lng,price,url])

@@ -16,7 +16,7 @@ const GET_ALLREVIEWS = 'reviews/getAllReviews'
 const GET_REVIEW = 'reviews/getReview'
 // const GET_USER_REVIEWS='reviews/userReviews'
 const CREATE_REVIEW = 'reviews/createReview'
-// const UPDATE_REVIEW = 'reviews/updateReview'
+const UPDATE_REVIEW = 'reviews/updateReview'
 const REMOVE_REVIEW = 'reviews/removeReview'
 
 ///*************************************************************************** */
@@ -65,12 +65,12 @@ const createReview = (review) => {
 ///*************************************************************************** */
 // -------------------------  EDIT A REVIEW  ----------------------------------
 //edit/update a review
-// const updateReview = (review) => {
-//     return {
-//         type: UPDATE_REVIEW,
-//         payload: review
-//     }
-// }
+const updateReview = (review) => {
+    return {
+        type: UPDATE_REVIEW,
+        payload: review
+    }
+}
 
 ///*************************************************************************** */
 // -------------------------  DELETE A REVIEW   ----------------------------------
@@ -178,21 +178,21 @@ export const getReviewInfo = reviewId => async dispatch => {
 ///*************************************************************************** */
 // -------------------------  EDIT A REVIEW   ----------------------------------
 // // EDIT A REVIEW INFO
-// export const editReview = reviewInfo => async dispatch => {
-//     const response = await fetch(`/api/reviews/${reviewInfo.id}`, { //get the id from the review obj and use that
-//         method: 'PUT',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(reviewInfo)
-//     });
+export const editReview = reviewInfo => async dispatch => {
+    const response = await fetch(`/api/reviews/${reviewInfo.id}`, { //get the id from the review obj and use that
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reviewInfo)
+    });
 
-//     if (response.ok) {
-//         const review = await response.json();
-//         dispatch(updateReview(review)) // dispatch using out action creator from above to get review's info by spotId
-//         return review;
-//     }
-// }
+    if (response.ok) {
+        const review = await response.json();
+        dispatch(updateReview(review)) // dispatch using out action creator from above to get review's info by spotId
+        return review;
+    }
+}
 
 ///*************************************************************************** */
 // -------------------------  DELETE A REVIEW  ----------------------------------
@@ -247,6 +247,13 @@ const reviewsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload // normalize and add data
 
             return newState;
+///*************************************************************************** */
+        case UPDATE_REVIEW:
+            const anotherState = {...state}
+
+            anotherState[action.payload.id] = action.payload
+
+            return anotherState
 ///*************************************************************************** */
 
         case REMOVE_REVIEW:

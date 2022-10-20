@@ -5,6 +5,8 @@ import { loadUserReviews } from '../../store/reviews';
 import DeleteReviewForm from '../DeleteReview';
 import './ReviewInfo.css'
 import { loadAllSpots } from '../../store/spots';
+import EditReviewForm from '../EditReviewForm';
+import EditReviewFormModal from '../EditReviewForm/EditReviewFormModal';
 
 const ReviewInfo = () => {
     const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const ReviewInfo = () => {
                 </div> */}
                        <div className='current-review-content'> {currentReview.review} </div>
             </div>
-
+              <EditReviewForm/>
               <DeleteReviewForm />
             </div>
         </>

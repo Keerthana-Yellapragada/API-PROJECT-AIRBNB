@@ -45,6 +45,7 @@ const CreateReviewForm = ({closeModal}) => {
     if (!userId) {
       errors.push("Must be logged in to leave a review")
     }
+    if (review.length > 254){errors.push("Review musts be less than 255 characters")}
 
     setValidationErrors(errors)
   },[stars, review, sessionUser])

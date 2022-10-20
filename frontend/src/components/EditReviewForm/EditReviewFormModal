@@ -1,0 +1,29 @@
+import React, { useState } from 'react';
+import CreateReviewForm from '.';
+import { Modal } from '../../context/Modal';
+import "../../context/Modal.css"
+import EditReviewForm from './index';
+import {
+  closeModal
+} from "../../context/Modal"
+
+function EditReviewFormModal() {
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal=() => {
+    setShowModal(false)
+  }
+
+  return (
+    <>
+      <button className="modal-button" onClick={() => setShowModal(true)}>Edit Review</button>
+      {showModal && (
+        <Modal onClose={() => setShowModal(false)}>
+          <EditReviewForm closeModal={closeModal}/>
+        </Modal>
+      )}
+    </>
+  );
+}
+
+export default EditReviewFormModal;

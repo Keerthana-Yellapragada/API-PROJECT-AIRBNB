@@ -266,7 +266,7 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     // update properties in the obj
     let reviewObj = currReview.toJSON()
 
-    console.log(reviewObj)
+    //console.log(reviewObj)
 
 
     reviewObj.review = review
@@ -290,8 +290,8 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
         reviewId
     } = req.params
 
-    console.log(userId)
-    console.log(reviewId)
+    //console.log(userId)
+    //console.log(reviewId)
 
     const review = await Review.findByPk(reviewId)
 
