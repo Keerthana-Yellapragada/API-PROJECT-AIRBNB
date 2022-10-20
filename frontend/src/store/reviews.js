@@ -64,7 +64,7 @@ const createReview = (review) => {
 }
 ///*************************************************************************** */
 // -------------------------  EDIT A REVIEW  ----------------------------------
-// edit/update a review
+//edit/update a review
 // const updateReview = (review) => {
 //     return {
 //         type: UPDATE_REVIEW,
