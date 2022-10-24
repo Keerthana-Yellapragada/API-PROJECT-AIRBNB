@@ -38,7 +38,7 @@ const CreateReviewForm = ({closeModal}) => {
 
   useEffect(()=> {
     const errors= [];
-    if (stars < 1 || stars > 5){errors.push("Must provide a rating between 1 to 5 stars")}
+    if (stars && (stars < 1 || stars > 5)){errors.push("Must provide a rating between 1 to 5 stars")}
     if (review && review==="") {
       errors.push("Please provide a review")
     }
