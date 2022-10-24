@@ -56,7 +56,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     setShowLoginModal(false)
-    setShowLoginModal(false)
+    setShowSignupModal(false)
     history.push("/")
   };
 
