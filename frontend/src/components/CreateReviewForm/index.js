@@ -117,7 +117,7 @@ const CreateReviewForm = ({closeModal}) => {
         <input
            id="stars-rating"
           type="number"
-          placeholder="Rating: 0-5 stars"
+          placeholder="Rating: 1-5 stars"
           required
           value={stars}
           onChange={updateStars} />
