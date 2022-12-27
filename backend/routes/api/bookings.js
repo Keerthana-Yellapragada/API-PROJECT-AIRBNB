@@ -189,7 +189,6 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     }
 
 
-
     // Else, if we have checked all existing bookings and NO BOOKING conflict exists:
 
     //update the changes to obj
