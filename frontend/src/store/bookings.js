@@ -111,7 +111,7 @@ export const loadUserBookings = () => async dispatch => {
     if (response.ok) {
         const userBookings = await response.json();
         console.log("user bookings is", userBookings)
-        dispatch(getAllReviews(userBookings)) // dispatch using out action creator from above to get all bookings
+        dispatch(getAllBookings(userBookings)) // dispatch using out action creator from above to get all bookings
     }
 }
 
@@ -119,7 +119,7 @@ export const loadUserBookings = () => async dispatch => {
 
 ///*************************************************************************** */
 // -------------------------  CREATE A BOOKING   ----------------------------------
-export const createNewReview = (createBookingPayload, spotId) => async dispatch => {
+export const createNewBooking = (createBookingPayload, spotId) => async dispatch => {
     console.log("DID IT REACH CREATE BOOKING THUNK")
 
 

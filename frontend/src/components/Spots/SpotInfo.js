@@ -12,6 +12,7 @@ import CreateReviewForm from "../CreateReviewForm"
 import CreateReviewFormModal from '../CreateReviewForm/CreateReviewModal';
 import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
+import CreateBookingForm from '../Bookings'
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
@@ -166,7 +167,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
                     {/* ********************************************************************************** */}
-                    <div className='price-rating-side-container'>
+                    {/* <div className='price-rating-side-container'>
                         <div className="spot-description-price">
                             {`$${currentSpot.price} night`}
                         </div>
@@ -175,9 +176,11 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                             <i class="fa-solid fa-star"></i>
                             {!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating}
                         </div>
-                    </div>
+                    </div> */}
 
+                <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} />
                 </div>
+
 
                 {
     /* ********************************************************************************** */}

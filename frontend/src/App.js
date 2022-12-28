@@ -60,6 +60,11 @@ function App() {
               <CurrentOwnerSpots />
             </Route>
 
+            <Route exact path="/current/bookings">
+              <h1>MY BOOKINGS PAGE- need to create component</h1>
+
+            </Route>
+
           <Route> <PageNotFound /></Route>
 
 
