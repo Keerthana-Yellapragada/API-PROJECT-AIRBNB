@@ -121,87 +121,54 @@ export const loadUserBookings = () => async dispatch => {
 // -------------------------  CREATE A BOOKING   ----------------------------------
 export const createNewReview = (createBookingPayload, spotId) => async dispatch => {
     console.log("DID IT REACH CREATE BOOKING THUNK")
-    let spotId = reviewData.spotId
+
 
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reviewData)
+        body: JSON.stringify(createBookingPayload)
     });
 
-    let reviewInfo = await response.json();
-    //get reviewId from newly created booking obj
-    let reviewId = reviewInfo.id
-    //use reviewId to create a reviewImage
-
-    ///:reviewId/images
-
-    // if (reviewImageData.url !== "") {
-    //     const response2 = await csrfFetch(`/api/bookings/${reviewId}/images`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(reviewImageData)
-
-    //     });
-
-    //     let imageInfo = await response2.json();
-    //         //return (imageInfo);
-
-    //     if (response.ok && response2.json){
-
-    //          dispatch(createReview(reviewInfo));
-
-    //          return reviewInfo;
-    //     }
-
-    // }
-
+   if (response.ok){
+    const newBooking = await response.json()
+    console.log("NEWBOOKING is", newBooking)
+    dispatch(createBooking(newBooking))
+    return newBooking
+   }
 
 };
 
-///*************************************************************************** */
-// -------------------------  GET A booking'S INFO   ----------------------------------
 
-export const getReviewInfo = reviewId => async dispatch => {
-    const response = await fetch(`/api/bookings/${reviewId}`);
-
-    if (response.ok) {
-        const reviewInfo = await response.json();
-        dispatch(getReview(reviewInfo)) // dispatch using out action creator from above to get booking's info by spotId
-    }
-}
 ///*************************************************************************** */
-// -------------------------  EDIT A booking   ----------------------------------
+// -------------------------  EDIT A BOOKING   ----------------------------------
 // // EDIT A booking INFO
-export const editReview = reviewInfo => async dispatch => {
-    const response = await fetch(`/api/bookings/${reviewInfo.id}`, { //get the id from the booking obj and use that
+export const editBooking = (editBookingPayload, bookingId) => async dispatch => {
+    const response = await fetch(`/api/bookings/${bookingId}`, { //get the id from the booking obj and use that
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reviewInfo)
+        body: JSON.stringify(editBookingPayload)
     });
 
     if (response.ok) {
-        const booking = await response.json();
-        dispatch(updateReview(booking)) // dispatch using out action creator from above to get booking's info by spotId
-        return booking;
+        const editedBooking = await response.json();
+        dispatch(updateBooking(editedBooking)) // dispatch using out action creator from above to get booking's info by spotId
+        return editedBooking;
     }
 }
 
 ///*************************************************************************** */
-// -------------------------  DELETE A booking  ----------------------------------
+// -------------------------  DELETE A BOOKING  ----------------------------------
 
-export const deleteReview = reviewId => async dispatch => {
-    const response = await csrfFetch(`/api/bookings/${reviewId}`, {
+export const deleteBooking = (bookingId) => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, {
         method: 'DELETE'
     });
 
-    dispatch(removeReview(reviewId)) // dispatch the action create to remove a user
+    dispatch(removeBooking(bookingId)) // dispatch the action create to remove a user
     return response;
 }
 
@@ -213,33 +180,21 @@ export const deleteReview = reviewId => async dispatch => {
 const initialState = {}
 
 
-const reviewsReducer = (state = initialState, action) => {
-    let allReviews = {}
+const bookingsReducer = (state = initialState, action) => {
+    let allBookings = {}
     switch (action.type) {
         ///*************************************************************************** */
-        case GET_ALLREVIEWS:
+        case GET_ALLBOOKINGS:
 
             //normalize our data
-            action.bookings.bookings.forEach(booking => {
-                allReviews[booking.id] = booking
+            action.bookings.Bookings.forEach(booking => {
+                allBookings[booking.id] = booking
             })
             return {
-                ...state, ...allReviews
+                ...state, ...allBookings
             } //return a new updated state for bookings
-            ///*************************************************************************** */
-            // case GET_USER_REVIEWS:
 
-            // //normalize our data
-            // action.bookings.bookings.forEach(booking => {
-            //     allReviews[booking.id] = booking
-            // })
-            // return {
-            //     ...state, ...allReviews
-            // }
-
-            ///*************************************************************************** */
-
-            case CREATE_REVIEW:
+            case CREATE_BOOKING:
 
                 const newState = {
                     ...state
@@ -249,7 +204,7 @@ const reviewsReducer = (state = initialState, action) => {
 
                 return newState;
                 ///*************************************************************************** */
-            case UPDATE_REVIEW:
+            case UPDATE_BOOKING:
                 const anotherState = {
                     ...state
                 }
@@ -259,7 +214,7 @@ const reviewsReducer = (state = initialState, action) => {
                 return anotherState
                 ///*************************************************************************** */
 
-            case REMOVE_REVIEW:
+            case REMOVE_BOOKING:
                 const modifiedState = {
                     ...state
                 }
@@ -275,4 +230,4 @@ const reviewsReducer = (state = initialState, action) => {
 }
 
 ///*************************************************************************** */
-export default reviewsReducer
+export default bookingsReducer
