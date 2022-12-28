@@ -86,6 +86,29 @@ const CreateBookingForm = ({
                     <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
 
 
+                     <div className = "charge">You won't be charged yet</div>
+
+                    <div className = "booking-price-container">
+                        <div className = "booking-container-label">${spot.price} x {(Math.abs(new Date(endDate) - new Date(startDate)))/86400000} nights</div>
+                        <div>${spot.price * (Math.abs(new Date(endDate) - new Date(startDate)))/86400000} </div>
+                    </div>
+
+                    <div className = "booking-price-container">
+                        <div className = "booking-container-label">Cleaning fee</div>
+                        <div>$110</div>
+                    </div>
+
+                     <div className = "booking-price-container">
+                        <div className = "booking-container-label">Service fee</div>
+                         <div>$70 </div>
+                    </div>
+
+
+                    <div className = "booking-total-price-container">
+                         <div className = "total-price-taxes">Total before taxes</div>
+                         <div className = "total-price-taxes">${110 + 70 + spot.price * (Math.abs(new Date(endDate) - new Date(startDate)))/86400000} </div>
+                     </div>
+
                 </form>
             </div>
         </>

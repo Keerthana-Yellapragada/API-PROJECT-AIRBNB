@@ -71,10 +71,13 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                     </div>
 
                     <div className="spot-sub-header-info-container">
-                        < i className="fa-solid fa-star" > </i>
-                        {
-                            `${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} · ${!spotReviews.length? 0 : spotReviews.length } reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
-                        }
+                        <i className="fa-solid fa-star" > </i>
+                        <div >{`${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} `}</div>
+                        <div className='dots'> · </div>
+                        <div className='spot-sub-header-details'> {`${!spotReviews.length? 0 : spotReviews.length } `} reviews  </div>
+                        < div className = 'dots'> · </div>
+                        <div className='spot-sub-header-details'> {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country} `} </div>
+
 
                     </div>
 
