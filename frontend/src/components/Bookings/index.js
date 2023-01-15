@@ -12,8 +12,9 @@ const CreateBookingForm = ({
     const dispatch = useDispatch();
     const history = useHistory();
     const { spotId } = useParams()
-    let [startDate, setStartDate] = useState("2023-02-03");
-    let [endDate, setEndDate] = useState("2023-02-09");
+
+    let [startDate, setStartDate] = useState("2023-01-15");
+    let [endDate, setEndDate] = useState("2023-01-15");
     const [validationErrors, setValidationErrors] = useState([]);
 
     useEffect(() => {

@@ -112,6 +112,7 @@ export const loadUserBookings = () => async dispatch => {
         const userBookings = await response.json();
         console.log("user bookings is", userBookings)
         dispatch(getAllBookings(userBookings)) // dispatch using out action creator from above to get all bookings
+        return userBookings;
     }
 }
 
