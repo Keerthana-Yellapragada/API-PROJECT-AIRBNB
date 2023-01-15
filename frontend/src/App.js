@@ -19,6 +19,7 @@ import { useSelector } from "react-redux";
 import ReviewInfo from "./components/Reviews/ReviewInfo";
 import Footer from "./components/Footer";
 import PageNotFound from "./components/404PageNotFound";
+import UserBookings from "./components/UserBookings";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,8 +62,7 @@ function App() {
             </Route>
 
             <Route exact path="/current/bookings">
-              <h1>MY BOOKINGS PAGE- need to create component</h1>
-
+              <UserBookings />
             </Route>
 
           <Route> <PageNotFound /></Route>

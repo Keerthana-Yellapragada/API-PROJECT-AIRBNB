@@ -11,7 +11,8 @@ const CreateBookingForm = ({
 }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const { spotId } = useParams()
+    let { spotId } = useParams();
+    spotId = parseInt(spotId)
 
     let [startDate, setStartDate] = useState("2023-01-15");
     let [endDate, setEndDate] = useState("2023-01-15");
