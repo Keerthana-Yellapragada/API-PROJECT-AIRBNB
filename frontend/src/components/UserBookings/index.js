@@ -78,8 +78,8 @@ const UserBookings = () => {
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
                                                      <div className='booking-details'>${booking.Spot.price} / night</div>
 
-                                                    <div>Your Trip: {booking.endDate - booking.startDate} days</div>
-                                                    <div>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
+                                                    <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
+                                                    <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
                                                 </div>
 
 
