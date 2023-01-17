@@ -19,11 +19,13 @@ const UserBookings = () => {
     const userBookings = useSelector(state => Object.values(state.bookings));
     console.log("USERBOOKINGS IS", userBookings)
 
-    const upcomingBookings = userBookings.filter(booking => (booking.startDate > Date.now()))
+    const upcomingBookings = userBookings.filter(booking => (new Date(booking.startDate) > Date.now()))
     console.log("UPCOMING BOOKINGS IS", upcomingBookings)
 
-    const pastBookings = userBookings.filter(booking => (booking.startDate < Date.now()))
+    const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
     console.log("PAST BOOKINGS IS", pastBookings)
+
+
 
 
     // load the most updated user bookings
