@@ -38,7 +38,7 @@ const CreateBookingForm = ({
 
         try {
             const newBooking = await dispatch(createNewBooking(createBookingPayload, spotId)).then(() => dispatch(loadAllBookings(spotId))).then(() => dispatch(loadOneSpot(spotId)))
-            history.push("/current/bookings")
+            .then(()=>history.push("/current/bookings"))
         } catch (res) {
             const data = await res.json();
             const errors = [];

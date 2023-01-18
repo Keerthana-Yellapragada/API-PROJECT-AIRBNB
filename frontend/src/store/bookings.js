@@ -169,7 +169,7 @@ export const deleteBooking = (bookingId) => async dispatch => {
         method: 'DELETE'
     });
 
-    dispatch(removeBooking(bookingId)) // dispatch the action create to remove a user
+    dispatch(removeBooking(bookingId))
     return response;
 }
 

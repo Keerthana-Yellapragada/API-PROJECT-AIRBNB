@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
-import { loadAllBookings, loadUserBookings } from '../../store/bookings';
+import { deleteBooking, loadAllBookings, loadUserBookings } from '../../store/bookings';
 import {loadAllSpots} from '../../store/spots'
 import { format } from 'date-fns'
 import "./UserBookings.css"
+import CancelBookingFormModal from "../CancelBooking"
 
-const UserBookings = () => {
+const UserBookings = ({closeModal}) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -27,6 +28,10 @@ const UserBookings = () => {
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
     console.log("PAST BOOKINGS IS", pastBookings)
 
+    // const handleCancelBooking = (bookingId) => {
+    //     dispatch(deleteBooking(bookingId)).then(()=> dispatch(loadAllBookings())).then(()=>dispatch(loadUserBookings())).then(()=> history.push("/current/bookings"))
+
+    // }
 
     let startDate;
     let endDate;
@@ -80,7 +85,18 @@ const UserBookings = () => {
 
                                                     <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
                                                     <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
+
+
+                                                    <div className='edit-delete-bookings-buttons-container'>
+
+                                                 <CancelBookingFormModal bookingId={booking.id}/>
+
+
                                                 </div>
+
+
+                                                </div>
+                                                {/* <button onClick={handleCancelBooking(booking.id)}>Cancel Booking</button> */}
 
 
                                                 </div>
