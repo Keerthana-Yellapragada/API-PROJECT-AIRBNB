@@ -81,7 +81,7 @@ const removeSpot = spotId => {
 
 export const loadAllSpots = () => async dispatch => {
     const response = await fetch(`/api/spots`);
-    // console.log(response)
+
     if (response.ok) {
         const spotsList = await response.json();
         dispatch(getAllSpots(spotsList))
@@ -121,12 +121,10 @@ export const createNewSpot = (imageData, spotData) => async dispatch => {
 
 
     let spotInfo = await response.json();
-    //console.log("THIS IS SPOT INFO INSIDE THUNK", spotInfo)
-
     //get the spot Id from newly created spot
     let spotId = spotInfo.id
 
-    //console.log("SPOT ID IS", spotId)
+
     //-------------------------------------------------
 
     const response2 = await csrfFetch(`/api/spots/${spotId}/images`, {

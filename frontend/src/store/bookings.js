@@ -99,7 +99,7 @@ export const loadAllBookings = (spotId) => async dispatch => {
     if (response.ok) {
 
          const allBookings = await response.json();
-         console.log("bookings response ok are", allBookings)
+
          dispatch(getAllBookings(allBookings))
     }
 }
@@ -110,7 +110,7 @@ export const loadUserBookings = () => async dispatch => {
 
     if (response.ok) {
         const userBookings = await response.json();
-        console.log("user bookings is", userBookings)
+
         dispatch(getAllBookings(userBookings)) // dispatch using out action creator from above to get all bookings
         return userBookings;
     }
@@ -121,8 +121,6 @@ export const loadUserBookings = () => async dispatch => {
 ///*************************************************************************** */
 // -------------------------  CREATE A BOOKING   ----------------------------------
 export const createNewBooking = (createBookingPayload, spotId) => async dispatch => {
-    console.log("DID IT REACH CREATE BOOKING THUNK")
-
 
     const response = await csrfFetch(`/api/spots/${spotId}/bookings`, {
         method: 'POST',
@@ -134,7 +132,6 @@ export const createNewBooking = (createBookingPayload, spotId) => async dispatch
 
    if (response.ok){
     const newBooking = await response.json()
-    console.log("NEWBOOKING is", newBooking)
     dispatch(createBooking(newBooking))
     return newBooking
    }

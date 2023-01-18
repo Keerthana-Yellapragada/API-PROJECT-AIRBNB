@@ -102,9 +102,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     let userId = req.user.id
     let {
         spotId
-    } = req.params //WHY IS SPOT ID A STRING IN RESPONSE
-
-    //console.log("SPOT ID FOR THIS SPOT IS :", spotId)
+    } = req.params
 
     let {
         stars,
@@ -371,7 +369,7 @@ router.get('/', async (req, res, next) => {
     // go through spots array and see if each obj has an assoc image
     for (let spot of allSpots) {
 
-        // console.log(spot)
+
         const spotImage = await SpotImage.findOne({
 
             attributes: ['url'],
@@ -517,7 +515,6 @@ router.put('/:spotId', requireAuth, async (req, res) => {
     spot.price = req.body.price
 
 
-    // console.log(spot)
 
     // call save
     await spot.save()
@@ -644,17 +641,15 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         spotId
     } = req.params
 
-    // console.log(spotId)
     // get the current logged-in user obj to get id
     let userId = req.user.id
 
-    // console.log(userId)
-    // console.log(userId)
+
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
 
-    //console.log(spot)
+
 
     // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
@@ -669,7 +664,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
     const spotObj = spot.toJSON()
 
-    //    // console.log(spotObj)
+
 
     // CASE 1: if you ARE NOT the owner -- you are just the LOGGED-IN CURRENT USER
     if (spotObj.ownerId !== userId) {
@@ -740,7 +735,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
         endDate
     } = req.body // need to get userId, spotId from req params
 
-    console.log(userId)
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
@@ -775,7 +769,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
             // convert each obj to json so we can manipulate it
             const existingBookingObj = existingBooking.toJSON()
 
-            // console.log(existingBookingObj)
 
             // get the dates of the existing booking and current one and parse them into milliseconds
             let existingStartDate = Date.parse(existingBooking.startDate)

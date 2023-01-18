@@ -29,22 +29,19 @@ const SpotInfo = () => {
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
 
-        const sessionUser = useSelector(state => state.session.user)
-        let userId;
+    const sessionUser = useSelector(state => state.session.user)
+    let userId;
 
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
-//console.log("THIS IS ALL REVIEWS ARRAY",allReviewsArray)
-
-if (!allReviewsArray) {
-    return null;
-}
 
 
-let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
-//console.log("SPOT REVIEWS", spotReviews)
+    if (!allReviewsArray) {
+        return null;
+    }
 
 
+    let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
 
@@ -74,8 +71,8 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                         <i className="fa-solid fa-star" > </i>
                         <div >{`${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} `}</div>
                         <div className='dots'> · </div>
-                        <div className='spot-sub-header-details'> {`${!spotReviews.length? 0 : spotReviews.length } `} reviews  </div>
-                        < div className = 'dots'> · </div>
+                        <div className='spot-sub-header-details'> {`${!spotReviews.length ? 0 : spotReviews.length} `} reviews  </div>
+                        < div className='dots'> · </div>
                         <div className='spot-sub-header-details'> {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country} `} </div>
 
 
@@ -147,10 +144,10 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                         </div>
                     </div>
 
-                 <div className="free-cancellation-container" >
-                        < div className = 'free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
-                        < div className = 'free-cancellation-info' >
-                            < div className = 'free-cancellation-title' >
+                    <div className="free-cancellation-container" >
+                        < div className='free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
+                        < div className='free-cancellation-info' >
+                            < div className='free-cancellation-title' >
                                 {"Free Cancellation for 48 hours"}
                             </div>
                             < div className='free-cancellation-info-description' >
@@ -181,7 +178,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                         </div>
                     </div> */}
 
-                <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} />
+                    <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} />
                 </div>
 
 
@@ -191,9 +188,9 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
                 {userId && userId === currentSpot.ownerId ? null : (
-                <div className='create-review-container'>
-                <CreateReviewFormModal />
-                </div>
+                    <div className='create-review-container'>
+                        <CreateReviewFormModal />
+                    </div>
                 )}
 
 
