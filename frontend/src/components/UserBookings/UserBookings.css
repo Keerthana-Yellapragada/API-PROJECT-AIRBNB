@@ -10,7 +10,7 @@
     font-size: 2rem;
     margin: 20px 0px;
     padding-left: 20px;
-    font-size: 40px;
+    font-size: 55px;
 }
 
 .user-trips-container{
@@ -21,22 +21,24 @@
 }
 
 .user-bookings-preview-image{
-    width:100px;
+    width:300px;
+    height: 300px;
+    padding-bottom: 20px;
 }
 
 .upcoming-trips-container,
 .completed-trips-container {
     display: flex;
     flex-direction: column;
-    /* border: 2px solid red */
+    margin: 20px 0px;
 
 }
 .upcoming-trips-title,
 .completed-trips-title {
     display: flex;
-    font-weight: bold;
-    font-size: 25px;
-    padding-left: 20px;
+    font-weight: bolder;
+    font-size: 45px;
+    padding: 20px 0px 20px 20px;
     justify-content: flex-start;
 }
 .upcoming-trips-flex-container{
@@ -56,13 +58,14 @@
     border: 1px solid black;
     border-radius: 20px;
     padding-left: 20px;
-    width: 800px;
+    width: 900px;
 }
 
 .booking-spot-name{
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: bolder;
+    font-size: 26px;
     margin: 20px 0px;
+
 }
 
 .booking-right-container{
