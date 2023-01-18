@@ -49,7 +49,7 @@ const UserBookings = ({ closeModal }) => {
                             <div className='upcoming-trips-container'>
                                 <div className="upcoming-trips-title">Upcoming Trips</div>
                                 <div className='upcoming-trips-flex-container'>
-                                    {upcomingBookings?.map(booking => {
+                                    { upcomingBookings.length? (upcomingBookings?.map(booking => {
                                         return (
 
                                             <div className='bookings-card'>
@@ -86,7 +86,7 @@ const UserBookings = ({ closeModal }) => {
                                             </div>
 
                                         )
-                                    })}
+                                    })) : <div className='no-upcoming-trips'>None!</div>}
 
 
                                 </div>
