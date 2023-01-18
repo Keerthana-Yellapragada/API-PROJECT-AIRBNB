@@ -3,51 +3,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
 import { deleteBooking, loadAllBookings, loadUserBookings } from '../../store/bookings';
-import {loadAllSpots} from '../../store/spots'
+import { loadAllSpots } from '../../store/spots'
 import { format } from 'date-fns'
 import "./UserBookings.css"
 import CancelBookingFormModal from "../CancelBooking"
 
-const UserBookings = ({closeModal}) => {
+const UserBookings = ({ closeModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const userId = useSelector(state => state.session.user.id);
-    console.log("USERID ON USER BOOKINGS PAGE IS", userId)
 
-    // const allSpots = useSelector (state => state.session.spots)
-    // console.log("ALL SPOTS IN USERBOOKINGS IS", allSpots)
 
-    // /gets all of current user's bookings
     const userBookings = useSelector(state => Object.values(state.bookings));
-    console.log("USERBOOKINGS IS", userBookings)
+
 
     const upcomingBookings = userBookings.filter(booking => (new Date(booking.startDate) > Date.now()))
-    console.log("UPCOMING BOOKINGS IS", upcomingBookings)
+
 
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
-    console.log("PAST BOOKINGS IS", pastBookings)
-
-    // const handleCancelBooking = (bookingId) => {
-    //     dispatch(deleteBooking(bookingId)).then(()=> dispatch(loadAllBookings())).then(()=>dispatch(loadUserBookings())).then(()=> history.push("/current/bookings"))
-
-    // }
 
     let startDate;
     let endDate;
 
-
-    // load the most updated user bookings
     useEffect(() => {
         dispatch(loadUserBookings());
         dispatch(loadAllBookings());
         dispatch(loadAllSpots());
     }, [dispatch, userId])
 
-    if (!userBookings){ return null};
-    if (!upcomingBookings) {return null}
-    if (!pastBookings) { return null}
-    //  if (!allSpots){return null};
+    if (!userBookings) { return null };
+    if (!upcomingBookings) { return null }
+    if (!pastBookings) { return null }
 
     let bookingSpot;
 
@@ -65,15 +52,15 @@ const UserBookings = ({closeModal}) => {
                                     {upcomingBookings?.map(booking => {
                                         return (
 
-                                                <div className='bookings-card'>
+                                            <div className='bookings-card'>
                                                 <div className='booking-left-container'>
                                                     <div className="booking-spot-name">{booking.Spot.name}</div>
-                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image"/>
+                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image" />
                                                 </div>
 
                                                 <div className='booking-right-container'>
                                                     <div className='booking-details'>Booking Start Date: {booking.startDate}</div>
-                                                    {/* <div>{booking.startDatedate.toLocaleDateString()}</div> */}
+
                                                     <div className='booking-details'>Booking End Date: {booking.endDate}</div>
 
                                                     <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
@@ -81,7 +68,7 @@ const UserBookings = ({closeModal}) => {
                                                     <div className='booking-details'>{booking.Spot.description}</div>
 
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
-                                                     <div className='booking-details'>${booking.Spot.price} / night</div>
+                                                    <div className='booking-details'>${booking.Spot.price} / night</div>
 
                                                     <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
                                                     <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
@@ -89,17 +76,14 @@ const UserBookings = ({closeModal}) => {
 
                                                     <div className='edit-delete-bookings-buttons-container'>
 
-                                                 <CancelBookingFormModal bookingId={booking.id}/>
+                                                        <CancelBookingFormModal bookingId={booking.id} />
 
 
-                                                </div>
-
-
-                                                </div>
-                                                {/* <button onClick={handleCancelBooking(booking.id)}>Cancel Booking</button> */}
-
+                                                    </div>
 
                                                 </div>
+
+                                            </div>
 
                                         )
                                     })}
@@ -113,10 +97,10 @@ const UserBookings = ({closeModal}) => {
                                     {pastBookings?.map(booking => {
                                         return (
 
-                                                <div className='bookings-card'>
+                                            <div className='bookings-card'>
                                                 <div className='booking-left-container'>
                                                     <div className="booking-spot-name">{booking.Spot.name}</div>
-                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image"/>
+                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image" />
                                                 </div>
 
                                                 <div className='booking-right-container'>
@@ -129,18 +113,19 @@ const UserBookings = ({closeModal}) => {
                                                     <div className='booking-details'>{booking.Spot.description}</div>
 
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
-                                                     <div className='booking-details'>${booking.Spot.price} / night</div>
+                                                    <div className='booking-details'>${booking.Spot.price} / night</div>
 
                                                     <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
                                                     <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
+
+                                                    {/* <CancelBookingFormModal bookingId={booking.id} /> */}
+
                                                 </div>
 
-
-                                                </div>
+                                            </div>
 
                                         )
                                     })}
-
 
                                 </div>
                             </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
-import { createNewBooking, loadAllBookings } from "../../store/bookings"
+import { createNewBooking, loadAllBookings, loadUserBookings } from "../../store/bookings"
 import { loadOneSpot } from '../../store/spots';
 
 const CreateBookingForm = ({
@@ -36,17 +36,17 @@ const CreateBookingForm = ({
             endDate
         }
 
-        try {
-            const newBooking = await dispatch(createNewBooking(createBookingPayload, spotId)).then(() => dispatch(loadAllBookings(spotId))).then(() => dispatch(loadOneSpot(spotId)))
+
+            const res = await dispatch(createNewBooking(createBookingPayload, spotId)).then(() => dispatch(loadAllBookings(spotId))).then(()=> dispatch(loadUserBookings(sessionUser.id))).then(() => dispatch(loadOneSpot(spotId)))
             .then(()=>history.push("/current/bookings"))
-        } catch (res) {
+
             const data = await res.json();
             const errors = [];
             if (data && data.message) {
                 errors.push(data.message);
             }
             setValidationErrors(errors);
-        }
+
     }
 
 
