@@ -92,7 +92,41 @@ const UserBookings = () => {
                                 </div>
                             </div>
                             <div className='completed-trips-container'>
-                                <div>Where You've Been</div>
+                                <div className='completed-trips-title'>Where You've Been</div>
+                                <div className='upcoming-trips-flex-container'>
+                                    {pastBookings?.map(booking => {
+                                        return (
+
+                                                <div className='bookings-card'>
+                                                <div className='booking-left-container'>
+                                                    <div className="booking-spot-name">{booking.Spot.name}</div>
+                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image"/>
+                                                </div>
+
+                                                <div className='booking-right-container'>
+                                                    <div className='booking-details'>Booking Start Date: {booking.startDate}</div>
+                                                    {/* <div>{booking.startDatedate.toLocaleDateString()}</div> */}
+                                                    <div className='booking-details'>Booking End Date: {booking.endDate}</div>
+
+                                                    <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
+
+                                                    <div className='booking-details'>{booking.Spot.description}</div>
+
+                                                    <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
+                                                     <div className='booking-details'>${booking.Spot.price} / night</div>
+
+                                                    <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
+                                                    <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
+                                                </div>
+
+
+                                                </div>
+
+                                        )
+                                    })}
+
+
+                                </div>
                             </div>
 
                         </div>

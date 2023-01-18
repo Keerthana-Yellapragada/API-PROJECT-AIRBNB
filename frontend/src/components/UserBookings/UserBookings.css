@@ -9,6 +9,8 @@
     justify-content: flex-start;
     font-size: 2rem;
     margin: 20px 0px;
+    padding-left: 20px;
+    font-size: 40px;
 }
 
 .user-trips-container{
@@ -22,30 +24,39 @@
     width:100px;
 }
 
-.upcoming-trips-container{
+.upcoming-trips-container,
+.completed-trips-container {
     display: flex;
     flex-direction: column;
-    border: 2px solid red
+    /* border: 2px solid red */
 
 }
-.upcoming-trips-title{
+.upcoming-trips-title,
+.completed-trips-title {
     display: flex;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
+    padding-left: 20px;
     justify-content: flex-start;
 }
 .upcoming-trips-flex-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap:wrap;
     width: 100%;
     margin: 20px 0px;
-    border: 2px solid green;
+
+    /* border: 2px solid green; */
 }
 
 .bookings-card{
     display:flex;
     justify-content: space-between;
-    margin: 20px 0px;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-left: 20px;
+    width: 800px;
 }
 
 .booking-spot-name{
@@ -60,11 +71,11 @@
     flex-direction: column;
     justify-content: center;
     padding: 40px;
-    border: 3px solid yellow;
+    /* border: 3px solid yellow; */
 }
 
 .booking-left-container{
-    border: 2px solid pink;
+    /* border: 2px solid pink; */
     display: flex;
     flex-direction: column;
 }
