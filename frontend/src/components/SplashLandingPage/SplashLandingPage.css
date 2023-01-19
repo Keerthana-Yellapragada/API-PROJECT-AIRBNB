@@ -1,7 +1,4 @@
-/* styling for entire page */
 
-
-/* styling for logo */
 a {
     text-decoration: none
 }
@@ -12,7 +9,7 @@ a {
     border-top: 1px solid rgb(177, 173, 173);
 }
 
-/* styling for keerbnb logo */
+
 .logo {
     color: red;
     font-size: xx-large;
@@ -24,19 +21,15 @@ a {
 
 }
 
-/* STYLING FOR THE MAIN ELEMENTS OF SPLASH PAGE */
 
-/* for the container that holds all cards */
 .flex-container{
     margin-top:15px;
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* justify-content: center; */
     width: 100%;
-    /* border-bottom: 1px solid rgb(177, 173, 173); */
     align-content: center
-    /* padding:25px; */
+
 }
 
 /* for each spot card */
@@ -49,7 +42,7 @@ a {
     justify-content: center;
     align-content: center;
     align-items: center;
-    flex-basis: 270px;
+    flex-basis: 200px;
     flex-direction: column;
 
 
