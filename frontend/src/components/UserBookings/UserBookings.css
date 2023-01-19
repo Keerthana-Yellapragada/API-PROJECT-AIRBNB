@@ -10,7 +10,7 @@
     font-size: 2rem;
     margin: 20px 0px;
     padding-left: 20px;
-    font-size: 55px;
+    font-size: 35px;
 }
 
 .user-trips-container{
@@ -20,7 +20,7 @@
 
 }
 .no-upcoming-trips{
-    font-size: 30px;
+    font-size: 20px;
     font-weight:bold;
     padding:20px;
 }
@@ -42,7 +42,7 @@
 .completed-trips-title {
     display: flex;
     font-weight: bolder;
-    font-size: 45px;
+    font-size: 25px;
     padding: 20px 0px 20px 20px;
     justify-content: flex-start;
 }
@@ -68,7 +68,7 @@
 
 .booking-spot-name{
     font-weight: bolder;
-    font-size: 26px;
+    font-size: 20px;
     margin: 20px 0px;
 
 }

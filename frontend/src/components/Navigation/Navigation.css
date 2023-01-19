@@ -5,11 +5,6 @@
 
 }
 
-/* .header-container{
-    margin-left: 10%;
-    margin-right: 10%;
-} */
-
 header {
     position: sticky;
     top:0px;
@@ -55,9 +50,7 @@ header {
 
 }
 
-/* .logo-image {
-    padding-top: 5px;
-} */
+
 
 .logo-name-text {
     padding-bottom: 10px;
