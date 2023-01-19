@@ -86,7 +86,8 @@ const UserBookings = ({ closeModal }) => {
                                             </div>
 
                                         )
-                                    })) : <div className='no-upcoming-trips'>None!</div>}
+                                    }))
+                                    : <div className='no-upcoming-trips'>None!</div>}
 
 
                                 </div>
