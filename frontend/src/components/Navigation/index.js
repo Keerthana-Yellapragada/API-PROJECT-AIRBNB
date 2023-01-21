@@ -34,7 +34,7 @@ function Navigation({ isLoaded }) {
         </div>
         <div className='navbar-right'>
           <div className="create-spot-container">
-            <CreateSpotFormModal />
+           {sessionUser ? <CreateSpotFormModal /> : null}
           </div>
 
           <div className='user-profile-container'>
