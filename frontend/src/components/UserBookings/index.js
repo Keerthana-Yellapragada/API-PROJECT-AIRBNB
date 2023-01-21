@@ -12,29 +12,34 @@ const UserBookings = ({ closeModal }) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const userId = useSelector(state => state.session.user.id);
 
+
+    const userId = useSelector(state => state.session.user.id);
 
     const userBookings = useSelector(state => Object.values(state.bookings));
 
-
     const upcomingBookings = userBookings.filter(booking => (new Date(booking.startDate) > Date.now()))
 
-
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
+
+     useEffect(() => {
+        dispatch(loadAllBookings());
+        dispatch(loadUserBookings());
+        dispatch(loadAllSpots());
+    }, [dispatch])
 
     let startDate;
     let endDate;
 
-    useEffect(() => {
-        dispatch(loadUserBookings());
-        dispatch(loadAllBookings());
-        dispatch(loadAllSpots());
-    }, [dispatch, userId])
 
     if (!userBookings) { return null };
     if (!upcomingBookings) { return null }
     if (!pastBookings) { return null }
+
+    // const handleCancel = (bookingId) => {
+    //     dispatch(deleteBooking(bookingId)).then(dispatch(loadAllBookings())).then(()=> history.push("/current/bookings"))
+
+    // }
 
     let bookingSpot;
 
@@ -62,24 +67,25 @@ const UserBookings = ({ closeModal }) => {
                                                 </div>
 
                                                 <div className='booking-right-container'>
-                                                    <div className='booking-details'>Booking Start Date: {booking.startDate}</div>
+                                                    <div className='booking-details'>Check-In: {booking.startDate}</div>
 
-                                                    <div className='booking-details'>Booking End Date: {booking.endDate}</div>
+                                                    <div className='booking-details'>Check Out: {booking.endDate}</div>
 
-                                                    <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
+                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
 
                                                     <div className='booking-details'>{booking.Spot.description}</div>
 
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
-                                                    <div className='booking-details'>${booking.Spot.price} / night</div>
+                                                    <div className='booking-details'>${booking.Spot.price} per night</div>
 
-                                                    <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div>
-                                                    <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div>
+                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
+                                                    {/* <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div> */}
 
 
                                                     <div className='edit-delete-bookings-buttons-container'>
 
-                                                        <CancelBookingFormModal bookingId={booking.id} />
+                                                    <CancelBookingFormModal bookingId={booking.id} />
+                                                    {/* <button onClick={handleCancel(booking.id)}>Cancel this Booking</button> */}
 
 
                                                     </div>
