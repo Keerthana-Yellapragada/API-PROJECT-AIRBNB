@@ -17,13 +17,13 @@ const CreateBookingForm = ({
     spotId = parseInt(spotId)
 
     let [startDate, setStartDate] = useState("");
-    let [endDate, setEndDate] = useState("5");
+    let [endDate, setEndDate] = useState("");
     const [validationErrors, setValidationErrors] = useState([]);
 
     useEffect(() => {
         const errors = []
 
-        const todayDate = new Date ( Date.now())
+        const todayDate = new Date(Date.now())
 
         const startDateFormatted = new Date(startDate + "T00:00:00" )
         const endDateFormatted = new Date(endDate + "T00:00:00" )
@@ -88,8 +88,11 @@ try{
     return (
         <>
             <div className='create-bookings-main-container'>
+
+                <div className='booking-top-container'>
                 <div className="spot-price"><strong>${spot.price}</strong> night</div>
-                {/* <div><strong><i className="fa-sharp fa-solid fa-star fa-xs"></i> {spot.avgStarRating}</strong> · {spot.numReviews} reviews</div> */}
+                <div><strong><i className="fa-sharp fa-solid fa-star fa-xs"></i> {spot.avgStarRating}</strong> · {spot.numReviews} reviews</div>
+                </div>
 
                 <form onSubmit={handleSubmit} className="bookings-form-container">
                     <div className="errors">
@@ -109,7 +112,7 @@ try{
                             type="date"
 
                             value={startDate}
-                            onChange={(e)=>updateStartDate(e.target.value)} />
+                            onChange={updateStartDate} />
                     </div>
                     <div className='check-out-container'>
                         <span id="booking-end-date-id">CHECK-OUT</span>
@@ -119,7 +122,7 @@ try{
                             id="booking-end-date"
                             type="date"
                             value={endDate}
-                            onChange={(e)=>updateEndDate(e.target.value)} />
+                            onChange={updateEndDate} />
 
                     </div>
 
@@ -127,32 +130,32 @@ try{
 
                 </div>
 
+                    <div className = "wont-be-charged">You won't be charged yet</div>
                     <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
 
 
-                     <div className = "charge">You won't be charged yet</div>
-
+                <div className='booking-price-calculator'>
                     <div className = "booking-price-container">
-                        <div className = "booking-container-label">${spot.price} x {(Math.abs(new Date(endDate) - new Date(startDate)))/86400000} nights</div>
-                        <div>${spot.price * (Math.abs(new Date(endDate) - new Date(startDate)))/86400000} </div>
+                        <div className = "booking-container-label">${spot.price} x {(Math.abs(new Date(endDate  + "T00:00:00") - new Date(startDate+ "T00:00:00"))/86400000)} nights = </div>
+                        <div className='booking-price-details'> ${spot.price * (Math.abs(new Date(endDate  + "T00:00:00") - new Date(startDate  + "T00:00:00")))/86400000} </div>
                     </div>
 
                     <div className = "booking-price-container">
-                        <div className = "booking-container-label">Cleaning fee</div>
-                        <div>$110</div>
+                        <div className = "booking-container-label">Cleaning fee: </div>
+                        <div className='booking-price-details'> $110</div>
                     </div>
 
                      <div className = "booking-price-container">
-                        <div className = "booking-container-label">Service fee</div>
-                         <div>$70 </div>
+                        <div className = "booking-container-label">Service fee: </div>
+                         <div className='booking-price-details'> $70 </div>
                     </div>
 
 
-                    <div className = "booking-total-price-container">
-                         <div className = "total-price-taxes">Total before taxes</div>
-                         <div className = "total-price-taxes">${110 + 70 + spot.price * (Math.abs(new Date(endDate) - new Date(startDate)))/86400000} </div>
+                    <div className = "booking-price-container booking-total-price-container" >
+                         <div className = "total-price-taxes">Total before taxes = </div>
+                         <div className = "booking-price-details total-price-taxes">${110 + 70 + spot.price * (Math.abs(new Date(endDate + "T00:00:00") - new Date(startDate  + "T00:00:00")))/86400000} </div>
                      </div>
-
+                </div>
                 </form>
             </div>
         </>

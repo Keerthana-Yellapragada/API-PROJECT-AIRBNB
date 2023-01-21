@@ -64,6 +64,38 @@ position: relative;
 border: 2px solid black;
 }
 
+.booking-price-calculator{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:100%
+}
 .check-in-container{
     border-right: 1px solid grey;
+}
+
+.booking-price-container{
+    display: flex;
+    flex-direction: row;
+    margin: 5px 0px
+}
+
+
+.booking-price-details{
+    margin-left: 7px;
+
+}
+
+.wont-be-charged{
+    font-size: 15px;
+    color: rgb(60, 60, 60);
+    text-align: center;
+    margin: 6px;
+}
+
+
+.booking-top-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
