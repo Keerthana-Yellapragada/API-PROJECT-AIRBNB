@@ -1,6 +1,6 @@
 .create-bookings-main-container{
     border-radius: 20px;
-    box-shadow: 0px 0px 5px 0px rgb(225, 224, 224);
+    box-shadow: 0px 0px 5px 0px rgb(199, 199, 199);
     position: sticky;
     padding: 20px;
     top: 100px;
@@ -8,10 +8,7 @@
     right: 50px;
     width: 350px;
     background-color: white;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
+
 }
 
 .date-input-container{

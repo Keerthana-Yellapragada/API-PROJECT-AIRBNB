@@ -91,7 +91,7 @@ const SpotInfo = () => {
 
                 {
     /* ********************************************************************************** */}
-
+            <div className='spot-page-details-flex-container'>
                 <div className='spot-details-container'>
 
                     <div className="hosted-by-container">
@@ -103,8 +103,12 @@ const SpotInfo = () => {
                         {" 4 guests · 2 bedrooms · 2 bed · 2 bath"}
                     </div>
 
+
+
+
                     {
     /* ********************************************************************************** */}
+
 
                     <div className="aircover-title-image">
                         < img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
@@ -167,19 +171,11 @@ const SpotInfo = () => {
 
 
                     {/* ********************************************************************************** */}
-                    {/* <div className='price-rating-side-container'>
-                        <div className="spot-description-price">
-                            {`$${currentSpot.price} night`}
-                        </div>
 
-                        <div className="spot-description-rating">
-                            <i class="fa-solid fa-star"></i>
-                            {!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating}
-                        </div>
-                    </div> */}
-
-                    <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} />
+                    {/* <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /> */}
                 </div>
+                <div className='booking-container-spot-page'><CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /></div>
+              </div>
 
 
                 {

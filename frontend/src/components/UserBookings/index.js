@@ -38,6 +38,9 @@ const UserBookings = ({ closeModal }) => {
 
     let bookingSpot;
 
+    let startDateFormatted;
+
+    let endDateFormatted;
 
     return (
         <>

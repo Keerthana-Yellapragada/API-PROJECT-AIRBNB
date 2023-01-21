@@ -256,3 +256,22 @@
     align-content: center;
     padding:50px;
 }
+
+
+booking-container-spot-page {
+   margin-right: 0px;
+}
+
+.spot-page-details-flex-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.booking-container-spot-page{
+    display: flex;
+    height:fit-content;
+    margin: 25px 0px 10px 40px;
+    position: sticky;
+    top:100px;
+}
