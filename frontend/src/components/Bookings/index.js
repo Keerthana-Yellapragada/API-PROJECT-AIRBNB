@@ -90,8 +90,13 @@ try{
             <div className='create-bookings-main-container'>
 
                 <div className='booking-top-container'>
-                <div className="spot-price"><strong>${spot.price}</strong> night</div>
-                <div><strong><i className="fa-sharp fa-solid fa-star fa-xs"></i> {spot.avgStarRating}</strong> · {spot.numReviews} reviews</div>
+
+                <div className='spot-price-container'>
+                <div className="spot-price">${spot.price} </div>
+                <div className='night'>night</div>
+                </div>
+
+                <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {spot.avgStarRating}</strong> · {spot.numReviews} reviews</div>
                 </div>
 
                 <form onSubmit={handleSubmit} className="bookings-form-container">
@@ -130,10 +135,10 @@ try{
 
                 </div>
 
-                    <div className = "wont-be-charged">You won't be charged yet</div>
-                    <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
 
+            {startDate && endDate ?
 
+            (
                 <div className='booking-price-calculator'>
                     <div className = "booking-price-container">
                         <div className = "booking-container-label">${spot.price} x {(Math.abs(new Date(endDate  + "T00:00:00") - new Date(startDate+ "T00:00:00"))/86400000)} nights = </div>
@@ -154,8 +159,17 @@ try{
                     <div className = "booking-price-container booking-total-price-container" >
                          <div className = "total-price-taxes">Total before taxes = </div>
                          <div className = "booking-price-details total-price-taxes">${110 + 70 + spot.price * (Math.abs(new Date(endDate + "T00:00:00") - new Date(startDate  + "T00:00:00")))/86400000} </div>
+
                      </div>
-                </div>
+
+
+                        <div className = "wont-be-charged">You won't be charged yet</div>
+                </div> ) : null }
+
+
+
+
+                    <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
                 </form>
             </div>
         </>

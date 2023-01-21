@@ -68,7 +68,11 @@ border: 2px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width:100%
+    align-items: center;
+    width:100%;
+    font-size:14px;
+    font-weight:500
+
 }
 .check-in-container{
     border-right: 1px solid grey;
@@ -88,9 +92,10 @@ border: 2px solid black;
 
 .wont-be-charged{
     font-size: 15px;
-    color: rgb(60, 60, 60);
+    color: rgb(0, 0, 0);
     text-align: center;
-    margin: 6px;
+    margin: 15px 0px 5px 0px;
+    font-weight: bold;
 }
 
 
@@ -98,4 +103,34 @@ border: 2px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-weight: bolder;
+}
+
+
+
+.spot-price{
+    font-weight: bolder;
+    font-size: 25px;
+}
+
+.spot-price-container{
+    display:flex;
+    flex-direction: row;
+}
+
+.night {
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10px;
+    margin-bottom: 2px;
+}
+
+.booking-top-right-container{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.star-rating-booking{
+    margin-right: 5px;
 }
