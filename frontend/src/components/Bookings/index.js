@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
 import { createNewBooking, loadAllBookings, loadUserBookings } from "../../store/bookings"
 import { loadOneSpot } from '../../store/spots';
+import "./CreateBooking.css"
+
 
 const CreateBookingForm = ({
     sessionUser,
@@ -85,7 +87,7 @@ try{
 
     return (
         <>
-            <div className='bookings-main-container'>
+            <div className='create-bookings-main-container'>
                 <div className="spot-price"><strong>${spot.price}</strong> night</div>
                 {/* <div><strong><i className="fa-sharp fa-solid fa-star fa-xs"></i> {spot.avgStarRating}</strong> · {spot.numReviews} reviews</div> */}
 
@@ -98,7 +100,8 @@ try{
                     </div>
 
                     <div className='date-input-container'>
-                        <label htmlFor="booking-start-date">check in</label>
+                    <div className='check-in-container'>
+                        <span id="booking-start-date-id">CHECK-IN</span>
                         <input
                             className="start-date-input"
                             required
@@ -106,17 +109,23 @@ try{
                             type="date"
 
                             value={startDate}
-                            onChange={updateStartDate} />
-                        <label htmlFor="booking-end-date">check out</label>
+                            onChange={(e)=>updateStartDate(e.target.value)} />
+                    </div>
+                    <div className='check-out-container'>
+                        <span id="booking-end-date-id">CHECK-OUT</span>
                         <input
                             className="end-date-input"
                             required
                             id="booking-end-date"
                             type="date"
                             value={endDate}
-                            onChange={updateEndDate} />
+                            onChange={(e)=>updateEndDate(e.target.value)} />
 
                     </div>
+
+
+
+                </div>
 
                     <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
 
