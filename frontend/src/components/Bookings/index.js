@@ -14,13 +14,29 @@ const CreateBookingForm = ({
     let { spotId } = useParams();
     spotId = parseInt(spotId)
 
-    let [startDate, setStartDate] = useState("2023-01-15");
-    let [endDate, setEndDate] = useState("2023-01-15");
+    let [startDate, setStartDate] = useState("");
+    let [endDate, setEndDate] = useState("5");
     const [validationErrors, setValidationErrors] = useState([]);
 
     useEffect(() => {
         const errors = []
+
+        const todayDate = new Date ( Date.now())
+
+        const startDateFormatted = new Date(startDate + "T00:00:00" )
+        const endDateFormatted = new Date(endDate + "T00:00:00" )
+
+        // error handling for invalid dates
+        if (startDateFormatted < todayDate || endDateFormatted < todayDate){
+            errors.push("Please select a date in the future as you must provide book atleast 24 hours in advance")
+        }
+
+        if (endDateFormatted < startDateFormatted){
+            errors.push("Check in date must be prior to check out date")
+        }
+
         setValidationErrors(errors)
+
     }, [startDate, endDate])
 
     const updateStartDate = (e) => setStartDate(e.target.value)
@@ -30,15 +46,28 @@ const CreateBookingForm = ({
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!sessionUser) return alert("Please log in to create a booking")
+        if (sessionUser.id === spot.ownerId) return alert("Cannot book your own property")
 
         const createBookingPayload = {
             startDate,
             endDate
         }
 
+try{
+            const createdBooking = await dispatch(createNewBooking(createBookingPayload, spotId))
 
-            const res = await dispatch(createNewBooking(createBookingPayload, spotId)).then(() => dispatch(loadAllBookings(spotId))).then(()=> dispatch(loadUserBookings(sessionUser.id))).then(() => dispatch(loadOneSpot(spotId)))
-            .then(()=>history.push("/current/bookings"))
+            if (createdBooking){
+                setValidationErrors([]);
+                setStartDate("");
+                setEndDate("");
+                // refresh state with latest bookings
+                dispatch(loadAllBookings(spotId))
+
+                // sends user to their bookings page
+                history.push("/current/bookings")
+            }
+        } catch (res){
 
             const data = await res.json();
             const errors = [];
@@ -46,6 +75,10 @@ const CreateBookingForm = ({
                 errors.push(data.message);
             }
             setValidationErrors(errors);
+
+
+        }
+
 
     }
 
@@ -60,7 +93,7 @@ const CreateBookingForm = ({
                     <div className="errors">
                         {validationErrors.length > 0 &&
                             validationErrors.map((error) =>
-                                <div>{error}</div>
+                                <div key={error}>{error}</div>
                             )}
                     </div>
 
