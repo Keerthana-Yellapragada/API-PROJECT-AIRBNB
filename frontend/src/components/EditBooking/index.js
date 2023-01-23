@@ -89,19 +89,25 @@ const EditBookingForm = () => {
 
     return (
 
+    <div>
+        <h2>Edit Your Reservation</h2>
         <div className='create-bookings-main-container'>
-            <h1>Edit Your Reservation</h1>
-            <div>Check-In: {new Date(currentBooking[0].startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-            <div>Check-Out: {new Date(currentBooking[0].endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-            {/* <div className='booking-top-container'>
 
-                    <div className='spot-price-container'>
-                        <div className="spot-price">${currentBooking.Spot.price} </div>
-                        <div className='night'>night</div>
-                    </div>
+            <div className='booking-top-container'>
 
-                    <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking.Spot.avgStarRating}</strong> · {currentBooking.Spot.numReviews} reviews</div>
-                </div> */}
+                <div className='spot-price-container'>
+                    <div className="spot-price">${currentBooking[0].Spot.price} </div>
+                    <div className='night'>night</div>
+                </div>
+
+                <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking[0].Spot.avgStarRating}</strong> · {currentBooking[0].Spot.numReviews} reviews</div>
+            </div>
+
+            <div className="current-reservation-dates-container">
+
+                <div>Check-In: {new Date(currentBooking[0].startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                <div>Check-Out: {new Date(currentBooking[0].endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+            </div>
 
             <form onSubmit={handleSubmit} className="bookings-form-container">
                 <div className="errors">
@@ -177,6 +183,7 @@ const EditBookingForm = () => {
                 <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
             </form>
         </div>
+    </div>
     )
 
 }
