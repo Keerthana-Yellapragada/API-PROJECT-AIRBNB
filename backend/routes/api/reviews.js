@@ -67,8 +67,6 @@ router.get("/current", requireAuth, async (req, res) => {
         // convert each review object into json format
         reviewObj = review.toJSON() // ****************** HAVE TO FORMAT IT BEFORE WE CAN ADD MANIPULATE OBJ
 
-        //console.log(review)
-        //console.log(reviewObj)
         // get the associated images
         let image = await SpotImage.findByPk(reviewObj.id, {
             where: {
@@ -266,9 +264,6 @@ router.put("/:reviewId", requireAuth, async (req, res, next) => {
     // update properties in the obj
     let reviewObj = currReview.toJSON()
 
-    //console.log(reviewObj)
-
-
     reviewObj.review = review
     reviewObj.stars = stars
 
@@ -289,9 +284,6 @@ router.delete("/:reviewId", requireAuth, async (req, res, next) => {
     const {
         reviewId
     } = req.params
-
-    //console.log(userId)
-    //console.log(reviewId)
 
     const review = await Review.findByPk(reviewId)
 

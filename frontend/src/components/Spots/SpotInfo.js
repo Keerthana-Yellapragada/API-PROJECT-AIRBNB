@@ -12,6 +12,7 @@ import CreateReviewForm from "../CreateReviewForm"
 import CreateReviewFormModal from '../CreateReviewForm/CreateReviewModal';
 import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
+import CreateBookingForm from '../Bookings'
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
@@ -28,22 +29,19 @@ const SpotInfo = () => {
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
 
-        const sessionUser = useSelector(state => state.session.user)
-        let userId;
+    const sessionUser = useSelector(state => state.session.user)
+    let userId;
 
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
-//console.log("THIS IS ALL REVIEWS ARRAY",allReviewsArray)
-
-if (!allReviewsArray) {
-    return null;
-}
 
 
-let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
-//console.log("SPOT REVIEWS", spotReviews)
+    if (!allReviewsArray) {
+        return null;
+    }
 
 
+    let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
 
@@ -70,10 +68,13 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                     </div>
 
                     <div className="spot-sub-header-info-container">
-                        < i className="fa-solid fa-star" > </i>
-                        {
-                            `${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} · ${!spotReviews.length? 0 : spotReviews.length } reviews · ${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country}`
-                        }
+                        <i className="fa-solid fa-star" > </i>
+                        <div >{`${!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating} `}</div>
+                        <div className='dots'> · </div>
+                        <div className='spot-sub-header-details'> {`${!spotReviews.length ? 0 : spotReviews.length} `} reviews  </div>
+                        < div className='dots'> · </div>
+                        <div className='spot-sub-header-details'> {`${currentSpot.city}, ${currentSpot.state}, ${currentSpot.country} `} </div>
+
 
                     </div>
 
@@ -90,7 +91,7 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
                 {
     /* ********************************************************************************** */}
-
+            <div className='spot-page-details-flex-container'>
                 <div className='spot-details-container'>
 
                     <div className="hosted-by-container">
@@ -102,8 +103,12 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                         {" 4 guests · 2 bedrooms · 2 bed · 2 bath"}
                     </div>
 
+
+
+
                     {
     /* ********************************************************************************** */}
+
 
                     <div className="aircover-title-image">
                         < img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
@@ -143,10 +148,10 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
                         </div>
                     </div>
 
-                 <div className="free-cancellation-container" >
-                        < div className = 'free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
-                        < div className = 'free-cancellation-info' >
-                            < div className = 'free-cancellation-title' >
+                    <div className="free-cancellation-container" >
+                        < div className='free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
+                        < div className='free-cancellation-info' >
+                            < div className='free-cancellation-title' >
                                 {"Free Cancellation for 48 hours"}
                             </div>
                             < div className='free-cancellation-info-description' >
@@ -166,18 +171,12 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
                     {/* ********************************************************************************** */}
-                    <div className='price-rating-side-container'>
-                        <div className="spot-description-price">
-                            {`$${currentSpot.price} night`}
-                        </div>
 
-                        <div className="spot-description-rating">
-                            <i class="fa-solid fa-star"></i>
-                            {!currentSpot.avgStarRating ? "NEW" : currentSpot.avgStarRating}
-                        </div>
-                    </div>
-
+                    {/* <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /> */}
                 </div>
+                <div className='booking-container-spot-page'><CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /></div>
+              </div>
+
 
                 {
     /* ********************************************************************************** */}
@@ -185,9 +184,9 @@ let spotReviews = allReviewsArray.filter(review => review.spotId === spotId)
 
 
                 {userId && userId === currentSpot.ownerId ? null : (
-                <div className='create-review-container'>
-                <CreateReviewFormModal />
-                </div>
+                    <div className='create-review-container'>
+                        <CreateReviewFormModal />
+                    </div>
                 )}
 
 

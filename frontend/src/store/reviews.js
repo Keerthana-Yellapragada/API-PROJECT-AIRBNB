@@ -93,12 +93,9 @@ const removeReview = reviewId => {
 
 export const loadAllReviews = (spotId) => async dispatch => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
-    // console.log(response)
+
     if (response.ok) {
         const reviewsList = await response.json();
-
-        // const filteredReviews = reviewsList.find(review=>reviewsList.review.spotId ===spotId)
-
         dispatch(getAllReviews(reviewsList)) // dispatch using out action creator from above to get all reviews
     }
 }
@@ -106,11 +103,9 @@ export const loadAllReviews = (spotId) => async dispatch => {
 // -------------------------  GET USER REVIEWS   ----------------------------------
 export const loadUserReviews = () => async dispatch => {
     const response = await csrfFetch(`/api/reviews/current`);
-    // console.log(response)
+
     if (response.ok) {
         const reviews = await response.json();
-
-        // const filteredReviews = reviewsList.find(review=>reviewsList.review.spotId ===spotId)
         dispatch(getAllReviews(reviews)) // dispatch using out action creator from above to get all reviews
     }
 }

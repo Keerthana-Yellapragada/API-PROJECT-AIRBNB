@@ -1,0 +1,95 @@
+/* .user-bookings-page-main-container{
+    display:flex;
+    justify-content: center;
+} */
+
+.user-bookings-page-title{
+    font-weight:bold;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem;
+    margin: 20px 0px;
+    padding-left: 20px;
+    font-size: 35px;
+}
+
+.user-trips-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.no-upcoming-trips{
+    font-size: 20px;
+    font-weight:bold;
+    padding:20px;
+}
+
+.user-bookings-preview-image{
+    width:300px;
+    height: 300px;
+    padding-bottom: 20px;
+}
+
+.upcoming-trips-container,
+.completed-trips-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+
+}
+.upcoming-trips-title,
+.completed-trips-title {
+    display: flex;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 20px 0px 20px 20px;
+    justify-content: flex-start;
+}
+.upcoming-trips-flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width: 100%;
+    margin: 20px 0px;
+
+    /* border: 2px solid green; */
+}
+
+.bookings-card{
+    display:flex;
+    justify-content: space-between;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-left: 20px;
+    width: 900px;
+}
+
+.booking-spot-name{
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 20px 0px;
+
+}
+
+.booking-right-container{
+    /* margin: 40px; */
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    /* border: 3px solid yellow; */
+}
+
+.booking-left-container{
+    /* border: 2px solid pink; */
+    display: flex;
+    flex-direction: column;
+}
+
+.booking-details{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold
+}
