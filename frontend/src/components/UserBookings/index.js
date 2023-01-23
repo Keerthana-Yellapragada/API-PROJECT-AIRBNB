@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
 import { deleteBooking, loadAllBookings, loadUserBookings } from '../../store/bookings';
 import { loadAllSpots } from '../../store/spots'
@@ -62,20 +62,16 @@ const UserBookings = () => {
 
                                                     <div className='booking-details'>Check Out: {new Date(booking.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-
                                                     <div className='booking-details'>{booking.Spot.description}</div>
 
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
                                                     <div className='booking-details'>${booking.Spot.price} per night</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-                                                    {/* <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div> */}
-
-
                                                     <div className='edit-delete-bookings-buttons-container'>
 
                                                         <CancelBookingFormModal bookingId={booking.id} />
+
+                                                        <button><NavLink to={`/current/bookings/${booking.id}/edit`}>Edit Reservation</NavLink></button>
 
 
                                                     </div>
