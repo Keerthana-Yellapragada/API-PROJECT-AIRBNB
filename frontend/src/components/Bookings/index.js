@@ -65,7 +65,7 @@ const CreateBookingForm = ({
                 setStartDate("");
                 setEndDate("");
                 // refresh state with latest bookings
-               await dispatch(loadAllBookings(createdBooking.spotId)).then(dispatch(loadUserBookings())).then(()=>history.push("/current/bookings"))
+               await dispatch(loadAllBookings(createdBooking.spotId)).then(()=>history.push("/current/bookings"))
             }
         } catch (res) {
 
@@ -136,8 +136,8 @@ const CreateBookingForm = ({
                         (
                             <div className='booking-price-calculator'>
                                 <div className="booking-price-container">
-                                    <div className="booking-container-label">${spot.price} x {(Math.abs(new Date(endDate + "T00:00:00") - new Date(startDate + "T00:00:00")) / 86400000)} nights = </div>
-                                    <div className='booking-price-details'> ${spot.price * (Math.abs(new Date(endDate + "T00:00:00") - new Date(startDate + "T00:00:00"))) / 86400000} </div>
+                                    <div className="booking-container-label">${spot.price} x {(Math.abs((new Date(endDate) - new Date(startDate)) / 86400000))} nights = </div>
+                                    <div className='booking-price-details'> ${spot.price * Math.abs((new Date(endDate) - new Date(startDate)) / 86400000)} </div>
                                 </div>
 
                                 <div className="booking-price-container">
