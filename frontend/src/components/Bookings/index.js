@@ -65,7 +65,7 @@ const CreateBookingForm = ({
                 setStartDate("");
                 setEndDate("");
                 // refresh state with latest bookings
-                await dispatch(loadAllBookings(spotId)).then(()=>history.push("/current/bookings"))
+               await dispatch(loadAllBookings(createdBooking.spotId)).then(dispatch(loadUserBookings())).then(()=>history.push("/current/bookings"))
             }
         } catch (res) {
 

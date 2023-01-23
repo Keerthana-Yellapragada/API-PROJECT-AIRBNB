@@ -21,9 +21,9 @@ const UserBookings = () => {
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
 
     useEffect(() => {
-        dispatch(loadAllBookings());
+
         dispatch(loadUserBookings());
-        dispatch(loadAllSpots());
+
     }, [dispatch])
 
     let startDate;
@@ -99,7 +99,7 @@ const UserBookings = () => {
 
                                             <div className='bookings-card'>
                                                 <div className='booking-left-container'>
-                                                    <div className="booking-spot-name">{booking.Spot.name}</div>
+                                                    <div className="booking-spot-name">{booking?.Spot?.name}</div>
                                                     <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image" />
                                                 </div>
 
