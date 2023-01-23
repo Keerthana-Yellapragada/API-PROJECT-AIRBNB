@@ -34,10 +34,12 @@ const CancelBookingForm = ({closeModal, bookingId}) => {
     return (
         <>
             <form onSubmit={handleSubmit} className='delete-spot-flex-container'>
-                <h1>Are you sure you want to cancel your booking?</h1>
+
+                {/* <h1>Are you sure you want to cancel your reservation?</h1> */}
                <div className='delete-spot-button-container'>
-                    <button type="submit" >Yes, I want to cancel my booking</button>
-                    <button type="button" onClick={handleCancelClick}>No, take me back</button>
+                <button type="submit" >Cancel Reservation</button>
+                    {/* <button type="submit" >Yes, I want to cancel my reservation</button> */}
+                    {/* <button type="button" onClick={handleCancelClick}>No, take me back</button> */}
                 </div>
 
             </form>

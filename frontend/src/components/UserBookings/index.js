@@ -8,11 +8,9 @@ import { format } from 'date-fns'
 import "./UserBookings.css"
 import CancelBookingFormModal from "../CancelBooking"
 
-const UserBookings = ({ closeModal }) => {
+const UserBookings = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-
-
 
     const userId = useSelector(state => state.session.user.id);
 
@@ -22,7 +20,7 @@ const UserBookings = ({ closeModal }) => {
 
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
 
-     useEffect(() => {
+    useEffect(() => {
         dispatch(loadAllBookings());
         dispatch(loadUserBookings());
         dispatch(loadAllSpots());
@@ -30,22 +28,15 @@ const UserBookings = ({ closeModal }) => {
 
     let startDate;
     let endDate;
+    let bookingSpot;
+    let startDateFormatted;
+    let endDateFormatted;
 
 
     if (!userBookings) { return null };
     if (!upcomingBookings) { return null }
     if (!pastBookings) { return null }
 
-    // const handleCancel = (bookingId) => {
-    //     dispatch(deleteBooking(bookingId)).then(dispatch(loadAllBookings())).then(()=> history.push("/current/bookings"))
-
-    // }
-
-    let bookingSpot;
-
-    let startDateFormatted;
-
-    let endDateFormatted;
 
     return (
         <>
@@ -57,7 +48,7 @@ const UserBookings = ({ closeModal }) => {
                             <div className='upcoming-trips-container'>
                                 <div className="upcoming-trips-title">Upcoming Trips</div>
                                 <div className='upcoming-trips-flex-container'>
-                                    { upcomingBookings.length? (upcomingBookings?.map(booking => {
+                                    {upcomingBookings.length ? (upcomingBookings?.map(booking => {
                                         return (
 
                                             <div className='bookings-card'>
@@ -84,8 +75,7 @@ const UserBookings = ({ closeModal }) => {
 
                                                     <div className='edit-delete-bookings-buttons-container'>
 
-                                                    <CancelBookingFormModal bookingId={booking.id} />
-                                                    {/* <button onClick={handleCancel(booking.id)}>Cancel this Booking</button> */}
+                                                        <CancelBookingFormModal bookingId={booking.id} />
 
 
                                                     </div>
@@ -96,7 +86,7 @@ const UserBookings = ({ closeModal }) => {
 
                                         )
                                     }))
-                                    : <div className='no-upcoming-trips'>None!</div>}
+                                        : <div className='no-upcoming-trips'>None!</div>}
 
 
                                 </div>
