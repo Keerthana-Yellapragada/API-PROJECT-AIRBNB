@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Link, Route, useParams } from 'react-router-dom'
 import { deleteBooking, loadAllBookings, loadUserBookings } from '../../store/bookings';
 import { loadAllSpots } from '../../store/spots'
@@ -12,19 +12,21 @@ const UserBookings = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+       useEffect(() => {
+           dispatch(loadUserBookings());
+           dispatch(loadAllSpots())
+       }, [dispatch])
+
     const userId = useSelector(state => state.session.user.id);
 
     const userBookings = useSelector(state => Object.values(state.bookings));
+    console.log("USERBOOKINGS", userBookings)
 
     const upcomingBookings = userBookings.filter(booking => (new Date(booking.startDate) > Date.now()))
 
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
 
-    useEffect(() => {
 
-        dispatch(loadUserBookings());
-
-    }, [dispatch])
 
     let startDate;
     let endDate;
@@ -53,29 +55,25 @@ const UserBookings = () => {
 
                                             <div className='bookings-card'>
                                                 <div className='booking-left-container'>
-                                                    <div className="booking-spot-name">{booking.Spot.name}</div>
-                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image" />
+                                                    <div className="booking-spot-name">{booking?.Spot?.name}</div>
+                                                    <img className="user-bookings-preview-image" src={booking?.Spot?.previewImage} alt="spot-preview-image" />
                                                 </div>
 
                                                 <div className='booking-right-container'>
-                                                    <div className='booking-details'>Check-In: {new Date(booking.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>Check-In: {new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
-                                                    <div className='booking-details'>Check Out: {new Date(booking.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>Check Out: {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
+                                                    <div className='booking-details'>{booking?.Spot?.description}</div>
 
-                                                    <div className='booking-details'>{booking.Spot.description}</div>
-
-                                                    <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
-                                                    <div className='booking-details'>${booking.Spot.price} per night</div>
-
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-                                                    {/* <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div> */}
-
+                                                    <div className='booking-details'>Address: {booking?.Spot?.address}, {booking?.Spot?.city}, {booking?.Spot?.country}</div>
+                                                    <div className='booking-details'>${booking?.Spot?.price} per night</div>
 
                                                     <div className='edit-delete-bookings-buttons-container'>
 
-                                                        <CancelBookingFormModal bookingId={booking.id} />
+                                                        <CancelBookingFormModal className="cancel-bookings-button" bookingId={booking?.id} />
+
+                                                        <button className='edit-bookings-button'><NavLink className="edit-bookings-link" to={`/current/bookings/${booking.id}/edit`}>Edit Reservation</NavLink></button>
 
 
                                                     </div>
@@ -100,25 +98,19 @@ const UserBookings = () => {
                                             <div className='bookings-card'>
                                                 <div className='booking-left-container'>
                                                     <div className="booking-spot-name">{booking?.Spot?.name}</div>
-                                                    <img className="user-bookings-preview-image" src={booking.Spot.previewImage} alt="spot-preview-image" />
+                                                    <img className="user-bookings-preview-image" src={booking?.Spot?.previewImage} alt="spot-preview-image" />
                                                 </div>
 
                                                 <div className='booking-right-container'>
-                                                    <div className='booking-details'>Check-In: {new Date(booking.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-                                                    {/* <div>{booking.startDatedate.toLocaleDateString()}</div> */}
-                                                    <div className='booking-details'>Check-Out: {new Date(booking.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>Check-In: {new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
+                                                    <div className='booking-details'>Check-Out: {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>{booking?.Spot?.description}</div>
 
-                                                    <div className='booking-details'>{booking.Spot.description}</div>
+                                                    <div className='booking-details'>Address: {booking?.Spot?.address}, {booking?.Spot?.city}, {booking?.Spot?.country}</div>
+                                                    <div className='booking-details'>${booking?.Spot?.price} per night</div>
 
-                                                    <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
-                                                    <div className='booking-details'>${booking.Spot.price} per night</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-                                                    {/* <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div> */}
-
-                                                    {/* <CancelBookingFormModal bookingId={booking.id} /> */}
 
                                                 </div>
 

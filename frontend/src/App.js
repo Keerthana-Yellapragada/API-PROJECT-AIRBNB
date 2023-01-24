@@ -20,6 +20,7 @@ import ReviewInfo from "./components/Reviews/ReviewInfo";
 import Footer from "./components/Footer";
 import PageNotFound from "./components/404PageNotFound";
 import UserBookings from "./components/UserBookings";
+import EditBookingForm from "./components/EditBooking";
 
 function App() {
   const dispatch = useDispatch();
@@ -63,6 +64,10 @@ function App() {
 
             <Route exact path="/current/bookings">
               <UserBookings />
+            </Route>
+
+            <Route path="/current/bookings/:bookingId/edit">
+              <EditBookingForm />
             </Route>
 
           <Route> <PageNotFound /></Route>

@@ -185,12 +185,16 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     // Else, if we have checked all existing bookings and NO BOOKING conflict exists:
 
     //update the changes to obj
-    bookingObj.startDate = startDate
-    bookingObj.endDate = endDate
+    // bookingObj.startDate = startDate
+    // bookingObj.endDate = endDate
 
+    booking.startDate = startDate
+    booking.endDate = endDate
+    await booking.save()
 
     //send success response
     res.status(200)
+
     return res.json(bookingObj)
 })
 
