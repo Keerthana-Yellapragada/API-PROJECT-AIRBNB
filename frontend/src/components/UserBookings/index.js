@@ -12,20 +12,21 @@ const UserBookings = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+       useEffect(() => {
+           dispatch(loadUserBookings());
+           dispatch(loadAllSpots())
+       }, [dispatch])
+
     const userId = useSelector(state => state.session.user.id);
 
     const userBookings = useSelector(state => Object.values(state.bookings));
+    console.log("USERBOOKINGS", userBookings)
 
     const upcomingBookings = userBookings.filter(booking => (new Date(booking.startDate) > Date.now()))
 
     const pastBookings = userBookings.filter(booking => (new Date(booking.startDate) < Date.now()))
 
-    useEffect(() => {
 
-        dispatch(loadUserBookings());
-
-
-    }, [dispatch])
 
     let startDate;
     let endDate;

@@ -11,6 +11,7 @@ const EditBookingForm = () => {
     const dispatch = useDispatch();
     let { bookingId } = useParams()
     bookingId = parseInt(bookingId)
+    console.log("bookingId", bookingId)
 
     useEffect(() => {
         dispatch(loadUserBookings())
@@ -23,6 +24,7 @@ const EditBookingForm = () => {
 
     console.log("CURRENT BOOKING IS", currentBooking)
     console.log("current booking start", currentBooking[0]?.startDate)
+    console.log("CURRENT BOOKING ID IS", currentBooking[0]?.id)
     //states
     const [startDate, updateStartDate] = useState("")
     const [endDate, updateEndDate] = useState("")
@@ -63,17 +65,18 @@ const EditBookingForm = () => {
         // if (!sessionUser) return alert("Please log in to edit your reservation")
 
         const editBookingPayload = {
-            startDate,
-            endDate
+            startDate: new Date(startDate),
+            endDate: new Date(endDate)
         }
 
         try {
-            const editedBooking = await dispatch(editBooking(editBookingPayload, bookingId))
+            console.log("CURRBOKID", currentBooking[0]?.id)
+            const editedBooking = await dispatch(editBooking(editBookingPayload, currentBooking[0]?.id))
 
             if (editedBooking) {
                 setValidationErrors([]);
                 // refresh state with latest bookings
-                await dispatch(loadAllBookings(editedBooking?.spotId)).then(dispatch(loadUserBookings())).then(() => history.push("/current/bookings"))
+                await dispatch(loadUserBookings()).then(() => history.push("/current/bookings"))
             }
         } catch (res) {
 
