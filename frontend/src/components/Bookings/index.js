@@ -110,7 +110,6 @@ const CreateBookingForm = ({
                                 required
                                 id="booking-start-date"
                                 type="date"
-
                                 value={startDate}
                                 onChange={updateStartDate} />
                         </div>

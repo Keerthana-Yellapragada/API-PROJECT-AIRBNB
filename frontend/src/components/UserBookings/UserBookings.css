@@ -93,3 +93,18 @@
     font-size: 15px;
     font-weight: bold
 }
+
+
+.edit-bookings-link {
+    text-decoration: none;
+    color:white;
+
+}
+
+.cancel-bookings-button{
+    width: 200px;
+}
+
+.edit-bookings-button{
+    width:195px;
+}

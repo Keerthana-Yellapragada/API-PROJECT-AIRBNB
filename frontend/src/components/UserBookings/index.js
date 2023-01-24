@@ -69,9 +69,9 @@ const UserBookings = () => {
 
                                                     <div className='edit-delete-bookings-buttons-container'>
 
-                                                        <CancelBookingFormModal bookingId={booking.id} />
+                                                        <CancelBookingFormModal className="cancel-bookings-button" bookingId={booking.id} />
 
-                                                        <button><NavLink to={`/current/bookings/${booking.id}/edit`}>Edit Reservation</NavLink></button>
+                                                        <button className='edit-bookings-button'><NavLink className="edit-bookings-link" to={`/current/bookings/${booking.id}/edit`}>Edit Reservation</NavLink></button>
 
 
                                                     </div>
@@ -101,20 +101,14 @@ const UserBookings = () => {
 
                                                 <div className='booking-right-container'>
                                                     <div className='booking-details'>Check-In: {new Date(booking.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-                                                    {/* <div>{booking.startDatedate.toLocaleDateString()}</div> */}
+
                                                     <div className='booking-details'>Check-Out: {new Date(booking.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-
                                                     <div className='booking-details'>{booking.Spot.description}</div>
 
                                                     <div className='booking-details'>Address: {booking.Spot.address}, {booking.Spot.city}, {booking.Spot.country}</div>
                                                     <div className='booking-details'>${booking.Spot.price} per night</div>
 
-                                                    {/* <div className='booking-details'>Your Trip: {booking.endDate - booking.startDate} days</div> */}
-                                                    {/* <div className='booking-details'>Trip Total: {(booking.endDate - booking.startDate) * booking.Spot.price} before taxes</div> */}
 
-                                                    {/* <CancelBookingFormModal bookingId={booking.id} /> */}
 
                                                 </div>
 
