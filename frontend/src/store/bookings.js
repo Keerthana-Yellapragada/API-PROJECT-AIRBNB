@@ -143,7 +143,8 @@ export const createNewBooking = (createBookingPayload, spotId) => async dispatch
 // -------------------------  EDIT A BOOKING   ----------------------------------
 // // EDIT A booking INFO
 export const editBooking = (editBookingPayload, bookingId) => async dispatch => {
-    const response = await fetch(`/api/bookings/${bookingId}`, { //get the id from the booking obj and use that
+    console.log("did it reach edit booking thunk")
+    const response = await csrfFetch(`/api/bookings/${bookingId}`, { //get the id from the booking obj and use that
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -152,6 +153,7 @@ export const editBooking = (editBookingPayload, bookingId) => async dispatch => 
     });
 
     if (response.ok) {
+        console.log("is edit booking response ok")
         const editedBooking = await response.json();
         dispatch(updateBooking(editedBooking)) // dispatch using out action creator from above to get booking's info by spotId
         return editedBooking;

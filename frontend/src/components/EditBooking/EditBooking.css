@@ -1,0 +1,48 @@
+.edit-reservation-page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 20px;
+    /* border: 2px solid red; */
+}
+
+
+
+.edit-reservation-top{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.edit-reservation-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.edit-booking-main-container{
+display: flex;
+margin-top: 10px;
+}
+
+.edit-current-reservation-dates-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.check-in-out{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 0px;
+    font-size: 16px;
+}

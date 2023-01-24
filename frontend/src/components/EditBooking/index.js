@@ -2,7 +2,7 @@ import { editBooking, loadUserBookings, loadAllBookings } from "../../store/book
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
-
+import "./EditBooking.css"
 
 const EditBookingForm = () => {
     const history = useHistory()
@@ -71,7 +71,7 @@ const EditBookingForm = () => {
                 setValidationErrors([]);
 
                 // refresh state with latest bookings
-                await dispatch(loadAllBookings(editedBooking.spotId)).then(() => history.push("/current/bookings"))
+                await dispatch(loadAllBookings(editedBooking.spotId)).then(dispatch(loadUserBookings())).then(() => history.push("/current/bookings"))
             }
         } catch (res) {
 
@@ -89,62 +89,66 @@ const EditBookingForm = () => {
 
     return (
 
-    <div>
-        <h2>Edit Your Reservation</h2>
-        <div className='create-bookings-main-container'>
+        <div className="edit-reservation-page-container">
+            <div className="edit-reservation-top">
+                <div className="edit-reservation-title">Edit Your Reservation</div>
 
-            <div className='booking-top-container'>
-
-                <div className='spot-price-container'>
-                    <div className="spot-price">${currentBooking[0].Spot.price} </div>
-                    <div className='night'>night</div>
-                </div>
-
-                <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking[0].Spot.avgStarRating}</strong> · {currentBooking[0].Spot.numReviews} reviews</div>
-            </div>
-
-            <div className="current-reservation-dates-container">
-
-                <div>Check-In: {new Date(currentBooking[0].startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-                <div>Check-Out: {new Date(currentBooking[0].endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-            </div>
-
-            <form onSubmit={handleSubmit} className="bookings-form-container">
-                <div className="errors">
-                    {validationErrors.length > 0 &&
-                        validationErrors.map((error) =>
-                            <div key={error}>{error}</div>
-                        )}
-                </div>
-
-                <div className='date-input-container'>
-                    <div className='check-in-container'>
-                        <span id="booking-start-date-id">CHECK-IN</span>
-                        <input
-                            className="start-date-input"
-                            required
-                            id="booking-start-date"
-                            type="date"
-                            value={startDate}
-                            onChange={editStartDate} />
-                    </div>
-                    <div className='check-out-container'>
-                        <span id="booking-end-date-id">CHECK-OUT</span>
-                        <input
-                            className="end-date-input"
-                            required
-                            id="booking-end-date"
-                            type="date"
-                            value={endDate}
-                            onChange={editEndDate} />
-
+                    <div className="edit-current-reservation-dates-container">
+                        <div className="check-in-out">Check-In: {new Date(currentBooking[0].startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                        <div className="check-in-out">Check-Out: {new Date(currentBooking[0].endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
                     </div>
 
+            </div>
+            <div id="edit-booking-main-container" className='create-bookings-main-container'>
 
+                <div className='booking-top-container'>
 
+                    <div className='spot-price-container'>
+                        <div className="spot-price">${currentBooking[0]?.Spot?.price} </div>
+                        <div className='night'>night</div>
+                    </div>
+
+                    <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking[0].Spot.avgStarRating}</strong> · {currentBooking[0].Spot.numReviews} reviews</div>
                 </div>
 
-                {/*
+
+
+                <form onSubmit={handleSubmit} className="bookings-form-container">
+                    <div className="errors">
+                        {validationErrors.length > 0 &&
+                            validationErrors.map((error) =>
+                                <div key={error}>{error}</div>
+                            )}
+                    </div>
+
+                    <div className='date-input-container'>
+                        <div className='check-in-container'>
+                            <span id="booking-start-date-id">CHECK-IN</span>
+                            <input
+                                className="start-date-input"
+                                required
+                                id="booking-start-date"
+                                type="date"
+                                value={startDate}
+                                onChange={editStartDate} />
+                        </div>
+                        <div className='check-out-container'>
+                            <span id="booking-end-date-id">CHECK-OUT</span>
+                            <input
+                                className="end-date-input"
+                                required
+                                id="booking-end-date"
+                                type="date"
+                                value={endDate}
+                                onChange={editEndDate} />
+
+                        </div>
+
+
+
+                    </div>
+
+                    {/*
                     {startDate && endDate ?
                         (
                         <>
@@ -180,10 +184,10 @@ const EditBookingForm = () => {
 
 
 
-                <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
-            </form>
+                    <button className="submit-button" type="submit" disabled={validationErrors.length > 0}>Reserve</button>
+                </form>
+            </div>
         </div>
-    </div>
     )
 
 }
