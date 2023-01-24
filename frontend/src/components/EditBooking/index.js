@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, Route, useHistory, useParams } from 'react-router-dom';
 import "./EditBooking.css"
+import {loadAllSpots} from "../../store/spots"
+
 
 const EditBookingForm = () => {
     const history = useHistory()
@@ -12,6 +14,7 @@ const EditBookingForm = () => {
 
     useEffect(() => {
         dispatch(loadUserBookings())
+        dispatch(loadAllSpots())
     }, [dispatch])
 
     const userBookings = useSelector(state => Object.values(state.bookings))
@@ -69,9 +72,8 @@ const EditBookingForm = () => {
 
             if (editedBooking) {
                 setValidationErrors([]);
-
                 // refresh state with latest bookings
-                await dispatch(loadAllBookings(editedBooking.spotId)).then(dispatch(loadUserBookings())).then(() => history.push("/current/bookings"))
+                await dispatch(loadAllBookings(editedBooking?.spotId)).then(dispatch(loadUserBookings())).then(() => history.push("/current/bookings"))
             }
         } catch (res) {
 
@@ -94,8 +96,8 @@ const EditBookingForm = () => {
                 <div className="edit-reservation-title">Edit Your Reservation</div>
 
                     <div className="edit-current-reservation-dates-container">
-                        <div className="check-in-out">Check-In: {new Date(currentBooking[0].startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
-                        <div className="check-in-out">Check-Out: {new Date(currentBooking[0].endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                        <div className="check-in-out">Check-In: {new Date(currentBooking[0]?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                        <div className="check-in-out">Check-Out: {new Date(currentBooking[0]?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
                     </div>
 
             </div>
@@ -108,7 +110,7 @@ const EditBookingForm = () => {
                         <div className='night'>night</div>
                     </div>
 
-                    <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking[0].Spot.avgStarRating}</strong> · {currentBooking[0].Spot.numReviews} reviews</div>
+                    <div className='booking-top-right-container'><strong className='star-rating-booking'><i className="fa-sharp fa-solid fa-star fa-xs"></i> {currentBooking[0]?.Spot?.avgStarRating}</strong> · {currentBooking[0]?.Spot?.numReviews} reviews</div>
                 </div>
 
 
