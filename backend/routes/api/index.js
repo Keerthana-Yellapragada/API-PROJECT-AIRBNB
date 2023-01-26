@@ -10,6 +10,8 @@ const bookingsRouter = require('./bookings.js');
 const reviewImagesRouter = require('./review-images.js');
 const spotsRouter = require('./spots.js');
 const spotImagesRouter = require("./spot-images.js")
+const mapsRouter = require('./maps');
+
 
 //*********************************************************************** */
 
@@ -40,6 +42,8 @@ router.use('/bookings', bookingsRouter);
 router.use('/review-images', reviewImagesRouter);
 
 router.use('/spot-images', spotImagesRouter);
+
+router.use('/maps', mapsRouter);
 
 
 

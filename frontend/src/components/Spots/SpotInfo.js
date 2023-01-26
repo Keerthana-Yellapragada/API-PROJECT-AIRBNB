@@ -13,6 +13,7 @@ import CreateReviewFormModal from '../CreateReviewForm/CreateReviewModal';
 import EditSpotFormModal from '../EditSpotForm/EditSpotModal';
 import DeleteSpotFormModal from '../DeleteSpot/DeleteSpotFormModal';
 import CreateBookingForm from '../Bookings'
+import MapContainer from '../Maps';
 
 const SpotInfo = () => {
     const dispatch = useDispatch();
@@ -201,6 +202,12 @@ const SpotInfo = () => {
 
                 </div>
             </div>
+
+                <div className='maps-container-spot-page'>
+                    <div className='maps-title'>Where You'll Be: </div>
+                        <MapContainer  className="map-container" />
+                </div>
+
         </>
     )
 }
