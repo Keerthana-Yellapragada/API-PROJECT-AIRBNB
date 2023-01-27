@@ -135,6 +135,7 @@ const EditBookingForm = () => {
                                 id="booking-start-date"
                                 type="date"
                                 value={startDate}
+                                min = {new Date().toISOString().split("T")[0]}
                                 onChange={editStartDate} />
                         </div>
                         <div className='check-out-container'>
@@ -145,6 +146,7 @@ const EditBookingForm = () => {
                                 id="booking-end-date"
                                 type="date"
                                 value={endDate}
+                                min = {new Date().toISOString().split("T")[0]}
                                 onChange={editEndDate} />
 
                         </div>
