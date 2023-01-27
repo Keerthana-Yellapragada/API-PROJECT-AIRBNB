@@ -41,7 +41,7 @@ const Maps = ({ apiKey, currentSpot}) => {
         <GoogleMap
           mapContainerStyle={containerStyle}
           center={center}
-          zoom={13}
+          zoom={14}
         >
           <Marker
             icon={svgMarker}
