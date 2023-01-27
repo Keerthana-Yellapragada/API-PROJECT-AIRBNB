@@ -29,6 +29,7 @@ const SpotInfo = () => {
     const allSpots = useSelector(state => Object.values(state.spots))
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
+    console.log("CURRENT SPOT IS", currentSpot)
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;
@@ -205,7 +206,7 @@ const SpotInfo = () => {
 
                 <div className='maps-container-spot-page'>
                     <div className='maps-title'>Where You'll Be: </div>
-                        <MapContainer  className="map-container" />
+                        <MapContainer currentSpot = {currentSpot} className="map-container" />
                 </div>
 
         </>
