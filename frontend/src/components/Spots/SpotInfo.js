@@ -91,10 +91,7 @@ const SpotInfo = () => {
 
                 </div>
 
-                {
-    /* ********************************************************************************** */}
-            <div className='spot-page-details-flex-container'>
-                <div className='spot-details-container'>
+                <div className='hosted-by-main-container'>
 
                     <div className="hosted-by-container">
                         {`Entire place hosted by ${currentSpot.Owner.firstName}`}
@@ -104,6 +101,21 @@ const SpotInfo = () => {
                     <div className="spot-bed-bath-container">
                         {" 4 guests · 2 bedrooms · 2 bed · 2 bath"}
                     </div>
+                </div>
+
+                {
+    /* ********************************************************************************** */}
+            <div className='spot-page-details-flex-container'>
+                <div className='spot-details-container'>
+
+                    {/* <div className="hosted-by-container">
+                        {`Entire place hosted by ${currentSpot.Owner.firstName}`}
+                        <div className="owner-pic"><i className="fa-solid fa-circle-user"></i></div>
+                    </div>
+
+                    <div className="spot-bed-bath-container">
+                        {" 4 guests · 2 bedrooms · 2 bed · 2 bath"}
+                    </div> */}
 
 
 

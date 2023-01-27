@@ -9,6 +9,9 @@
     width: 350px;
     background-color: white;
     /* z-index: auto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
 }
 

@@ -11,11 +11,15 @@ footer {
     position: sticky;
     background-color:white;
     height: 20%;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 
 footer a {
     font-style: none;
     color: grey;
+    font-size: 13px;
+    font-weight: bold;
 
 }

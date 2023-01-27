@@ -7,7 +7,7 @@
 }
 
 .spot-header-container h1{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     margin-top:30px;
 }
@@ -25,7 +25,7 @@
 }
 .spot-sub-header-info-container{
     font-weight: 900;
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom: 15px;
     display:flex;
     justify-content:flex-start;
@@ -34,6 +34,7 @@
 }
 .spot-sub-header-details{
     text-decoration: underline;
+    font-size: 13px;
 
 }
 .dots{
@@ -91,7 +92,7 @@
 }
 
 .hosted-by-container{
-    font-size: 25px;
+    font-size: 20px;
     display: flex;
     justify-content: space-between;
     margin-top:10px;
@@ -106,7 +107,7 @@
 }
 
 .spot-bed-bath-container{
- font-size: 16px;
+ font-size: 14px;
  padding:0px 0px 10px 0px;
  border-bottom: 1px solid rgb(224, 216, 216);
  font-weight: normal;
@@ -126,6 +127,7 @@
 .aircover-info{
     padding-bottom: 30px;
     font-weight: normal;
+    font-size: 15px;
     border-bottom: 1px solid rgb(224, 216, 216);
 }
 .price-rating-side-container {
@@ -194,7 +196,7 @@
  display:flex;
  justify-content: flex-start;
  font-weight: normal;
- font-size: 16px;
+ font-size: 13px;
  padding-top: 20px;
 }
 
@@ -202,7 +204,7 @@
 .fa-door-open,
 .fa-calendar-xmark {
     margin:20px;
-    font-size: 40px;
+    font-size: 35px;
     margin-left:0px;
 
 }
@@ -231,6 +233,7 @@
 .spot-description-container{
     border-top: 1px solid rgb(224, 216, 216);
     border-bottom: 1px solid rgb(224, 216, 216);
+    font-size: 16px;
 }
 
 .create-review-container{
@@ -289,4 +292,9 @@ booking-container-spot-page {
     flex-direction: column;
     justify-content: center;
     width: 100%;
+}
+
+.hosted-by-main-container{
+    margin: 15px 0px;
+    font-weight: bold;
 }

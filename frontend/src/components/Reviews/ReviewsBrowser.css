@@ -61,7 +61,7 @@ align-self:flex-start
 
 .reviews-title {
     padding:20px 0px 20px 0px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 900;
 }
 
@@ -78,6 +78,7 @@ align-self:flex-start
     padding:50px;
     margin:50px;
     border-bottom: 1px solid grey;
+    font-size: 14px;
 
 }
 
