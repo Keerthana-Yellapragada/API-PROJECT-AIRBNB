@@ -202,12 +202,13 @@ const SpotInfo = () => {
                     }
 
                 </div>
-            </div>
-
-                <div className='maps-container-spot-page'>
+                  <div className='maps-container-spot-page'>
                     <div className='maps-title'>Where You'll Be: </div>
                         <MapContainer currentSpot = {currentSpot} className="map-container" />
                 </div>
+            </div>
+
+
 
         </>
     )
