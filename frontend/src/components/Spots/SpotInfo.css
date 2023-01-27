@@ -127,7 +127,7 @@
 .aircover-info{
     padding-bottom: 30px;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 14px;
     border-bottom: 1px solid rgb(224, 216, 216);
 }
 .price-rating-side-container {
@@ -282,7 +282,7 @@ booking-container-spot-page {
 
 .maps-title{
     margin: 25px 0px;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold
 }
 
