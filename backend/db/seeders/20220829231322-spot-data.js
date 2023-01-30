@@ -65,8 +65,8 @@ module.exports = {
       city: "Denver",
       state: "CO",
       country: "USA",
-      lat: 47.00,
-      lng: 29.00,
+      lat: 39.72,
+      lng: -104.9,
       name: "Mountain Cabin",
       description: "Cozy Mountain Cabin by the national park. Basic amenities provided. Minimum 3 nights booking.",
       price: 100.00
