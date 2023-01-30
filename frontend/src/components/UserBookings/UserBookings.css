@@ -23,8 +23,22 @@
     font-size: 20px;
     font-weight:bold;
     padding:20px;
-}
 
+}
+.no-upcoming-trips-container{
+    border: 1px solid black;
+    border-radius: 20px;
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    object-fit: fill;
+}
+.family-pic{
+object-fit: fill
+}
 .user-bookings-preview-image{
     width:300px;
     height: 300px;
@@ -107,4 +121,10 @@
 
 .edit-bookings-button{
     width:195px;
+}
+
+.no-trips-description{
+    font-size: 12px;
+    color:grey;
+    margin-top: 20px;
 }
