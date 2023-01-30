@@ -101,8 +101,8 @@ module.exports = {
       city: "Sunnyvale",
       state: "CA",
       country: "USA",
-      lat: 34.21,
-      lng: 56.04,
+      lat: 37.36,
+      lng: -122.04,
       name: "Cozy home in Sunnyvale",
       description: "Home close to Google campus and downtown Sunnyvale. Basic amenities provided. Minimum 2 nights booking.",
       price: 160.00
