@@ -118,7 +118,7 @@ const UserBookings = () => {
 
                                                     <div className='booking-details-dates-container'>
                                                     <div className='booking-details-title'>Check-In  |  Check-Out: </div>
-                                                    <div className='booking-details'>{new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}  |  {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>{new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')} - {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
                                                     </div>
 
@@ -130,7 +130,7 @@ const UserBookings = () => {
                                                     <div className='booking-details'>{booking?.Spot?.address}, {booking?.Spot?.city}, {booking?.Spot?.country}</div>
 
 
-                                                    <div className='booking-details'>${booking?.Spot?.price} per night</div>
+                                                    <div className='booking-details-price'>${booking?.Spot?.price} per night</div>
 
 
 

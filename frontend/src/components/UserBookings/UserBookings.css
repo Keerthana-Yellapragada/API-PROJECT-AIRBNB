@@ -139,10 +139,16 @@ border-radius: 20px
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    margin: 8px
+    margin: 8px;
+    font-size: 20px
 
 }
 
 .bookings-spot-info-link {
     color: black
+}
+.booking-details-price{
+    font-weight: bold;
+    margin:10px;
+    font-size: 14px
 }
