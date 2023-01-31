@@ -104,20 +104,32 @@ const UserBookings = () => {
                                 <div className='upcoming-trips-flex-container'>
                                     {pastBookings?.map(booking => {
                                         return (
+                                            <NavLink className="bookings-spot-info-link" to={`/spots/${booking.Spot.id}`}>
 
                                             <div className='bookings-card'>
                                                 <div className='booking-left-container'>
                                                     <div className="booking-spot-name">{booking?.Spot?.name}</div>
-                                                    <img className="user-bookings-preview-image" src={booking?.Spot?.previewImage} alt="spot-preview-image" />
+                                                    <div className='preview-image-booking-spot-container'>
+                                                    <img className="user-bookings-preview-image" src={booking?.Spot?.previewImage} alt="spot-preview-image" /></div>
                                                 </div>
 
-                                                <div className='booking-right-container'>
-                                                    <div className='booking-details'>Check-In: {new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 
-                                                    <div className='booking-details'>Check-Out: {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                <div className='booking-right-container'>
+
+                                                    <div className='booking-details-dates-container'>
+                                                    <div className='booking-details-title'>Check-In  |  Check-Out: </div>
+                                                    <div className='booking-details'>{new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}  |  {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+
+                                                    </div>
+
+
+
                                                     <div className='booking-details'>{booking?.Spot?.description}</div>
 
-                                                    <div className='booking-details'>Address: {booking?.Spot?.address}, {booking?.Spot?.city}, {booking?.Spot?.country}</div>
+                                                    {/* <div className='booking-details-title'>Address: </div> */}
+                                                    <div className='booking-details'>{booking?.Spot?.address}, {booking?.Spot?.city}, {booking?.Spot?.country}</div>
+
+
                                                     <div className='booking-details'>${booking?.Spot?.price} per night</div>
 
 
@@ -125,8 +137,9 @@ const UserBookings = () => {
                                                 </div>
 
                                             </div>
-
+                                                </NavLink>
                                         )
+
                                     })}
 
                                 </div>
