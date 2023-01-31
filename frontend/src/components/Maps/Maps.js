@@ -15,7 +15,6 @@ const Maps = ({ apiKey, currentSpot}) => {
 
   };
 
-  console.log("CURRSPOTMAPS", currentSpot)
 
   // const center = {
   //   lat: 37.33,

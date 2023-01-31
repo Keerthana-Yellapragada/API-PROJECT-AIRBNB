@@ -29,7 +29,7 @@ const SpotInfo = () => {
     const allSpots = useSelector(state => Object.values(state.spots))
     const currentSpot = allSpots.find(spot => spot.id === spotId)
 
-    console.log("CURRENT SPOT IS", currentSpot)
+
 
     const sessionUser = useSelector(state => state.session.user)
     let userId;

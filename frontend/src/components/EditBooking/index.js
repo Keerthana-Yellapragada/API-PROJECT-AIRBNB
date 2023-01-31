@@ -11,7 +11,7 @@ const EditBookingForm = () => {
     const dispatch = useDispatch();
     let { bookingId } = useParams()
     bookingId = parseInt(bookingId)
-    console.log("bookingId", bookingId)
+
 
     useEffect(() => {
         dispatch(loadUserBookings())
@@ -19,12 +19,9 @@ const EditBookingForm = () => {
     }, [dispatch])
 
     const userBookings = useSelector(state => Object.values(state.bookings))
-    console.log("USERBOOKINGS IS", userBookings)
+
     const currentBooking = userBookings.filter(booking => booking.id == bookingId)
 
-    console.log("CURRENT BOOKING IS", currentBooking)
-    console.log("current booking start", currentBooking[0]?.startDate)
-    console.log("CURRENT BOOKING ID IS", currentBooking[0]?.id)
     //states
     const [startDate, updateStartDate] = useState("")
     const [endDate, updateEndDate] = useState("")
@@ -70,7 +67,6 @@ const EditBookingForm = () => {
         }
 
         try {
-            console.log("CURRBOKID", currentBooking[0]?.id)
             const editedBooking = await dispatch(editBooking(editBookingPayload, currentBooking[0]?.id))
 
             if (editedBooking) {

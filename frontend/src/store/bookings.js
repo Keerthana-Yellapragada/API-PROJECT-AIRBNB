@@ -143,8 +143,7 @@ export const createNewBooking = (createBookingPayload, spotId) => async dispatch
 // -------------------------  EDIT A BOOKING   ----------------------------------
 // // EDIT A booking INFO
 export const editBooking = (editBookingPayload, bookingId) => async dispatch => {
-    console.log("did it reach edit booking thunk")
-    console.log("BOOKINGID IN EDIT THUNK IS", bookingId)
+
     const response = await csrfFetch(`/api/bookings/${bookingId}`, { //get the id from the booking obj and use that
         method: 'PUT',
         headers: {
@@ -154,9 +153,7 @@ export const editBooking = (editBookingPayload, bookingId) => async dispatch => 
     });
 
     if (response.ok) {
-        console.log("is edit booking response ok")
         const editedBooking = await response.json();
-        console.log("EDITEDBOOKING in thunk after fetch IS", editedBooking)
         dispatch(updateBooking(editedBooking)) // dispatch using out action creator from above to get booking's info by spotId
         return editedBooking;
     }
@@ -212,7 +209,6 @@ const bookingsReducer = (state = initialState, action) => {
                 }
 
                 anotherState[action.payload.id] = action.payload
-                console.log("EDITED BOOKING IN REDUCER", action.payload)
                 return {...anotherState}
                 ///*************************************************************************** */
 
