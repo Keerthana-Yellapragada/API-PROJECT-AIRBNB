@@ -157,19 +157,28 @@ Users can create a booking reservation on a listing's page by clicking the form 
 Once a reservation is sucessfuly created, users will be redirected to their "Trips" page where they can view all of their upcoming and past reservations.
 
 <img width="1339" alt="Screen Shot 2023-02-14 at 11 25 17 AM" src="https://user-images.githubusercontent.com/85444662/218859806-d0208094-d90a-43b2-932d-e9b94dad7f61.png">
+
 <img width="1268" alt="Screen Shot 2023-02-14 at 11 26 03 AM" src="https://user-images.githubusercontent.com/85444662/218859927-f68e940f-3ceb-4732-a9a7-4659ea637909.png">
 
 
 ## Viewing Reservations
 
 Logged-in users can view all of their upcoming and past reservations on their "Trips" page which is accesible from the dropdown navigation menu on the upper right hand side of the page.
+
 <img width="1331" alt="Screen Shot 2023-02-14 at 11 25 29 AM" src="https://user-images.githubusercontent.com/85444662/218859852-7c7c6331-fe5e-4b08-a0ba-b926c6639a81.png">
+
+
 <img width="1301" alt="Screen Shot 2023-02-14 at 11 25 41 AM" src="https://user-images.githubusercontent.com/85444662/218859893-e8876c55-14ac-4804-b175-69b85315cc4b.png">
 
 
 ## Editing a Reservation
 
 Logged-in users can edit their reservation by clicking the "Edit Reservation" button. This will redirect them to a page where they can choose different start and end dates.
+
+
+<img width="1112" alt="Screen Shot 2023-02-14 at 12 53 11 PM" src="https://user-images.githubusercontent.com/85444662/218860701-a01294a7-7a98-4a41-94e4-4a6e94799b0b.png">
+
+
 ## Cancelling a Reservation
 
 Logged-in users can cancel their reservation by clicking the "Cancel Reservation" button. This will permanently delete their reservation.
@@ -179,5 +188,4 @@ Logged-in users can cancel their reservation by clicking the "Cancel Reservation
 
 
 # Upcoming Features
-## Editing Reviews
 ## Search Bar
