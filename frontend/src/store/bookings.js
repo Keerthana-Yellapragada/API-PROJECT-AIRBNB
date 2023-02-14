@@ -199,9 +199,9 @@ const bookingsReducer = (state = initialState, action) => {
                 ...state
             }
 
-            newState[action.payload.id] = action.payload // normalize and add data
+            newState[action.payload?.id] = action.payload // normalize and add data
 
-            return { ...newState };
+            return newState;
         ///*************************************************************************** */
         case UPDATE_BOOKING:
             const anotherState = {

@@ -13,8 +13,8 @@ const UserBookings = () => {
     const history = useHistory();
 
        useEffect(() => {
-           dispatch(loadUserBookings());
            dispatch(loadAllSpots())
+           dispatch(loadUserBookings());
        }, [dispatch])
 
     const userId = useSelector(state => state.session.user.id);
