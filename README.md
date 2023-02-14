@@ -170,12 +170,12 @@ Logged-in users can view all of their upcoming and past reservations on their "T
 ## Editing a Reservation
 
 Logged-in users can edit their reservation by clicking the "Edit Reservation" button. This will redirect them to a page where they can choose different start and end dates.
-<img width="1312" alt="Screen Shot 2023-02-14 at 11 26 50 AM" src="https://user-images.githubusercontent.com/85444662/218859957-2d91ca92-fbc8-4572-ac10-cc7b728ac57b.png">
-
 ## Cancelling a Reservation
 
 Logged-in users can cancel their reservation by clicking the "Cancel Reservation" button. This will permanently delete their reservation.
-<img width="771" alt="Screen Shot 2023-02-14 at 12 44 58 PM" src="https://user-images.githubusercontent.com/85444662/218860008-fbff1060-f4c4-4023-b2bc-9dc27a671a21.png">
+
+
+<img width="1312" alt="Screen Shot 2023-02-14 at 11 26 50 AM" src="https://user-images.githubusercontent.com/85444662/218859957-2d91ca92-fbc8-4572-ac10-cc7b728ac57b.png">
 
 
 # Upcoming Features
