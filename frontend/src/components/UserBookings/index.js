@@ -44,13 +44,13 @@ const UserBookings = () => {
         <>
             <div className='user-bookings-page-main-container'>
                 <div className='user-bookings-page-title'>Trips</div>
-                {!userBookings.length ? (<h2 className='no-bookings-banner'>No trips booked...yet!</h2>) :
+                {userBookings.length < 0 ? (<h2 className='no-bookings-banner'>No trips booked...yet!</h2>) :
                     (
                         <div className='user-trips-container'>
                             <div className='upcoming-trips-container'>
                                 <div className="upcoming-trips-title">Upcoming Trips</div>
                                 <div className='upcoming-trips-flex-container'>
-                                    {upcomingBookings.length ? (upcomingBookings?.map(booking => {
+                                    {upcomingBookings.length > 0 ? (upcomingBookings?.map(booking => {
                                         return (
 
                                             <div className='bookings-card'>

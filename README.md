@@ -149,7 +149,27 @@ On the "My Reviews" page, users can click on any review to visit its page to see
 
 
 
+# Bookings
+
+## Creating a Reservation
+Users can create a booking reservation on a listing's page by clicking the form on the right side of the page. They can select a start date and end date and the total price to reserve the listing for those dates.
+
+Once a reservation is sucessfuly created, users will be redirected to their "Trips" page where they can view all of their upcoming and past reservations.
+
+## Viewing Reservations
+
+Logged-in users can view all of their upcoming and past reservations on their "Trips" page which is accesible from the dropdown navigation menu on the upper right hand side of the page.
+
+
+## Editing a Reservation
+
+Logged-in users can edit their reservation by clicking the "Edit Reservation" button. This will redirect them to a page where they can choose different start and end dates.
+
+## Cancelling a Reservation
+
+Logged-in users can cancel their reservation by clicking the "Cancel Reservation" button. This will permanently delete their reservation.
+
 
 # Upcoming Features
 ## Editing Reviews
-## Making and Managing Bookings
+## Search Bar

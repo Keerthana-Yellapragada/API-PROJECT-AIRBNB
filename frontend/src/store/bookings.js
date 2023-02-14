@@ -17,7 +17,7 @@ import {
 const GET_ALLBOOKINGS = 'bookings/getAllBookings'
 const GET_BOOKING = 'bookings/getBooking'
 // const GET_USER_REVIEWS='bookings/userReviews'
-const CREATE_BOOKING= 'bookings/createBooking'
+const CREATE_BOOKING = 'bookings/createBooking'
 const UPDATE_BOOKING = 'bookings/updateBooking'
 const REMOVE_BOOKING = 'bookings/removeBooking'
 
@@ -98,9 +98,9 @@ export const loadAllBookings = (spotId) => async dispatch => {
 
     if (response.ok) {
 
-         const allBookings = await response.json();
+        const allBookings = await response.json();
 
-         dispatch(getAllBookings(allBookings))
+        dispatch(getAllBookings(allBookings))
     }
 }
 ///*************************************************************************** */
@@ -130,11 +130,11 @@ export const createNewBooking = (createBookingPayload, spotId) => async dispatch
         body: JSON.stringify(createBookingPayload)
     });
 
-   if (response.ok){
-    const newBooking = await response.json()
-    dispatch(createBooking(newBooking))
-    return newBooking
-   }
+    if (response.ok) {
+        const newBooking = await response.json()
+        dispatch(createBooking(newBooking))
+        return newBooking
+    }
 
 };
 
@@ -193,37 +193,37 @@ const bookingsReducer = (state = initialState, action) => {
                 ...state, ...allBookings
             } //return a new updated state for bookings
 
-            case CREATE_BOOKING:
+        case CREATE_BOOKING:
 
-                const newState = {
-                    ...state
-                }
+            const newState = {
+                ...state
+            }
 
-                newState[action.payload.id] = action.payload // normalize and add data
+            newState[action.payload.id] = action.payload // normalize and add data
 
-                return {...newState};
-                ///*************************************************************************** */
-            case UPDATE_BOOKING:
-                const anotherState = {
-                    ...state
-                }
+            return { ...newState };
+        ///*************************************************************************** */
+        case UPDATE_BOOKING:
+            const anotherState = {
+                ...state
+            }
 
-                anotherState[action.payload.id] = action.payload
-                return {...anotherState}
-                ///*************************************************************************** */
+            anotherState[action.payload.id] = action.payload
+            return { ...anotherState }
+        ///*************************************************************************** */
 
-            case REMOVE_BOOKING:
-                const modifiedState = {
-                    ...state
-                }
+        case REMOVE_BOOKING:
+            const modifiedState = {
+                ...state
+            }
 
-                delete modifiedState[action.payload]
+            delete modifiedState[action.payload]
 
-                return modifiedState
+            return { ...modifiedState }
 
-                ///*************************************************************************** */
-            default:
-                return state;
+        ///*************************************************************************** */
+        default:
+            return state;
     }
 }
 
