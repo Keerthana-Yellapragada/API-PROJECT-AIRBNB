@@ -12,6 +12,7 @@ const UserBookings = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
+
        useEffect(() => {
            dispatch(loadAllSpots())
            dispatch(loadUserBookings());
@@ -60,7 +61,12 @@ const UserBookings = () => {
                                                 </div>
 
                                                 <div className='booking-right-container'>
-                                                    <div className='booking-details'>Check-In: {new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
+                                                    <div className='booking-details'>
+                                                        Check-In: {new Date(booking?.startDate).toUTCString().split(' ').slice(1, 4).join(' ')}
+                                                        {/* Check - In: {
+                                                            format(new Date(booking?.startDate), 'MM/dd/yyyy')
+                                                        } */}
+                                                    </div>
 
                                                     <div className='booking-details'>Check Out: {new Date(booking?.endDate).toUTCString().split(' ').slice(1, 4).join(' ')}</div>
 

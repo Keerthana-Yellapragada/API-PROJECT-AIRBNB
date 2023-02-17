@@ -136,6 +136,8 @@ export const createNewBooking = (createBookingPayload, spotId) => async dispatch
         return newBooking
     }
 
+
+
 };
 
 
@@ -180,28 +182,27 @@ const initialState = {}
 
 
 const bookingsReducer = (state = initialState, action) => {
-    let allBookings = {}
+    // let allBookings = {}
     switch (action.type) {
         ///*************************************************************************** */
         case GET_ALLBOOKINGS:
-
+        let allBookings = {}
             //normalize our data
             action.bookings.Bookings.forEach(booking => {
                 allBookings[booking.id] = booking
             })
+            debugger
             return {
                 ...state, ...allBookings
             } //return a new updated state for bookings
-
+     ///*************************************************************************** */
         case CREATE_BOOKING:
 
-            const newState = {
-                ...state
-            }
+            let newState = {...state}
 
-            newState[action.payload?.id] = action.payload // normalize and add data
+            newState[action.payload.id] = action.payload // normalize and add data
 
-            return newState;
+            return {...newState};
         ///*************************************************************************** */
         case UPDATE_BOOKING:
             const anotherState = {
