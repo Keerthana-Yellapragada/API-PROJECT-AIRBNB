@@ -39,20 +39,15 @@ router.get("/current", requireAuth, async (req, res, next) => {
     // include spot data(exclude created/updated at for spot)
     const currUserId = req.user.id
 
-    //  console.log(currUserId)
-
     const allBookings = await Booking.findAll({
         where: {
             userId: currUserId
         },
         include: {
-            model: Spot, // NEED TO EXCLUDE CREATEDAT AND UPDATED AT
+            model: Spot, // NEED TO EXCLUDE CREATEDAT AND UPDATEDAT
             attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
         }
     });
-
-    console.log(allBookings)
-
     let finalBookingArray = []
 
     for (let booking of allBookings) {
@@ -127,7 +122,7 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     let bookingObj = booking.toJSON()
 
     let parsedStartDate = Date.parse(bookingObj.startDate)
-    console.log(parsedStartDate)
+
     let parsedEndDate = Date.parse(bookingObj.endDate)
 
 
@@ -165,8 +160,6 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
         // convert each obj to json so we can manipulate it
         const existingBookingObj = existingBooking.toJSON()
 
-        // console.log(existingBookingObj)
-
         // get the dates of the existing booking and current one and parse them into milliseconds
         let existingStartDate = Date.parse(existingBookingObj.startDate)
         let existingEndDate = Date.parse(existingBookingObj.endDate)
@@ -189,16 +182,19 @@ router.put("/:bookingId", requireAuth, async (req, res, next) => {
     }
 
 
-
     // Else, if we have checked all existing bookings and NO BOOKING conflict exists:
 
     //update the changes to obj
-    bookingObj.startDate = startDate
-    bookingObj.endDate = endDate
+    // bookingObj.startDate = startDate
+    // bookingObj.endDate = endDate
 
+    booking.startDate = startDate
+    booking.endDate = endDate
+    await booking.save()
 
     //send success response
     res.status(200)
+
     return res.json(bookingObj)
 })
 

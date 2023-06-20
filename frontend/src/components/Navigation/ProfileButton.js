@@ -56,7 +56,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     setShowLoginModal(false)
-    setShowLoginModal(false)
+    setShowSignupModal(false)
     history.push("/")
   };
 
@@ -90,6 +90,9 @@ function ProfileButton({ user }) {
             </li>
             <li>
               <NavLink exact to="/current/spots">Manage Listings </NavLink>
+            </li>
+             <li>
+              <NavLink exact to="/current/bookings">Trips </NavLink>
             </li>
             <li>
               <button className="logout-button" onClick={logout}>Log Out</button>

@@ -1,21 +1,25 @@
+.spot-info-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0%;
+}
 
-/* .spot-info-page-container{
-
-} */
 .spot-header-container {
     display: block;
 }
 
-.spot-header-container h1{
-    font-size: 30px;
+.spot-header-container h1 {
+    font-size: 25px;
     font-weight: 600;
-    margin-top:30px;
+    margin-top: 30px;
 }
+
 .spot-header-name-container {
     display: inline;
     padding: 20px;
     font-size: 12px;
-    font-weight:900;
+    font-weight: 900;
 }
 
 .spot-header-info-container {
@@ -23,15 +27,30 @@
     justify-content: flex-start;
     align-content: center;
 }
-.spot-sub-header-info-container{
+
+.spot-sub-header-info-container {
     font-weight: 900;
-    font-size: 16px;
+    font-size: 13px;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+
+    /* text-decoration: underline; */
+}
+
+.spot-sub-header-details {
+    text-decoration: underline;
+    font-size: 13px;
+
+}
+
+.dots {
+    margin: 0px 5px;
 }
 
 .spot-address {
     font-style: underline;
-    font-weight:bold;
+    font-weight: bold;
     display: flex;
     padding: 5px;
 }
@@ -58,14 +77,15 @@
     margin-top: 20px;
 
 }
+
 .spot-image-container img {
-    width:100%;
+    width: 100%;
     /* height: 800px; */
     /* aspect-ratio: 1/1; */
     border-radius: 4%;
     height: 600px;
     object-fit: cover;
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
@@ -76,15 +96,15 @@
     justify-content: space-between;
     width: 100%;
     padding: 25px 0px 25px 0px;
-    border-bottom: 1px solid rgb(194, 191, 191);
+    /* border-bottom: 1px solid rgb(194, 191, 191); */
     font-weight: bold;
 }
 
-.hosted-by-container{
-    font-size: 25px;
+.hosted-by-container {
+    font-size: 20px;
     display: flex;
     justify-content: space-between;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .owner-pic {
@@ -95,29 +115,32 @@
     color: grey
 }
 
-.spot-bed-bath-container{
- font-size: 16px;
- padding:0px 0px 10px 0px;
- border-bottom: 1px solid rgb(224, 216, 216);
- font-weight: normal;
+.spot-bed-bath-container {
+    font-size: 14px;
+    padding: 0px 0px 10px 0px;
+    border-bottom: 1px solid rgb(224, 216, 216);
+    font-weight: normal;
 }
 
 
-.owner-picture{
+.owner-picture {
     font-size: 60px;
     color: rgb(143, 139, 139)
 }
 
-.aircover-title-image img{
+.aircover-title-image img {
     width: 200px;
     padding: 30px;
-    padding-left:0px;
+    padding-left: 0px;
 }
-.aircover-info{
+
+.aircover-info {
     padding-bottom: 30px;
     font-weight: normal;
+    font-size: 14px;
     border-bottom: 1px solid rgb(224, 216, 216);
 }
+
 .price-rating-side-container {
     display: flex;
     align-self: flex-end;
@@ -126,11 +149,12 @@
     /* border: 1px solid black; */
 
     padding: 25px;
-    margin:30px;
-    border-radius: 6%;
+    margin: 30px;
+    border-radius: 20px;
     width: 30%;
     height: 60%;
-    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.2);
+
+    box-shadow: 2px 2px 2px 2px rgba(90, 88, 88, 0.2);
     text-align: center;
 
 }
@@ -139,37 +163,38 @@
     padding: 20px;
 }
 
-.spot-description{
-    font-size: 16px;
+.spot-description {
+    font-size: 14px;
 }
 
 
-.spot-description-container{
-    padding:40px;
-    padding-left:0px;
+.spot-description-container {
+    padding: 40px;
+    padding-left: 0px;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .spot-description-price {
     font-weight: 900;
-    font-size:20px;
+    font-size: 20px;
 }
 
-.edit-delete-spot-buttons-container{
+.edit-delete-spot-buttons-container {
     width: 100%;
-    padding:0px;
-    margin:0px;
-    padding-top:25px;
-    display:flex;
+    padding: 0px;
+    margin: 0px;
+    padding-top: 25px;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     border-top: 1px solid rgb(224, 216, 216);
 }
-.edit-delete-spot-buttons-container button{
+
+.edit-delete-spot-buttons-container button {
     width: fit-content;
-    padding:15px;
-    margin:10px;
+    padding: 15px;
+    margin: 10px;
 }
 
 
@@ -180,19 +205,19 @@
 .location-container,
 .check-in-door-container,
 .free-cancellation-container {
- display:flex;
- justify-content: flex-start;
- font-weight: normal;
- font-size: 16px;
- padding-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    font-weight: normal;
+    font-size: 13px;
+    padding-top: 20px;
 }
 
 .fa-location-dot,
 .fa-door-open,
 .fa-calendar-xmark {
-    margin:20px;
-    font-size: 40px;
-    margin-left:0px;
+    margin: 20px;
+    font-size: 35px;
+    margin-left: 0px;
 
 }
 
@@ -217,31 +242,108 @@
 
 
 
-.spot-description-container{
+.spot-description-container {
     border-top: 1px solid rgb(224, 216, 216);
-    border-bottom: 1px solid rgb(224, 216, 216);
+    /* border-bottom: 1px solid rgb(224, 216, 216); */
+    font-size: 16px;
 }
 
-.create-review-container{
-    display:flex;
+.create-review-container {
+    display: flex;
     width: 100%;
     justify-content: center;
 }
-.leave-review-button{
-    margin:10px;
-    padding:15px;
+
+.leave-review-button {
+    margin: 10px;
+    padding: 15px;
     width: 28%;
 }
 
 .spot-info-page-container {
-    margin:auto;
+    margin: auto;
     max-width: 70%;
     /* border:3px solid blue; */
 }
 
-.spot-not-found{
+.spot-not-found {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding:50px;
+    padding: 50px;
+}
+
+
+booking-container-spot-page {
+    margin-right: 0px;
+}
+
+.spot-page-details-flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.booking-container-spot-page {
+    display: flex;
+    height: fit-content;
+    margin: 25px 0px 10px 40px;
+    position: sticky;
+    top: 100px;
+    z-index: 3;
+}
+
+.maps-title {
+    margin: 25px 0px;
+    font-size: 25px;
+    font-weight: bold
+}
+
+
+.maps-container-spot-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.hosted-by-main-container {
+    margin: 15px 0px;
+    font-weight: bold;
+}
+
+.where-youll-be-address {
+    margin-bottom: 15px;
+    font-weight: bolder;
+    font-size: 1.15rem;
+}
+
+.spot-know-main-container {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(180, 175, 175);
+    margin-top: 60px;
+
+}
+
+.spot-know-title {
+    display: flex;
+    font-weight: bolder;
+    margin: 35px 0px 18px 0px;
+    font-size: 1.15rem;
+}
+
+.spot-know-individual {
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+}
+
+.spot-know-category-container {
+    display: flex;
+}
+
+.spot-know-category-title {
+    font-weight: 900;
+    margin: 5px 0px;
 }

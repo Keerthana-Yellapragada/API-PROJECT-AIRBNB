@@ -1,0 +1,154 @@
+
+.user-bookings-page-title{
+    font-weight:bold;
+    display: flex;
+    justify-content: flex-start;
+    font-size: 2rem;
+    margin: 20px 0px;
+    padding-left: 20px;
+    font-size: 35px;
+}
+
+.user-trips-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.no-upcoming-trips{
+    font-size: 20px;
+    font-weight:bold;
+
+}
+.no-upcoming-trips-container{
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    margin: 20px;
+    justify-content: space-between;
+    align-items: center;
+    object-fit: fill;
+}
+.family-pic{
+object-fit: fill;
+border-radius: 20px
+}
+
+.user-bookings-preview-image{
+    width:200px;
+    height: 200px;
+    padding-bottom: 20px;
+}
+.preview-image-booking-spot-container{
+    display: flex;
+    border-radius: 20px;
+}
+.upcoming-trips-container,
+.completed-trips-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0px;
+
+}
+.upcoming-trips-title,
+.completed-trips-title {
+    display: flex;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 20px 0px 20px 20px;
+    justify-content: flex-start;
+}
+.upcoming-trips-flex-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    width: 100%;
+    margin: 20px 0px;
+
+    /* border: 2px solid green; */
+}
+
+.bookings-card{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 20px;
+    /* border: 1px solid black; */
+    border-radius: 20px;
+    padding-left: 20px;
+    width: 900px;
+}
+
+.booking-spot-name{
+    font-weight: bolder;
+    font-size: 20px;
+    margin: 20px 0px;
+
+}
+
+.booking-right-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold
+}
+
+.booking-left-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.booking-details{
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold
+}
+
+
+.edit-bookings-link {
+    text-decoration: none;
+    color:white;
+
+}
+
+.cancel-bookings-button{
+    width: 200px;
+}
+
+.edit-bookings-button{
+    width:195px;
+}
+
+.no-trips-description{
+    font-size: 12px;
+    color:grey;
+    margin-top: 20px;
+}
+.booking-details-title{
+    font-weight: bold;
+    color:red;
+    display:flex;
+    margin: 10px;
+}
+
+
+.booking-details-dates-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px;
+    font-size: 20px
+
+}
+
+.bookings-spot-info-link {
+    color: black
+}
+.booking-details-price{
+    font-weight: bold;
+    margin:10px;
+    font-size: 14px
+}

@@ -147,7 +147,6 @@ router.post(
 
        let cookie =  await setTokenCookie(res, user);
 
-       console.log(cookie)
         return res.json({
             id: user.id,
             username: user.username,

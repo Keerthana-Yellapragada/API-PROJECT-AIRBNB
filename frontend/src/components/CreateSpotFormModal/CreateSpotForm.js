@@ -40,18 +40,24 @@ const CreateSpotForm = ({closeModal}) => {
   const updatePreview = (e) => setPreview(!preview)
 
 
+
   useEffect(()=> {
     const errors=[];
 
+    const validUrls = ["img", "jpg", "jpeg", "png"]
+    let urlArray = url.split(".")
+    let urlExtension = urlArray[urlArray.length -1]
+
+    if (url && !validUrls.includes(urlExtension)) {errors.push("Please enter an image in .png, .jpg, .jpeg, or .img format")}
+    //if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
     if (lat < 0 || lat > 90) {errors.push("Please enter a valid latitude")}
     if (lng < -180 || lng > 180) {errors.push("Please enter a valid longitude")}
     if (price < 0) {errors.push("You can host for free if you really wish to, but please specify $0 in the price field.")}
-    if (url && !url.split(":").includes('https')){errors.push("Please enter a valid URL")}
     if (!sessionUser) {errors.push("Must be logged in to continue")}
     if (description.length > 254){errors.push("Description must be less than 254 characters")}
     setValidationErrors(errors)
 
-  },[lat,lng,price,url])
+  },[lat,lng,price,url,description])
 
 
 

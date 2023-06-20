@@ -102,9 +102,7 @@ router.post("/:spotId/reviews", requireAuth, async (req, res, next) => {
     let userId = req.user.id
     let {
         spotId
-    } = req.params //WHY IS SPOT ID A STRING IN RESPONSE
-
-    //console.log("SPOT ID FOR THIS SPOT IS :", spotId)
+    } = req.params
 
     let {
         stars,
@@ -177,7 +175,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
 
     // ERROR HANDLING: if we don't find the spot based on given id....
     if (!spotInfo) {
-       return res.json({
+        return res.json({
             message: "Spot couldn't be found",
             statusCode: 404
         })
@@ -190,13 +188,13 @@ router.get("/:spotId/reviews", async (req, res, next) => {
             spotId: spotId
         },
         include: [{
-                model: User,
-                attributes: ['id', 'firstName', 'lastName']
-            },
-            {
-                model: ReviewImage,
-                attributes: ['id', 'url']
-            }
+            model: User,
+            attributes: ['id', 'firstName', 'lastName']
+        },
+        {
+            model: ReviewImage,
+            attributes: ['id', 'url']
+        }
         ]
 
     })
@@ -371,7 +369,7 @@ router.get('/', async (req, res, next) => {
     // go through spots array and see if each obj has an assoc image
     for (let spot of allSpots) {
 
-        // console.log(spot)
+
         const spotImage = await SpotImage.findOne({
 
             attributes: ['url'],
@@ -517,7 +515,6 @@ router.put('/:spotId', requireAuth, async (req, res) => {
     spot.price = req.body.price
 
 
-    // console.log(spot)
 
     // call save
     await spot.save()
@@ -644,17 +641,15 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
         spotId
     } = req.params
 
-    // console.log(spotId)
     // get the current logged-in user obj to get id
     let userId = req.user.id
 
-    // console.log(userId)
-    // console.log(userId)
+
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
 
-    //console.log(spot)
+
 
     // ERROR HANDLING: if we can’t find spot by id
     if (!spot) {
@@ -669,7 +664,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
     const spotObj = spot.toJSON()
 
-    //    // console.log(spotObj)
+
 
     // CASE 1: if you ARE NOT the owner -- you are just the LOGGED-IN CURRENT USER
     if (spotObj.ownerId !== userId) {
@@ -701,7 +696,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
             where: {
                 spotId: spotId
             },
-            attributes: ['id', 'userId', 'startDate', 'endDate', 'spotId','createdAt', 'updatedAt'],
+            attributes: ['id', 'userId', 'startDate', 'endDate', 'spotId', 'createdAt', 'updatedAt'],
             include: {
                 model: User,
                 attributes: ['id', 'firstName', 'lastName']
@@ -720,7 +715,7 @@ router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
 //****************************************************************************************** */
 //--------------------CREATE A BOOKING FOR A SPOT by id -------------------------------------
-//-------------------!!!!!!!!!!!! ERROR HANDLING : NEED TO ADD CUSTOM VALIDATION ERROR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 
 router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
 
@@ -740,7 +735,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
         endDate
     } = req.body // need to get userId, spotId from req params
 
-    console.log(userId)
 
     // find spot by pk
     let spot = await Spot.findByPk(spotId)
@@ -775,7 +769,6 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
             // convert each obj to json so we can manipulate it
             const existingBookingObj = existingBooking.toJSON()
 
-            // console.log(existingBookingObj)
 
             // get the dates of the existing booking and current one and parse them into milliseconds
             let existingStartDate = Date.parse(existingBooking.startDate)
@@ -803,7 +796,26 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
         }
 
         // if we finish checking all bookings and there is no conflict detected:
-
+        // for (let currentBooking of allBookings) {
+        //         if (currentBooking.startDate >= startDate
+        //             && currentBooking.endDate <= endDate
+        //             || currentBooking.startDate <= startDate
+        //             && currentBooking.endDate >= endDate
+        //             || currentBooking.startDate >= startDate
+        //             && currentBooking.endDate >= endDate
+        //             || currentBooking.startDate <= startDate
+        //             && currentBooking.endDate <= endDate) {
+        //                 return res
+        //                     .status(403)
+        //                     .json({
+        //                         message: "Sorry, this spot is already booked for the specified dates",
+        //                         statusCode: 403,
+        //                         errors: {
+        //                             startDate: "Start date conflicts with an existing booking",
+        //                             endDate: "End date conflicts with an existing booking"
+        //                           }
+        //                     })
+        //             }
         //if (currentEndDate < existingStartDate || currentStartDate > existingEndDate) {
         // CREATE a new booking (if no conflicts exist)
         const newBooking = await Booking.create({
@@ -813,9 +825,19 @@ router.post("/:spotId/bookings", requireAuth, async (req, res, next) => {
             endDate: endDate
         });
 
+
         //success response
         res.status(200)
-        return res.json(newBooking)
+        return res.json({
+            id: newBooking.id,
+            spotId: spotId,
+            userId: userId,
+            startDate: newBooking.startDate,
+            endDate: newBooking.endDate,
+            createdAt: newBooking.createdAt,
+            updatedAt: newBooking.updatedAt
+        })
+
 
     }
 

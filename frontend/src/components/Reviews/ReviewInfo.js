@@ -15,15 +15,12 @@ const ReviewInfo = () => {
 
     useEffect(() => {
         dispatch(loadUserReviews())
-        // dispatch(loadAllSpots())
+
     }, [dispatch])
 
 
     const allReviewsArray = useSelector(state => Object.values(state.reviews))
     const currentReview = allReviewsArray.find(review => review.id === reviewId)
-    // console.log("current review", currentReview)
-    // console.log("current review spot : ", allReviewsArray[reviewId].Spot.name)
-
 
     if (!currentReview) {
         return (<h1 className='review-not-found'>Sorry, no review was found.</h1>)
@@ -45,7 +42,7 @@ const ReviewInfo = () => {
                 </div> */}
                        <div className='current-review-content'> {currentReview.review} </div>
             </div>
-              <EditReviewForm/>
+              {/* <EditReviewForm/> */}
               <DeleteReviewForm />
             </div>
         </>

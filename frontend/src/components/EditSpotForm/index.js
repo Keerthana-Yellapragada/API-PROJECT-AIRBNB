@@ -52,10 +52,10 @@ const currentSpotDetails = allSpots.find(spot => spot.id === spotId)
     if (lat < 0 || lat > 90) { errors.push("Please enter a valid latitude") }
     if (lng < -180 || lng > 180) { errors.push("Please enter a valid longitude") }
     if (price < 0) { errors.push("You can host for free if you really wish to, but please specify $0 in the price field.") }
-
+    if (description.length > 254){errors.push("Description must be less than 254 characters")}
     setValidationErrors(errors)
 
-  }, [lat, lng, price])
+  }, [lat, lng, price, description])
 
 
 

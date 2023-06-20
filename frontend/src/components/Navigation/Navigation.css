@@ -5,25 +5,34 @@
 
 }
 
-/* .header-container{
-    margin-left: 10%;
-    margin-right: 10%;
-} */
-
-header {
+.full-nav{
     position: sticky;
-    top:0px;
-    z-index:0;
+    top: 0px;
+    z-index: 4;
     display: flex;
     justify-content: space-between;
     align-content: center;
     flex-direction: row;
     height: 100%;
-    width:auto;
+    width: 100%;
     border-bottom: 1px solid rgb(227, 224, 224);
     background-color: white;
 
+}
 
+.partial-nav {
+   position: sticky;
+   top: 0px;
+   z-index: 4;
+   display: flex;
+   justify-content: space-between;
+   align-content: center;
+   flex-direction: row;
+   height: 100%;
+   width:70%;
+   margin: 0% 15%;
+   border-bottom: 1px solid rgb(227, 224, 224);
+   background-color: white;
 }
 
 /* container for entire main navbar container */
@@ -35,7 +44,10 @@ header {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    align-content: center
+    align-content: center;
+    background-color: white;
+    z-index: 10;
+    margin: auto;
 }
 
 /* styling for logo */
@@ -51,16 +63,18 @@ header {
 /* keerbnb logo name text styling */
 .logo-name {
     color: rgb(245, 19, 19);
-    padding-left: 10px;
+    display: flex;
 
 }
 
-/* .logo-image {
-    padding-top: 5px;
-} */
+.logo-name-main {
+    margin-left: 7px;
+}
+
 
 .logo-name-text {
     padding-bottom: 10px;
+    margin-left: 10px;
 }
 
 /* main navbar container */
@@ -88,11 +102,12 @@ header {
     align-self: inline-flex;
     display: block;
     list-style-type: none;
-    width: 300px;
+    width: 250px;
     margin: 10px;
     padding: 10px;
     background-color: #ffffff;
     list-style: none;
+    font-size: 13px;
 }
 
 .user-profile-container ul li {
@@ -104,6 +119,7 @@ header {
     /* color: rgb(174, 171, 171); */
     text-decoration: none;
     list-style: none;
+    font-size: 13px;
 }
 
 .logout-button {
@@ -114,6 +130,7 @@ header {
     margin: 0px;
     background-color: rgb(245, 19, 19);
     color: white;
+    font-size: 13px;
 
 
 }
@@ -121,7 +138,7 @@ header {
 .create-spot-container button {
     display: block;
     font-weight: 900;
-    font-size: 100%;
+    font-size: 15px;
     padding: 20px;
     width: 100%;
     height: auto;
@@ -153,7 +170,6 @@ header {
     padding: 0px;
     margin: 5px;
 
-
 }
 
 .userProfileIcons {
@@ -164,7 +180,6 @@ header {
     border-radius: 50%;
     /* padding:10px 0px; */
 }
-
 
 
 .navbar-user-circle {
@@ -214,21 +229,21 @@ header {
     white-space: nowrap;
     padding: 30px;
     padding-bottom: 40px;
-    font-size: 160%;
+    font-size: 26px;
     font-weight: bold;
 }
 
 
-.user-info{
+.user-info {
     font-style: italic;
     color: grey
 }
 
 
 
-.login-signup-modal-buttons{
+.login-signup-modal-buttons {
     background-color: inherit;
-    color:black;
+    color: black;
     text-align: start;
     width: fit-content;
 }

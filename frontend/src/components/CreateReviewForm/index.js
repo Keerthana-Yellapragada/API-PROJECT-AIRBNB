@@ -38,11 +38,11 @@ const CreateReviewForm = ({closeModal}) => {
 
   useEffect(()=> {
     const errors= [];
-    if (stars < 0 || stars > 5){errors.push("Must provide a rating between 0 to 5 stars")}
+    if (stars && (stars < 1 || stars > 5)){errors.push("Must provide a rating between 1 to 5 stars")}
     if (review && review==="") {
       errors.push("Please provide a review")
     }
-    if (!userId) {
+    if (!sessionUser) {
       errors.push("Must be logged in to leave a review")
     }
     if (review.length > 254){errors.push("Review musts be less than 255 characters")}
@@ -117,7 +117,7 @@ const CreateReviewForm = ({closeModal}) => {
         <input
            id="stars-rating"
           type="number"
-          placeholder="Rating: 0-5 stars"
+          placeholder="Rating: 1-5 stars"
           required
           value={stars}
           onChange={updateStars} />

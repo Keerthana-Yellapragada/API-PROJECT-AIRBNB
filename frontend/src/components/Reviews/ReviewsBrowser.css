@@ -5,7 +5,7 @@
     flex-direction: row;
     justify-content:space-between;
     align-content: center;
-    align-items: center;
+    /* align-items: center; */
     width:100%;
     align-self:flex-start;
     margin:0px;
@@ -20,6 +20,7 @@
     padding: 30px;
     padding-left:0px;
     width: 40%;
+    font-size: 14px;
 }
 
 
@@ -61,8 +62,9 @@ align-self:flex-start
 
 .reviews-title {
     padding:20px 0px 20px 0px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 900;
+    border-top: 1px solid rgb(213, 210, 210);
 }
 
 
@@ -78,6 +80,7 @@ align-self:flex-start
     padding:50px;
     margin:50px;
     border-bottom: 1px solid grey;
+    font-size: 14px;
 
 }
 
