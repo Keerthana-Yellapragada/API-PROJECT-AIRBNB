@@ -35,14 +35,14 @@ a {
 /* for each spot card */
 .spot-card-flex-container {
     box-sizing: border-box;
-    margin: 5px;
+    margin: 25px 5px 5px 5px;;
     padding:5px;
     display: flex;
     border-radius: 5%;
     justify-content: center;
     align-content: center;
     align-items: center;
-    flex-basis: 200px;
+    flex-basis: 220px;
     flex-direction: column;
 
 
@@ -68,7 +68,7 @@ a {
     color: rgb(0, 0, 0);
     justify-content: space-between;
     font-size: 13px;
-    padding-top: 5px;
+    padding-top: 7px;
 }
 .top-address-container {
     font-weight: bold;
@@ -85,6 +85,7 @@ a {
 .bottom-address-container {
     padding-top: 2px;
     padding-bottom: 2px;
+    font-weight: 900;
 }
 
 .price-container {
