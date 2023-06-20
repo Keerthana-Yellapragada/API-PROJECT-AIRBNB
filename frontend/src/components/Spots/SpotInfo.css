@@ -304,3 +304,30 @@ booking-container-spot-page {
     font-weight: bolder;
     font-size: 1.15rem;
 }
+
+.spot-know-main-container{
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgb(180, 175, 175);
+    margin-top: 60px;
+
+}
+
+.spot-know-title{
+    display: flex;
+    font-weight: bolder;
+    margin: 35px 0px 18px 0px;
+    font-size: 1.15rem;
+}
+.spot-know-individual{
+    display: flex;
+    flex-direction: column;
+    margin-right: 25px;
+}
+.spot-know-category-container{
+    display: flex;
+}
+.spot-know-category-title{
+    font-weight:900;
+    margin: 5px 0px;
+}
