@@ -216,6 +216,7 @@ const SpotInfo = () => {
                 </div>
                   <div className='maps-container-spot-page'>
                     <div className='maps-title'>Where You'll Be: </div>
+                    <div className='where-youll-be-address'>{currentSpot.city}, {currentSpot.state}, {currentSpot.country}</div>
                         <MapContainer currentSpot = {currentSpot} className="map-container" />
                 </div>
             </div>
