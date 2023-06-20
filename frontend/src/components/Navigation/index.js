@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
@@ -15,15 +15,21 @@ function Navigation({ isLoaded }) {
   // SESSION LINKS WILL BE RENDER WITH THE PROFILE BUTTON(WHICH RENDERS DIFF LINKS ACCORDING TO WHETHER OR NOT USER IS LOGGED IN)
   let sessionLinks = (<ProfileButton className='profile-dropdown-button' user={sessionUser} />);
 
+  const url = useLocation().pathname;
 
   return (
 
-    <header>
-      <nav className='main-navbar-flex-container'>
+    <div id='header' className={
+      url === "/" ? 'full-nav' : "partial-nav"}>
+      <div className='main-navbar-flex-container'>
 
         <div className="logo-flex-container">
-         <i class="fa-solid fa-kiwi-bird logo-name"></i>
-          <div className='logo-name-text'><NavLink className="logo-name" exact to="/">keerbnb</NavLink></div>
+          <div className='logo-name-text'>
+            <NavLink className="logo-name" exact to="/">
+              <i class="fa-solid fa-kiwi-bird logo-name"></i>
+              <div className='logo-name-main'>keerbnb</div>
+            </NavLink>
+          </div>
           {/* {isLoaded && sessionLinks} */}
         </div>
 
@@ -34,7 +40,7 @@ function Navigation({ isLoaded }) {
         </div>
         <div className='navbar-right'>
           <div className="create-spot-container">
-           {/* {sessionUser ? <CreateSpotFormModal /> : null} */}
+            {/* {sessionUser ? <CreateSpotFormModal /> : null} */}
             <CreateSpotFormModal />
           </div>
 
@@ -46,8 +52,8 @@ function Navigation({ isLoaded }) {
           </div>
         </div>
 
-      </nav>
-    </header>
+      </div>
+    </div>
 
 
   );
