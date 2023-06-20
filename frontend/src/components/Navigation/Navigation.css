@@ -5,20 +5,34 @@
 
 }
 
-header {
+.full-nav{
     position: sticky;
-    top:0px;
-    z-index:0;
+    top: 0px;
+    z-index: 4;
     display: flex;
     justify-content: space-between;
     align-content: center;
     flex-direction: row;
     height: 100%;
-    width:auto;
+    width: 100%;
     border-bottom: 1px solid rgb(227, 224, 224);
     background-color: white;
 
+}
 
+.partial-nav {
+   position: sticky;
+   top: 0px;
+   z-index: 4;
+   display: flex;
+   justify-content: space-between;
+   align-content: center;
+   flex-direction: row;
+   height: 100%;
+   width:70%;
+   margin: 0% 15%;
+   border-bottom: 1px solid rgb(227, 224, 224);
+   background-color: white;
 }
 
 /* container for entire main navbar container */
@@ -33,6 +47,7 @@ header {
     align-content: center;
     background-color: white;
     z-index: 10;
+    margin: auto;
 }
 
 /* styling for logo */
@@ -48,14 +63,18 @@ header {
 /* keerbnb logo name text styling */
 .logo-name {
     color: rgb(245, 19, 19);
-    padding-left: 10px;
+    display: flex;
 
 }
 
+.logo-name-main {
+    margin-left: 7px;
+}
 
 
 .logo-name-text {
     padding-bottom: 10px;
+    margin-left: 10px;
 }
 
 /* main navbar container */
@@ -215,16 +234,16 @@ header {
 }
 
 
-.user-info{
+.user-info {
     font-style: italic;
     color: grey
 }
 
 
 
-.login-signup-modal-buttons{
+.login-signup-modal-buttons {
     background-color: inherit;
-    color:black;
+    color: black;
     text-align: start;
     width: fit-content;
 }

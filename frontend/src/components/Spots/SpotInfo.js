@@ -105,10 +105,10 @@ const SpotInfo = () => {
 
                 {
     /* ********************************************************************************** */}
-            <div className='spot-page-details-flex-container'>
-                <div className='spot-details-container'>
+                <div className='spot-page-details-flex-container'>
+                    <div className='spot-details-container'>
 
-                    {/* <div className="hosted-by-container">
+                        {/* <div className="hosted-by-container">
                         {`Entire place hosted by ${currentSpot.Owner.firstName}`}
                         <div className="owner-pic"><i className="fa-solid fa-circle-user"></i></div>
                     </div>
@@ -120,76 +120,76 @@ const SpotInfo = () => {
 
 
 
-                    {
+                        {
     /* ********************************************************************************** */}
 
 
-                    <div className="aircover-title-image">
-                        < img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
-                    </div>
+                        <div className="aircover-title-image">
+                            < img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" />
+                        </div>
 
-                    <div className='aircover-info'>
-                        {
-                            "Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in."
-                        }
-                    </div>
+                        <div className='aircover-info'>
+                            {
+                                "Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in."
+                            }
+                        </div>
 
 
-                    {/* ********************************************************************************** */}
+                        {/* ********************************************************************************** */}
 
-                    <div className="location-container">
-                        <div className='location-pin-image'><i className="fa-solid fa-location-dot"></i></div>
-                        <div className='location-info'>
-                            <div className='location-info-title'>
-                                {"Great Location"}
-                            </div>
-                            <div className='location-info-description'>
-                                {"95% of recent guests gave the location a 5-star rating"}
+                        <div className="location-container">
+                            <div className='location-pin-image'><i className="fa-solid fa-location-dot"></i></div>
+                            <div className='location-info'>
+                                <div className='location-info-title'>
+                                    {"Great Location"}
+                                </div>
+                                <div className='location-info-description'>
+                                    {"95% of recent guests gave the location a 5-star rating"}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div className="check-in-door-container" >
-                        <div className='check-in-door-image'><i className="fa-solid fa-door-open"></i></div>
-                        < div className='check-in-door-info' >
-                            < div className='check-in-door-title' >
-                                {"Self check-in"}
-                            </div>
-                            < div className='check-in-door-info-description' >
-                                {"Check yourself in with the smartlock"}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="free-cancellation-container" >
-                        < div className='free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
-                        < div className='free-cancellation-info' >
-                            < div className='free-cancellation-title' >
-                                {"Free Cancellation for 48 hours"}
-                            </div>
-                            < div className='free-cancellation-info-description' >
-                                {"50% refund on cancellations after 48 hours"}
+                        <div className="check-in-door-container" >
+                            <div className='check-in-door-image'><i className="fa-solid fa-door-open"></i></div>
+                            < div className='check-in-door-info' >
+                                < div className='check-in-door-title' >
+                                    {"Self check-in"}
+                                </div>
+                                < div className='check-in-door-info-description' >
+                                    {"Check yourself in with the smartlock"}
+                                </div>
                             </div>
                         </div>
+
+                        <div className="free-cancellation-container" >
+                            < div className='free-cancellation-image' ><i className="fa-regular fa-calendar-xmark"></i></div >
+                            < div className='free-cancellation-info' >
+                                < div className='free-cancellation-title' >
+                                    {"Free Cancellation for 48 hours"}
+                                </div>
+                                < div className='free-cancellation-info-description' >
+                                    {"50% refund on cancellations after 48 hours"}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* ********************************************************************************** */}
+
+                        <div className="spot-description-container">
+                            {currentSpot.description}
+                        </div>
+
+                        {/* ********************************************************************************** */}
+
+
+                        {/* ********************************************************************************** */}
+
+                        {/* <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /> */}
                     </div>
-
-
-                    {/* ********************************************************************************** */}
-
-                    <div className="spot-description-container">
-                        {currentSpot.description}
-                    </div>
-
-                    {/* ********************************************************************************** */}
-
-
-                    {/* ********************************************************************************** */}
-
-                    {/* <CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /> */}
+                    <div className='booking-container-spot-page'><CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /></div>
                 </div>
-                <div className='booking-container-spot-page'><CreateBookingForm spot={currentSpot} sessionUser={sessionUser} /></div>
-              </div>
 
 
                 {
@@ -214,10 +214,48 @@ const SpotInfo = () => {
                     }
 
                 </div>
-                  <div className='maps-container-spot-page'>
+                <div className='maps-container-spot-page'>
                     <div className='maps-title'>Where You'll Be: </div>
-                        <MapContainer currentSpot = {currentSpot} className="map-container" />
+                    <div className='where-youll-be-address'>{currentSpot.city}, {currentSpot.state}, {currentSpot.country}</div>
+                    <MapContainer currentSpot={currentSpot} className="map-container" />
                 </div>
+
+
+                <div className='spot-know-main-container'>
+
+                    <div className='spot-know-title'>Things To Know</div>
+                    <div className='spot-know-category-container'>
+
+                    <div className='spot-know-individual'>
+                        <div className='spot-know-category-title'>House Rules</div>
+                        <div className="spot-know-details">
+                            <div>Check-in after 3:00 PM</div>
+                            <div>Checkout before 12:00 PM</div>
+                        </div>
+                    </div>
+
+                     <div className='spot-know-individual'>
+                        <div className='spot-know-category-title'> Safety & Property</div>
+                        <div className="spot-know-details">
+                            <div>House rules</div>
+                            <div>Carbon monoxide alarm</div>
+                            <div>Smoke alarm</div>
+                        </div>
+                    </div>
+
+                      <div className='spot-know-individual'>
+                        <div className='spot-know-category-title'> Cancellation policy</div>
+                        <div className="spot-know-items">
+                            <div>Free cancellation for 48 hours.</div>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
 
 
