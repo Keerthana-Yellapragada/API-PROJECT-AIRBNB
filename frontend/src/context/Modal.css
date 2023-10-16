@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 20%;
+    z-index: 1000;
 
 }
 
@@ -29,10 +30,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding:30px;
+    padding:25px;
     border-radius: 4%;
     width: fit-content;
     border-bottom: 1px solid rgb(179, 174, 174);
+    z-index: 1000
 }
 
 
