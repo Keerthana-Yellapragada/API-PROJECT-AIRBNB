@@ -42,7 +42,7 @@ a {
     justify-content: center;
     align-content: center;
     align-items: center;
-    flex-basis: 220px;
+    flex-basis: 275px;
     flex-direction: column;
 
 
@@ -50,14 +50,16 @@ a {
 
 /* image container */
 .image-container {
-    display:flex;
-    justify-content:center;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Adjust the values for your preferred shadow */
 }
 
 /* styling for preview image*/
 .image-container img {
     width: 100%;
-    aspect-ratio:1/1;
+    aspect-ratio: 1/1;
     border-radius: 5%;
 }
 
