@@ -102,24 +102,24 @@
     align-self: inline-flex;
     display: block;
     list-style-type: none;
-    width: 250px;
-    margin: 10px;
-    padding: 10px;
+    width: 150px;
+    margin: 2px;
+    padding: 2px;
     background-color: #ffffff;
     list-style: none;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .user-profile-container ul li {
     display: flex;
     /* justify-content: center; */
-    margin: 5px 0px;
-    padding: 5px 0px;
+    margin: 2px 0px;
+    padding: 2px 0px;
     padding-left: 10px;
     /* color: rgb(174, 171, 171); */
     text-decoration: none;
     list-style: none;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .logout-button {
